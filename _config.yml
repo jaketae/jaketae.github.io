@@ -63,7 +63,7 @@ author:
   bio    : "An aspiring academic and data scientist. Fan of football, guitar, and hunting for hole in the wall restaurants."
   links:
     - label: "Email"
-      icon: "fab fa-fw fa-envelope"
+      icon: "fab fa-envelope"
       url: "mailto:jake.tae@yale.edu"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
