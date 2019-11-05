@@ -63,7 +63,7 @@ author:
   bio    : "An aspiring academic and data scientist. Fan of football, guitar, and hunting for hole in the wall restaurants."
   links:
     - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
+      icon: "fas fa-fw fa-envelope"
       url: "mailto:jake.tae@yale.edu"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
@@ -100,6 +100,15 @@ defaults:
     values:
       layout: single
       author_profile: true
+  # _portfolio
+  - scope:
+      path: ""
+      type: portfolio
+    values:
+      layout: single
+      author_profile: false
+      share: true
+
 
 category_archive:
   type: liquid
@@ -107,3 +116,8 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
+
+collections:
+  portfolio:
+    output: true
+    permalink: /:collection/:path/
