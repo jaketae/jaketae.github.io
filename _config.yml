@@ -21,7 +21,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   explorations. 
 twitter_username: username
 github_username: jaketae
-minimal_mistakes_skin: contrast
+minimal_mistakes_skin: air
 search: true
 
 # Build settings
@@ -60,20 +60,17 @@ plugins:
 author:
   name   : "Jaesung Jake Tae"
   avatar : "/assets/images/Photo.jpg"
-  bio    : "My awesome biography constrained to a sentence or two goes here."
+  bio    : "An aspiring academic and data scientist. Fan of football, guitar, and hunting for hole in the wall restaurants."
   links:
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      url: "https://"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
+    - label: "Email"
+      icon: "fab fa-fw fa-envelope"
+      url: "mailto:jake.tae@yale.edu"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
+      url: "https://github.com/jaketae"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/jaketae/"
 
 footer:
   links:
