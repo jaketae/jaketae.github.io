@@ -3,6 +3,6 @@ permalink: /about/
 title: "About"
 ---
 
-Tempor velit sint sunt ipsum tempor enim ad qui ullamco. Est dolore anim ad velit duis dolore minim sunt aliquip amet commodo labore. Ut eu pariatur aute ea aute excepteur laborum. Esse ea esse excepteur minim mollit qui cillum excepteur ex dolore magna. Labore deserunt fugiat incididunt incididunt sint ea. Consequat dolore aute laboris quis proident quis non et est consectetur ex eiusmod sit culpa.
+Welcome to my personal website! My name is Jaesung (Jake) Tae, and I am a sophomore at Yale University, working towards a Bachelors of Science in Statistics and Data Science. I am currently  most interested in neural networks and deep learning algorithms. Aside from those, I also love watching soccer (the real football), playing the guitar, and hunting for hidden hole in the wall restaurants nearby.
 
-Cupidatat ea do et in excepteur in. Ad nostrud ut est esse eu duis ea sunt eiusmod. Aliquip tempor veniam sint elit fugiat. Velit incididunt laboris amet incididunt labore dolore irure velit excepteur commodo deserunt laborum. Consectetur eu fugiat veniam veniam Lorem labore magna eiusmod. Ea occaecat reprehenderit pariatur consectetur minim labore ut aliquip.
+This blog is where I keep various records of my life, display projects I dabble in for fun, and write about the large and small, significant and the insignificant (mostly) out of arbitrary whim. Hope you enjoy reading as much as I  enjoy writing here!

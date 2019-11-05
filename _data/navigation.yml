@@ -1,9 +1,15 @@
 main:
+  - title: "About"
+    url: /about/
+    description: "A little about me"
   - title: "Posts"
     url: /posts/
+    description: "My thoughtless doodles"
+  - title: "Projects"
+    url: /projects/
+    descripttion: "Proud failures and embarassing acheivements"
   - title: "Categories"
     url: /categories/
   - title: "Tags"
     url: /tags/
-  - title: "About"
-    url: /about/
+  
