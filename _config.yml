@@ -19,7 +19,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   Welcome to my website! My name is Jaesung (Jake) Tae, a sophomore at Yale University.
   This is where I doodle for fun, write for recollection, and embark on intellectual
   explorations. 
-twitter_username: username
+# twitter_username: username
 github_username: jaketae
 minimal_mistakes_skin: air
 search: true
@@ -63,7 +63,7 @@ author:
   bio    : "An aspiring academic and data scientist. Fan of football, guitar, and hunting for hole in the wall restaurants."
   links:
     - label: "Email"
-      icon: "fab fa-envelope"
+      icon: "fas fa-fw fa-envelope-square"
       url: "mailto:jake.tae@yale.edu"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
