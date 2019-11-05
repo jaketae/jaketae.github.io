@@ -14,14 +14,14 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Jaesung Jake Tae
-name: Jaesung Jake Tae
-email: jake.tae@yale.edu
+title: "Jaesung Jake Tae"
+name: "Jaesung Jake Tae"
+email: "jake.tae@yale.edu"
 description: >- # this means to ignore newlines until "baseurl:"
-  Welcome to my personal website! This is where I keep various records of my life, 
+  "Welcome to my personal website! This is where I keep various records of my life, 
   display projects I dabble in for fun, and write about the large and small, significant
   and the insignificant (mostly) out of arbitrary whim. Hope you enjoy reading as much as I 
-  enjoy writing here!
+  enjoy writing here!"
 
 # twitter_username: username
 github_username: jaketae
