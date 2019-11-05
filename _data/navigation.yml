@@ -5,8 +5,8 @@ main:
   - title: "Posts"
     url: /posts/
     description: "My thoughtless doodles"
-  - title: "Projects"
-    url: /projects/
+  - title: "Portfolio"
+    url: /portfolio/
     descripttion: "Proud failures and embarassing acheivements"
   - title: "Categories"
     url: /categories/
