@@ -74,9 +74,6 @@ author:
 
 footer:
   links:
-   - label: "Email"
-      icon: "fab fa-fw fa-envelope"
-      url: "mailto:jake.tae@yale.edu"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/jaketae"
