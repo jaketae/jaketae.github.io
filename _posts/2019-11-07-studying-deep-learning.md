@@ -1,10 +1,10 @@
 ---
 title: "A Self-Created Curriculum"
-date: 
 categories:
   - blog
 tags:
   - update
+  - study
 ---
 
 So here goes my first post. 
