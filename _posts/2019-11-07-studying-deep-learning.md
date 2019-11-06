@@ -1,6 +1,8 @@
 ---
 title: "A Self-Created Curriculum"
 last_modified_at: 2019-11-07 4:42:00 +0000
+header:
+  image: /assets/images/hundred-page.png
 categories:
   - blog
 tags:
