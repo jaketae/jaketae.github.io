@@ -107,8 +107,11 @@ defaults:
       type: portfolio
     values:
       layout: single
-      author_profile: false
+      author_profile: true
+      read_time: true
+      comments: true
       share: true
+      related: true
 
 
 category_archive:
@@ -117,8 +120,3 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
-
-collections:
-  portfolio:
-    output: true
-    permalink: /:collection/:path/
