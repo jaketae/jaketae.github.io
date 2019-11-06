@@ -82,6 +82,12 @@ footer:
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/jaketae/"
 
+# Collections
+collections:
+  portfolio:
+    output: true
+    permalink: /:collection/:path/
+
 defaults:
   # _posts
   - scope:
@@ -107,9 +113,7 @@ defaults:
       type: portfolio
     values:
       layout: single
-      author_profile: true
-      read_time: true
-      comments: true
+      author_profile: false
       share: true
       related: true
 
