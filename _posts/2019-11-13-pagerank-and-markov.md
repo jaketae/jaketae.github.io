@@ -87,13 +87,16 @@ where $$P(X)$$ denotes the probability that the user is browsing website (or nod
 
 From these, how can we learn more more about $$x_1$$? $$Mx_0$$ would give us the answer:
 
-$$Mx_0 = begin{pmatrix} 0 & 1/2 & 1/3 & 1 & 0 \\ 1 & 0 & 1/3 & 0 & 1/3 \\ 0 & 1/2 & 0 & 0 & 1/3 \\ 0 & 0 & 0 & 0 & 1/3 \\ 0 & 0 & 1/3 & 0 & 0 \end{pmatrix} \cdot \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \\ 0 \end{pmatrix}$$
+$$Mx_0 = \begin{pmatrix} 0 & 1/2 & 1/3 & 1 & 0 \\ 1 & 0 & 1/3 & 0 & 1/3 \\ 0 & 1/2 & 0 & 0 & 1/3 \\ 0 & 0 & 0 & 0 & 1/3 \\ 0 & 0 & 1/3 & 0 & 0 \end{pmatrix} \cdot \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \\ 0 \end{pmatrix}$$
 
-Notice that the result is just the first column of the transition matrix! 
- 
+Notice that the result is just the first column of the transition matrix, with all entries 0 except for the second one! Why is this the case? Besides the algebraic argument that matrix multiplications can be performed on a column-by-entry basis, the network graph contains the most intuitive answer to our question: there is only one link from page A to page B, which is why $$P(B)$$ takes the absolute probability of 1. Simply put, the user clicks on the one and only link on page A to move to page B, as the highlighted path shows. 
 
+<figure>
+	<img src="/assets/images/graph-highlight.png">
+	<figcaption>Figure 3: Network graph with path highlight</figcaption>
+</figure>
 
-
+Once the user reaches page B, however, they suddenly have a wealth of more choices. 
 
 
 
