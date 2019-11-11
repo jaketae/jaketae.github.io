@@ -79,7 +79,15 @@ Display equation:
 
 $$\int e^{-kx} \, dx = -\frac{1}{k} e^{-kx}$$
 
-$\begin{matrix} a & b \\ c & d \end{matrix}$
+$$\begin{bmatrix} a & b \\ c & d \end{bmatrix}$$
+
+$$
+    \begin{pmatrix}
+    1 & x & x^2 \\
+    1 & y & y^2 \\
+    1 & z & z^2 \\
+    \end{pmatrix}
+$$
 
 
 This is what I expect.
