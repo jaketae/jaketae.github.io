@@ -36,10 +36,10 @@ DG.add_nodes_from(pages)
 # Create a list of hyperlinks
 # (X, Y) represents a directed edge from X to Y
 links = [("A", "B"), ("B", "A"), 
-		 ("B", "C"), ("C", "A"), 
-		 ("C", "B"), ("C", "E"), 
-		 ("D", "A"), ("E", "D"), 
-		 ("E", "B"), ("E", "C")]
+("B", "C"), ("C", "A"), 
+("C", "B"), ("C", "E"), 
+("D", "A"), ("E", "D"), 
+("E", "B"), ("E", "C")]
 
 # Add edges
 DG.add_edges_from(links)
@@ -55,7 +55,7 @@ Running this block results in the following graph:
 
 <figure>
 	<img src="/assets/images/graph.png">
-	<figcaption>Representation of a miniature world wide web</figcaption>
+	<figcaption>Figure 1: Representation of a miniature world wide web</figcaption>
 </figure>
 
 How is this a model of the Internet? Well, as simple as it seems, the network graph contains all the pertinent information necessary for our preliminary analysis: namely, hyperlinks going from one page to another. Let's take node D as an example. The pointed edges indicate that page E contains a link to page D, and that page D contains another link that redirects the user to page A. Interpreted in this fashion, the graph indicates which pages have a lot of incoming and outgoing reference links. 
@@ -66,14 +66,27 @@ But all of this aside, why are hyperlinks important for the PageRank algorithm i
 
 Suppose we want to know where a user is most likely to end up in after a given search. This process is often referred to as a "random walk" or a "stochastic process" because, as the name suggests, it describes a path after a succession of random steps on some mathematical space. While it is highly unlikely that a user visits a website, randomly selects one of the hyperlinks on the given page, and repeats the two steps above repeatedly, the assumption on randomness is what allows us to simulate a user's navigation of the Internet from the point of view of Markov chains, a stochastic model that describes a sequence of possible events, or states, in which the probability of each event is contingent only upon the previous state attained in the previous event. One good example of a Markov chain is the famous Chutes and Ladders game, in which the player's next position is dependent only upon their present position on the game board. For this reason, Markov chains are said to be "memoryless": in the Chutes and Ladders game, whether the player ended up in their current position by taking a ladder or a normal dice roll is irrelevant to the progress of the game after all. 
 
+<figure>
+	<img src="/assets/images/chutes-and-ladders.png">
+	<figcaption>Figure 2: Chutes and Ladders game</figcaption>
+</figure>
+
 A salient characteristic of a Markov chain is that the probabilities of each event can be represented and calculated by simple matrix multiplication. The specifics of this mechanism will be a topic for another post, but intuitively speaking, there would be some transition matrix $$P$$ that represents probabilities, and some vector $$x_n$$ that denotes the $$n^{th}$$ state in the Markov chain. Then, multiplying this state vector by the transition matrix would yield $$Mx_n = x_{n+1}$$, where the new vector $$x_{n+1}$$ denotes the probability distribution in the $${n+1}^{th}$$ state in the Markov chain. The beauty behind the Markov chain is that the result of this multiplication operation, when iterated many times, converges to a stationary distribution vector regardless of where we started from, *i.e.* $$x_0$$. 
 
-With that in mind, let's return back to our example of the Internet microcosm and the five websites. To apply a stochastic analysis on our model, it is first necessary to translate the network graph presented above into a transition matrix $$M$$ whose individual entries are nonnegative real numbers that denote some probability of change from one state to another. 
+To make all of this more concrete, let's return back to our example of the Internet microcosm and the five websites. In order to apply a stochastic analysis on our model, it is first necessary to translate the network graph presented above into a transition matrix $$M$$ whose individual entries are nonnegative real numbers that denote some probability of change from one state to another. 
 
 Here is the matrix representation of the network graph in our example:
 
-$$P = \begin{pmatrix} 0 & 1/2 & 1/3 $ 1 $ 0 \\ 1 & 0 & 1/3 $ 0 $ 1/3 \\ 0 & 1/2 & 0 $ 0 $ 1/3 \\ 0 & 0 & 0 $ 0 $ 1/3 \\ 0 & 0 & 1/3 $ 0 $ 0 \end{pmatrix}$$
+$$P = \begin{pmatrix} 0 & 1/2 & 1/3 & 1 & 0 \\ 1 & 0 & 1/3 & 0 & 1/3 \\ 0 & 1/2 & 0 & 0 & 1/3 \\ 0 & 0 & 0 & 0 & 1/3 \\ 0 & 0 & 1/3 & 0 & 0 \end{pmatrix}$$
 
+The column vector $$x_n$$ can be defined as $$x_n = \begin{pmatrix} P(A) \\ P(B) \\ P(C) \\ P(D) \\ P(E) \end{pmatrix}$$, where $$P(X)$$ denotes the probability that the user is browsing website (or node from a network graph's perspective) $$X$$ at state $$n$$. For instance, $$x_0 = \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}$$ would be an appropriate vector representation of a state distribution in a Markov chain where a user began their random walk at website A. This will be our example. 
+
+From these, how can we learn more more about $$x_1$$? Simple! $$Mx_0$$ would give us the answer:
+
+$$Mx_0 = begin{pmatrix} 0 & 1/2 & 1/3 & 1 & 0 \\ 1 & 0 & 1/3 & 0 & 1/3 \\ 0 & 1/2 & 0 & 0 & 1/3 \\ 0 & 0 & 0 & 0 & 1/3 \\ 0 & 0 & 1/3 & 0 & 0 \end{pmatrix} \cdot \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \\ 0 \end{pmatrix}$$
+
+Notice that the result is just the first column of the transition matrix! 
+ 
 
 
 
