@@ -8,7 +8,9 @@ tags:
   - study
 ---
 
-# The Google Search Engine
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
 Google is the most popular search engine in the world. It is so popular that the word "Google" has been added to the Oxford English Dictionary as a proper verb, denoting the act of searching on Google. 
 
@@ -33,16 +35,11 @@ DG.add_nodes_from(pages)
 
 # Create a list of hyperlinks
 # (X, Y) represents a directed edge from X to Y
-links = [("A", "B"), 
-		 ("B", "A"), 
-		 ("B", "C"), 
-		 ("C", "A"), 
-		 ("C", "B"), 
-		 ("C", "E"), 
-		 ("D", "A"), 
-		 ("E", "D"), 
-		 ("E", "B"), 
-		 ("E", "C")]
+links = [("A", "B"), ("B", "A"), 
+		 ("B", "C"), ("C", "A"), 
+		 ("C", "B"), ("C", "E"), 
+		 ("D", "A"), ("E", "D"), 
+		 ("E", "B"), ("E", "C")]
 
 # Add edges
 DG.add_edges_from(links)
@@ -67,30 +64,22 @@ Why are hyperlinks important for the PageRank algorithm, you might ask. A useful
 
 # Random Walk
 
-Suppose we want to know where a user is most likely to end up in after a given search. This process is often referred to as a "random walk" or a "stochastic process" because, as the name suggests, it describes a path after a succession of random steps on some mathematical space. 
+Suppose we want to know where a user is most likely to end up in after a given search. This process is often referred to as a "random walk" or a "stochastic process" because, as the name suggests, it describes a path after a succession of random steps on some mathematical space. While it is highly unlikely that a user visits a website, randomly selects one of the hyperlinks on the given page, and repeats the two steps above recursively, the assumption on randomness is what allows us to conduct a Markovian analysis on our model of the miniature Internet. 
 
-Here is an equation. 
+Before exploring the world of Markov chains, let's first translate the network graph presented above into matrix form. This process can be achieved by constructing a transition matrix, whose individual entries are nonnegative real numbers that denote some probability of change from one state to another. To make this more concrete, here is a matrix representation of the network graph in our example:
 
-Display equation:
-
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-$$\int e^{-kx} \, dx = -\frac{1}{k} e^{-kx}$$
-
-$$\begin{bmatrix} a & b \\ c & d \end{bmatrix}$$
-
-$$
-    \begin{pmatrix}
-    1 & x & x^2 \\
-    1 & y & y^2 \\
-    1 & z & z^2 \\
-    \end{pmatrix}
-$$
+$$P = \begin{pmatrix} 0 & 1/2 & 1/3 $ 1 $ 0 \\ 1 & 0 & 1/3 $ 0 $ 1/3 \\ 0 & 1/2 & 0 $ 0 $ 1/3 \\ 0 & 0 & 0 $ 0 $ 1/3 \\ 0 & 0 & 1/3 $ 0 $ 0 \end{pmatrix}$$
 
 
-This is what I expect.
+
+
+
+
+
+
+
+
+
 
 
 
