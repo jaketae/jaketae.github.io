@@ -79,11 +79,15 @@ Here is the matrix representation of the network graph in our example:
 
 $$P = \begin{pmatrix} 0 & 1/2 & 1/3 & 1 & 0 \\ 1 & 0 & 1/3 & 0 & 1/3 \\ 0 & 1/2 & 0 & 0 & 1/3 \\ 0 & 0 & 0 & 0 & 1/3 \\ 0 & 0 & 1/3 & 0 & 0 \end{pmatrix}$$
 
-The column vector $$x_n$$ can be defined as $$x_n = \begin{pmatrix} P(A) \\ P(B) \\ P(C) \\ P(D) \\ P(E) \end{pmatrix}$$, where $$P(X)$$ denotes the probability that the user is browsing website (or node from a network graph's perspective) $$X$$ at state $$n$$. For instance, $$x_0 = \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}$$ would be an appropriate vector representation of a state distribution in a Markov chain where a user began their random walk at website A. This will be our example. 
+The column vector $$x_n$$ can be defined as 
 
-From these, how can we learn more more about $$x_1$$? Simple! $$Mx_0$$ would give us the answer:
+$$x_n = \begin{pmatrix} P(A) \\ P(B) \\ P(C) \\ P(D) \\ P(E) \end{pmatrix}$$
 
-$$Mx_0 = begin{pmatrix} 0 & 1/2 & 1/3 & 1 & 0 \\ 1 & 0 & 1/3 & 0 & 1/3 \\ 0 & 1/2 & 0 & 0 & 1/3 \\ 0 & 0 & 0 & 0 & 1/3 \\ 0 & 0 & 1/3 & 0 & 0 \end{pmatrix} \cdot \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \\ 0 \end{pmatrix}$$
+where $$P(X)$$ denotes the probability that the user is browsing website (or node from a network graph's perspective) $$X$$ at state $$n$$. For instance, $$x_0 = \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}$$ would be an appropriate vector representation of a state distribution in a Markov chain where a user began their random walk at website A. This will be our example. 
+
+From these, how can we learn more more about $$x_1$$? $$Mx_0$$ would give us the answer:
+
+$$Mx_0 = begin{pmatrix} 0 & 1/2 & 1/3 & 1 & 0 \\ 1 & 0 & 1/3 & 0 & 1/3 \\ 0 & 1/2 & 0 & 0 & 1/3 \\ 0 & 0 & 0 & 0 & 1/3 \\ 0 & 0 & 1/3 & 0 & 0 \end{pmatrix}$$ \cdot $$\begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \\ 0 \end{pmatrix}$$
 
 Notice that the result is just the first column of the transition matrix! 
  
