@@ -63,11 +63,13 @@ Running this block results in the following graph:
 
 How is this a model of the Internet? Well, as stupid as it seems, the network graph contains all the information necessary for our preliminary analysis: namely, hyperlinks from one page to another. Let's take node D as an example. The pointed edges indicate that page E contains a link tot page D, and that page D contains another link that then redirects the user to page A. Interpreted in this fashion, the graph shows which pages have a lot of incoming and outgoing reference links. 
 
-Why are hyperlinks important for the PageRank algorithm, you might ask. A useful intuit might be that websites with a lot of incoming references are likely to be influential sources, often written by prominent individuals. This analysis is certainly the case in the field of academics, where works of literature that are frequently cited quickly gain clout and reach an established position in the given discipline. Another reasoning is that hyperlinks tell us where a user is most likely to end up in. Take the extreme example of an isolated node, where there are no outgoing or ingoing links to the website. It is unlikely that a user will end up on that website, as opposed to a popular page with a spiderweb of edges. Then, it would make sense for the PageRank algorithm to display that website on top of the one represented by an isolated node. 
+Why are hyperlinks important for the PageRank algorithm, you might ask. A useful intuition might be that websites with a lot of incoming references are likely to be influential sources, often written by prominent individuals. This analysis is certainly the case in the field of academics, where works of literature that are frequently cited quickly gain clout and reach an established position in the given discipline. Another reasoning is that hyperlinks tell us where a user is most likely to end up on after browsing through returned search results. Take the extreme example of an isolated node, where there are zero outgoing and ingoing links to the website. It is unlikely that a user will end up on that webpage, as opposed to a popular site with a spiderweb of edges on a network graph. Then, it would make sense for the PageRank algorithm to display that website on top; the isolated node, the bottom. 
 
 # Random Walk
 
-Suppose we want to know where a user is most likely to end up in after a given search. This process is referred to as a "random walk" because we are essentially trying to 
+Suppose we want to know where a user is most likely to end up in after a given search. This process is often referred to as a "random walk" or a "stochastic process" because, as the name suggests, it describes a path after a succession of random steps on some mathematical space. 
+
+Here is an equation. Some inline Latex: $$a^2 + b^2 = c^2$$
 
 
 
