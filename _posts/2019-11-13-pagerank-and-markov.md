@@ -69,7 +69,7 @@ Why are hyperlinks important for the PageRank algorithm, you might ask. A useful
 
 Suppose we want to know where a user is most likely to end up in after a given search. This process is often referred to as a "random walk" or a "stochastic process" because, as the name suggests, it describes a path after a succession of random steps on some mathematical space. 
 
-Here is an equation. Some inline Latex: $$a^2 + b^2 = c^2$$
+Here is an equation. Some in-line Latex: $a^2 + b^2 = c^2$
 
 
 
