@@ -79,6 +79,9 @@ Display equation:
 
 $$\int e^{-kx} \, dx = -\frac{1}{k} e^{-kx}$$
 
+$\begin{matrix} a & b \\ c & d \end{matrix}$
+
+
 This is what I expect.
 
 
