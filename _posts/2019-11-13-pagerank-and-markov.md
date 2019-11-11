@@ -73,7 +73,13 @@ Here is an equation.
 
 Display equation:
 
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
 $$\int e^{-kx} \, dx = -\frac{1}{k} e^{-kx}$$
+
+This is what I expect.
 
 
 
