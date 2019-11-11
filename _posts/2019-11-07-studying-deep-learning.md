@@ -34,7 +34,7 @@ Which naturally leads to the question: from where do I begin?
 
 The first book to be added to my curriculum is *[The Hundred Page Machine Learning Book]*, written by Andriy Burkov. As the title suggests, this book provides a highly condensed guide on the clockwork of machine learning. Whether the contents of this book will be a significant challenge given my current level of knowledge is yet unclear, yet it will surely show me an overall glimpse of what studying machine learning will entail for me. 
 
-There are other books and online resources that I would like to study, but introducing this comprehensive list, alongside a justification behind each selection of materials, will be tabled for separate post. Come back in a few days for a hot, freshly-baked book review of the best seller.
+There are other books and online resources that I would like to study, but introducing a comprehensive list of such resources, alongside a justification behind each selection, will be tabled for separate post. Come back in a few days for a hot, freshly-baked book review of one of the best sellers on the art of machine learning!
 
 
 
