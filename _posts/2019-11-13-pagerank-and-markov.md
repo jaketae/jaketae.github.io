@@ -101,7 +101,7 @@ Notice that the result is just the first column of the transition matrix, with a
 Once the user reaches page B, however, they now have two choices instead of one: either go back to page A or visit page C. This increase in uncertainty is reflected in the entries of the next vector, $$x_2$$:
 
 
-$x_2 = Mx_1 = \begin{pmatrix} 0 & 1/2 & 1/3 & 1 & 0 \\ 1 & 0 & 1/3 & 0 & 1/3 \\ 0 & 1/2 & 0 & 0 & 1/3 \\ 0 & 0 & 0 & 0 & 1/3 \\ 0 & 0 & 1/3 & 0 & 0 \end{pmatrix} \cdot \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix} 1/2 \\ 0 \\ 1/2 \\ 0 \\ 0 \end{pmatrix}$$
+$$x_2 = Mx_1 = \begin{pmatrix} 0 & 1/2 & 1/3 & 1 & 0 \\ 1 & 0 & 1/3 & 0 & 1/3 \\ 0 & 1/2 & 0 & 0 & 1/3 \\ 0 & 0 & 0 & 0 & 1/3 \\ 0 & 0 & 1/3 & 0 & 0 \end{pmatrix} \cdot \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix} 1/2 \\ 0 \\ 1/2 \\ 0 \\ 0 \end{pmatrix}$$
 
 As our intuition suggests, $$P(A) = P(C) = 1/2$$, and $$P(A) + P(C) = 1$$ since $$A^c = C$$. Although no formal proof has been presented, it is now fairly clear that performing this calculation $$n$$ times would yield the vector $$x_n$$ that contains information about the probability of the user being at websites A, B, C, D, and E, respectively. 
 
@@ -130,7 +130,7 @@ print(markov_chain(P, x_0, rep))
 
 The output of this program is $$\begin{pmatrix} 0.29270741 \\ 0.39047887 \\ 0.21914571 \\ 0.02430009 \\ 0.07336792 \end{pmatrix}$$. As the Markov process rightly predicts, these numbers each converge to certain values with more repetitions.
 
-$$x_50 \simeq x_100 = \begin{pmatrix} 0.29268293 \\ 0.3902439 \\ 0.2195122 \\ 0.02439024 \\ 0.07317073 \end{pmatrix}$$
+$$x_{50} \simeq x_{100} = \begin{pmatrix} 0.29268293 \\ 0.3902439 \\ 0.2195122 \\ 0.02439024 \\ 0.07317073 \end{pmatrix}$$
 
 Also notice that this result is independent of the initial vector we started out with! Suppose a new initial vector $$x_02 = \begin{pmatrix} 1/5 \\ 1/5 \\ 1/5 \\ 1/5 \\ 1/5 \end{pmatrix}:
 
@@ -149,9 +149,9 @@ This returns the following output, as expected:
  [0.07317073]]
 ```
 
-There is a mathematical proof behind this fascinating phenomena involving eigenvectors that we will discuss in another post, but there is also an intuitive explanation of this result. Recall that $$x$$ was defined as the vector containing the probabilities $$P(A)$$, $$P(B)$$, $$P(C)$$, $$P(D)$$, and $$P(E)$$. Then, the stationary distribution, $$\lim\limits_{n \to /infty} x_n $$, can also be interpreted as the average time that the user spends on a given website. For instance, in our miniature world, the theoretical Internet addict user who sits down on their desk for an infinite number of hours would be expected to spend about $$29\%$$ of their time on website A; B, $$39\%$$; C, $$22\%$$; D, $$2\%$$; and E, $$7\%$$. Two notable observations might be made about this result. Firstly, the five percentages all add up to a hundred as they should: there are only five websites in the model, and so the probability that the user would be at any one of these five websites is 1. Secondly, $$P(D)$$ is the smallest out of the five entries, which aligns with the fact that node D held the most insular position in the network graph. All in all, analyzed from the dimension of time, the notion of stationary distribution is coherent with our intuition that, no matter where the user starts, the average time they spend on each website should be the same given the memoryless nature of the Markov chain. 
+There is a mathematical proof behind this fascinating phenomena involving eigenvectors that we will discuss in another post, but there is also an intuitive explanation of this result. Recall that $$x$$ was defined as the vector containing the probabilities $$P(A)$$, $$P(B)$$, $$P(C)$$, $$P(D)$$, and $$P(E)$$. Then, the stationary distribution, $$\lim\limits_{n \to \infty} x_n $$, can also be interpreted as the average time that the user spends on a given website. For instance, in our miniature world, the theoretical Internet addict user who sits down on their desk for an infinite number of hours would be expected to spend about $$29\%$$ of their time on website A; B, $$39\%$$; C, $$22\%$$; D, $$2\%$$; and E, $$7\%$$. Two notable observations might be made about this result. Firstly, the five percentages all add up to a hundred as they should: there are only five websites in the model, and so the probability that the user would be at any one of these five websites is 1. Secondly, $$P(D)$$ is the smallest out of the five entries, which aligns with the fact that node D held the most insular position in the network graph. All in all, analyzed from the dimension of time, the notion of stationary distribution is coherent with our intuition that, no matter where the user starts, the average time they spend on each website should be the same given the memoryless nature of the Markov chain. 
 
-# PageRank Demystified.
+# PageRank Demystified
 
 So we commenced from the seemingly simple question of what PageRank entails. The Markov chain madness may have appeared like a rabbit hole, but it is highly germane to the clockwork behind Google's search algorithm. Although we used only one parameter--hyperlinks--as the basis of our analysis, PageRank performs batch calculations on a much larger sum of data to ultimately derive the equivalent of our stationary distribution vector. The website that the user is most likely to spend the most time on, *i.e.* the website that is most likely important and relevant to the user's search entry, is placed on the top of the list. Other entries follow in sorted order. So there you have it: the PageRank algorithm demystified. Now the question is, will Google place this post on the top of the search result when a user types "PageRank"? Probably not given the lack of active hyperlinks to and from this webpage. But we'll see. 
 
