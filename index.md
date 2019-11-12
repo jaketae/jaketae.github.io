@@ -1,11 +1,13 @@
 ---
+permalink: /
+layout: archive
 title: "Hello!"
 author_profile: true
 ---
 
 Welcome to my personal website! My name is Jake (Jaesung) Tae, and I am a sophomore at Yale University working towards a Bachelors of Science in Statistics and Data Science (currently on an authorized leave of absence for military service).
 
-Currently, I am working as an assistant to the Provost Marshall and Radio Telecommunications Operator at the 142nd Military Policy Company of the 8th Army. My primary responsibility includes responding to emergency calls to minimize any potential damages to life and property, maintaining real-time communication with MP patrols, and overseeing law enforcement and on-post security at USAG Yongsan, Seoul. While there is a lot on my shoulders, I am learning something new each day at work, and I am proud to play my part in the army as an intermediary between Korea and the U.S. 
+Currently, I am working as a Radio Telecommunications Operator and an assistant to the Provost Marshall at the 142nd Military Policy Company of the 8th Army. My primary responsibility includes responding to emergency calls to minimize any potential damages to life and property, maintaining real-time communication with MP patrols, and overseeing law enforcement and on-post security at USAG Yongsan, Seoul. While there is a lot on my shoulders, I am learning something new each day at work, and I am proud to play my part in the army as an intermediary between Korea and the U.S. 
 
 My academic interests are diversified, but I am particularly intrigued by the statistical and mathematical underpinnings of machine learning algorithms and deep neural networks, such as the stochastic process, gradient descent, and various other optimization techniques. As unbelievable as it sounds, the two introductory math classes I took during my first year, Math 120 and 222, have been two of my favorite classes I have taken at Yale to date, and I wish to continue my exploration of this subject area when I return to continue my studies as a sophomore in 2021. 
 
