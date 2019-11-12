@@ -1,6 +1,6 @@
 ---
 title: "Understanding PageRank"
-last_modified_at: 2019-11-13 4:42:00 +0000
+last_modified_at: 2019-11-13 9:51:00 +0000
 categories:
   - blog
   - math
@@ -12,13 +12,13 @@ tags:
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-Google is the most popular search engine in the world. It is so popular that the word "Google" has been added to the Oxford English Dictionary as a proper verb, denoting the act of searching on Google. 
+Google is the most popular search engine in the world. It is so popular that the word "Google" has been [added to the Oxford English Dictionary] as a proper verb, denoting the act of searching on Google. 
 
-While Google's success as an Internet search engine might be attributed to a plethora of factors, the company's famous PageRank algorithm is undoubtedly a contributing factor behind the stage. The PageRank algorithm is a method by which Google ranks different pages on the world wide web, displaying the most relevant and important pages on the top of the search result when a user inputs an entry. Simply put, PageRank determines which websites are most likely to contain the information the user is looking for and returns the most optimal search result. 
+While Google's success as an Internet search engine might be attributed to a plethora of factors, the company's famous PageRank algorithm is undoubtedly a contributing factor behind the stage. [The PageRank algorithm] is a method by which Google ranks different pages on the world wide web, displaying the most relevant and important pages on the top of the search result when a user inputs an entry. Simply put, PageRank determines which websites are most likely to contain the information the user is looking for and returns the most optimal search result. 
 
 # Network Graph Representation
 
-While the nuts and bolts of this algorithm may appear complicated--and indeed they are--the underlying concept is surprisingly intuitive: the relevance or importance of a page is determined by the number of hyperlinks going to and from the website. Let's hash out this proposition by creating a miniature version of the Internet. In our microcosm, there are only five websites, represented as nodes on a network graph. Below is a simple representation created using Python and the Networkx package. 
+While the nuts and bolts of this algorithm may appear complicated--and indeed they are--the underlying concept is surprisingly intuitive: the relevance or importance of a page is determined by the number of hyperlinks going to and from the website. Let's hash out this proposition by creating a miniature version of the Internet. In our microcosm, there are only five websites, represented as nodes on a network graph. Below is a simple representation created using Python and the [Networkx package]. 
 
 ```python
 import networkx as nx
@@ -62,11 +62,11 @@ Running this block results in the following graph:
 
 How is this a model of the Internet? Well, as simple as it seems, the network graph contains all the pertinent information necessary for our preliminary analysis: namely, hyperlinks going from one page to another. Let's take node D as an example. The pointed edges indicate that page E contains a link to page D, and that page D contains another link that redirects the user to page A. Interpreted in this fashion, the graph indicates which pages have a lot of incoming and outgoing reference links. 
 
-But all this aside, why are hyperlinks important for the PageRank algorithm in the first place? A useful intuition might be that websites with a lot of incoming references are likely to be influential sources, often written by prominent individuals. This analysis is certainly the case in the field of academics, where works of literature that are frequently cited quickly gain clout and reach an established position in the given discipline. Another reasoning is that hyperlinks tell us where a user is most likely to end up on after browsing through returned search results. Take the extreme example of an isolated node, where there are zero outgoing and ingoing links to the website. It is unlikely that a user will end up on that webpage, as opposed to a popular site with a spiderweb of edges on a network graph. Then, it would make sense for the PageRank algorithm to display that website on top; the isolated node, the bottom. 
+But all this aside, why are hyperlinks important for the PageRank algorithm in the first place? A useful intuition might be that websites with a lot of incoming references are likely to be influential sources, often written by prominent individuals. This analysis is certainly the case in the field of academics, where works of literature that are frequently cited quickly gain clout and attain an established position in the given discipline. Another reasoning is that hyperlinks tell us where a user is most likely to wound up in after browsing through returned search results. Take the extreme example of an isolated node, where there are zero outgoing and ingoing links to the website. It is unlikely that a user will end up on that webpage, as opposed to a popular site with a spiderweb of edges on a network graph. Then, it would make sense for the PageRank algorithm to display that website on top; the isolated node, the bottom. 
 
 # Markov Chain
 
-Suppose we want to know where a user is most likely to end up in after a given search. This process is often referred to as a "random walk" or a "stochastic process" because, as the name suggests, it describes a path after a succession of random steps on some mathematical space. While it is highly unlikely that a user visits a website, randomly selects one of the hyperlinks on the given page, and repeats the two steps above repeatedly, the assumption on randomness is what allows us to simulate a user's navigation of the Internet from the point of view of Markov chains, a stochastic model that describes a sequence of possible events, or states, in which the probability of each event is contingent only upon the previous state attained in the previous event. One good example of a Markov chain is the famous Chutes and Ladders game, in which the player's next position is dependent only upon their present position on the game board. For this reason, Markov chains are said to be "memoryless": in the Chutes and Ladders game, whether the player ended up in their current position by taking a ladder or a normal dice roll is irrelevant to the progress of the game after all. 
+Suppose we want to know where a user is most likely to end up in after a given search. This process is often referred to as a ["random walk"] or a "stochastic process" because, as the name suggests, it describes a path after a succession of random steps on some mathematical space. While it is highly unlikely that a user visits a website, randomly selects one of the hyperlinks on the given page, and repeats the two steps above repeatedly, the assumption on randomness is what allows us to simulate a user's navigation of the Internet from the point of view of Markov chains, a stochastic model that describes a sequence of possible events, or states, in which the probability of each event is contingent only upon the previous state attained in the previous event. One good example of a Markov chain is the famous Chutes and Ladders game, in which the player's next position is dependent only upon their present position on the game board. For this reason, Markov chains are said to be ["memoryless"]: in the Chutes and Ladders game, whether the player ended up in their current position by taking a ladder or a normal dice roll is irrelevant to the progress of the game after all. 
 
 <figure>
 	<img src="/assets/images/chutes-and-ladders.png">
@@ -100,7 +100,6 @@ Notice that the result is just the first column of the transition matrix, with a
 
 Once the user reaches page B, however, they now have two choices instead of one: either go back to page A or visit page C. This increase in uncertainty is reflected in the entries of the next vector, $$x_2$$:
 
-
 $$x_2 = Mx_1 = \begin{pmatrix} 0 & 1/2 & 1/3 & 1 & 0 \\ 1 & 0 & 1/3 & 0 & 1/3 \\ 0 & 1/2 & 0 & 0 & 1/3 \\ 0 & 0 & 0 & 0 & 1/3 \\ 0 & 0 & 1/3 & 0 & 0 \end{pmatrix} \cdot \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix} 1/2 \\ 0 \\ 1/2 \\ 0 \\ 0 \end{pmatrix}$$
 
 As our intuition suggests, $$P(A) = P(C) = 1/2$$, and $$P(A) + P(C) = 1$$ since $$A^c = C$$. Although no formal proof has been presented, it is now fairly clear that performing this calculation $$n$$ times would yield the vector $$x_n$$ that contains information about the probability of the user being at websites A, B, C, D, and E, respectively. 
@@ -132,7 +131,7 @@ The output of this program is $$\begin{pmatrix} 0.29270741 \\ 0.39047887 \\ 0.21
 
 $$x_{50} \simeq x_{100} = \begin{pmatrix} 0.29268293 \\ 0.3902439 \\ 0.2195122 \\ 0.02439024 \\ 0.07317073 \end{pmatrix}$$
 
-Also notice that this result is independent of the initial vector we started out with! Suppose a new initial vector $$x_02 = \begin{pmatrix} 1/5 \\ 1/5 \\ 1/5 \\ 1/5 \\ 1/5 \end{pmatrix}:
+Also notice that this result is independent of the initial vector we started out with! Suppose a new initial vector $$x_02 as defined below:
 
 ```python
 x_02 = np.array([[1/5], [1/5], [1/5], [1/5], [1/5]])
@@ -158,5 +157,14 @@ So we commenced from the seemingly simple question of what PageRank entails. The
 So there you have it: the PageRank algorithm demystified. Now the question is, will Google place this post on the top of the search result when a user types "PageRank"? Probably not given the lack of active hyperlinks to and from this webpage. But we'll see. 
 
 
+[added to the Oxford English Dictionary]: https://www.theatlantic.com/technology/archive/2014/06/the-first-use-of-the-verb-to-google-on-television-buffy-the-vampire-slayer/373599/
+
+[The PageRank algorithm]: https://en.wikipedia.org/wiki/PageRank
+
+[Networkx package]: https://networkx.github.io
+
+["random walk"]: https://en.wikipedia.org/wiki/Random_walk
+
+["memoryless"]: https://en.wikipedia.org/wiki/Markov_property
 
 
