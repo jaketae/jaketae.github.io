@@ -153,7 +153,9 @@ There is a mathematical proof behind this fascinating phenomena involving eigenv
 
 # PageRank Demystified
 
-So we commenced from the seemingly simple question of what PageRank entails. The Markov chain madness may have appeared like a rabbit hole, but it is highly germane to the clockwork behind Google's search algorithm. Although we used only one parameter--hyperlinks--as the basis of our analysis, PageRank performs batch calculations on a much larger sum of data to ultimately derive the equivalent of our stationary distribution vector. The website that the user is most likely to spend the most time on, *i.e.* the website that is most likely important and relevant to the user's search entry, is placed on the top of the list. Other entries follow in sorted order. So there you have it: the PageRank algorithm demystified. Now the question is, will Google place this post on the top of the search result when a user types "PageRank"? Probably not given the lack of active hyperlinks to and from this webpage. But we'll see. 
+So we commenced from the seemingly simple question of what PageRank entails. The Markov chain madness may have appeared a bit like a rabbit hole, but it is highly germane to the clockwork behind Google's search algorithm. Although we used only one parameter--hyperlinks--as the basis of our analysis, in reality PageRank performs batch calculations on a much larger sum of data to ultimately derive the equivalent of our stationary distribution vector. The website that the user is most likely to spend the most time on, *i.e.* the website that is most likely important and relevant to the user's search entry, is placed on the top of the list. Other entries follow in sorted order. 
+
+So there you have it: the PageRank algorithm demystified. Now the question is, will Google place this post on the top of the search result when a user types "PageRank"? Probably not given the lack of active hyperlinks to and from this webpage. But we'll see. 
 
 
 
