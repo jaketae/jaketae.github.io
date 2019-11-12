@@ -1,5 +1,5 @@
 ---
-title: "Markov Chain and Chucks and Ladders"
+title: "Markov Chain and Chutes and Ladders"
 last_modified_at: 2019-11-16 4:42:00 +0000
 categories:
   - blog
@@ -49,7 +49,7 @@ By calculating the determinant of $$(A - \lambda I)$$, we can derive the [charac
 
 # Chutes and Ladders game
 
-Now that we have reviewed some underlying concepts, perhaps it is time to apply our knowledge to a concrete example. Before we move on, I recommend that you check out this [post] I have written on the Markov process, just so that you are comfortable with the material to be presented in this section. 
+Now that we have reviewed some underlying concepts, perhaps it is time to apply our knowledge to a concrete example. Before we move on, I recommend that you check out [this post] I have written on the Markov process, just so that you are comfortable with the material to be presented in this section. 
 
 In this post, we turn our attention to the game of Chutes and Ladders, which is an example of a Markov process which demonstrates the property of "[memorylessness]." This simply means that the progress of the game depends only on the players' current positions, not where they were or how they got there. A player might have ended up where they are by taking a ladder or by performing a series of regular dice rolls. In the end, however, all that matters is that the players eventually hit the hundredth cell. 
 
@@ -62,8 +62,8 @@ To perform a Markov chain analysis on the Chutes and Ladders game, it is first n
 
 $$P(X \vert C = 0) = 
 \begin{cases}
-\ 1/6 & \text{if X \in {38, 2, 3, 14, 5, 6}} \\[2ex]
-\ 0 & \text{if X \notin {38, 2, 3, 14, 5, 6}}
+\ 1/6 & \text{if X \in \{38, 2, 3, 14, 5, 6\}} \\[2ex]
+\ 0 & \text{if X \notin \{38, 2, 3, 14, 5, 6\}}
 \end{cases}
 
 where $$C$$ denotes the current position of the player on the game board. We can make the same deductions for other cases where $$C = 1 \ldots 100$$. We are thus able to construct a 101-by-101 matrix representing the transition probabilities of our Chutes and Ladders system, where each column represents the system at a different state, *i.e.* the $$j$$th entry of the $$i$$th column vector represents the probabilities of moving from cell $$i$$ to cell $$j$$. To make this more concrete, let's consider a program that constructs the transition matrix $$T$$, without regards to the chutes and ladders for now. 
@@ -72,7 +72,7 @@ where $$C$$ denotes the current position of the player on the game board. We can
 import numpy as np
 
 def board_generator(roll=6, dim=101):
-	"""Returns a 2D numpy representation of the game board."""
+"""Returns a 2D numpy representation of the game board."""
 
     # Dictionary of chutes and ladders
     CHUTES_LADDERS = {...}
@@ -105,7 +105,7 @@ def board_generator(roll=6, dim=101):
 
 [defined]: https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors
 
-[transition matrix]: http://mathworld.wolfram.com/StochasticMatrix.html
+[stochastic matrix]: http://mathworld.wolfram.com/StochasticMatrix.html
 
 [memorylessness]: https://en.wikipedia.org/wiki/Markov_property
 
