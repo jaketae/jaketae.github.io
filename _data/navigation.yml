@@ -1,10 +1,6 @@
 main:
-  - title: "About"
-    url: /about/
-    description: "A little about me"
   - title: "Posts"
     url: /posts/
-    description: "My thoughtless doodles"
   - title: "Portfolio"
     url: /portfolio/
   - title: "Categories"
