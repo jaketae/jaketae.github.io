@@ -96,10 +96,12 @@ The indexing is key here: for each column, $$[i + 1, i + 7)$$th rows were assign
 Things get a bit more complicated once we throw the chutes and ladders into the mix. To achieve this, we first build a dictionary containing information on the jump from one cell to another. In this dictionary, the keys correspond to the original position; the values, the index of the cell after the jump, either through a chute or a ladder.
 
 ```python
-chutes_ladders = {1: 38, 4: 14, 9: 31, 16: 6, 21: 42,
+chutes_ladders = {
+1: 38, 4: 14, 9: 31, 16: 6, 21: 42,
 28: 84, 36: 44, 47: 26, 49: 11, 51: 67,
 56: 53, 62: 19, 64: 60, 71: 91, 80: 100,
-87: 24, 93: 73, 95: 75, 98: 78}
+87: 24, 93: 73, 95: 75, 98: 78
+}
 ```
 
 For example, ```1: 38``` represents the first ladder on the game board, which moves the player from the first cell to the thirty eighth cell. 
@@ -178,7 +180,7 @@ Now that we have a stochastic matrix to work with, we can finally perform more m
 
 At this point, let's remind ourselves of the end goal. Since we have successfully built a stochastic matrix, all we have to do is to set some initial starting vector $$x_0$$ and perform iterative matrix calculations. In recursive form, this statement can be expressed as follows:
 
-$$x_{n+1} = T \cdot x_n = T^{n+1} \cdot x_0$$
+$$x_{n+1} = Tx_n = T^{n+1}x_0$$
 
 At a glance, this approach is the exact one which we took in the [previous post] with the mini PageRank algorithm. However, we will see here that performing a [eigendecomposition] of the stochastic matrix will drastically improve the calculation process, and with that, a reduction in our program's runtime. 
 
@@ -186,7 +188,7 @@ Eigendecomposition refers to a specific method of factorizing a matrix in terms 
 
 First, we begin by considering the result of multiplying $$A$$ and $$S$$. What would the result be? If we consider matrix as a repetition of matrix-times-vector operations, we can yield the following result.
 
-$$AS = A \cdot \begin{pmatrix} \vertbar & \vertbar &        & \vertbar \\ s_1 & s_2 & \ldots & s_n \\ \vertbar & \vertbar &        & \vertbar \end{pmatrix} = \begin{pmatrix} As_1 & As_2 & \ldots & As_n \end{pmatrix}$$
+$$AS = A \cdot \begin{pmatrix} \vert & \vert &        & \vert \\ s_1 & s_2 & \ldots & s_n \\ \vert & \vert &        & \vert \end{pmatrix} = \begin{pmatrix} \vert & \vert &        & \vert \\ As_1 & As_2 & \ldots & As_n \\ \vert & \vert &        & \vert \end{pmatrix}$$
 
 
 
