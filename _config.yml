@@ -17,10 +17,10 @@
 minimal_mistakes_skin: "default"
 
 
-title: "Jaesung Tae"
+title: "Jake Tae"
 email:
 description: >- # this means to ignore newlines until "baseurl:"
-  Welcome to my website! My name is Jaesung (Jake) Tae, a sophomore at Yale University.
+  Welcome to my website! My name is Jake Tae, a sophomore at Yale University.
   This is where I doodle for fun, write for recollection, and embark on intellectual
   explorations. 
 # twitter_username: username
@@ -63,7 +63,7 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "Jaesung Jake Tae"
+  name   : "Jake Tae"
   avatar : "/assets/images/Photo.jpg"
   bio    : "An aspiring academic and data scientist. Fan of football, guitar, and hunting for hole in the wall restaurants."
   location: "Seoul, KOR"
