@@ -1,5 +1,5 @@
 ---
-layout: home
+title: "Hello!"
 author_profile: true
 ---
 
