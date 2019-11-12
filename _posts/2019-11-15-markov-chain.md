@@ -64,7 +64,7 @@ $$P(X \vert C = 0) =
 \begin{cases}
 \ 1/6 & \text{if X \in \{38, 2, 3, 14, 5, 6\}} \\[2ex]
 \ 0 & \text{if X \notin \{38, 2, 3, 14, 5, 6\}}
-\end{cases}
+\end{cases}$$
 
 where $$C$$ denotes the current position of the player on the game board. We can make the same deductions for other cases where $$C = 1 \ldots 100$$. We are thus able to construct a 101-by-101 matrix representing the transition probabilities of our Chutes and Ladders system, where each column represents the system at a different state, *i.e.* the $$j$$th entry of the $$i$$th column vector represents the probabilities of moving from cell $$i$$ to cell $$j$$. To make this more concrete, let's consider a program that constructs the transition matrix $$T$$, without regards to the chutes and ladders for now. 
 
@@ -88,7 +88,7 @@ def board_generator(roll=6, dim=101):
 
 ```
 
-
+Notice that 
 
 
 
