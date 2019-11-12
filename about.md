@@ -1,9 +1,6 @@
 ---
-permalink: /about/
-title: "About"
-redirect_from:
-  - /about/
-  - /about.html
+layout: home
+author_profile: true
 ---
 
 Welcome to my personal website! My name is Jake (Jaesung) Tae, and I am a sophomore at Yale University working towards a Bachelors of Science in Statistics and Data Science (currently on an authorized leave of absence for military service).

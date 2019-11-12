@@ -18,15 +18,15 @@ In a [previous post], we briefly explored the notion of Markov chains and their 
 
 In linear algebra, an eigenvector of a linear transformation is roughly [defined] as follows:
 
-> a nonzero vector that is mapped by a given linear transformation onto a vector that is the scalar multiple of the original vector
+> a nonzero vector that is mapped by a given linear transformation onto a vector that is the scalar multiple of itself
 
-This definition, while seemingly abstract and convolouted, distills down into a simple equation when written in matrix form:
+This definition, while seemingly abstract and cryptic, distills down into a simple equation when written in matrix form:
 
 $$Ax = \lambda x$$
 
-Here, $$A$$ denotes the matrix representing a linear transformation; $$x$$, the eignevector; $$\lambda$$, the scalar value that is multiplied onto the eigenvector. Simply put, an eigenvector $$x$$ of a linear transformation is one that is "stretched" or "shrunk" by some factor $$\lambda$$ when the transformation is applied, *i.e.* multiplied by the matrix $$A$$ which maps the given linear transformation. 
+Here, $$A$$ denotes the matrix representing a linear transformation; $$x$$, the eignevector; $$\lambda$$, the scalar value that is multiplied onto the eigenvector. Simply put, an eigenvector $$x$$ of a linear transformation is one that is--allow me to use this term in the loosest sense to encompass positive, negative, and even imaginary scalar values--"stretched" by some factor $$\lambda$$ when the transformation is applied, *i.e.* multiplied by the matrix $$A$$ which maps the given linear transformation. 
 
-
+The easiest example I like to employ to demonstrate this concept is the identity matrix $$I$$. The identity matrix is an interesting 
 
 
 Now that we have reviewed the underlying concept, perhaps it is time to apply our knowledge with an example. Here is the transition matrix $$P$$ introduced in the previous post on the PageRank algorithm. 
