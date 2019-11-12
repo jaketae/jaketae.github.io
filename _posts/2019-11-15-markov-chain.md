@@ -96,10 +96,10 @@ The indexing is key here: for each column, $$[i + 1, i + 7)$$th rows were assign
 Things get a bit more complicated once we throw the chutes and ladders into the mix. To achieve this, we first build a dictionary containing information on the jump from one cell to another. In this dictionary, the keys correspond to the original position; the values, the index of the cell after the jump, either through a chute or a ladder.
 
 ```python
-	chutes_ladders = {1: 38, 4: 14, 9: 31, 16: 6, 21: 42,
-                      28: 84, 36: 44, 47: 26, 49: 11, 51: 67,
-                      56: 53, 62: 19, 64: 60, 71: 91, 80: 100,
-                      87: 24, 93: 73, 95: 75, 98: 78}
+chutes_ladders = {1: 38, 4: 14, 9: 31, 16: 6, 21: 42,
+28: 84, 36: 44, 47: 26, 49: 11, 51: 67,
+56: 53, 62: 19, 64: 60, 71: 91, 80: 100,
+87: 24, 93: 73, 95: 75, 98: 78}
 ```
 
 For example, ```1: 38``` represents the first ladder on the game board, which moves the player from the first cell to the thirty eighth cell. 
@@ -107,17 +107,15 @@ For example, ```1: 38``` represents the first ladder on the game board, which mo
 To integrate this new piece of information into our code, we need to build a permutation matrix that essentially "shuffles up" the entries of the stochastic matrix $$T1$$ in such a way that the probabilities can be assigned to the appropriate entries. For example, $$T1$$ does not reflect the fact that getting a 1 on a roll of the dice will move the player up to the thirty eighth cell; it supposes that the player would stay on the first cell. The new permutation matrix $$T2$$ would adjust for this error by reordering $$T1$$. For an informative read on the mechanics of permutation, refer to this [explanation on Wolfram Alpha]. 
 
 ```python
-	# Initialize ndarray of zeros
-	T2 = np.zeros((dim, dim))
+# Initialize ndarray of zeros
+T2 = np.zeros((dim, dim))
 
-	# ndarray of 101 elements
-	# If i in chutes_ladders, i is replaced with corresponding value
-	index_lst = [chutes_ladders.get(i, i) for i in range(101)]
+# ndarray of 101 elements
+# If i in chutes_ladders, i is replaced with corresponding value
+index_lst = [chutes_ladders.get(i, i) for i in range(101)]
 
-	# Permutation matrix
-	T2[index_lst, range(101)] = 1
-
-
+# Permutation matrix
+T2[index_lst, range(101)] = 1
 ```
 
 Let's perform a quick sanity check to verify that $$T2$$ contains the right information on the first ladder, namely the entry ```1: 38``` in the ```chutes_ladders``` dictionary.
@@ -174,11 +172,24 @@ This produces the following output, which is a visualization of our stochastic m
 	<figcaption>Figure 2: Visualization of the stochastic matrix</figcaption>
 </figure>
 
-Now that we have a stochastic matrix to work with, we can finally perform more eigenvector-esque analyses to better understand its structure. 
+Now that we have a stochastic matrix to work with, we can finally perform more mathematical analyses to better understand its structure. 
 
-# Spectral Decomposition
+# Eigendecomposition
 
-At this point, let's remind ourselves of the end goal. Since we have derived an eigen
+At this point, let's remind ourselves of the end goal. Since we have successfully built a stochastic matrix, all we have to do is to set some initial starting vector $$x_0$$ and perform iterative matrix calculations. In recursive form, this statement can be expressed as follows:
+
+$$x_{n+1} = T \cdot x_n = T^{n+1} \cdot x_0$$
+
+At a glance, this approach is the exact one which we took in the [previous post] with the mini PageRank algorithm. However, we will see here that performing a [eigendecomposition] of the stochastic matrix will drastically improve the calculation process, and with that, a reduction in our program's runtime. 
+
+Eigendecomposition refers to a specific method of factorizing a matrix in terms of its eigenvalues and eigenvectors. There are many ways to understand this fascinating operation, but I find it most intuitive to start by considering the operation of matrix multiplication. Let's clear out the notation first: let $$A$$ be the matrix of interest, $$S$$ a matrix whose columns are each an eigenvector of $$A$$, and $$\Lambda$$, a matrix whose diagonal entries are each the corresponding eigenvalues of $$S$$. 
+
+First, we begin by considering the result of multiplying $$A$$ and $$S$$. What would the result be? If we consider matrix as a repetition of matrix-times-vector operations, we can yield the following result.
+
+$$AS = A \cdot \begin{pmatrix} \vertbar & \vertbar &        & \vertbar \\ s_1 & s_2 & \ldots & s_n \\ \vertbar & \vertbar &        & \vertbar \end{pmatrix} = \begin{pmatrix} As_1 & As_2 & \ldots & As_n \end{pmatrix}$$
+
+
+
 
 
 
@@ -197,3 +208,5 @@ At this point, let's remind ourselves of the end goal. Since we have derived an 
 [memorylessness]: https://en.wikipedia.org/wiki/Markov_property
 
 [characteristic polynomial]: http://mathworld.wolfram.com/CharacteristicPolynomial.html
+
+[eigendecomposition]: https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix
