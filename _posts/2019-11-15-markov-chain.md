@@ -215,8 +215,7 @@ $$A^n = {(S \Lambda S^{-1})}^n = (S \Lambda S^{-1}) \cdot (S \Lambda S^{-1}) \do
 
 Because $$S$$ and $$S^{-1}$$ nicely cross out, all we have to compute boils down to $$\Lambda^n$$! But the good news doesn't stop here: because $$\Lambda$$ is a diagonal matrix, $$\Lambda^n$$ is simply the matrix with the diagonal, nonzero entries of $$\Lambda$$ exponentiated by $$n$$:
 
-$$\Lambda^n = \begin{pmatrix} \lambda_1 & \dots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \dots & \lambda_n \end{pmatrix}^{n}$$
-
+$$\Lambda^n = \begin{pmatrix} \lambda_1 & \dots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \dots & \lambda_n \end{pmatrix}^{n} = \begin{pmatrix} \lambda_1^{n} & \dots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \dots & \lambda_n^{n} \end{pmatrix}$$
 
 
 
