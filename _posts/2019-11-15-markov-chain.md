@@ -116,7 +116,7 @@ To integrate this new piece of information into our code, we need to build a per
 T_2 = np.zeros((dim, dim))
 
 # ndarray of 101 elements
-# If i in chutes_ladders, i is replaced with corresponding value
+# If i in chutes_ladders, replace i with corresponding value
 index_lst = [chutes_ladders.get(j, j) for j in range(101)]
 
 # Permutation matrix
@@ -142,10 +142,11 @@ import matplotlib.pyplot as plt
 
 def stochastic_mat(dim=101):
 
-    chutes_ladders = {1: 38, 4: 14, 9: 31, 16: 6, 21: 42,
-                      28: 84, 36: 44, 47: 26, 49: 11, 51: 67,
-                      56: 53, 62: 19, 64: 60, 71: 91, 80: 100,
-                      87: 24, 93: 73, 95: 75, 98: 78}
+    chutes_ladders = {
+    1: 38, 4: 14, 9: 31, 16: 6, 21: 42,
+    28: 84, 36: 44, 47: 26, 49: 11, 51: 67,
+    56: 53, 62: 19, 64: 60, 71: 91, 80: 100,
+    87: 24, 93: 73, 95: 75, 98: 78}
 
     T_1 = np.zeros((dim, dim))
     T_2 = np.zeros((dim, dim))
