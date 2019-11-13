@@ -2,10 +2,10 @@
 title: "Understanding PageRank"
 last_modified_at: 2019-11-13 9:51:00 +0000
 categories:
-  - blog
-  - math
-tags:
   - study
+tags:
+  - math
+  - python
 ---
 
 <script type="text/javascript" async

@@ -1,8 +1,6 @@
 main:
   - title: "Posts"
     url: /posts/
-  - title: "Tech News"
-    url: /news/
   - title: "Portfolio"
     url: /portfolio/
   - title: "Categories"

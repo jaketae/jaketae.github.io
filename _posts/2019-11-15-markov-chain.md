@@ -2,10 +2,10 @@
 title: "Markov Chain and Chutes and Ladders"
 last_modified_at: 2019-11-16 4:42:00 +0000
 categories:
-  - blog
-  - math
-tags:
   - study
+tags:
+  - math
+  - python
 ---
 
 <script type="text/javascript" async
@@ -316,10 +316,10 @@ And the result:
 
 <figure>
 	<img src="/assets/images/marginal-fraction.png">
-	<figcaption>Figure 3: Fraction of games completed at $$n$$ turns</figcaption>
+	<figcaption>Figure 3: Fraction of games completed at n turns</figcaption>
 </figure>
 
-From the looks of it, the maximum of the graph seems to exist somewhere around $$n = 20$$. To be exact, $$(x_max, y_max) = (19, 0.027917820873612303)$$.
+From the looks of it, the maximum of the graph seems to exist somewhere around $$n = 20$$. To be exact, $$(x_{max}, y_{max}) = (19, 0.027917820873612303)$$.
 
 ```python
 >>> print(np.argmax(np.diff(prob_dist)))
