@@ -60,13 +60,13 @@ In this post, we turn our attention to the game of Chutes and Ladders, which is 
 
 To perform a Markov chain analysis on the Chutes and Ladders game, it is first necessary to convert the information presented on the board as a [stochastic matrix]. How would we go about this process? Let's assume that we start the game at the $$0$$th cell by rolling a dice. There are six possible events, each with probability of $$1/6$$. More specifically, we can end up at the index numbers 38, 2, 3, 14, 5, or 6. In other words, at position 0, 
 
-$$P(X \vert C = 0) = 
+$$P(X = x \vert C = 0) = 
 \begin{cases}
-\ \frac 16 & \{X \vert X \in 38, 2, 3, 14, 5, 6\} \\[2ex]
-\ 0 & \{X \vert X \notin 38, 2, 3, 14, 5, 6\}
+\ \frac 16 & \{x \vert x \in 38, 2, 3, 14, 5, 6\} \\[2ex]
+\ 0 & \{x \vert x \notin 38, 2, 3, 14, 5, 6\}
 \end{cases}$$
 
-where $$C$$ denotes the current position of the player on the game board. We can make the same deductions for other cases where $$C = 1 \ldots 100$$. We are thus able to construct a 101-by-101 matrix representing the transition probabilities of our Chutes and Ladders system, where each column represents the system at a different state, *i.e.* the $$j$$th entry of the $$i$$th column vector represents the probabilities of moving from cell $$i$$ to cell $$j$$. To make this more concrete, let's consider a program that constructs the stochastic matrix $$T1$$, without regards to the chutes and ladders for now. 
+where $$C$$ and $$X$$ denote the current and next position of the player on the game board, respectively. We can make the same deductions for other cases where $$C = 1 \ldots 100$$. We are thus able to construct a 101-by-101 matrix representing the transition probabilities of our Chutes and Ladders system, where each column represents the system at a different state, *i.e.* the $$j$$th entry of the $$i$$th column vector represents the probabilities of moving from cell $$i$$ to cell $$j$$. To make this more concrete, let's consider a program that constructs the stochastic matrix $$T1$$, without regards to the chutes and ladders for now. 
 
 ```python
 import numpy as np
@@ -196,7 +196,7 @@ $$As_n = \lambda s_n$$
 
 Therefore, the result of $$AS$$ can be rearranged in terms of $$\Lambda$$:
 
-$$ \begin{pmatrix} \vert & \vert &        & \vert \\ As_1 & As_2 & \ldots & As_n \\ \vert & \vert &        & \vert \end{pmatrix} = \begin{pmatrix} \vert & \vert &        & \vert \\ \lambda_1 s_1 & \lambda_2 s_2 & \ldots & \lambda_n s_n \\ \vert & \vert &        & \vert \end{pmatrix} = \begin{pmatrix} \vert & \vert &        & \vert \\ s_1 & s_2 & \ldots & s_n \\ \vert & \vert &        & \vert \end{pmatrix} \cdot \begin{pmatrix} \lambda_1 & \dots & 0 \\ \vertdots & \diagdots & \vertdots \\ 0 & \dots & \lambda_n \end{pmatrix}$$
+$$ \begin{pmatrix} \vert & \vert &        & \vert \\ As_1 & As_2 & \ldots & As_n \\ \vert & \vert &        & \vert \end{pmatrix} = \begin{pmatrix} \vert & \vert &        & \vert \\ \lambda_1 s_1 & \lambda_2 s_2 & \ldots & \lambda_n s_n \\ \vert & \vert &        & \vert \end{pmatrix} = \begin{pmatrix} \vert & \vert &        & \vert \\ s_1 & s_2 & \ldots & s_n \\ \vert & \vert &        & \vert \end{pmatrix} \cdot \begin{pmatrix} \lambda_1 & \dots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \dots & \lambda_n \end{pmatrix}$$
 
 
 
