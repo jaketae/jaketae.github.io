@@ -174,19 +174,19 @@ This produces the following output, which is a visualization of our stochastic m
 	<figcaption>Figure 2: Visualization of the stochastic matrix</figcaption>
 </figure>
 
-Now that we have a stochastic matrix to work with, we can finally perform more mathematical analyses to better understand its structure. 
+Now that we have a stochastic matrix to work with, we can finally perform more calculations to simulate the Chutes and Ladders game.
 
-# Eigendecomposition
+# A Note on Eigendecomposition
 
 At this point, let's remind ourselves of the end goal. Since we have successfully built a stochastic matrix, all we have to do is to set some initial starting vector $$x_0$$ and perform iterative matrix calculations. In recursive form, this statement can be expressed as follows:
 
 $$x_{n+1} = Tx_n = T^{n+1}x_0$$
 
-At a glance, this approach is the exact one which we took in the [previous post] with the mini PageRank algorithm. However, we will see here that performing a [eigendecomposition] of the stochastic matrix will drastically improve the calculation process, and with that, a reduction in our program's runtime. 
+The math-inclined thinkers in this room might consider the possibility of conducting an [eigendecomposition] on the stochastic matrix to simply the calculation of matrix powers. There is merit to analyzing this proposition, although later on we will see that this approach is inapplicable to the current case. 
 
 Eigendecomposition refers to a specific method of factorizing a matrix in terms of its eigenvalues and eigenvectors. There are many ways to understand this fascinating operation, but I find it most intuitive to start by considering the operation of matrix multiplication. Let's clear out the notation first: let $$A$$ be the matrix of interest, $$S$$ a matrix whose columns are each an eigenvector of $$A$$, and $$\Lambda$$, a matrix whose diagonal entries are each the corresponding eigenvalues of $$S$$. 
 
-First, we begin by considering the result of multiplying $$A$$ and $$S$$. What would the result be? If we consider matrix as a repetition of matrix-times-vector operations, we can yield the following result.
+First, we begin by considering the result of multiplying $$A$$ and $$S$$. If we consider matrix as a repetition of matrix-times-vector operations, we can yield the following result.
 
 $$AS = A \cdot \begin{pmatrix} \vert & \vert &        & \vert \\ s_1 & s_2 & \ldots & s_n \\ \vert & \vert &        & \vert \end{pmatrix} = \begin{pmatrix} \vert & \vert &        & \vert \\ As_1 & As_2 & \ldots & As_n \\ \vert & \vert &        & \vert \end{pmatrix}$$
 
@@ -209,17 +209,17 @@ $$ASS^{-1} = A = S \Lambda S^{-1}$$
 
 Therefore, we have $$A = S \Lambda S^{-1}$$, which is the formula for eigendecomposition of a matrix. 
 
-# Powers of the Stochastic Matrix
-
 One of the beauties of eigendecomposition is that it allows us to compute matrix powers very easily. Concretely, 
 
 $$A^n = {(S \Lambda S^{-1})}^n = (S \Lambda S^{-1}) \cdot (S \Lambda S^{-1}) \dots (S \Lambda S^{-1}) = S \Lambda^n S^{-1}$$
 
 Because $$S$$ and $$S^{-1}$$ nicely cross out, all we have to compute boils down to $$\Lambda^n$$! But the good news doesn't stop here: because $$\Lambda$$ is a diagonal matrix, $$\Lambda^n$$ is simply the matrix with the diagonal, nonzero entries of $$\Lambda$$ exponentiated by $$n$$:
 
-$$\Lambda^n = \begin{pmatrix} \lambda_1 & \dots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \dots & \lambda_n \end{pmatrix}^{n} = \begin{pmatrix} \lambda_1^n & \dots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \dots & \{lambda_n}^n \end{pmatrix}$$
+$$\Lambda^n = \begin{pmatrix} \lambda_1 & \dots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \dots & \lambda_n \end{pmatrix}^{n}$$
 
-Calculating powers of a matrix in its eigendecomposed form, therefore, is a computationally lightweight task. 
+
+
+
 
 
 
