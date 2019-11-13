@@ -66,7 +66,7 @@ But all this aside, why are hyperlinks important for the PageRank algorithm in t
 
 # Markov Chain
 
-Suppose we want to know where a user is most likely to end up in after a given search. This process is often referred to as a ["random walk"] or a "stochastic process" because, as the name suggests, it describes a path after a succession of random steps on some mathematical space. While it is highly unlikely that a user visits a website, randomly selects one of the hyperlinks on the given page, and repeats the two steps above repeatedly, the assumption on randomness is what allows us to simulate a user's navigation of the Internet from the point of view of Markov chains, a stochastic model that describes a sequence of possible events, or states, in which the probability of each event is contingent only upon the previous state attained in the previous event. One good example of a Markov chain is the famous Chutes and Ladders game, in which the player's next position is dependent only upon their present position on the game board. For this reason, Markov chains are said to be ["memoryless"]: in the Chutes and Ladders game, whether the player ended up in their current position by taking a ladder or a normal dice roll is irrelevant to the progress of the game. 
+Suppose we want to know where a user is most likely to end up in after a given search. This process is often referred to as a [random walk] because, as the name suggests, it describes a path after a succession of random steps on some mathematical space. While it is highly unlikely that a user visits a website, randomly selects one of the hyperlinks on the given page, and repeats the two steps above repeatedly, the assumption on randomness is what allows us to simulate a user's navigation of the Internet from the point of view of Markov chains, a stochastic model that describes a sequence of possible events, or states, in which the probability of each event is contingent only upon the previous state attained in the previous event. One good example of a Markov chain is the famous Chutes and Ladders game, in which the player's next position is dependent only upon their present position on the game board. For this reason, Markov chains are said to be memoryless: in the Chutes and Ladders game, whether the player ended up in their current position by taking a ladder or a normal dice roll is irrelevant to the progress of the game. 
 
 <figure>
 	<img src="/assets/images/chutes-and-ladders.png">
@@ -163,8 +163,8 @@ So there you have it: the PageRank algorithm demystified. Now the question is, w
 
 [Networkx package]: https://networkx.github.io
 
-["random walk"]: https://en.wikipedia.org/wiki/Random_walk
+[random walk]: https://en.wikipedia.org/wiki/Random_walk
 
-["memoryless"]: https://en.wikipedia.org/wiki/Markov_property
+[memoryless]: https://en.wikipedia.org/wiki/Markov_property
 
 
