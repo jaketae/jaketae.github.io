@@ -194,10 +194,27 @@ But recall that $$s$$ are eigenvectors of $$A$$, which necessarily implies that
 
 $$As_n = \lambda s_n$$
 
-Therefore, the result of $$AS$$ can be rearranged in terms of $$\Lambda$$:
+Therefore, the result of $$AS$$ can be rearranged and unpacked in terms of $$\Lambda$$:
 
 $$ \begin{pmatrix} \vert & \vert &        & \vert \\ As_1 & As_2 & \ldots & As_n \\ \vert & \vert &        & \vert \end{pmatrix} = \begin{pmatrix} \vert & \vert &        & \vert \\ \lambda_1 s_1 & \lambda_2 s_2 & \ldots & \lambda_n s_n \\ \vert & \vert &        & \vert \end{pmatrix}$$
-$$ = \begin{pmatrix} \vert & \vert &        & \vert \\ s_1 & s_2 & \ldots & s_n \\ \vert & \vert &        & \vert \end{pmatrix} \cdot \begin{pmatrix} \lambda_1 & \dots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \dots & \lambda_n \end{pmatrix}$$
+$$ = \begin{pmatrix} \vert & \vert &        & \vert \\ s_1 & s_2 & \ldots & s_n \\ \vert & \vert &        & \vert \end{pmatrix} \cdot \begin{pmatrix} \lambda_1 & \dots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \dots & \lambda_n \end{pmatrix} = S \Lambda $$
+
+In short,
+
+$$AS = S \Lambda$$
+
+Right-multiplying both sides by $$S^{-1}$$ produces the following:
+
+$$ASS^{-1} = A = S \Lambda S^{-1}$$
+
+Therefore, we have $$A = S \Lambda S^{-1}$$, which is the formula for eigendecomposition of a matrix. 
+
+# Powers of the Stochastic Matrix
+
+One of the beauties of eigendecomposition is that it allows us to compute matrix powers very easily. Concretely, 
+
+$$A^n = (S \Lambda S^{-1}$$)^n = (S \Lambda S^{-1}$$) \cdot (S \Lambda S^{-1}$$) \dots = S \Lambda^n S^{-1}$$
+
 
 
 
