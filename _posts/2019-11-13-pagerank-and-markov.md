@@ -85,7 +85,7 @@ The column vector $$x_n$$ can be defined as
 
 $$x_n = \begin{pmatrix} P(A) \\ P(B) \\ P(C) \\ P(D) \\ P(E) \end{pmatrix}$$
 
-where $$P(X)$$ denotes the probability that the user is browsing website (or node from a network graph's perspective) X at state $$n$$. For instance, $$x_0 = \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}$$ would be an appropriate vector representation of a state distribution in a Markov chain where a user began their random walk at website A. This will be our example. 
+where $$P(X)$$ denotes the probability that the user is browsing website (or node from a network graph's perspective) X at state $$n$$. For instance, $$x_0 = (1, 0, 0, 0, 0)^{T}$$ would be an appropriate vector representation of a state distribution in a Markov chain where a user began their random walk at website A. This will be our example. 
 
 From these, how can we learn more more about $$x_1$$? $$Mx_0$$ would give us the answer:
 
@@ -127,7 +127,7 @@ rep = 20
 print(markov_chain(P, x_0, rep))
 ```
 
-The output of this program is $$\begin{pmatrix} 0.29270741 \\ 0.39047887 \\ 0.21914571 \\ 0.02430009 \\ 0.07336792 \end{pmatrix}$$. As the Markov process rightly predicts, these numbers each converge to certain values with more repetitions.
+The output of this program is $$(0.29270741, 0.39047887, 0.21914571, 0.02430009, 0.07336792)^{T}$$. As the Markov process rightly predicts, these numbers each converge to certain values with more repetitions.
 
 $$x_{50} \simeq x_{100} = \begin{pmatrix} 0.29268293 \\ 0.3902439 \\ 0.2195122 \\ 0.02439024 \\ 0.07317073 \end{pmatrix}$$
 

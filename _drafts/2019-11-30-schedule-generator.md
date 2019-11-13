@@ -1,7 +1,7 @@
 ---
 title: "Schedule Generator"
 categories:
-  - Blog
+  - Portfoio
 tags:
   - Python
   - Military

@@ -190,8 +190,13 @@ First, we begin by considering the result of multiplying $$A$$ and $$S$$. What w
 
 $$AS = A \cdot \begin{pmatrix} \vert & \vert &        & \vert \\ s_1 & s_2 & \ldots & s_n \\ \vert & \vert &        & \vert \end{pmatrix} = \begin{pmatrix} \vert & \vert &        & \vert \\ As_1 & As_2 & \ldots & As_n \\ \vert & \vert &        & \vert \end{pmatrix}$$
 
+But recall that $$s$$ are eigenvectors of $$A$$, which necessarily implies that
 
+$$As_n = \lambda s_n$$
 
+Therefore, the result of $$AS$$ can be rearranged in terms of $$\Lambda$$:
+
+$$ \begin{pmatrix} \vert & \vert &        & \vert \\ As_1 & As_2 & \ldots & As_n \\ \vert & \vert &        & \vert \end{pmatrix} = \begin{pmatrix} \vert & \vert &        & \vert \\ \lambda_1 s_1 & \lambda_2 s_2 & \ldots & \lambda_n s_n \\ \vert & \vert &        & \vert \end{pmatrix} = \begin{pmatrix} \vert & \vert &        & \vert \\ s_1 & s_2 & \ldots & s_n \\ \vert & \vert &        & \vert \end{pmatrix} \cdot \begin{pmatrix} \lambda_1 & \dots & 0 \\ \vertdots & \diagdots & \vertdots \\ 0 & \dots & \lambda_n \end{pmatrix}$$
 
 
 
