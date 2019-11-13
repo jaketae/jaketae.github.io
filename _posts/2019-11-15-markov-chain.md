@@ -213,11 +213,11 @@ Therefore, we have $$A = S \Lambda S^{-1}$$, which is the formula for eigendecom
 
 One of the beauties of eigendecomposition is that it allows us to compute matrix powers very easily. Concretely, 
 
-$$A^n = {(S \Lambda S^{-1}$$)}^n = (S \Lambda S^{-1}) \cdot (S \Lambda S^{-1}) \dots (S \Lambda S^{-1}) = S \Lambda^n S^{-1}$$
+$$A^n = {(S \Lambda S^{-1})}^n = (S \Lambda S^{-1}) \cdot (S \Lambda S^{-1}) \dots (S \Lambda S^{-1}) = S \Lambda^n S^{-1}$$
 
-Because $$S$$ and $$S^{-1}$$ nicely cross out, all we have to compute boils down to $$\Lambda^n$$! But the good news doesn't stop here: because $$\Lambda$$ is a diagonal matrix, we can further conclude the following:
+Because $$S$$ and $$S^{-1}$$ nicely cross out, all we have to compute boils down to $$\Lambda^n$$! But the good news doesn't stop here: because $$\Lambda$$ is a diagonal matrix, $$\Lambda^n$$ is simply the matrix with the diagonal, nonzero entries of $$\Lambda$$ exponentiated by $$n$$:
 
-$$\Lambda^n = {\begin{pmatrix} \lambda_1 & \dots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \dots & \lambda_n \end{pmatrix}}^n = \begin{pmatrix} \lambda_1^n & \dots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \dots & \{lambda_n}^n \end{pmatrix}$$
+$$\Lambda^n = \begin{pmatrix} \lambda_1 & \dots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \dots & \lambda_n \end{pmatrix}^{n} = \begin{pmatrix} \lambda_1^n & \dots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \dots & \{lambda_n}^n \end{pmatrix}$$
 
 Calculating powers of a matrix in its eigendecomposed form, therefore, is a computationally lightweight task. 
 
