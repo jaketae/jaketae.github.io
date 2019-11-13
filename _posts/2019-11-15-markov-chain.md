@@ -66,7 +66,7 @@ $$P(X = x \vert C = 0) =
 \ 0 & \{x \vert x \notin 38, 2, 3, 14, 5, 6\}
 \end{cases}$$
 
-where $$C$$ and $$X$$ denote the current and next position of the player on the game board, respectively. We can make the same deductions for other cases where $$C = 1 \ldots 100$$. We are thus able to construct a 101-by-101 matrix representing the transition probabilities of our Chutes and Ladders system, where each column represents the system at a different state, *i.e.* the $$j$$th entry of the $$i$$th column vector represents the probabilities of moving from cell $$i$$ to cell $$j$$. To make this more concrete, let's consider a program that constructs the stochastic matrix $$T1$$, without regards to the chutes and ladders for now. 
+where $$C$$ and $$X$$ denote the current and next position of the player on the game board, respectively. We can make the same deductions for other cases where $$C = 1 \ldots 100$$. We are thus able to construct a 101-by-101 matrix representing the transition probabilities of our Chutes and Ladders system, where each column represents the system at a different state, *i.e.* the $$j$$th entry of the $$i$$th column vector represents the probabilities of moving from cell $$i$$ to cell $$j$$. To make this more concrete, let's consider a program that constructs the stochastic matrix `T_1`, without regards to the chutes and ladders for now. 
 
 ```python
 import numpy as np
@@ -92,7 +92,7 @@ def stochastic_mat(dim=101):
 
 ```
 
-The indexing is key here: for each column, $$[i + 1, i + 7)$$th rows were assigned the probability of $$1/6$$. Let's say that a player is in the $$i$$th cell. Assuming no chutes or ladders, a single roll of a dice will place him at one of the cells from $$(i + 1)$$ to $$(i + 6)$$; hence the indexing as presented above. However, this algorithm has to be modified for ```i``` bigger or equal to 95. For example if ```i == 97```, there are only three probabilities: $$P(X = 98)$$, $$P(X = 99)$$, and $$P(X = 100), each of values $$1/6$$, $$1/6$$, and $$2/3$$ respectively. The ```else``` statements are additional corrective mechanisms to account for this irregularity. So now we're done with the stochastic matrix!
+The indexing is key here: for each column, $$[i + 1, i + 7)$$th rows were assigned the probability of $$1/6$$. Let's say that a player is in the $$i$$th cell. Assuming no chutes or ladders, a single roll of a dice will place him at one of the cells from $$(i + 1)$$ to $$(i + 6)$$; hence the indexing as presented above. However, this algorithm has to be modified for ```i``` bigger or equal to 95. For example if ```i == 97```, there are only three probabilities: $$P(X = 98)$$, $$P(X = 99)$$, and $$P(X = 100)$$, each of values $$1/6$$, $$1/6$$, and $$2/3$$ respectively. The ```else``` statements are additional corrective mechanisms to account for this irregularity. So now we're done with the stochastic matrix!
 
 ... or not quite. 
 
@@ -109,7 +109,7 @@ chutes_ladders = {
 
 For example, ```1: 38``` represents the first ladder on the game board, which moves the player from the first cell to the thirty eighth cell. 
 
-To integrate this new piece of information into our code, we need to build a permutation matrix that essentially "shuffles up" the entries of the stochastic matrix $$T1$$ in such a way that the probabilities can be assigned to the appropriate entries. For example, $$T1$$ does not reflect the fact that getting a 1 on a roll of the dice will move the player up to the thirty eighth cell; it supposes that the player would stay on the first cell. The new permutation matrix $$T2$$ would adjust for this error by reordering $$T1$$. For an informative read on the mechanics of permutation, refer to this [explanation from Wolfram Alpha]. 
+To integrate this new piece of information into our code, we need to build a permutation matrix that essentially "shuffles up" the entries of the stochastic matrix `T_1` in such a way that the probabilities can be assigned to the appropriate entries. For example, `T_1` does not reflect the fact that getting a 1 on a roll of the dice will move the player up to the thirty eighth cell; it supposes that the player would stay on the first cell. The new permutation matrix `T_2` would adjust for this error by reordering `T_1`. For an informative read on the mechanics of permutation, refer to this [explanation from Wolfram Alpha]. 
 
 ```python
 # Initialize ndarray of zeros
@@ -333,11 +333,11 @@ This result tells us that we will finish the game in 19 rolls of the dice more o
 
 We can also use this information to calculate the expected value of the game length. Recall that
 
-$$E(X) = \sum x_i P(X = x_i)$$
+$$E(X) = \sum x_i \cdot P(X = x_i)$$
 
 Or if the probability density function is continuous, 
 
-$$E(X) = \int x_i P(X = x_i)$$
+$$E(X) = \int x_i \cdot P(X = x_i)$$
 
 In this case, we have a discrete random variable, so we adopt the first formula for our analysis. The formula can be achieved in Python as follows:
 
