@@ -295,7 +295,7 @@ plt.show()
 This block produces the following figure:
 <figure>
 	<img src="/assets/images/cumulative-fraction.png">
-	<figcaption>Figure 3: Game completion percentage after $$n$$ turns</figcaption>
+	<figcaption>Figure 3: Game completion percentage after n turns</figcaption>
 </figure>
 
 I doubt that anyone would play Chutes and Ladders for this long, but after about 150 rolls of the dice, we can expect with a fair amount of certainty that the game will come to an end. 
