@@ -25,7 +25,7 @@ $$f(x) = f(x_0) + f’(x_0)(x - x_0) + \frac{f’’(x_0)}{2!}(x - x_0)^2 + \fra
 
 In a more concise notation, we have
 
-$$$f(x) = \sum_{n=0}{\infty} \frac {f^n(x - x_0)}{n!} (x - x_0)^n$$
+$$f(x) = \sum_{n=0}^\infty} \frac {f^n(x - x_0)}{n!} (x - x_0)^n$$
 
 Notice that $$x_0$$ is the starting point of our approximation. Therefore, the Taylor series will provide the most accurate estimation of the original function around that point, and the farther we get away from $$x_0$$, the worse the approximation will be. 
 
@@ -41,7 +41,7 @@ Recall that the derivative of $$\sin(x)$$ is $$\cos(x)$$, which is precisely wha
 
 Now that we have the Taylor polynomials, proving Euler’s identity becomes a straightforward process of plug and play. Let’s plug $$ix$$ into the Taylor polynomial for $$e^x$$: 
 
-$$e^{ix} = 1 + ix - \frac{x^2}{2!} - \frac{ix^3}{3!} + \dots = (1 - \frac{x^2}{2!} + \frac{x^4}{4!} \dots) + i(x - \frac{x^3}{3!} + \frac{x^5}{5!} \dots) = cos(ix) + isin(ix)$$
+$$e^{ix} = 1 + ix - \frac{x^2}{2!} - \frac{ix^3}{3!} + \dots = (1 - \frac{x^2}{2!} + \frac{x^4}{4!} \dots) + i(x - \frac{x^3}{3!} + \frac{x^5}{5!} \dots) = \cos(ix) + i\sin(ix)$$
 
 With this generalized equation in hand, we can plug in $$\pi$$ into $$x$$ to see Euler’s identity:
 
@@ -73,7 +73,7 @@ $$ (a, bi) \perp (-b, ai) $$
 
 What does it mean to have a trajectory whose instantaneous velocity is perpendicular to that of the position vector? Hint: think of planetary orbits. Yes, that’s right: this relationship is characteristic of [circular motions], a type of movement in which an object rotates around a center of axis. The position vector of a circular motion points outward from the center of rotation, and the velocity vector is tangential to the circular trajectory. 
 
-The implication of this observation is that the trajectory expressed by the vector $$e^{it}$$ is essentially that of a circle, with respect to time $$t$$. More specifically, we see that at $$t = 0$$, $$e^{it} = e^0 = 1$$, or $$1 + 0 \cdot i$$, which means that the circle necessarily passes through the point $$(1, 0)$$ on the complex plane expressed as an Argand graph. From this analysis, we can learn that the trajectory is not just any circle, but a unit circle centered around the origin. 
+The implication of this observation is that the trajectory expressed by the vector $$e^{it}$$ is essentially that of a circle, with respect to time $$t$$. More specifically, we see that at $$t = 0$$, $$e^{it} = e^0 = 1$$, or $$1 + 0i$$, which means that the circle necessarily passes through the point $$(1, 0)$$ on the complex plane expressed as an Argand graph. From this analysis, we can learn that the trajectory is not just any circle, but a unit circle centered around the origin. 
 
 But there’s even more! Recall that the velocity vector of the trajectory is a 90-degree rotation of the position vector, *i.e.* $$e^{it} \perp ie^{it}$$, $$\lVert e^{it} \rVert = \lVert ie^{it} \rVert$$. Earlier, we concluded that the trajectory expressed by the vector $$e^{it}$$ is a unit circle, which necessarily means that $$\lVert e^{it} \rVert = 1$$ for all values of $$t$$. Then, syllogism tells us that $$\lVert ie^{it} \rVert$$ is also one, *i.e.* the particle on the trajectory moves at unit speed along the unit circle! Now we finally have a full visualization of the position vector.  
 
@@ -118,7 +118,7 @@ The blue arrow represents the position vector at $$t = 0$$; green, the velocity 
 </figure>
 
 
-Why is speed important? Unit speed implies that the particle moves by $$t$$ distance units after $$t$$ time units. Let’s say that $$\pi$$ units have passed. Where would the particle be on the trajectory now? After some thinking, we can convince ourselves that it would lie on the point $$(-1, 0)$$, since the unit circle has a total circumference of $$2\pi$$. 
+Why is speed important? Unit speed implies that the particle moves by $$t$$ distance units after $$t$$ time units. Let’s say that $$\pi$$ time units have passed. Where would the particle be on the trajectory now? After some thinking, we can convince ourselves that it would lie on the point $$(-1, 0)$$, since the unit circle has a total circumference of $$2\pi$$. 
 
 And so we have proved that $$e^{i\pi} = -1$$, Euler’s identity.
 
@@ -128,7 +128,7 @@ $$x^2 + y^2 = 1$$
 
 On the complex plane mapped in polar coordinates, this expression takes on an alternate form:
 
-$$(x, yi) = (\cos(t), \sin(t)i)$$
+$$(x, yi) = (\cos t, i\sin t)$$
 
 Notice that this contains the same exact information that Euler’s identity provides for us. It expresses:
 * a unit circle trajectory 
