@@ -162,11 +162,7 @@ $$e^{i\pi / 2} = \cos(\frac {\pi}{2}) + i\sin(\frac {\pi}{2}) = i$$
 
 Take both sides to the power of i:
 
-$${e^{i\pi / 2}}^i = i^i$$
-
-$$e^{i^2 \pi / 2} = i^i$$
-
-$$e^{- \pi / 2} = i^i$$
+$${e^{i\pi / 2}}^i = e^{i^2 \pi / 2} = e^{- \pi / 2} = i^i$$
 
 Interestingly enough, we see that $$i^i$$ takes on a definitive, real value. We can somewhat intuit this through Euler’s identity, which is basically telling us that there exists some inextricable relationship between real and imaginary numbers. Understood from this point of view, we see that the power operation can be defined in the entire space that is complex numbers. 
 

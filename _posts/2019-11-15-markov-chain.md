@@ -28,9 +28,9 @@ Here, $$A$$ denotes the matrix representing a linear transformation; $$x$$, the 
 
 The easiest example I like to employ to demonstrate this concept is the identity matrix $$I$$. For the purpose of demonstration, let $$a$$ be an arbritrary vector $$(x, y, z)^{T}$$ and $$I$$ the three-by-three identity matrix. Multiplying $$a$$ by $$I$$ produces the following result:
 
-$$Ia = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} \cdot \begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} x \\ y \\ z \end{pmatrix}$$
+$$Ia = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} \begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} x \\ y \\ z \end{pmatrix}$$
 
-The result is unsurprising, but it reveals an interesting way of understanding $$I$$: identity matrices are a special case of diagonalizable matrices whose eigenvalues are 1. Because the multiplying any arbitrary vector by the identity matrix returns the matrix itself, all vectors in the dimensional space can be considered an eigenvector to the matrix $$I$$, with $$\lambda$$ = 1. 
+The result is unsurprising, but it reveals an interesting way of understanding $$I$$: identity matrices are a special case of diagonalizable matrices whose eigenvalues are 1. Because the multiplying any arbitrary vector by the identity matrix returns the vector itself, all vectors in the dimensional space can be considered an eigenvector to the matrix $$I$$, with $$\lambda$$ = 1. 
 
 A formal way to calculate eigenvectors and eigenvalues can be derived from the equation above. 
 
@@ -146,7 +146,8 @@ def stochastic_mat(dim=101):
     1: 38, 4: 14, 9: 31, 16: 6, 21: 42,
     28: 84, 36: 44, 47: 26, 49: 11, 51: 67,
     56: 53, 62: 19, 64: 60, 71: 91, 80: 100,
-    87: 24, 93: 73, 95: 75, 98: 78}
+    87: 24, 93: 73, 95: 75, 98: 78
+    }
 
     T_1 = np.zeros((dim, dim))
     T_2 = np.zeros((dim, dim))
@@ -246,7 +247,7 @@ $$As_n = \lambda s_n$$
 Therefore, the result of $$AS$$ can be rearranged and unpacked in terms of $$\Lambda$$:
 
 $$ \begin{pmatrix} \vert & \vert &        & \vert \\ As_1 & As_2 & \ldots & As_n \\ \vert & \vert &        & \vert \end{pmatrix} = \begin{pmatrix} \vert & \vert &        & \vert \\ \lambda_1 s_1 & \lambda_2 s_2 & \ldots & \lambda_n s_n \\ \vert & \vert &        & \vert \end{pmatrix}$$
-$$ = \begin{pmatrix} \vert & \vert &        & \vert \\ s_1 & s_2 & \ldots & s_n \\ \vert & \vert &        & \vert \end{pmatrix} \cdot \begin{pmatrix} \lambda_1 & \dots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \dots & \lambda_n \end{pmatrix} = S \Lambda $$
+$$ = \begin{pmatrix} \vert & \vert &        & \vert \\ s_1 & s_2 & \ldots & s_n \\ \vert & \vert &        & \vert \end{pmatrix} \begin{pmatrix} \lambda_1 & \dots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \dots & \lambda_n \end{pmatrix} = S \Lambda $$
 
 In short,
 

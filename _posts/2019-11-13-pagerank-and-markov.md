@@ -57,7 +57,7 @@ Running this block results in the following graph:
 
 <figure>
 	<img src="/assets/images/graph.png">
-	<figcaption>Figure 1: Representation of a miniature world wide web</figcaption>
+	<figcaption>Figure 1: Representation of a miniature world wide web</
 </figure>
 
 How is this a model of the Internet? Well, as simple as it seems, the network graph contains all the pertinent information necessary for our preliminary analysis: namely, hyperlinks going from one page to another. Let's take node D as an example. The pointed edges indicate that page E contains a link to page D, and that page D contains another link that redirects the user to page A. Interpreted in this fashion, the graph indicates which pages have a lot of incoming and outgoing reference links. 
