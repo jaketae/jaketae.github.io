@@ -38,15 +38,17 @@ $$\cos(x) = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} \dots$$
 
 $$e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} \dots$$
 
-Recall that the derivative of $$\sin(x)$$ is $$\cos(x)$$, which is precisely what the Taylor series suggests. It is also interesting to see that the Taylor series for $$sin(x)$$ is an odd function, while that for $$cos(x)$$ is even, which is coherent with the features of their respective original functions. Last but not least, notice that the derivative of Taylor polynomial of $$e^x$$ gives itself, as it should. 
+Recall that the derivative of $$\sin(x)$$ is $$\cos(x)$$, which is precisely what the Taylor series suggests. It is also interesting to see that the Taylor series for $$\sin(x)$$ is an odd function, while that for $$\cos(x)$$ is even, which is coherent with the features of their respective original functions. Last but not least, notice that the derivative of Taylor polynomial of $$e^x$$ gives itself, as it should. 
 
 Now that we have the Taylor polynomials, proving Euler’s identity becomes a straightforward process of plug and play. Let’s plug $$ix$$ into the Taylor polynomial for $$e^x$$: 
 
 $$e^{ix} = 1 + ix - \frac{x^2}{2!} - \frac{ix^3}{3!} + \frac{x^4}{4!} \dots + \frac{ix^5}{5!}$$
 
-$$= (1 - \frac{x^2}{2!} + \frac{x^4}{4!} \dots) + i(x - \frac{x^3}{3!} + \frac{x^5}{5!} \dots) = \cos(ix) + i\sin(ix)$$
+Notice that we can separate the terrms with and without $$i$$:
 
-With this generalized equation in hand, we can plug in $$\pi$$ into $$x$$ to see Euler’s identity:
+$$(1 - \frac{x^2}{2!} + \frac{x^4}{4!} \dots) + i(x - \frac{x^3}{3!} + \frac{x^5}{5!} \dots) = \cos(ix) + i\sin(ix)$$
+
+In short, $$e^{ix} = \cos(ix) + i\sin(ix)$$! With this generalized equation in hand, we can plug in $$\pi$$ into $$x$$ to see Euler’s identity:
 
 $$e^{i\pi} = \cos(-\pi) + i\sin(-\pi) = -1$$
 
