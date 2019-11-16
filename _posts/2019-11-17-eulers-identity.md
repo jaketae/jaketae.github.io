@@ -26,7 +26,7 @@ $$f(x) = f(x_0) + f’(x_0)(x - x_0) + \frac{f’’(x_0)}{2!}(x - x_0)^2 + \fra
 
 In a more concise notation, we have
 
-$$f(x) = \sum_{n=0}^\infty} \frac {f^n(x - x_0)}{n!} (x - x_0)^n$$
+$$f(x) = \sum_{n=0}^\infty \frac {f^n(x - x_0)}{n!} (x - x_0)^n$$
 
 Notice that $$x_0$$ is the starting point of our approximation. Therefore, the Taylor series will provide the most accurate estimation of the original function around that point, and the farther we get away from $$x_0$$, the worse the approximation will be. 
 
