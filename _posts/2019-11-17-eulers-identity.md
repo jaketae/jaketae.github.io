@@ -21,25 +21,32 @@ I remember staring at this identity in high school, trying to wrap my head aroun
 
 The classic proof for Euler’s identity flows from the famous [Taylor series], a method of expressing any given function in terms of an infinite series of polynomials. I like to understand Taylor series as an approximation of a function through means of differentiation. Recall that a first-order derivative gives the slope of the tangent line at any given point of a function. The second-order derivative provides information regarding the convexity of the function. Through induction, we can convince ourselves that higher order derivatives will convey information about the curvature of the function throughout coordinate system, which is precisely the underlying mechanism behind Taylor’s series. 
 
-$$f(x) = f(x_0) + f’(x_0)(x - x_0) + \frac{f’’(x_0)}{2!}(x - x_0)^2 + \frac {f’’’(x_0)}{3!} (x - x_0)^3 + \ddots = \sum_{n=0}\infty \frac {f^n(x - x_0)}{n!} (x - x_0)^n$$
+$$f(x) = f(x_0) + f’(x_0)(x - x_0) + \frac{f’’(x_0)}{2!}(x - x_0)^2 + \frac {f’’’(x_0)}{3!} (x - x_0)^3 + \dots$$
+
+In a more concise notation, we have
+
+$$$f(x) = \sum_{n=0}{\infty} \frac {f^n(x - x_0)}{n!} (x - x_0)^n$$
 
 Notice that $$x_0$$ is the starting point of our approximation. Therefore, the Taylor series will provide the most accurate estimation of the original function around that point, and the farther we get away from $$x_0$$, the worse the approximation will be. 
 
-For the purpose of our analysis, let’s examine the Taylor polynomials for the following three functions: $$sin(x), cos(x)$$, and $$e^x$$.
+For the purpose of our analysis, let’s examine the Taylor polynomials for the following three functions: $$\sin(x), \cos(x)$$, and $$e^x$$.
 
-$$\sin(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} \ddots$$
-$$\cos(x) = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} \ddots$$
-$$e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} \ddots$$
+$$\sin(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} \dots$$
 
-Recall that the derivative of $$sin(x)$$ is $$cos(x)$$, which is precisely what the Taylor series suggests. It is also interesting to see that the Taylor series for $$sin(x)$$ is an odd function, while that for $$cos(x)$$ is even, which is coherent with the features of their respective original functions. Last but not least, notice that the derivative of Taylor polynomial of $$e^x$$ gives itself, as it should. 
+$$\cos(x) = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} \dots$$
+
+$$e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} \dots$$
+
+Recall that the derivative of $$\sin(x)$$ is $$\cos(x)$$, which is precisely what the Taylor series suggests. It is also interesting to see that the Taylor series for $$sin(x)$$ is an odd function, while that for $$cos(x)$$ is even, which is coherent with the features of their respective original functions. Last but not least, notice that the derivative of Taylor polynomial of $$e^x$$ gives itself, as it should. 
 
 Now that we have the Taylor polynomials, proving Euler’s identity becomes a straightforward process of plug and play. Let’s plug $$ix$$ into the Taylor polynomial for $$e^x$$: 
 
-$$e^{i \pi} = 1 + ix - \frac{x^2}{2!} - \frac{ix^3}{3!} + \ddots = (1 - \frac{x^2}{2!} + \frac{x^4}{4!} \ddots) + i(x - \frac{x^3}{3!} + \frac{x^5}{5!} \ddots) = cos(ix) + isin(ix)$$
+$$e^{ix} = 1 + ix - \frac{x^2}{2!} - \frac{ix^3}{3!} + \dots = (1 - \frac{x^2}{2!} + \frac{x^4}{4!} \dots) + i(x - \frac{x^3}{3!} + \frac{x^5}{5!} \dots) = cos(ix) + isin(ix)$$
 
 With this generalized equation in hand, we can plug in $$\pi$$ into $$x$$ to see Euler’s identity:
 
 $$e^{i\pi} = \cos(-\pi) + i\sin(-\pi) = -1$$
+
 $$e^{i\pi} + 1 = 0$$
 
 # The Geometric Proof
@@ -60,15 +67,15 @@ $$v(t) = \frac {d}{dt} e^{it} = ie^{it}$$
 
 What is so special about this velocity vector? For one, we can see that it is a scalar multiple of the original position vector, $$e^{it}$$. Upon closer examination, we might also convince ourselves that this vector is in fact orthogonal to the position vector. This is because multiplying a point or vector by $$i$$ in the complex plane effectively flips the object’s $$x$$ and $$y$$ components, which is precisely what a 90 degree rotation entails. 
 
-$$i \cdot <a, bi> = <-b, ai>$$
-$$ <a, bi> \perp <-b, ai>$$
+$$i \cdot (a + bi) = -b + ai$$
+
+$$ (a, bi) \perp (-b, ai) $$
 
 What does it mean to have a trajectory whose instantaneous velocity is perpendicular to that of the position vector? Hint: think of planetary orbits. Yes, that’s right: this relationship is characteristic of [circular motions], a type of movement in which an object rotates around a center of axis. The position vector of a circular motion points outward from the center of rotation, and the velocity vector is tangential to the circular trajectory. 
 
-The implication of this observation is that the trajectory expressed by the vector $$e^{it}$$ is essentially that of a circle, with respect to time $$t$$. More specifically, we see that at $$t = 0$$, $$e^{it}
- = e^0 = 1$$, or $$1 + 0 \ cdot i$$, which means that the circle necessarily passes through the point $$(1, 0)$$ on the complex plane expressed as an Argand graph. From this analysis, we can learn that the trajectory is not just any circle, but a unit circle centered around the origin. 
+The implication of this observation is that the trajectory expressed by the vector $$e^{it}$$ is essentially that of a circle, with respect to time $$t$$. More specifically, we see that at $$t = 0$$, $$e^{it} = e^0 = 1$$, or $$1 + 0 \cdot i$$, which means that the circle necessarily passes through the point $$(1, 0)$$ on the complex plane expressed as an Argand graph. From this analysis, we can learn that the trajectory is not just any circle, but a unit circle centered around the origin. 
 
-But there’s even more! Recall that the velocity vector of the trajectory is a 90-degree rotation of the position vector, *i.e.* $$e^{it} \ perp ie^{it}, \lVert e^{it} \rVert = \lVert ie^{it} \rVert$$. Earlier, we concluded that the trajectory expressed by the vector $$e^{it}$$ is a unit circle, which necessarily means that $$\lVert e^{it} \rVert = 1$$ for all values of $$t$$. Then, syllogism tells us that $$\lVert ie^{it} \rVert$$ is also one, *i.e.* the particle on the trajectory moves at unit speed along the unit circle! Now We finally have a full visualization of the position vector.  
+But there’s even more! Recall that the velocity vector of the trajectory is a 90-degree rotation of the position vector, *i.e.* $$e^{it} \perp ie^{it}$$, $$\lVert e^{it} \rVert = \lVert ie^{it} \rVert$$. Earlier, we concluded that the trajectory expressed by the vector $$e^{it}$$ is a unit circle, which necessarily means that $$\lVert e^{it} \rVert = 1$$ for all values of $$t$$. Then, syllogism tells us that $$\lVert ie^{it} \rVert$$ is also one, *i.e.* the particle on the trajectory moves at unit speed along the unit circle! Now we finally have a full visualization of the position vector.  
 
 ```python
 import numpy as np
@@ -121,7 +128,7 @@ $$x^2 + y^2 = 1$$
 
 On the complex plane mapped in polar coordinates, this expression takes on an alternate form:
 
-$$<x, yi> = <\cos(t), \sin(t)i>$$
+$$(x, yi) = (\cos(t), \sin(t)i)$$
 
 Notice that this contains the same exact information that Euler’s identity provides for us. It expresses:
 * a unit circle trajectory 
@@ -156,7 +163,9 @@ $$e^{i\pi / 2} = \cos(\frac {\pi}{2}) + i\sin(\frac {\pi}{2}) = i$$
 Take both sides to the power of i:
 
 $${e^{i\pi / 2}}^i = i^i$$
+
 $$e^{i^2 \pi / 2} = i^i$$
+
 $$e^{- \pi / 2} = i^i$$
 
 Interestingly enough, we see that $$i^i$$ takes on a definitive, real value. We can somewhat intuit this through Euler’s identity, which is basically telling us that there exists some inextricable relationship between real and imaginary numbers. Understood from this point of view, we see that the power operation can be defined in the entire space that is complex numbers. 
@@ -164,6 +173,7 @@ Interestingly enough, we see that $$i^i$$ takes on a definitive, real value. We 
 We can also take logarithms of negative numbers. This can simply be shown by starting from Euler’s identity and taking the natural log on both sides. 
 
 $$e^{i \pi} = -1$$
+
 $$\ln(e^{i \pi}) = i \pi = \ln(-1)$$
 
 In fact, because $$e^{ix}$$ is a periodic function around the unit circle, any odd multiple of $$\pi$$ will give us the same result. 
