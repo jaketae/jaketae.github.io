@@ -8,10 +8,6 @@ tags:
   - python
 ---
 
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
 In a [previous post], we briefly explored the notion of Markov chains and their application to Google's PageRank algorithm. Today, we will attempt to understand the Markov process from a more mathematical standpoint by meshing it together the concept of eigenvectors.
 
 # Revisiting Eigenvectors
@@ -21,6 +17,10 @@ In linear algebra, an eigenvector of a linear transformation is roughly [defined
 > a nonzero vector that is mapped by a given linear transformation onto a vector that is the scalar multiple of itself
 
 This definition, while seemingly abstract and cryptic, distills down into a simple equation when written in matrix form:
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
 $$Ax = \lambda x$$
 

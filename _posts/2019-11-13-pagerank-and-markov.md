@@ -8,10 +8,6 @@ tags:
   - python
 ---
 
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
 Google is the most popular search engine in the world. It is so popular that the word "Google" has been [added to the Oxford English Dictionary] as a proper verb, denoting the act of searching on Google. 
 
 While Google's success as an Internet search engine might be attributed to a plethora of factors, the company's famous PageRank algorithm is undoubtedly a contributing factor behind the stage. [The PageRank algorithm] is a method by which Google ranks different pages on the world wide web, displaying the most relevant and important pages on the top of the search result when a user inputs an entry. Simply put, PageRank determines which websites are most likely to contain the information the user is looking for and returns the most optimal search result. 
@@ -78,6 +74,10 @@ A salient characteristic of a Markov chain is that the probabilities of each eve
 To make all of this more concrete, let's return back to our example of the Internet microcosm and the five websites. In order to apply a stochastic analysis on our model, it is first necessary to translate the network graph presented above into a stochastic matrix $$M$$ whose individual entries are nonnegative real numbers that denote some probability of change from one state to another. 
 
 Here is the matrix representation of the network graph in our example:
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
 $$P = \begin{pmatrix} 0 & 1/2 & 1/3 & 1 & 0 \\ 1 & 0 & 1/3 & 0 & 1/3 \\ 0 & 1/2 & 0 & 0 & 1/3 \\ 0 & 0 & 0 & 0 & 1/3 \\ 0 & 0 & 1/3 & 0 & 0 \end{pmatrix}$$
 

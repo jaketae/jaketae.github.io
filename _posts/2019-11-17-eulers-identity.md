@@ -5,13 +5,14 @@ categories:
   - study
 tags:
   - math
+  - python
 ---
+
+At a glance, [Euler’s identity] is a confusing, mind-boggling mishmash of numbers that somehow miraculously package themselves into a neat, simple form:
 
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
-
-At a glance, [Euler’s identity] is a confusing, mind-boggling mishmash of numbers that somehow miraculously package themselves into a neat, simple form:
 
 $$e^{i\pi} + 1 = 0$$
 
