@@ -42,7 +42,9 @@ Recall that the derivative of $$\sin(x)$$ is $$\cos(x)$$, which is precisely wha
 
 Now that we have the Taylor polynomials, proving Euler’s identity becomes a straightforward process of plug and play. Let’s plug $$ix$$ into the Taylor polynomial for $$e^x$$: 
 
-$$e^{ix} = 1 + ix - \frac{x^2}{2!} - \frac{ix^3}{3!} + \dots = (1 - \frac{x^2}{2!} + \frac{x^4}{4!} \dots) + i(x - \frac{x^3}{3!} + \frac{x^5}{5!} \dots) = \cos(ix) + i\sin(ix)$$
+$$e^{ix} = 1 + ix - \frac{x^2}{2!} - \frac{ix^3}{3!} + \frac{x^4}{4!} \dots + \frac{ix^5}{5!}$$
+
+$$= (1 - \frac{x^2}{2!} + \frac{x^4}{4!} \dots) + i(x - \frac{x^3}{3!} + \frac{x^5}{5!} \dots) = \cos(ix) + i\sin(ix)$$
 
 With this generalized equation in hand, we can plug in $$\pi$$ into $$x$$ to see Euler’s identity:
 
@@ -107,7 +109,7 @@ plt.ylim(-1.25,1.25)
 plt.title('Unit Circle with Position and Velocity vectors')
 plt.xlabel('Real')
 plt.ylabel('Imaginary')
-plt.grid()
+plt.grid(True)
 plt.show()
 ```
 
