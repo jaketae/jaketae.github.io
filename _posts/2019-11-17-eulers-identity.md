@@ -5,7 +5,6 @@ categories:
   - study
 tags:
   - math
-  - python
 ---
 
 At a glance, [Euler’s identity] is a confusing, mind-boggling mishmash of numbers that somehow miraculously package themselves into a neat, simple form:
