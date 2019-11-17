@@ -24,7 +24,7 @@ This definition, while seemingly abstract and cryptic, distills down into a simp
 
 $$Ax = \lambda x$$
 
-Here, $$A$$ denotes the matrix representing a linear transformation; $$x$$, the eignevector; $$\lambda$$, the scalar value that is multiplied onto the eigenvector. Simply put, an eigenvector $$x$$ of a linear transformation is one that is--allow me to use this term in the loosest sense to encompass positive, negative, and even imaginary scalar values--"stretched" by some factor $$\lambda$$ when the transformation is applied, *i.e.* multiplied by the matrix $$A$$ which maps the given linear transformation. 
+Here, $$A$$ denotes the matrix representing a linear transformation; $$x$$, the eignevector; $$\lambda$$, the scalar value that is multiplied onto the eigenvector. Simply put, an eigenvector $$x$$ of a linear transformation is one that is---allow me to use this term in the loosest sense to encompass positive, negative, and even imaginary scalar values---"stretched" by some factor $$\lambda$$ when the transformation is applied, *i.e.* multiplied by the matrix $$A$$ which maps the given linear transformation. 
 
 The easiest example I like to employ to demonstrate this concept is the identity matrix $$I$$. For the purpose of demonstration, let $$a$$ be an arbritrary vector $$(x, y, z)^{T}$$ and $$I$$ the three-by-three identity matrix. Multiplying $$a$$ by $$I$$ produces the following result:
 
@@ -222,7 +222,7 @@ The first entry of this array, which is the value ```1. + 0.j```, deserves our a
  1.+0.j]
 ```
 
-Notice that this eigenvector is a representation of a situation in which the player is in the $$100$$th cell of the game board! In other words, it is telling us that once the user reaches the $$100$$th cell, they will stay on that cell even after more dice rolls--hence the stationary distribution. On one hand, this information is impractical given that a player who reaches the end goal will not continue the game to go beyond the $$100$$th cell. On the other hand, it is interesting to see that the eigenvector reveals information about the structure of the Markov chain in this example. 
+Notice that this eigenvector is a representation of a situation in which the player is in the $$100$$th cell of the game board! In other words, it is telling us that once the user reaches the $$100$$th cell, they will stay on that cell even after more dice rolls---hence the stationary distribution. On one hand, this information is impractical given that a player who reaches the end goal will not continue the game to go beyond the $$100$$th cell. On the other hand, it is interesting to see that the eigenvector reveals information about the structure of the Markov chain in this example. 
 
 Markov chains like these are referred to as [absorbing Markov chains] because the stationary equilibrium always involves a non-escapable state that "absorbs" all other states. One might visualize this system as having a loop on a network graph, where it is impossible to move onto a different state because of the circular nature of the edge on the node of the absorbing state. 
 

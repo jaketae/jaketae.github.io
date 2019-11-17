@@ -14,7 +14,7 @@ While Google's success as an Internet search engine might be attributed to a ple
 
 # Network Graph Representation
 
-While the nuts and bolts of this algorithm may appear complicated--and indeed they are--the underlying concept is surprisingly intuitive: the relevance or importance of a page is determined by the number of hyperlinks going to and from the website. Let's hash out this proposition by creating a miniature version of the Internet. In our microcosm, there are only five websites, represented as nodes on a network graph. Below is a simple representation created using Python and the [Networkx package]. 
+While the nuts and bolts of this algorithm may appear complicated---and indeed they are---the underlying concept is surprisingly intuitive: the relevance or importance of a page is determined by the number of hyperlinks going to and from the website. Let's hash out this proposition by creating a miniature version of the Internet. In our microcosm, there are only five websites, represented as nodes on a network graph. Below is a simple representation created using Python and the [Networkx package]. 
 
 ```python
 import networkx as nx
@@ -152,7 +152,7 @@ There is a mathematical proof behind this fascinating phenomena involving eigenv
 
 # PageRank Demystified
 
-So we commenced from the seemingly simple question of what PageRank entails. The Markov chain madness may have appeared a bit like a rabbit hole, but it is highly germane to the clockwork behind Google's search algorithm. Although we used only one parameter--hyperlinks--as the basis of our analysis, in reality PageRank performs batch calculations on a much larger sum of data to ultimately derive the equivalent of our stationary distribution vector. The website that the user is most likely to spend the most time on, *i.e.* the website that is most likely important and relevant to the user's search entry, is placed on the top of the list. Other entries follow in sorted order. 
+So we commenced from the seemingly simple question of what PageRank entails. The Markov chain madness may have appeared a bit like a rabbit hole, but it is highly germane to the clockwork behind Google's search algorithm. Although we used only one parameter---hyperlinks---as the basis of our analysis, in reality PageRank performs batch calculations on a much larger sum of data to ultimately derive the equivalent of our stationary distribution vector. The website that the user is most likely to spend the most time on, *i.e.* the website that is most likely important and relevant to the user's search entry, is placed on the top of the list. Other entries follow in sorted order. 
 
 So there you have it: the PageRank algorithm demystified. Now the question is, will Google place this post on the top of the search result when a user types "PageRank"? Probably not given the lack of active hyperlinks to and from this webpage. But we'll see. 
 
