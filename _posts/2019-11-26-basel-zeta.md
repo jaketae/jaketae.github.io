@@ -43,6 +43,7 @@ $$C = C’ - \pi^2$$
 Where $$C’$$ denotes the coefficient of $$x^2$$ obtained by expanding the rest of the terms following $$(1 - \frac{\pi^2}{x^2})$$ in the infinite product above. If we repeat this process once more, a clear pattern emerges:
 
 $$C = C’ - \pi^2 = C’’ - \pi^2 - \frac{\pi^2}{4}$$
+
 Iterating over this process will eventually allow us to express our target coefficient as a sum of inverse squares multiplied by some constant, in this case $$\pi^2$$:
 
 $$C = - (\pi^2 + \frac{\pi^2}{4} + \frac{\pi^2}{9} \dots) = - \pi^2 \sum_{n = 1}^\infty \frac{1}{n^2}$$
