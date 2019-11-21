@@ -7,11 +7,11 @@ tags:
   - math
 ---
 
-The more I continue my journey down the rabbit hole of mathematics, jumping from website to website, from entry to entry on Wikipedia, the more I stumble across this name: Leonhard Euler. Nearly every concept that I learn, in one way or another, seems to be built on top of some strand of his work, not to mention the unending list of constants, formulas, and series that bears his name. It is simply mind-blowing to imagine that a single mind could be so creative, inventive, and productive to the extent that the field of mathematics would not be where it is today had it not been for his birth on April 15, 1707.  
+The more I continue my journey down the rabbit hole of mathematics, the more often I stumble across one name: Leonhard Euler. Nearly every concept that I learn, in one way or another, seems to be built on top of some strand of his work, not to mention the unending list of constants, formulas, and series that bears his name. It is simply mind-blowing to imagine that a single person could be so creative, inventive, and productive to the extent that the field of mathematics would not be where it is today had it not been for his birth on April 15, 1707.  
 
 # The Basel Problem
 
-Why such intensive fangirling, you might ask. Well, let’s remind ourselves of the fact that the interpolation of the factorial through the Gamma function was spearheaded by Euler himself. But this is just the start of the beginning. Consider, for example, the [Basel problem], an infamous problem that mathematicians have been trying to solve for nearly a century with no avail, until the 28-year-old Euler came to the rescue. The Basel problem can be stated as follows:
+Why such intensive fanboying, you might ask. Well, let’s remind ourselves of the fact that the interpolation of the factorial through the Gamma function was spearheaded by Euler himself. But this is just the start of the beginning. Consider, for example, the [Basel problem], an infamous problem that mathematicians have been trying to solve for nearly a century with no avail, until the 28-year-old Euler came to the rescue. The Basel problem can be stated as follows:
 
 <script type="text/javascript" async  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
