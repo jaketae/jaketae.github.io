@@ -34,7 +34,7 @@ $$\frac{\sin(x)}{x} = (1 - \frac{\pi}{x})(1 + \frac{\pi}{x})(1 - \frac{2\pi}{x})
 
 Let’s try to factor out the coefficient of the $$x^2$$ term through some elementary induction. First, we observe that calculating the product of the first two terms produces the following expression:
 
-$$\frac{\sin(x)}{x} = (1 - \frac{\pi^2}{x^2})(1 - \frac{2\pi}{x})(1 + \frac{2\pi}{x}) \dots$$
+$$\frac{\sin(x)}{x} = (1 - \frac{\pi^2}{x^2})(1 - \frac{2\pi}{x})(1 + \frac{2\pi}{x}) \dots \tag{1}$$
 
 Then, we can express the target coefficient, denoted by $$C$$, as follows:
 
@@ -62,7 +62,7 @@ An interesting corollary of Euler’s solution to the Basel problem is the [Wall
 
 $$\frac{\pi}{2} = (\frac{2}{1} \cdot \frac{2}{3}) \cdot (\frac{4}{3} \cdot \frac{4}{5}) \cdot (\frac{6}{5} \cdot \frac{6}{7}) \dots$$
 
-It seems mathematically unintuitive to say that an irrational number such as $$\pi$$ can be expressed as a product of fractions, which is a way of representing rational numbers. However, we can verify the soundness of the Wallis product by substituting $$\frac{\pi}{2}$$ for $$x$$:
+It seems mathematically unintuitive to say that an irrational number such as $$\pi$$ can be expressed as a product of fractions, which is a way of representing rational numbers. However, we can verify the soundness of the Wallis product by substituting $$\frac{\pi}{2}$$ for $$x$$ in (1):
 
 $$\frac{2}{\pi} = \prod_{n = 1}^\infty (1 - \frac{1}{4n^2})$$
 
@@ -106,7 +106,7 @@ This expression is Euler’s infinite product representation of the zeta functio
 
 # Conclusion
 
-These days, I cannot help but fall in love with Euler’s works. His proofs and discoveries are simple and elegant yet also fundamental and deeply profound, revealing hidden relationships between numbers of theories that were unthought of during his time. I tend to avoid questions like “who was the best $$X$$ in history” because they most often lead to unproductive discussions that obscure individual achievements amidst meaningless comparisons, but I dare profess here my belief that only a handful of mathematicians can rival Euler in terms of his genius and prolific nature. 
+These days, I cannot help but fall in love with Euler’s works. His proofs and discoveries are simple and elegant yet also fundamental and deeply profound, revealing hidden relationships between numbers and theories that were unthought of during his time. I tend to avoid questions like “who was the best $$X$$ in history” because they most often lead to unproductive discussions that obscure individual achievements amidst meaningless comparisons, but I dare profess here my belief that only a handful of mathematicians can rival Euler in terms of his genius and prolific nature. 
 
 That is enough Euler for today. I’m pretty sure that this is not going to be the last post on Euler given the sheer amount of work he produced during his lifetime. My exploration of the field of mathematics is somewhat like a random walk, moving from one point to another with no apparent pattern or purpose other than my interest and Google’s search suggestions, but my encounter with Euler will recur continuously throughout this journey for sure. But for now, I’m going to take a brief break from Euler and return back to the topic of good old statistical analysis, specifically Bayesian inference and Monte Carlo methods. Catch you up in the next one!
 
