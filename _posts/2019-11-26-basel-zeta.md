@@ -108,7 +108,7 @@ This expression is Euler’s infinite product representation of the zeta functio
 
 These days, I cannot help but fall in love with Euler’s works. His proofs and discoveries are simple and elegant yet also fundamental and deeply profound, revealing hidden relationships between numbers and theories that were unthought of during his time. I tend to avoid questions like “who was the best $$X$$ in history” because they most often lead to unproductive discussions that obscure individual achievements amidst meaningless comparisons, but I dare profess here my belief that only a handful of mathematicians can rival Euler in terms of his genius and prolific nature. 
 
-That is enough Euler for today. I’m pretty sure that this is not going to be the last post on Euler given the sheer amount of work he produced during his lifetime. My exploration of the field of mathematics is somewhat like a random walk, moving from one point to another with no apparent pattern or purpose other than my interest and Google’s search suggestions, but my encounter with Euler will recur continuously throughout this journey for sure. But for now, I’m going to take a brief break from Euler and return back to the topic of good old statistical analysis, specifically Bayesian inference and Monte Carlo methods. Catch you up in the next one!
+That is enough Euler for today. I’m pretty sure that this is not going to be the last post on Euler given the sheer amount of work he produced during his lifetime. My exploration of the field of mathematics is somewhat like a random walk, moving from one point to another with no apparent pattern or purpose other than my interest and Google’s search suggestions, but my encounter with Euler will recur continuously throughout this journey for sure. But for now, I’m going to take a brief break from Euler and return back to the topic of good old statistical analysis, specifically [Bayesian methods] and Monte Carlo methods. Catch you up in the next one!
 
 
 
@@ -128,5 +128,7 @@ That is enough Euler for today. I’m pretty sure that this is not going to be t
 [sieve of Eratosthenes]: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 
 [Wallis product]: https://en.wikipedia.org/wiki/Wallis_product
+
+[Bayesian methods]: https://jaketae.github.io/study/bayes/
 
 
