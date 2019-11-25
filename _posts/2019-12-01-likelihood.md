@@ -102,11 +102,17 @@ $$L = \prod_{i = 1}^n \frac{1}{\sqrt{2 \pi \sigma^2}} e^{\frac{-(x_i - \mu)^2}{2
 
 But finding the maximum of this function can quickly turn into a nightmare. Recall that we are dealing with distributions here, whose PDFs are not always the simplest and the most elegant-looking. If we multiply $$n$$ terms of the normal PDF, for instance, we would end up with a giant exponential term. To prevent this fiasco, we can introduce a simple transformation: logarithms. Log is a [monotonically increasing function], which is why maximizing some function $$f$$ is equivalent to maximizing the log of that function, $$\log(f)$$. Moreover, the log transformation expedites calculation since logarithms restructure multiplication as sums. 
 
-$$\log(ab) = \log(a) + \log(b)$$
+$$\log(ab) = \log(a) + \log(b) \tag{3}$$
 
 With that in mind, we can construct a log equation for MLE from (2) as shown below. Because we are dealing with Euler’s number, $$e$$, the natural log is our preferred base.
 
-$$\ln(L) = 
+$$\ln(L) = \ln(\frac{1}{(2 \pi r)^n} e^{\frac{\sum_{i = 1}^n (x_i - \mu)^2}{2 \sigma^2})$$
+
+Using the property in (3), we can simplify the equation above:
+
+$$ln(L) = \ln(\frac{1}{(2 \pi r)^n}) + \ln(e^{\frac{\sum_{i = 1}^n (x_i - \mu)^2}{2 \sigma^2})) = - \frac{n}{2} \ln(2 \pi) - n \ln(\sigma) - \frac{1}{2 \sigma^2} \sum_{i = 1}^n (x_i - \mu)^2$$
+
+To find the maximum of this function, we can use a bit of calculus, namely [Newton’s method]. 
 
 
 And here is a gentle reminder that the goal of maximum likelihood estimation is to find the parameter of a distribution that best explains given data. To proceed further, let's consider a sample of integers that will serve as our observed data. 
@@ -131,3 +137,4 @@ numbers_list = [4, 5, 7, 8, 8, 9, 10, 5, 2, 3, 5, 4, 8, 9]
 [Maximum likelihood estimation]: https://en.wikipedia.org/wiki/Maximum_likelihood_estimation
 [Bayesian statistics]: https://en.wikipedia.org/wiki/Bayesian_statistics
 [monotonically increasing function]: https://en.wikipedia.org/wiki/Monotonic_function
+[Newton’s method]: 
