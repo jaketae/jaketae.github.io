@@ -114,7 +114,7 @@ $$\ln L = \ln \frac{1}{(2 \pi \sigma)^n} e^{\frac{\sum_{i = 1}^n (x_i - \mu)^2}{
 
 Using the property in (3), we can simplify the equation above:
 
-$$ln L = \ln \frac{1}{(2 \pi \sigma)^n} + \ln e^{\frac{\sum_{i = 1}^n (x_i - \mu)^2}{2 \sigma^2}} = - \frac{n}{2} \ln 2 \pi - n \ln \sigma - \frac{1}{2 \sigma^2} \sum_{i = 1}^n (x_i - \mu)^2 \tag{4}$$
+$$\ln L = \ln \frac{1}{(2 \pi \sigma)^n} + \ln e^{\frac{\sum_{i = 1}^n (x_i - \mu)^2}{2 \sigma^2}} = - \frac{n}{2} \ln 2 \pi - n \ln \sigma - \frac{1}{2 \sigma^2} \sum_{i = 1}^n (x_i - \mu)^2 \tag{4}$$
 
 ## Maximum Likelihood Estimation
 
@@ -187,9 +187,9 @@ From the graph, we can see that the maximum occurs at the mean and standard devi
 
 # Conclusion
 
-And that concludes today’s article on (maximum) likelihood. This post was motivated from a rather simple thought that came to my mind while overhearing a conversation that happened at the PMO office. Despite the conceptual difference between probability and likelihood, people will continue to use employ these terms interchangeably in daily conversations. From a mathematician’s point of view, this might be unwelcome, but the vernacular rarely strictly aligns with academic lingua. In fact, it’s most often the reverse; when jargon or scholarly terms get diffused with everyday language, they often transform in meaning and usage. I presume the word “likelihood” or more generally, “likely” falls into this criteria. All of this notwithstanding, I hope this post gave you a better understanding of what likelihood is, and how it relates to other useful statistical concepts such as maximum likelihood estimation. 
+And that concludes today’s article on (maximum) likelihood. This post was motivated from a rather simple thought that came to my mind while overhearing a conversation that happened at the PMO office. Despite the conceptual difference between probability and likelihood, people will continue to use employ these terms interchangeably in daily conversations. From a mathematician’s point of view, this might be unwelcome, but the vernacular rarely strictly aligns with academic lingua. In fact, it’s most often the reverse; when jargon or scholarly terms get diffused with everyday language, they often transform in meaning and usage. I presume words such as “likelihood” or “likely” fall into this criteria. All of this notwithstanding, I hope this post provided you with a better understanding of what likelihood is, and how it relates to other useful statistical concepts such as maximum likelihood estimation. 
 
-The topic for our next post is going to be Monte Carlo simulations and methods. If Monte Carlo sounds cool to you, as it did to me when I first came across it, tune in again next week. Catch you up in the next one. 
+The topic for our next post is going to be Monte Carlo simulations and methods. If “Monte Carlo” just sounds cool to you, as it did to me when I first came across it, tune in again next week. Catch you up in the next one. 
 
 
 [earlier post]: https://jaketae.github.io/study/bayes/
