@@ -110,13 +110,13 @@ $$\log ab = \log a + \log b \tag{3}$$
 
 With that in mind, we can construct a log equation for MLE from (3) as shown below. Because we are dealing with Euler’s number, $$e$$, the natural log is our preferred base.
 
-$$\ln L = \ln \frac{1}{(2 \pi \sigma)^n} e^{\frac{\sum_{i = 1}^n (x_i - \mu)^2}{2 \sigma^2}$$
+$$\ln L = \ln \frac{1}{(2 \pi \sigma)^n} e^{\frac{\sum_{i = 1}^n (x_i - \mu)^2}{2 \sigma^2}}$$
 
 Using the property in (3), we can simplify the equation above:
 
-$$ln L = \ln \frac{1}{(2 \pi \sigma)^n} + \ln e^{\frac{\sum_{i = 1}^n (x_i - \mu)^2}{2 \sigma^2} = - \frac{n}{2} \ln 2 \pi - n \ln \sigma - \frac{1}{2 \sigma^2} \sum_{i = 1}^n (x_i - \mu)^2 \tag{4}$$
+$$ln L = \ln \frac{1}{(2 \pi \sigma)^n} + \ln e^{\frac{\sum_{i = 1}^n (x_i - \mu)^2}{2 \sigma^2}} = - \frac{n}{2} \ln 2 \pi - n \ln \sigma - \frac{1}{2 \sigma^2} \sum_{i = 1}^n (x_i - \mu)^2 \tag{4}$$
 
-##Maximum Likelihood Estimation
+## Maximum Likelihood Estimation
 
 To find the maximum of this function, we can use a bit of calculus. Specifically, our goal is to find a parameter that which makes the first derivative of the log likelihood function to equal 0. To find the optimal mean parameter $$\mu$$, we derive the log likelihood function with respect to $$\mu$$ while considering all other variables as constants. 
 
