@@ -96,9 +96,18 @@ Assume we have a list of observations that correspond to the random variable of 
 
 $$L(\theta \mid x_1, x_2, \dots x_n) = P(X = x_1, x_2, \dots x_n \mid \theta) = \prod_{i = 1}^n P(X = x_i \mid \theta)$$
 
-In other words, to maximize the likelihood simply means to find the value of a parameter that maximizes the product of probabilities of observing each data point. The assumption of independence in data observation allows us to use multiplication to calculate the likelihood in this manner. 
+In other words, to maximize the likelihood simply means to find the value of a parameter that which maximizes the product of probabilities of observing each data point. The assumption of independence allows us to use multiplication to calculate the likelihood in this manner. Applied in the context of normal distributions with $$n$$ observations, the likelihood function can therefore be calculated as follows:
 
-But finding the maximum of this function can quickly turn into a nightmare. Recall that we are dealing with distributions here, whose PDFs are not always the simplest and the most elegant-looking. If we multiply $$n$$ terms of the normal PDF, for instance, we would end up with a giant exponential term. To prevent this fiasco, we can introduce a simple transformation to expedite calculation: logarithms. Logarithms are monotonically increasing functions, which is why maximizing some function $$f$$ is equivalent to maximizing the log of that function, $$\ln(f)$$. With that in mind, we can construct the log equation for MLE as follows, assuming $$n$$ data points:
+$$L = \prod_{i = 1}^n \frac{1}{\sqrt{2 \pi \sigma^2}} e^{\frac{-(x_i - \mu)^2}{2 \sigma^2}} \tag{2}$$
+
+But finding the maximum of this function can quickly turn into a nightmare. Recall that we are dealing with distributions here, whose PDFs are not always the simplest and the most elegant-looking. If we multiply $$n$$ terms of the normal PDF, for instance, we would end up with a giant exponential term. To prevent this fiasco, we can introduce a simple transformation: logarithms. Log is a [monotonically increasing function], which is why maximizing some function $$f$$ is equivalent to maximizing the log of that function, $$\log(f)$$. Moreover, the log transformation expedites calculation since logarithms restructure multiplication as sums. 
+
+$$\log(ab) = \log(a) + \log(b)$$
+
+With that in mind, we can construct a log equation for MLE from (2) as shown below. Because we are dealing with Euler’s number, $$e$$, the natural log is our preferred base.
+
+$$\ln(L) = 
+
 
 And here is a gentle reminder that the goal of maximum likelihood estimation is to find the parameter of a distribution that best explains given data. To proceed further, let's consider a sample of integers that will serve as our observed data. 
 
@@ -121,4 +130,4 @@ numbers_list = [4, 5, 7, 8, 8, 9, 10, 5, 2, 3, 5, 4, 8, 9]
 [likelihood function]: https://en.wikipedia.org/wiki/Likelihood_function
 [Maximum likelihood estimation]: https://en.wikipedia.org/wiki/Maximum_likelihood_estimation
 [Bayesian statistics]: https://en.wikipedia.org/wiki/Bayesian_statistics
-
+[monotonically increasing function]: https://en.wikipedia.org/wiki/Monotonic_function
