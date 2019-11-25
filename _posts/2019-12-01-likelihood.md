@@ -32,8 +32,8 @@ $$P(a < X < b \mid \theta) = \int_a^b f(p) dp$$
 This is the good old definition of probability as defined for a continuous random varriable $$X$$, given some probability density function $$f(p)$$ with parameter $$\theta$$. Graphically speaking, we can consider probability as the area or volume under the probability density function, which may be a curve, plane, or a hyperplane depending on the dimensionality of our context. 
 
 <figure>
-	<img src="/assets/images/probability.png">
-	<figcaption>Figure 1: Representation of probability as area</figcaption>
+    <img src="/assets/images/probability.png">
+    <figcaption>Figure 1: Representation of probability as area</figcaption>
 </figure>
 
 Unlike probability, likelihood is best understood as a point estimate on the PDF. Imagine having two disparate distributions with distinct parameters. Likelihood is an estimate we can use to see which of these two distributions better explain the data we have in our hands. Intuitively, the closer the mean of the distribution is to the observed data point, the more likely the parameters for the distribution would be. We can see this in action with a simple line of code.
@@ -70,8 +70,8 @@ plt.show()
 This code block creates two distributions of different parameters, $$N_1~(1, 0)$$ and $$N_2~(0.5, 0.7)$$. Then, we assume that a sample of value 1 is observed. Then, we can compare the likelihood of the two parameters given this data by comparing the probability density of the data for each of the two distributions. 
 
 <figure>
-	<img src="/assets/images/likelihood.png">
-	<figcaption>Figure 2: Representation of likelihood as height</figcaption>
+    <img src="/assets/images/likelihood.png">
+    <figcaption>Figure 2: Representation of likelihood as height</figcaption>
 </figure>
 
 In this case, $$N_2$$ seems more likely, *i.e.* it better explains the data $$X = 1$$ since $$L(\theta_{N_1} \mid 1) \approx 0.4416$$, which is larger than $$L(\theta_{N_2} \mid 1) \approx 0.2420$$. 
@@ -80,9 +80,9 @@ To sum up, likelihood is something that we can say about a distribution, specifi
 
 # Maximum Likelihood 
 
-[Maximum likelihood estimation], or MLE in short, is an important technique used in many subfields of statistics, most notably [Bayesian statistics]. As the name suggests, the goal of maximum likelihood estimation is to find the parameters of a distribution that maximizes the probability of observing some given data $$D$$. In other words, we want to find the optimal way to fit a distribution to the data. As our intuition suggests, MLE quickly reduces into an optimization problem, the solution of which can be obtained through various means, such as Newton's method or gradient descent. For the purposes of this post, we look at ways to approach MLE problems using the former. 
+[Maximum likelihood estimation], or MLE in short, is an important technique used in many subfields of statistics, most notably [Bayesian statistics]. As the name suggests, the goal of maximum likelihood estimation is to find the parameters of a distribution that maximizes the probability of observing some given data $$D$$. In other words, we want to find the optimal way to fit a distribution to the data. As our intuition suggests, MLE quickly reduces into an optimization problem, the solution of which can be obtained through various means, such as Newton's method or gradient descent. For the purposes of this post, we look at the simplest way that involves just a bit of calculus. 
 
-The best way to demonstrate how MLE works is through examples. In this post, we look at simple examples of maximum likelihood estimation in the context of normal and exponential distributions. 
+The best way to demonstrate how MLE works is through examples. In this post, we look at simple examples of maximum likelihood estimation in the context of normal distributions. 
 
 ## Normal Distribution
 
@@ -100,41 +100,100 @@ In other words, to maximize the likelihood simply means to find the value of a p
 
 $$L = \prod_{i = 1}^n \frac{1}{\sqrt{2 \pi \sigma^2}} e^{\frac{-(x_i - \mu)^2}{2 \sigma^2}} \tag{2}$$
 
-But finding the maximum of this function can quickly turn into a nightmare. Recall that we are dealing with distributions here, whose PDFs are not always the simplest and the most elegant-looking. If we multiply $$n$$ terms of the normal PDF, for instance, we would end up with a giant exponential term. To prevent this fiasco, we can introduce a simple transformation: logarithms. Log is a [monotonically increasing function], which is why maximizing some function $$f$$ is equivalent to maximizing the log of that function, $$\log(f)$$. Moreover, the log transformation expedites calculation since logarithms restructure multiplication as sums. 
+But finding the maximum of this function can quickly turn into a nightmare. Recall that we are dealing with distributions here, whose PDFs are not always the simplest and the most elegant-looking. If we multiply $$n$$ terms of the normal PDF, for instance, we would end up with a giant exponential term. 
 
-$$\log(ab) = \log(a) + \log(b) \tag{3}$$
+## Log Likelihood
 
-With that in mind, we can construct a log equation for MLE from (2) as shown below. Because we are dealing with Euler’s number, $$e$$, the natural log is our preferred base.
+To prevent this fiasco, we can introduce a simple transformation: logarithms. Log is a [monotonically increasing function], which is why maximizing some function $$f$$ is equivalent to maximizing the log of that function, $$\log(f)$$. Moreover, the log transformation expedites calculation since logarithms restructure multiplication as sums. 
 
-$$\ln(L) = \ln(\frac{1}{(2 \pi r)^n} e^{\frac{\sum_{i = 1}^n (x_i - \mu)^2}{2 \sigma^2})$$
+$$\log ab = \log a + \log b \tag{3}$$
+
+With that in mind, we can construct a log equation for MLE from (3) as shown below. Because we are dealing with Euler’s number, $$e$$, the natural log is our preferred base.
+
+$$\ln L = \ln \frac{1}{(2 \pi \sigma)^n} e^{\frac{\sum_{i = 1}^n (x_i - \mu)^2}{2 \sigma^2}$$
 
 Using the property in (3), we can simplify the equation above:
 
-$$ln(L) = \ln(\frac{1}{(2 \pi r)^n}) + \ln(e^{\frac{\sum_{i = 1}^n (x_i - \mu)^2}{2 \sigma^2})) = - \frac{n}{2} \ln(2 \pi) - n \ln(\sigma) - \frac{1}{2 \sigma^2} \sum_{i = 1}^n (x_i - \mu)^2$$
+$$ln L = \ln \frac{1}{(2 \pi \sigma)^n} + \ln e^{\frac{\sum_{i = 1}^n (x_i - \mu)^2}{2 \sigma^2} = - \frac{n}{2} \ln 2 \pi - n \ln \sigma - \frac{1}{2 \sigma^2} \sum_{i = 1}^n (x_i - \mu)^2 \tag{4}$$
 
-To find the maximum of this function, we can use a bit of calculus, namely [Newton’s method]. 
+##Maximum Likelihood Estimation
 
+To find the maximum of this function, we can use a bit of calculus. Specifically, our goal is to find a parameter that which makes the first derivative of the log likelihood function to equal 0. To find the optimal mean parameter $$\mu$$, we derive the log likelihood function with respect to $$\mu$$ while considering all other variables as constants. 
 
-And here is a gentle reminder that the goal of maximum likelihood estimation is to find the parameter of a distribution that best explains given data. To proceed further, let's consider a sample of integers that will serve as our observed data. 
+$$\frac{d}{d \mu} \ln L = 0 + 0 + \frac{\sum_{i = 1}^n 2(x_i - \mu)}{2 \sigma^2} = \frac{\sum_{i = 1}^n x_i - \mu}{\sigma^2} = 0$$
+
+From this, it follows that
+
+$$\frac{1}{\sigma^2}[(x_1 + x_2 + \dots + x_n) - n \mu] = 0$$
+
+Rearranging this equation, we are able to obtain the final expression for the optimal parameter $$\mu$$ that which maximizes the likelihood function:
+
+$$\mu = \frac{\sum_{i = 1}^n x_i}{n} \tag{5}$$
+
+As part 2 of the trilogy, we can also do the same for the other parameter of interest in the normal distribution, namely the standard deviation denoted by $$\sigma$$. 
+
+$$\frac{d}{d \sigma} \ln L = - \frac{n}{\sigma} + \frac{\sum_{i = 1}^n (x_i - \mu)^2}{\sigma^3} = 0$$
+
+We can simplify this equation by multiplying both sides by $$\sigma^3$$. After a little bit of rearranging, we end up with 
+
+$$\sigma = \sqrt \frac{\sum_{i = 1}^n (x_i - \mu)^2}{n} \tag{6}$$
+
+Finally, we have obtained the parameter values for the mean and variance of a normal distribution that maximizes the likelihood of our data. Notice that, in the context of normal distributions, the ML parameters are simply the mean and standard deviation of the given data point, which closely aligns with our intuition: the normal distribution that best explains given data would have the sample mean and variance as its parameters, which is exactly what our result suggests. Beyond the specific context of normal distributions, however, MLE is generally very useful when trying to reconstruct or approximate the population distribution using observed data. 
+
+## In Code
+
+Let’s wrap this up by performing a quick verification of our formula for maximum likelihood estimation for normal distributions. First, we need to prepare some random numbers that will serve as our supposed observed data. 
 
 ```python
-numbers_list = [4, 5, 7, 8, 8, 9, 10, 5, 2, 3, 5, 4, 8, 9]
+import numpy as np
+import matplotlib.pyplot as plt
+
+np.random.seed(123)
+num_list = np.random.randint(low=0, high=10, size=10).tolist()
 ```
 
-(This article is currently in progress.)
+We then calculate the optimum parameters $$\mu$$ and $$\sigma$$ by using the formulas we have derived in (5) and (6). 
 
+```python
+mu_best = np.mean(num_list)
+sigma_best = np.std(num_list)
+```
 
+We then generate two subplots of the log likelihood function as expressed in (4), where we vary $$\mu$$ while keeping $$\sigma$$ at `sigma_best` in one and flip this in the other. This can be achieved in the following manner.
 
-[link 1]: https://medium.com/@rrfd/what-is-maximum-likelihood-estimation-examples-in-python-791153818030
-[link 2]: https://towardsdatascience.com/a-gentle-introduction-to-maximum-likelihood-estimation-9fbff27ea12f
-[link 3]: https://web.sonoma.edu/users/w/wilsonst/papers/Normal/default.html
-[normal]: https://www.youtube.com/watch?v=Dn6b9fCIUpM&t=241s
-[exponential]: https://www.youtube.com/watch?v=p3T-_LMrvBc&t=479s]
-[binomial]: https://www.youtube.com/watch?v=4KKV9yZCoM4&t=330s
+```python
+n = len(num_list)
+x_mu = np.linspace(0, 10, 100)
+x_sigma = np.linspace(0, 5, 50)
+y_mu = -n/2 * np.log(2 * np.pi)- n * np.log(sigma_best) - 1/(2 * sigma_best**2) * np.sum((num_list - x_mu)**2)
+y_sigma = -n/2 * np.log(2 * np.pi)- n * np.log(x_sigma) - 1/(2 * x_sigma**2) * np.sum((num_list - mu_best)**2)
+
+plt.use.style(“seaborn”)
+fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(5, 3))
+ax[0].plot(x_mu, y_mu)
+ax[0].xlabel(“Mu”)
+ax[0].ylabel(“Log Likelihood”)
+ax[1].plot(x_sigma, y_sigma)
+ax[1].xlabel(“Sigma”)
+ax[1].ylabel(“Log Likelihood”)
+
+plt.tight_layout()
+plt.show()
+```
+
+Executing this code block produces the figure below. 
+
+From the graph, we can see that the maximum occurs at the mean and standard deviation of the distribution as we expect. Combining these two results, we would expect the maximum likelihood distribution to follow $$N~(\mu, \sigma)$$ where $$\mu$$ = `mu_best` and $$\sigma$$ = `sigma_best` in our code. 
+
+# Conclusion
+
+And that concludes today’s article on (maximum) likelihood. This post was motivated from a rather simple thought that came to my mind while overhearing a conversation that happened at the PMO office. Despite the conceptual difference between probability and likelihood, people will continue to use employ these terms interchangeably in daily conversations. From a mathematician’s point of view, this might be unwelcome, but the vernacular rarely strictly aligns with academic lingua. In fact, it’s most often the reverse; when jargon or scholarly terms get diffused with everyday language, they often transform in meaning and usage. I presume the word “likelihood” or more generally, “likely” falls into this criteria. All of this notwithstanding, I hope this post gave you a better understanding of what likelihood is, and how it relates to other useful statistical concepts such as maximum likelihood estimation. 
+
+The topic for our next post is going to be Monte Carlo simulations and methods. If Monte Carlo sounds cool to you, as it did to me when I first came across it, tune in again next week. Catch you up in the next one. 
+
 
 [earlier post]: https://jaketae.github.io/study/bayes/
 [likelihood function]: https://en.wikipedia.org/wiki/Likelihood_function
 [Maximum likelihood estimation]: https://en.wikipedia.org/wiki/Maximum_likelihood_estimation
 [Bayesian statistics]: https://en.wikipedia.org/wiki/Bayesian_statistics
 [monotonically increasing function]: https://en.wikipedia.org/wiki/Monotonic_function
-[Newton’s method]: 
