@@ -70,7 +70,7 @@ plugins:
 author:
   name   : "Jake Tae"
   avatar : "/assets/images/Photo.jpg"
-  bio    : "An aspiring academic and data scientist. Fan of football, guitar, and hunting for hole in the wall restaurants."
+  bio    : "An aspiring mathematician and data scientist. Fan of football, guitar, and hunting for hole in the wall restaurants."
   location: "Seoul, KOR"
   links:
     - label: "Email"
