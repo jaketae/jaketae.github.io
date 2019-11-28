@@ -3,7 +3,7 @@
 nb=$1
 
 function convert(){
-	jupyter nbconvert $nb --to markdown
+	jupyter nbconvert --to markdown --template ./custom.tpl $nb
 	mv ${nb%.ipynb}.md ../_posts/
 	mv ${nb%.ipynb}_files ../assets/images/
 	echo "Conversion complete!"
