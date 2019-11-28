@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 nb=$1
 
 function convert(){
@@ -8,7 +7,7 @@ function convert(){
 	python edit.py ${nb%.ipynb}.md
 	mv ${nb%.ipynb}.md ../_posts/
 	mv ${nb%.ipynb}_files ../assets/images/
-	echo "Conversion complete!"
+	echo "==========Conversion complete!=========="
 }
 
 convert
