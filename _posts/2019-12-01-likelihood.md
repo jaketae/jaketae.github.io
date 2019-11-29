@@ -163,25 +163,30 @@ We then generate two subplots of the log likelihood function as expressed in (4)
 
 ```python
 n = len(num_list)
-x_mu = np.linspace(0, 10, 100)
-x_sigma = np.linspace(0, 5, 50)
-y_mu = -n/2 * np.log(2 * np.pi)- n * np.log(sigma_best) - 1/(2 * sigma_best**2) * np.sum((num_list - x_mu)**2)
+x_mu = np.linspace(1, 10, 10)
+x_sigma = np.linspace(1, 10, 10)
+y_mu = [-n/2 * np.log(2 * np.pi) - n * np.log(sigma_best) - 1/(2 * sigma_best**2) * np.sum((num_list - i)**2) for i in x_mu]
 y_sigma = -n/2 * np.log(2 * np.pi)- n * np.log(x_sigma) - 1/(2 * x_sigma**2) * np.sum((num_list - mu_best)**2)
 
-plt.use.style(“seaborn”)
+plt.style.use("seaborn")
 fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(5, 3))
-ax[0].plot(x_mu, y_mu)
-ax[0].xlabel(“Mu”)
-ax[0].ylabel(“Log Likelihood”)
-ax[1].plot(x_sigma, y_sigma)
-ax[1].xlabel(“Sigma”)
-ax[1].ylabel(“Log Likelihood”)
+ax[0].plot(x_mu, y_mu, color="skyblue")
+ax[0].set(xlabel="$\\mu$",ylabel="Log Likelihood")
+ax[0].axvline(mu_best, 0, 1, color="black", ls="--", lw=1)
+ax[1].plot(x_sigma, y_sigma, color="skyblue")
+ax[1].set(xlabel="$\\sigma$",ylabel="")
+ax[1].axvline(sigma_best, 0, 1, color="black", ls="--", lw=1)
 
 plt.tight_layout()
 plt.show()
 ```
 
 Executing this code block produces the figure below. 
+
+<figure>
+  <img src="/assets/images/likelihood-param.png">
+  <figcaption>Figure: Log likelihood for mean and standard deviation</figcaption>
+</figure>
 
 From the graph, we can see that the maximum occurs at the mean and standard deviation of the distribution as we expect. Combining these two results, we would expect the maximum likelihood distribution to follow $$N~(\mu, \sigma)$$ where $$\mu$$ = `mu_best` and $$\sigma$$ = `sigma_best` in our code. 
 
