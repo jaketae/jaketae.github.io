@@ -54,7 +54,7 @@ Proper image links, on the other hand, look like
 <img src="/assets/images/some_file_name.png">
 ```
 
-To make this work, I realized that I would have to walk through every image link in the converted file and restructure them correctly. This sounded intimidating, but I decided to try it nonetheless. After performing this menial task for some time, however, I concluded that this manual handwork was not the way to go. 
+On a quick side note, those of you who know `.html` will easily recognize that this conforms to `.html` syntax. Anyhow, to make this work, I realized that I would have to walk through every image link in the converted file and restructure them correctly into standard `.html` tag format. This sounded intimidating, but I decided to try it nonetheless. After performing this menial task for some time, however, I concluded that this manual handwork was not the way to go. 
 
 # Automating with Python
 
@@ -108,7 +108,7 @@ if __name__ == '__main__':
 
 In a nutshell, the script opens and reads the converted `.md` file, finds and replaces broken image links with correct ones, and adds the default YAML front matter, defined as the string `yaml` in the code above. When all the necessary edits are performed, the script then rewrites the `.md` file with the edited content. 
 
-This script works fine, but I feel like all of this might have been implemented a lot more efficiently if I were proficient with regular expressions. The task of locating and editing broken image links is a classic `regexp` problem, but my knowledge of Python and regular expressions were not quite enough to implement the most efficient mechanism to tackle this problem. Nonetheless, my solution still produces the desired result, which is why I am very content with my first attempt at automation with Python and script. 
+This script works fine, but I feel like all of this might have been implemented a lot more efficiently if I were proficient with regular expressions. The task of locating and editing broken image links into `html` tags is a classic `regexp` problem, but my knowledge of Python and regular expressions were not quite enough to implement the most efficient mechanism to tackle this problem. Nonetheless, my solution still produces the desired result, which is why I am very content with my first attempt at automation with Python and script. 
 
 # Conclusion
 
