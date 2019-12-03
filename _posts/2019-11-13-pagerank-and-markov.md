@@ -1,6 +1,6 @@
 ---
 title: "Understanding PageRank"
-last_modified_at: 2019-11-13 9:51:00 +0000
+date: 2019-11-13
 categories:
   - study
 tags:

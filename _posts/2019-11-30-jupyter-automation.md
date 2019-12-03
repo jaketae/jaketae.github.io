@@ -1,6 +1,6 @@
 ---
 title: Using Jupyter Notebook with Jekyll
-last_modified_at: 2019-12-03 9:50:00 +0000
+date: 2019-11-30
 categories:
   - blog
 tags:

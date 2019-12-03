@@ -1,6 +1,6 @@
 ---
 title: "Markov Chain and Chutes and Ladders"
-last_modified_at: 2019-11-16 4:42:00 +0000
+date: 2019-11-16
 categories:
   - study
 tags:

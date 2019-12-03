@@ -1,6 +1,6 @@
 ---
 title: Likelihood and Probability
-last_modified_at: 2019-12-01 9:50:00 +0000
+date: 2019-12-01
 categories:
   - study
 tags:

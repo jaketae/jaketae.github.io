@@ -1,6 +1,6 @@
 ---
 title: "The Magic of Euler’s Identity"
-last_modified_at: 2019-11-17 1:21:00 +0000
+date: 2019-11-17
 categories:
   - study
 tags:

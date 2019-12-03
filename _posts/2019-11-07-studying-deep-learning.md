@@ -1,6 +1,6 @@
 ---
 title: "A Self-Created Curriculum"
-last_modified_at: 2019-11-14 06:57:00 +0000
+date: 2019-11-07
 header:
   image: /assets/images/hundred-page.png
 categories:

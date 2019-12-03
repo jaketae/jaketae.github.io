@@ -1,6 +1,6 @@
 ---
 title: "Basel, Zeta, and some more Euler"
-last_modified_at: 2019-11-26 00:00:00 +0000
+date: 2019-11-26
 categories:
   - study
 tags:
