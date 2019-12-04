@@ -1,5 +1,5 @@
 ---
-title: Monte Carlo 
+title: Wonders of Monte Carlo
 mathjax: true
 date: 2019-12-03
 categories:
@@ -364,7 +364,7 @@ plot_walks(100, 30)
 
 # Conclusion
 
-By now, hopefully you have been convinced that Monte Carlo is a powerful method of solving problems. Although the examples we looked at were mostly simple, these algorithms can easily be applied to solve much harder ones. Simply put, Monte Carlo uses a brute force method to simulate a particular instance of a model multiple times. Through such repeated sampling, we are able to gain a better understanding of the parameters underlying the issue at hand. This is a pattern that we saw with all three tasks we dealt with in today's post. 
+By now, hopefully you have been convinced that Monte Carlo is a wonderful method of solving problems. Although the examples we looked at were mostly simple, these algorithms can easily be applied to solve much harder ones. Simply put, Monte Carlo uses a brute force approach to simulate a particular instance of a model multiple times. Through such repeated sampling, we are able to gain a better understanding of the parameters underlying the issue at hand, no matter how complex. This is a pattern that we saw with all three tasks we dealt with in today's post. 
 
 This sums up our post on Monte Carlo methods. In a future post, we will take a look at [Markov Chain Monte Carlo], particularly [Metropolis-Hastings], which uses the best of both worlds to analyze complicated probability distributions. I'm already excited for that post, because MCMC methods will bring together so many concepts that we have dealt with on this blog so far---ranging from [Bayesian inference], probability distributions, [Markov chains], and so many more. Catch you up on the next one!
 
