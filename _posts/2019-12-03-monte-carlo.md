@@ -13,13 +13,13 @@ I have been putting off with blog postsings lately, largely because I was preocc
 
 The topic for today's post is Monte Carlo methods, something that I have been very interested in for a long time, admittedly because of its eye-catching name. Contrary to my original expectation, Monte Carlo is not named after an eponymous mathematician, but a gambling hot spot in Monaco. The logic behind this nomenclature is that the simulation of random outcomes, such as in the context of an unpredictable gambling game, is what Monte Carlo methods are best suited for. To present a more formal definition, Monte Carlo methods refer to a broad category of  algorithms that use repeated random sampling to make estimations of unknown parameters. Basically, MC methods work by cleverly sampling from a distribution to estimate a variable of interest. This versatility is why MC method is such a powerful tool in the statistician's arsenal.
 
-In today's post, we will attempt to solve various bite-sized tasks using MC methods. These tasks will be of varying difficulty, but taken together, they will collectively demonstrate the useful applications of MC methods. Let's get started with the first up on the list: estimating $\pi$.
+In today's post, we will attempt to solve various bite-sized tasks using MC methods. These tasks will be of varying difficulty, but taken together, they will collectively demonstrate the useful applications of MC methods. Let's get started with the first up on the list: estimating $$\pi$$.
 
 # Pi Estimation 
 
-We all know from basic geometry that the value of $\pi$ approximates to $3.14$. There are obviously various ways to derive this value. Archimedes famously used hexagons to estimate that the value of $\pi$ lies between $(\frac{22}{7}, \frac{223}{71})$. With later advances in math, mathematicians began to approach this problem from the angle of infinite series or products, the result of which were the [Leibniz formula], [Wallis product], [Euler product], and the likes. And of course, modern computing now allows us to borrow the prowess of machinery to calculate this quantity with extreme accuracy.
+We all know from basic geometry that the value of $$\pi$$ approximates to $$3.14$$. There are obviously various ways to derive this value. Archimedes famously used hexagons to estimate that the value of $$\pi$$ lies between $$(\frac{22}{7}, \frac{223}{71})$$. With later advances in math, mathematicians began to approach this problem from the angle of infinite series or products, the result of which were the [Leibniz formula], [Wallis product], [Euler product], and the likes. And of course, modern computing now allows us to borrow the prowess of machinery to calculate this quantity with extreme accuracy.
 
-While the maths behind these derivations are fascinating, our approach will not take these routes; instead, we will use a crude Monte Carlo method. First, we draw a two-by-two square, inside of which we inscribe a circle of radius 1. For convenience purposes, let's center this circle and square both at the origin. Next, we generate a series of random coordinates within the region of the square. Then, we count the percentage of dots that fall within the area of the cricle. Using a simple formula of proportions, we can calculate the area of the circle, through which we can then estimate the value of $\pi$. Before we get into the specifics of this algorithm, let's see hwo this plays out in code.
+While the maths behind these derivations are fascinating, our approach will not take these routes; instead, we will use a crude Monte Carlo method. First, we draw a two-by-two square, inside of which we inscribe a circle of radius 1. For convenience purposes, let's center this circle and square both at the origin. Next, we generate a series of random coordinates within the region of the square. Then, we count the percentage of dots that fall within the area of the cricle. Using a simple formula of proportions, we can calculate the area of the circle, through which we can then estimate the value of $$\pi$$. Before we get into the specifics of this algorithm, let's see hwo this plays out in code.
 
 
 ```python
@@ -89,7 +89,7 @@ generate_point(100000)
 
 
 
-As expected, with more data points, we get a better estimation of pi. Although the randomness created by the `np.random` call in our function means that this estimation will fluctuate with each execution, the value is reliably close to the actual value of $\pi$, differing only by about 0.01 or less. If we draw the plot for our experiment, it is clear that our data points accurately capture the proportionality between the area of the square and the circle. 
+As expected, with more data points, we get a better estimation of pi. Although the randomness created by the `np.random` call in our function means that this estimation will fluctuate with each execution, the value is reliably close to the actual value of $$\pi$$, differing only by about 0.01 or less. If we draw the plot for our experiment, it is clear that our data points accurately capture the proportionality between the area of the square and the circle. 
 
 
 ```python
@@ -117,7 +117,7 @@ plt.show()
 
 The plot shows that, with larger sample sizes, the error quickly converges to around 0. Although the rate of convergence dramatically decreases after the first few iterations, the pattern of convergence is apparrent.
 
-So how does this work? The mechanism is extremely simple: if we were to randomly generate an infinite number of dots, the proportion of the number of dots that fall within the circle versus those that do not fall within it would converge to some constant, *i.e.* $\pi:4-\pi$. Why is this the case? Intuitively, the larger the area, the larger the number of points that fall into that area. Given this proportional relationship, the number of randomly generated points in an area after a simulation would mirror the actual area of the circle and the rectangle, hence the proportional expression above. By following this line of reasoning, we can then resort to Monte Carlo to generate these random points, after which we can make a reasonable estimation of $\pi$. 
+So how does this work? The mechanism is extremely simple: if we were to randomly generate an infinite number of dots, the proportion of the number of dots that fall within the circle versus those that do not fall within it would converge to some constant, *i.e.* $$\pi:4-\pi$$. Why is this the case? Intuitively, the larger the area, the larger the number of points that fall into that area. Given this proportional relationship, the number of randomly generated points in an area after a simulation would mirror the actual area of the circle and the rectangle, hence the proportional expression above. By following this line of reasoning, we can then resort to Monte Carlo to generate these random points, after which we can make a reasonable estimation of $$\pi$$. 
 
 But approximation is not the only domain in which Monte Carlo methods become useful--they can also be used to calculate complicated integrals.
 
@@ -125,19 +125,19 @@ But approximation is not the only domain in which Monte Carlo methods become use
 
 We all know from calculus class that integration can be difficult. Everyone has encountered integrals of varying monstrosity at one point in their lives, scrambling to solve it with integration by parts or some obscure, creative substitution, only to realize that everything wounds up in the middle of nowhere. Well, good news for all of us---Monte Carlo methods can be used to estimate the value of mind-pulverizing, complicated definite integrals. 
 
-Let's say we want to estimate the value of an integral of a function $f$ over some domain $D$. 
+Let's say we want to estimate the value of an integral of a function $$f$$ over some domain $$D$$. 
 
 $$F = \int_D^{} f(x) \ dx$$
 
-Now assume that there is some probability density function $p(x)$ defined over $D$. Then, we can alter this integral as  shown below.
+Now assume that there is some probability density function $$p(x)$$ defined over $$D$$. Then, we can alter this integral as  shown below.
 
 $$F = \int_D^{} \frac{f(x)}{p(x)} p(x) \ dx$$
 
-Notice that this integral can now be understood as an expected value for some continuous random variable. In other words, $F$ collapses into the following expression.
+Notice that this integral can now be understood as an expected value for some continuous random variable. In other words, $$F$$ collapses into the following expression.
 
 $$F = E\left[ \frac{f(x)}{p(x)}\right]$$
 
-What does this tell us? This means that we can simply calculate an integral by randomly sampling the values of $f(x)$ such that $x$ follows some probability distribution $p(x)$. The probability distribution part simply ensures that values of $x$ that are more probable are sampled more often than others. Intuitively, we are effectively taking a weighted mean of the values of $f(x)$, which is the loose definition of expected values. Now, to simplify things a bit, we are going to take a look at an example that does not involve much probability distributions. Conside the following integal of sine, a classic in calculus 101:
+What does this tell us? This means that we can simply calculate an integral by randomly sampling the values of $$f(x)$$ such that $$x$$ follows some probability distribution $$p(x)$$. The probability distribution part simply ensures that values of $$x$$ that are more probable are sampled more often than others. Intuitively, we are effectively taking a weighted mean of the values of $$f(x)$$, which is the loose definition of expected values. Now, to simplify things a bit, we are going to take a look at an example that does not involve much probability distributions. Conside the following integal of sine, a classic in calculus 101:
 
 $$\int_0^1 \sin(x) \ dx$$
 
@@ -145,7 +145,7 @@ The reason why we chose this integral is that we know how to calculate it by han
 
 $$\int_0^1 \sin(x) \ dx = -\cos(x)\rvert_0^1 = -\cos(1) + \cos(0) \approx 0.46$$
 
-Now time for Monte Carlo. Notice that there is no probability distribution explicitly defined over the domain of integration in our example. In other words, $x$ simply follows a continuous uniform distribution, meaning that all values of $x$ within $[0, 1]$ are equally likely. All we have to do, therefore, is to compute the expected value of the integrand by randomly generating a series of numbers within the specified domain, plug those values into the function $\sin(x)$, and take their average. 
+Now time for Monte Carlo. Notice that there is no probability distribution explicitly defined over the domain of integration in our example. In other words, $$x$$ simply follows a continuous uniform distribution, meaning that all values of $$x$$ within $$[0, 1]$$ are equally likely. All we have to do, therefore, is to compute the expected value of the integrand by randomly generating a series of numbers within the specified domain, plug those values into the function $$\sin(x)$$, and take their average. 
 
 
 ```python
@@ -155,7 +155,7 @@ def integral_calculator(func, start, end, sample_num):
     return np.mean(y)
 ```
 
-This is a very elementary function that simply generates a specified number of samples given `sample_num` within the domain `[start, end]`. These numbers are then plugged into the function `func`, after which an unweighted mean of these values are computed to approximate an integral. Let's test the accuracy of this crude Monte Carlo method by using our example of $\sin(x)$ computed earlier.
+This is a very elementary function that simply generates a specified number of samples given `sample_num` within the domain `[start, end]`. These numbers are then plugged into the function `func`, after which an unweighted mean of these values are computed to approximate an integral. Let's test the accuracy of this crude Monte Carlo method by using our example of $$\sin(x)$$ computed earlier.
 
 
 ```python
@@ -211,7 +211,7 @@ integral_calculator(my_func, 0, 1, 1000)
 
 So we have a number! But how do we know if this is an accurate estimation? Unlike in previous problems, where we already knew the true value of our estimate and measured the error of our simulation by comparing it with the known value, the true value of the integral expression is unknown in this problem because we have not evaluated the integral by hand. 
 
-One way we can go about this dilemma is to calculate variance. Intuitively, if our estimate is indeed accurate, running the same Monte Carlo simulation would yield a value very similar to that of the previous. Conversely, if our estimate is inaccurate, the variance would be large, suggesting that our estimate has not converged to a value yet. Indeed, this is exactly what we attempted to visualize with the error plot above in our $\pi$ estimation example. However, in most cases where Monte Carlo methods are used, we have no idea about the true value of the quantity we wish to estimate, like the complicated integral problem in this case, which is why we cannot simply calculate error by substracting our estimate from the true value. 
+One way we can go about this dilemma is to calculate variance. Intuitively, if our estimate is indeed accurate, running the same Monte Carlo simulation would yield a value very similar to that of the previous. Conversely, if our estimate is inaccurate, the variance would be large, suggesting that our estimate has not converged to a value yet. Indeed, this is exactly what we attempted to visualize with the error plot above in our $$\pi$$ estimation example. However, in most cases where Monte Carlo methods are used, we have no idea about the true value of the quantity we wish to estimate, like the complicated integral problem in this case, which is why we cannot simply calculate error by substracting our estimate from the true value. 
 
 As we might recall, variance measures, quite simply, the degree of variability in our data. The well-known formula for variation goes as follows.
 
@@ -226,18 +226,6 @@ def variance(data):
     E_X2 = np.mean(data)**2
     return E_X - E_X2
 ```
-
-
-```python
-variance([0.476611780669815, 0.4612670939230275, 0.474718545243375])
-```
-
-
-
-
-    4.666503270669975e-05
-
-
 
 The `variance` function accepts a list as an argument and returns the variance seen in the given data set. Now that we have this function ready, let's use it to plot variance against the number of samples used in crude Monte Carlo integration
 
@@ -262,7 +250,7 @@ The crude Monte Carlo algorithm we employed here used simple random sampling to 
 
 The last task we will deal with in this post is simulating what is known as the drunkard's walk, a version of which is introduced [here]. The drunkard's walk is a type of random walk with a specified termination condition. As the name suggests, the drunkard's walk involves a little story of an intoxicated man trying to reach (or avoid) some destination, whether that be a cliff or, in our case, a restroom. Because he is drunk, he cannot walk to the restroom in a straight path as a normal person would do; instead, he stumbles this way and that, therefore producing a random walk. Our goal here is to simulate this motion many times to estimate the probability that the man would successfully end up in the restroom to go about his business. This example was borrowed from [this post] by Zacharia Miller. 
 
-Before we start typing up some code, let's first lay down the ground rules of this simulation. First, we assume that the pub is modeled as a ten-by-ten grid, the bottom-left point defined as $(0, 0)$ and the top-right $(10, 10)$. The drunkard will start his walk at his table, represented by the coordinate $(5, 5)$. For each walk, function will generate a random number to determine the direrction of his movement. The magnitude of each walk is 1 by default. Beforer a walk is performed, we will invoke another function to check if his movements are legal, *i.e.* whether he stepped out of the boundary of the pub. If his moves are legal, we continue with the movement; if not, we stop and assume that the trial has yielded a failure. The goal of this random walk is to end up in the top-right portion of the pub, a square defined by coordinates $(8, 8), (8, 10), (10, 8)$, and $(10, 10)$. 
+Before we start typing up some code, let's first lay down the ground rules of this simulation. First, we assume that the pub is modeled as a ten-by-ten grid, the bottom-left point defined as $$(0, 0)$$ and the top-right $$(10, 10)$$. The drunkard will start his walk at his table, represented by the coordinate $$(5, 5)$$. For each walk, function will generate a random number to determine the direrction of his movement. The magnitude of each walk is 1 by default. Beforer a walk is performed, we will invoke another function to check if his movements are legal, *i.e.* whether he stepped out of the boundary of the pub. If his moves are legal, we continue with the movement; if not, we stop and assume that the trial has yielded a failure. The goal of this random walk is to end up in the top-right portion of the pub, a square defined by coordinates $$(8, 8), (8, 10), (10, 8)$$, and $$(10, 10)$$. 
 
 Now that we have established the basics of this game, let's start coding away.
 
