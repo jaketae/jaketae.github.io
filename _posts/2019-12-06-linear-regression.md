@@ -1,6 +1,7 @@
 ---
 title: Linear Regression, in Two Ways
 date: 2019-12-06
+mathjax: true
 categories:
   - study
 tags:
