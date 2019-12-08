@@ -148,12 +148,16 @@ $$\nabla_x x^{T}Ax = \begin{pmatrix} 2a_{11}x_1 + 2ax_2 \\ 2ax_1 + 2a_{22}x_2 \e
 
 We have not provided an inductive proof as to how the same would apply to $$n$$-by-$$n$$ matrices, but it should now be fairly clear that $$\nabla_x x^{T}Ax = 2Ax$$, which is the single-variable calculus analogue of saying that $$\frac{d}{dx}k^2x = 2kx$$. In short, 
 
-* $$\nabla_x b^{T}x = b$$
-* $$\nabla_x x^{T}Ax = 2Ax$$
+* \begin{flalign} $$\nabla_x b^{T}x = b$$ \end{flalign}
+* \begin{flalign} $$\nabla_x x^{T}Ax = 2Ax$$ \end{flalign}
 
 With these propositions in mind, we are now ready to jump back into the linear regression problem. 
 
-## The Error Function
+## Mean Squared Error
+
+
+
+
 
 
 
@@ -168,6 +172,7 @@ With these propositions in mind, we are now ready to jump back into the linear r
 [matrix calculus]: https://en.wikipedia.org/wiki/Matrix_calculus
 [gradient]: https://en.wikipedia.org/wiki/Gradient
 [partial derivatives]: https://en.wikipedia.org/wiki/Partial_derivative
+[mean squared error]: https://en.wikipedia.org/wiki/Mean_squared_error
 
 
 
