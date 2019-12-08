@@ -150,8 +150,8 @@ $$\nabla_x x^{T}Ax = \begin{pmatrix} 2a_{11}x_1 + 2ax_2 \\ 2ax_1 + 2a_{22}x_2 \e
 
 We have not provided an inductive proof as to how the same would apply to $$n$$-by-$$n$$ matrices, but it should now be fairly clear that $$\nabla_x x^{T}Ax = 2Ax$$, which is the single-variable calculus analogue of saying that $$\frac{d}{dx}k^2x = 2kx$$. In short, 
 
-* $$\begin{flalign} \nabla_x b^{T}x = b \end{flalign}$$
-* $$ \begin{flalign} \nabla_x x^{T}Ax = 2Ax \end{flalign}$$
+$$\nabla_x b^{T}x = b \tag{4}$$
+$$\nabla_x x^{T}Ax = 2Ax \tag{5}$$
 
 With these propositions in mind, we are now ready to jump back into the linear regression problem. 
 
@@ -159,25 +159,42 @@ With these propositions in mind, we are now ready to jump back into the linear r
 
 At this point, it is perhaps necessary to remind ourselves of why we went down the matrix calculus route in the first place. The intuition behind this approach was that we can construct an expression for the total error given by the regression line, then derive that expression to find the values of the parameters that minimize the error function. Simply put, we will attempt to frame linear regression as a simple optimization problem.  
 
-Let's recall the problem setup from the linear algebra section above. The problem, as we framed it in linear algebra terms, went as follows: given some unsolvable system of equations $$Ax = y$$, find approximations of $$x$$ and $$y$$, each denoted as $$\hat{x}$$ and $$\hat{y}$$ respectively, such that the system is now solvable. We will start from this identical setup with the same notation, but approach it slightly differently by using matrix calculus. 
+Let's recall the problem setup from the linear algebra section above. The problem, as we framed it in linear algebra terms, went as follows: given some unsolvable system of equations $$Ax = y$$, find the closest approximations of $$x$$ and $$y$$, each denoted as $$\hat{x}$$ and $$\hat{y}$$ respectively, such that the system is now solvable. We will start from this identical setup with the same notation, but approach it slightly differently by using matrix calculus. 
 
 The first agenda on the table is constructing an error function. The most common metric for error analysis is [mean squared error], or MSE for short. MSE computes the magnitude of error as the squared distance between the actual value of data and that predicted by the regression line. We square the error simply to prevent positive and negative errors from canceling each other out. In the context of our regression problem,
 
-$$\varepsilon = \lvert y - \hat{y} \rvert$$
+$$f_\varepsilon = \lVert \hat{y} - y \rVert$$
+
+where $$f_\varepsilon$$ denotes the error function. We can further break this expression down by taking note of the fact that the norm of a vector can be expressed as a product of the vector and its transpose, and that $$\hat{y} = A\hat{x}$$ as established in the previous section of this post. Putting these together, 
+
+$$\varepsilon = (\hat{y} - y)^T(\hat{y} - y) = (A\hat{x} - y)^T(A\hat{x} - y)$$
+
+Using distribution, we can simplify the above expression as follows:
+
+$$(A\hat{x} - y)^T(A\hat{x} - y) = \hat{x}^{T}A^{T}A\hat{x} - 2y^{T}A\hat{x} + y^Ty \tag{6}$$
+
+It's time to take the gradient of the error function, the matrix calculus analogue of taking the derivative. Now is precisely the time when the propositions (4) and (5) we explored earlier will come in handy. In fact, observe that first term in (6) corresponds to case (5); the second term, case (4). The last term can be ignored because it is a scalar term composed of $$y$$, which means that it will not impact the calculation of the gradient. 
+
+$$\nabla_\hat{x} f_\varepsilon = \nabla_\hat{x} \hat{x}^{T}A^{T}A\hat{x} + \nabla_\hat{x} 2y^{T}A\hat{x} + \nabla_\hat{x} y^Ty = 2A^{T}A\hat{x} - 2b^{T}A = 2A^{T}A\hat{x} - 2A^{T}b$$
+
+Now, all we have to do is to set the expression above to zero, just like we would do in single variable calculus with some optimization problem. There might be those of you wondering how we can be certain that setting this expression to zero would yield the minimum instead of the maximum. Answering this question requires a bit more math beyond what we have covered here, but to provide a short preview, it turns out that our error function, defined as $$(\hat{y} - y)^T(\hat{y} - y)$$ is a [positive definite matrix], which guarantees that the critical point we find by calculating the gradient gives us a minimum instead of a maximum. This statement might sometimes be phrased differently along the lines of convexity, but this topic is better tabled for a separate future post. The key point here is that setting the gradient to zero would tell us when the error is minimized. 
+
+$$2A^{T}A\hat{x} - 2A^{T}b = 0$$
+
+This is equivalent to
+
+$$A^{T}A\hat{x} = A^{T}b$$
+
+Therefore, 
+
+$$\hat{x} = (A^{T}A)^{-1}A^{T}b \tag{7}$$
 
 
+Now we are done! Just like in the previous section, $$\hat{x}$$ gives us the parameters for our line of best fit, which is the solution to the linear regression problem. In fact, the keen reader might have already noted that (7) is letter-by-letter identical to formula (2) we derived in the previous section using plain old linear algebra! 
 
+# Conclusion
 
-
-
-
-
-
-
-
-
-
-
+One the one hand, it just seems surprising and fascinating to see how we end up in the same place despite having taken two disparate approaches to the linear regression problem. But on the other hand, this is what we should have expected all along: no matter what method we use, the underlying thought process behind both modes of approach remain the same. Whether it be through projection or through derivation, we sought to find some parameters, closest to the values we are approximating as much as possible, that would turn an otherwise degenerate system into one that is solvable. Linear regression is a simple model, but I hope this post have done it justice by demonstrating the wealth of mathematical insight that can be gleaned from its derivation. 
 
 
 [projection]: https://en.wikipedia.org/wiki/Projection_(mathematics)
@@ -185,3 +202,4 @@ $$\varepsilon = \lvert y - \hat{y} \rvert$$
 [gradient]: https://en.wikipedia.org/wiki/Gradient
 [partial derivatives]: https://en.wikipedia.org/wiki/Partial_derivative
 [mean squared error]: https://en.wikipedia.org/wiki/Mean_squared_error
+[positive definite matrix]: https://en.wikipedia.org/wiki/Definiteness_of_a_matrix
