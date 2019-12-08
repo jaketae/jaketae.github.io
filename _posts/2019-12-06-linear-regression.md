@@ -173,7 +173,7 @@ Using distribution, we can simplify the above expression as follows:
 
 $$(A\hat{x} - y)^T(A\hat{x} - y) = \hat{x}^{T}A^{T}A\hat{x} - 2y^{T}A\hat{x} + y^Ty \tag{6}$$
 
-It's time to take the gradient of the error function, the matrix calculus analogue of taking the derivative. Now is precisely the time when the propositions (4) and (5) we explored earlier will come in handy. In fact, observe that first term in (6) corresponds to case (5); the second term, case (4). The last term can be ignored because it is a scalar term composed of $$y$$, which means that it will not impact the calculation of the gradient. 
+It's time to take the gradient of the error function, the matrix calculus analogue of taking the derivative. Now is precisely the time when the propositions (4) and (5) we explored earlier will come in handy. In fact, observe that first term in (6) corresponds to case (5); the second term, case (4). The last term can be ignored because it is a scalar term composed of $$y$$, which means that it will not impact the calculation of the gradient, much like how constants are eliminated during derivation in single-variable calculus. 
 
 $$\nabla_\hat{x} f_\varepsilon = \nabla_\hat{x} \hat{x}^{T}A^{T}A\hat{x} + \nabla_\hat{x} 2y^{T}A\hat{x} + \nabla_\hat{x} y^Ty = 2A^{T}A\hat{x} - 2b^{T}A = 2A^{T}A\hat{x} - 2A^{T}b$$
 
