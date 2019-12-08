@@ -1,6 +1,7 @@
 ---
 title: Linear Regression, in Two Ways
 mathjax: true
+toc: true
 date: 2019-12-06
 categories:
   - study
@@ -107,13 +108,52 @@ But before we jump into it, let's briefly go over some basics of matrix calculus
 
 Much like we can derive a function by a variable, say $$x$$ or $$y$$, loosely speaking, we can derive a function by a matrix. More strictly speaking, this so-called derivative of a matrix is more formally known as the [gradient]. The reason why we introduced the gradient as a derivative by a matrix is that, in many ways, the gradient in matrix calculus resembles a lot of what we saw with derivatives in single variable calculus. For the most part, this intuition is constructive and helpful, and the few caveats where this intuition breaks down are beyond the purposes of this post. For now, let's stick to that intuition as we venture into the topic of gradient.
 
-As we always like to do, let's throw out the equation first to see what we're getting into before anything else. We can represent the gradient of function $$f$$ with respect to matrix $$A \in \mathbb{R^{m \times n}}$$ is a matrix of [partial derivatives], defined as
+As we always like to do, let's throw out the equation first to see what we're getting into before anything else. We can represent the gradient of function $$f$$ with respect to matrix $$A \in \mathbb{R}^{m \times n}$$ is a matrix of [partial derivatives], defined as
 
-$$\nabla_A f = \begin{pmatrix} \frac{\partial f}{\partial A_11} & \frac{\partial f}{\partial A_12} & \cdots &\frac{\partial f}{\partial A_1n} \\ \frac{\partial f}{\partial A_21} & \frac{\partial f}{\partial A_22} & \cdots & \frac{\partial f}{\partial A_2n} \\ \vdots & \vdots & \ddots & \vdots \\ \frac{\partial f}{\partial A_m1} & \frac{\partial f}{\partial A_m2} & \cdots & \frac{\partial f}{\partial A_mn} \end{pmatrix}$$
+$$\nabla_A f = \begin{pmatrix} \frac{\partial f}{\partial A_{11}} & \frac{\partial f}{\partial A_{12}} & \cdots &\frac{\partial f}{\partial A_{1n}} \\ \frac{\partial f}{\partial A_{21}} & \frac{\partial f}{\partial A_{22}} & \cdots & \frac{\partial f}{\partial A_{2n}} \\ \vdots & \vdots & \ddots & \vdots \\ \frac{\partial f}{\partial A_{m1}} & \frac{\partial f}{\partial A_{m2}} & \cdots & \frac{\partial f}{\partial A_{mn}} \end{pmatrix} \tag{3}$$
 
-While this formula might seem complicated, in reality, it is just a convenient way of packaging partial derivatives of the function into a compact matrix. Let's try to understand what this operation entails through a simple example. 
+While this formula might seem complicated, in reality, it is just a convenient way of packaging partial derivatives of the function into a compact matrix. Let's try to understand what this operation entails through a simple dummy example.
 
+$$b = \begin{pmatrix} 1 \\ 2 \end{pmatrix}, x = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$$
 
+As you can see, instead of a m-by-n matrix, we have a column vector $$b$$ as an ingredient for a function. But don't worry: the formula in (3) works for vectors as well, since vectors can be considered as matrices with only a single column. With that in mind, let's define our function $$f$$ as follows:
+
+$$f = b^{T}x = \begin{pmatrix} 1 & 2 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = x_1 + 2x_2$$
+
+Great! We see that the $$f$$ is a scalar function that returns some value constructed using the entries of $$x$$. Equation (3) tells us that the gradient of $$f$$, then, is simply a matrix of partial derivatives whose dimension equals that of $$x$$. Concretely, 
+
+$$\nabla_x f = \begin{pmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \end{pmatrix}$$
+
+In other words, 
+
+$$\nabla_x b^{T}x = b$$
+
+Notice that this is the single variable calculus equivalent of saying that $$\frac{d}{dx} kx = k$$. This analogue can be extended to other statements in matrix calculus. For instance, 
+
+$$\nabla_x x^{T}Ax = 2Ax$$
+
+where $$A$$ is a symmetric matrix. We can easily verify this statement by performing the calculation ourselves. For simplicity's sake, let's say that $$A$$ is a two-by-two matrix, although it could theoretically be any $$n$$-by-$$n$$ matrix where $$n$$ is some positive integer. Note that we are dealing with square matrices since we casted a condition on $$A$$ that it be symmetrical. 
+
+Let's first define $$A$$ and $$x$$ as follows:
+
+$$A = \begin{pmatrix} a_{11} & a \\ a & a_{22} \end{pmatrix}, x = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$$
+
+Then, 
+
+$$f = x^{T}Ax = \begin{pmatrix} x_1 & x_2 \end{pmatrix} \begin{pmatrix} a_{11} & a \\ a & a_{22} \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = a_{11}x_1^2 + 2ax_1x_2 + a_{22}x_2^2$$
+
+We can now compute the gradient of this function according to (3):
+
+$$\nabla_x x^{T}Ax = \begin{pmatrix} 2a_{11}x_1 + 2ax_2 \\ 2ax_1 + 2a_{22}x_2 \end{pmatrix} = 2Ax$$
+
+We have not provided an inductive proof as to how the same would apply to $$n$$-by-$$n$$ matrices, but it should now be fairly clear that $$\nabla_x x^{T}Ax = 2Ax$$, which is the single-variable calculus analogue of saying that $$\frac{d}{dx}k^2x = 2kx$$. In short, 
+
+* $$\nabla_x b^{T}x = b$$
+* $$\nabla_x x^{T}Ax = 2Ax$$
+
+With these propositions in mind, we are now ready to jump back into the linear regression problem. 
+
+## The Error Function
 
 
 
