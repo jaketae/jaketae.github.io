@@ -16,6 +16,8 @@ In today’s post, I want to revisit what used to be my favorite tinkering toy i
 
 # Back to Linear Algebra
 
+In this section, we will attempt to frame regression in linear algebra terms and use basic matrix operations to derive an equation for the line of best fit. 
+
 ## Problem Setup
 
 In this section, we will use linear algebra to understand regression. An important theme in linear algebra is orthogonality. How do we determine if two vectors---or more generally, two subspaces---are orthogonal to each other? How do we make two non-orthogonal vectors orthogonal? (Hence Gram-Schmidt.) In our case, we love orthogonality because they are key to deriving the equation for the line of best fit through [projection]. To see what this means, let’s quickly assume a toy example to work with: assume we have three points, $$(1, 1), (2, 2)$$ and $$(3, 2)$$, as shown below.
@@ -148,12 +150,22 @@ $$\nabla_x x^{T}Ax = \begin{pmatrix} 2a_{11}x_1 + 2ax_2 \\ 2ax_1 + 2a_{22}x_2 \e
 
 We have not provided an inductive proof as to how the same would apply to $$n$$-by-$$n$$ matrices, but it should now be fairly clear that $$\nabla_x x^{T}Ax = 2Ax$$, which is the single-variable calculus analogue of saying that $$\frac{d}{dx}k^2x = 2kx$$. In short, 
 
-* \begin{flalign} $$\nabla_x b^{T}x = b$$ \end{flalign}
-* \begin{flalign} $$\nabla_x x^{T}Ax = 2Ax$$ \end{flalign}
+* $$\begin{flalign} \nabla_x b^{T}x = b \end{flalign}$$
+* $$ \begin{flalign} \nabla_x x^{T}Ax = 2Ax \end{flalign}$$
 
 With these propositions in mind, we are now ready to jump back into the linear regression problem. 
 
-## Mean Squared Error
+## Error Minimization
+
+At this point, it is perhaps necessary to remind ourselves of why we went down the matrix calculus route in the first place. The intuition behind this approach was that we can construct an expression for the total error given by the regression line, then derive that expression to find the values of the parameters that minimize the error function. Simply put, we will attempt to frame linear regression as a simple optimization problem.  
+
+Let's recall the problem setup from the linear algebra section above. The problem, as we framed it in linear algebra terms, went as follows: given some unsolvable system of equations $$Ax = y$$, find approximations of $$x$$ and $$y$$, each denoted as $$\hat{x}$$ and $$\hat{y}$$ respectively, such that the system is now solvable. We will start from this identical setup with the same notation, but approach it slightly differently by using matrix calculus. 
+
+The first agenda on the table is constructing an error function. The most common metric for error analysis is [mean squared error], or MSE for short. MSE computes the magnitude of error as the squared distance between the actual value of data and that predicted by the regression line. We square the error simply to prevent positive and negative errors from canceling each other out. In the context of our regression problem,
+
+$$\varepsilon = \lvert y - \hat{y} \rvert$$
+
+
 
 
 
@@ -173,15 +185,3 @@ With these propositions in mind, we are now ready to jump back into the linear r
 [gradient]: https://en.wikipedia.org/wiki/Gradient
 [partial derivatives]: https://en.wikipedia.org/wiki/Partial_derivative
 [mean squared error]: https://en.wikipedia.org/wiki/Mean_squared_error
-
-
-
-
-
-
-
-
-
-
-
-
