@@ -63,15 +63,15 @@ $$A = \begin{pmatrix} 1 & 1 \\ 2 & 1 \\ 3 & 1 \end{pmatrix}, y = \begin{pmatrix}
 
 Let’s begin our calculation:
 
-$$A_{T}A = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 1 & 1 \end{pmatrix} \begin{pmatrix} 1 & 1 \\ 2 & 1 \\ 3 & 1 \end{pmatrix} = \begin{pmatrix} 14 & 6 \\ 6 & 3 \end{pmatrix}$$
+$$A^{T}A = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 1 & 1 \end{pmatrix} \begin{pmatrix} 1 & 1 \\ 2 & 1 \\ 3 & 1 \end{pmatrix} = \begin{pmatrix} 14 & 6 \\ 6 & 3 \end{pmatrix}$$
 
 Calculating the inverse,
 
-$$(A_{T}A)^{-1} = \begin{pmatrix} \frac12 & -1 \\ -1 & \frac{7}{3} \end{pmatrix}$$
+$$(A^{T}A)^{-1} = \begin{pmatrix} \frac12 & -1 \\ -1 & \frac{7}{3} \end{pmatrix}$$
 
 Now, we can put this all together. 
 
-$$(A^{T}A)^{-1}A^{T}y = \begin{pmatrix} \frac12 & -1 \\ -1 & \frac73 \end{pmatrix} \begin{pmatrix} 1 & 2 & 3 \\ 1 & 1 & 1 \end{pmatrix} \begin{pmatrix} 1 \\ 2 \\ 2 \end{pmatrix} = \\ \begin{pmatrix} \frac12 & -1 \\ -1 & \frac73 \end{pmatrix} \begin{pmatrix} 11 \\ 5 \end{pmatrix} = \begin{pmatrix} \frac12 \\ \frac23 \end{pmatrix}$$
+$$(A^{T}A)^{-1}A^{T}y = \begin{pmatrix} \frac12 & -1 \\ -1 & \frac73 \end{pmatrix} \begin{pmatrix} 1 & 2 & 3 \\ 1 & 1 & 1 \end{pmatrix} \begin{pmatrix} 1 \\ 2 \\ 2 \end{pmatrix} \\ =  \begin{pmatrix} \frac12 & -1 \\ -1 & \frac73 \end{pmatrix} \begin{pmatrix} 11 \\ 5 \end{pmatrix} = \begin{pmatrix} \frac12 \\ \frac23 \end{pmatrix}$$
 
 The final result tells us that the line of best fit, given our data, is 
 
@@ -90,12 +90,53 @@ plt.scatter(x, y, color="skyblue")
 plt.plot(np.linspace(0, 5, 50), 0.5*np.linspace(0, 5, 50) + 2/3, color="skyblue")
 plt.xlabel("x"); plt.ylabel("y")
 plt.xlim(0, 3.5); plt.ylim(0, 3.5)
-plt.savefig("regression.png", dpi=500)
 plt.show()
 ```
 
 <img src="/assets/images/2019-12-06-linear-regression_files/regression.png">
 
-Although ascertaining the accuracy of a mathematical model with a glance of an eye should best be avoided, it’s not difficult to see that regression was performed correctly in this case. So there we have it: linear regression with linear algebra using projection. In the next section, we will take a look at another way to perform linear regression: matrix calculus.
+It’s not difficult to see that linear regression was performed pretty well as expected. However, ascertaining the accuracy of a mathematical model with just a quick glance of an eye should be avoided. This point then begs the question: how can we be sure that our calculated line is indeed the best line that minimizes error? To that question, [matrix calculus] holds the key.
 
 # Matrix Calculus
+
+We all remember calculus from school. We're not going to talk much about calculus in this post, but it is definitely worth mentioning that one of the main applications of calculus lies in optimization: how can we minimize or maximize some function, optionally with some constraint? This particular instance of application is particularly pertinent and important in our case, because, if we think about it, the linear regression problem can also be solved with calculus. The intuition behind this approach is simple: if we can derive a formula that expresses the error between actual values of $$y$$ and those predicted by regression, denoted as $$\hat{y}$$ above, we can use calculus to derive that expression and ultimately locate the global minimum. And that's exactly what we're going to do.
+
+But before we jump into it, let's briefly go over some basics of matrix calculus, which is the variant of calculus we will be using throughout.
+
+## The Gradient
+
+Much like we can derive a function by a variable, say $$x$$ or $$y$$, loosely speaking, we can derive a function by a matrix. More strictly speaking, this so-called derivative of a matrix is more formally known as the [gradient]. The reason why we introduced the gradient as a derivative by a matrix is that, in many ways, the gradient in matrix calculus resembles a lot of what we saw with derivatives in single variable calculus. For the most part, this intuition is constructive and helpful, and the few caveats where this intuition breaks down are beyond the purposes of this post. For now, let's stick to that intuition as we venture into the topic of gradient.
+
+As we always like to do, let's throw out the equation first to see what we're getting into before anything else. We can represent the gradient of function $$f$$ with respect to matrix $$A \in \mathbb{R^{m \times n}}$$ is a matrix of [partial derivatives], defined as
+
+$$\nabla_A f = \begin{pmatrix} \frac{\partial f}{\partial A_11} & \frac{\partial f}{\partial A_12} & \cdots &\frac{\partial f}{\partial A_1n} \\ \frac{\partial f}{\partial A_21} & \frac{\partial f}{\partial A_22} & \cdots & \frac{\partial f}{\partial A_2n} \\ \vdots & \vdots & \ddots & \vdots \\ \frac{\partial f}{\partial A_m1} & \frac{\partial f}{\partial A_m2} & \cdots & \frac{\partial f}{\partial A_mn} \end{pmatrix}$$
+
+While this formula might seem complicated, in reality, it is just a convenient way of packaging partial derivatives of the function into a compact matrix. Let's try to understand what this operation entails through a simple example. 
+
+
+
+
+
+
+
+
+
+
+
+
+[projection]: https://en.wikipedia.org/wiki/Projection_(mathematics)
+[matrix calculus]: https://en.wikipedia.org/wiki/Matrix_calculus
+[gradient]: https://en.wikipedia.org/wiki/Gradient
+[partial derivatives]: https://en.wikipedia.org/wiki/Partial_derivative
+
+
+
+
+
+
+
+
+
+
+
+
