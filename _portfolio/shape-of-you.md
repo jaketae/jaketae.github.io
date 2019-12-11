@@ -2,8 +2,8 @@
 title: "Shape of You"
 excerpt: "A Java SWING-based game application"
 header:
-  image: /assets/images/Background.jpg
-  teaser: assets/images/Background-th.jpg
+  image: /assets/images/Background.png
+  teaser: assets/images/Background-th.png
 ---
 
 For more information, visit [this link].
