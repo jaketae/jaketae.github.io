@@ -66,6 +66,7 @@ plugins:
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
+  - jekyll-seo-tag
 
 author:
   name   : "Jake Tae"
@@ -126,6 +127,13 @@ defaults:
       author_profile: false
       share: true
       related: true
+
+analytics:
+  provider: "google-gtag"
+  google:
+    tracking_id: "UA-154432000-1"
+    anonymize_ip: false # default
+
 
 category_archive:
   type: liquid
