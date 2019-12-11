@@ -8,7 +8,7 @@ header:
 
 For more information, visit [this link].
 
-(This is an unfinished page under testing.)
+(This is an unfinished page.)
 
 <!-- {% include gallery caption="This is a sample gallery to go along with this case study." %}
  -->
