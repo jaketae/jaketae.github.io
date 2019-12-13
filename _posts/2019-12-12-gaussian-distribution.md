@@ -1,6 +1,6 @@
 ---
 title: Dissecting the Gaussian Distribution
-Mathjax: true
+mathjax: true
 date: 2019-12-12
 categories:
   - study
