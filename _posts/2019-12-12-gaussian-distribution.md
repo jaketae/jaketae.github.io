@@ -52,11 +52,11 @@ Then, it follows that
 
 $$du = \sqrt{\frac{k}{2}} dx$$
 
-$$dx = \sqrt{{2}{k}} du$$
+$$dx = \sqrt{\frac{2}{k}} du$$
 
 Therefore, the integral in (1) now collapses into
 
-$$A \sqrt{{2}{k}} \int_{- \infty}^{\infty} e^{-u^2} \, du = 1 \tag{2}$$
+$$A \sqrt{\frac{2}{k}} \int_{- \infty}^{\infty} e^{-u^2} \, du = 1 \tag{2}$$
 
 Now that looks marginally better. But we have a very dirty constant coefficient at the front. Our natural instinct when we see such a square root expression is to square it. What’s nice about squaring in this case is that the value of the expression is going to stay unchanged at 1. 
 
