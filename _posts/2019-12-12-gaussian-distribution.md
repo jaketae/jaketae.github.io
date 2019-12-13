@@ -98,5 +98,68 @@ Using (5), we get
 
 $$\sigma^2 = \sqrt{\frac{k}{2 \pi}} \int_{- \infty}^\infty (x - \mu)^2 e^{- \frac{k}{2}(x - \mu)^2} \, dx$$
 
-We can use integration by parts to evaluate this integral.
+We can use integration by parts to evaluate this integral. 
+
+$$\sqrt{\frac{k}{2 \pi}} \int_{- \infty}^\infty (x - \mu)^2 e^{- \frac{k}{2}(x - \mu)^2} \, dx = \sqrt{\frac{k}{2 \pi}}\left[-\frac{1}{k} (x - \mu) e^{- \frac{k}{2}(x - \mu)^2} \right]_{-\infty}^\infty + \frac{1}{k} \sqrt{\frac{k}{2 \pi}} \int_{- \infty}^\infty e^{- \frac{k}{2}(x - \mu)^2} \, dx$$
+
+This integral seems complicated, but if we take a closer look, we can see that there is a lot of room for simplification. First, because the rate of decay of an exponential function is faster than the rate of increase of a first-order polynomial, the first term converges to zero. Therefore, we have
+
+$$\sigma^2 = \frac{1}{k} \sqrt{\frac{k}{2 \pi}} \int_{- \infty}^\infty e^{- \frac{k}{2}(x - \mu)^2} \, dx \tag{6}$$
+
+But since 
+
+$$\sqrt{\frac{k}{2 \pi}} \int_{- \infty}^\infty e^{- \frac{k}{2}(x - \mu)^2} \, dx = \int_{- \infty}^\infty f(x) \, dx = 1$$
+
+Therefore,
+
+$$\sigma^2 = \frac{1}{k}$$
+
+Great! Now we know what the constant $$k$$ is:
+
+$$k = \frac{1}{\sigma^2}$$
+
+Plugging this expression back into (5), we finally have the equation for the probability distribution function of the univariate Gaussian.
+
+$$f = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac12 (\frac{x - \mu}{\sigma})^2} \tag{7}$$
+
+And now we’re done!
+
+## Critical Points Analysis
+
+Let’s perform a quick sanity check on (7) by identifying its critical points. Based on prior knowledge, we would expect to find the local maximum at $$x = \mu$$, as this is where the bell curve peaks. If we were to dig a bit deeper into prior knowledge, we would expect the point of inflection to be one standard deviations away from the mean, left and right. Let’s verify if these are actually true.
+
+### Local Maximum
+
+From good old calculus, we know that we can obtain the local extrema by setting the first derivative to zero. 
+
+$$\frac{df}{dx} = - \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac12 (\frac{x - \mu}{\sigma})^2} \frac{1}{\sigma^2} (x - \mu) = 0$$
+
+We can ignore the constants as they are non-zero. Then, we end up with
+
+$$\frac{df}{dx} \propto (x - \mu) e^{- \frac12 (\frac{x - \mu}{\sigma})^2} = 0$$
+
+Because the exponent is always positive, the only way for the expression to evaluate to zero is if 
+
+$$x = \mu$$
+
+This tells us that the local maximum of the univariate Gaussian occurs at the mean of the distribution, as we expect.
+
+### Inflection Points
+
+The inflection point can be obtained by setting the second order derivative of the probability distribution function equal to zero. Luckily, we’re already halfway done with calculating the second order derivative since we’ve already computed the first order derivative above. As we have done above, let’s ignore the constants since they don’t affect the calculation.
+
+$$\frac{d^2f}{dx^2} \propto \frac{d}{dx}(x - \mu) e^{- \frac12 (\frac{x - \mu}{\sigma})^2} = e^{- \frac12 (\frac{x - \mu}{\sigma})^2} - \frac{x - \mu}{\sigma^2}e^{- \frac12 (\frac{x - \mu}{\sigma})^2}(x - \mu) = 0$$
+
+
+
+
+
+
+
+
+
+
+
+[this post]: https://jaketae.github.io/study/likelihood/
+
 
