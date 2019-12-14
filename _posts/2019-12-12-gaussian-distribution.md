@@ -2,6 +2,7 @@
 title: Dissecting the Gaussian Distribution
 mathjax: true
 date: 2019-12-12
+toc: true
 categories:
   - study
 tags:
@@ -168,7 +169,7 @@ So far, we’ve looked at the univariate Gaussian, which involved only one rando
 
 Instead of deriving the probability distribution for the multivariate Gaussian from scratch as we did for the univariate case, we’ll build on top of the equation for the univariate Gaussian to provide an intuitive explanation for the multivariate case. 
 
-## The Scalar-Matrix Parallel
+## Derivation Through Scalar-Matrix Parallel
 
 In a previous post on linear regression, we took a look at matrix calculus to cover basic concepts such as the gradient. We established some rough intuition by associating various matrix calculus operations and their single-variable calculus analogues. Let’s try to use this intuition as a pivot point to extend the univariate Gaussian model to the multivariate Gaussian. 
 
@@ -179,20 +180,88 @@ $$f = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac12 (\frac{x - \mu}{\sigma})^2} \ta
 Examining (7), the first observation we might make is that $$(x - \mu)^2$$ is no longer a coherent expression in the multivariable context. The fix to this is extremely simple: recall that 
 
 $$a^2 = a^{T}a$$
+
 in vector world. Therefore, we can reexpress (7) as
 
 $$f = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{1}{2 \sigma^2} (x - \mu)^{T}(x - \mu)}$$
 
-This is the result of simply changing the squared term. Continuing, the next subject of our interest would be $$\sigma$$, as the variance is only strictly defined for one variable, as expressed by its definition below:
+This is the result of simply changing the squared term. Continuing, the next subject of our interest would be $$\sigma$$, as the [variance] is only strictly defined for one variable, as expressed by its definition below:
 
 $$\sigma^2 = \mathbf{E}(X^2) - \mathbf{E}(X)\mathbf{E}(X)$$
 
-Here, $$x$$ is a random variable, which takes a scalar value. The multivariable analogue of variance is covariance, which is defined as
+where $$X$$ is a random variable, which takes a scalar value. This necessarily begs the question: what is the multivariable equivalent of variance? To answer this question, we need to understand covariance and the covariance matrix.
 
-$$Cov(X, Y) = $$
+### Covariance
 
+To jump right into the answer, the multivariable analogue of variance is [covariance], which is defined as
 
+$$\text{Cov}(X, Y) = \mathbf{E}(X - \mu_X)\mathbf{E}(Y - \mu_Y) = \mathbf{E}(XY) - \mu_X \mu_Y \tag{8}$$
 
+Notice that $$Cov(X, X)$$ equals variance, which is why we stated earlier that covariance is the multivariate equivalent of variance for univariate quantities. 
+
+The intuition we can develop from looking at the equation is that covariance measures how far our random variables are from the mean in the $$X$$ and $$Y$$ directions. More concretely, covariance is expresses the degree of association between two variables. Simply put, if there is a positive relationship between two variables, *i.e.* an increase in one variable results in a corresponding increase in the other, the variance will be positive; conversely, if an increase in one variable results in a decrease in the other, covariance will be negative. A covariance of zero signifies that there is no linear relationship between the two variables. At a glance, the concept of covariance bears strong resemblance to the notion of [correlation], which also explains the relationship between two variables. Indeed, covariance and correlation are related: in fact, correlation is a function of covariance. 
+
+$$\text{Corr}(X, Y) = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}$$
+
+The biggest difference between correlation and covariance is that correlation is bounded between -1 and 1, whereas covariance is unbounded. The bottom line is that both correlation and covariance measure the strength of linearity between two variables, with correlation being a normalized version of covariance.
+
+At this point in time, one might point out that covariance is not really a multivariate concept since it is defined for only two variables, not three or more. Indeed, the expression $$\text{Cov}(X, Y, Z)$$ is mathematically incoherent. However, covariance can be  a multivariate metric since we can express the covariance of any pairs of random variables by constructing what is called the [covariance matrix].
+
+### Covariance Matrix
+
+Simply put, the covariance matrix is a matrix whose elements are the pairwise covariance of two random variables in a random vector. Before we get into the explanation, let's take a look at the equation for the covariance matrix:
+
+$$\Sigma = \mathbf{E}((X - \mathbf{E}(X))(X - \mathbf{E}(X))^{T}) \tag{9}$$
+
+where $$\Sigma \in \mathbb{R}^{n \times n}$$ and $$\mu \in \mathbb{R}^{n \times 1}$$. This is the matrix analogue of the expression
+
+$$\sigma^2 = \mathbf{E}((X - \mu)^2)$$
+
+which is an alternate definition of variance. It is natural to wonder why we replaced the squared expression with $$(X - \mu)(X - \mu)^{T}$$ instead of $$(X - \mu)^{T}(X - \mu)$$ as we did earlier with the term in the exponent. The simplest answer that covariance is expressed as a matrix, not a scalar value. By dimensionality, $$(X - \mu)(X - \mu)^{T}$$ produces a single scalar value, whereas $$(X - \mu)(X - \mu)^{T}$$ creates a matrix of rank one. We can also see why (9) is coherent by unpacking the expected values expression as shown below:
+
+$$\mathbf{E}((X - \mathbf{E}(X))(X - \mathbf{E}(X))^{T}) = \mathbf{E}(XX^T - X \mathbf{E}(X)^T - \mathbf{E}(X)X^T + \mathbf{E}(X)\mathbf{E}(X)^T)$$
+
+Using the linearity of expectation, we can rewrite the equation as
+
+$$\mathbf{E}(XX^T) - \mathbf{E}(X)\mathbf{E}(X)^T - \mathbf{E}(X)\mathbf{E}(X)^T + \mathbf{E}(X)\mathbf{E}(X)^T$$
+
+Therefore, we end up with
+
+$$\Sigma = \mathbf{E}(XX^T) - \mathbf{E}(X)\mathbf{E}(X)^T$$
+
+which almost exactly parallels the definition of variance, which we might recall is 
+
+$$\sigma^2 = \mathbf{E}(X^2) - \mathbf{E}(X)\mathbf{E}(X)$$
+
+where $$\mu = \mathbf{E}(X)$$
+
+We have now established, systematically with equations, that the covariance matrix constructed from the random vector $$X$$ is the multivariable analogue of variance, which is a function of the random variable $$x$$. To gain a better idea of what the covariance matrix actually looks like, however, it is necessary to review its structure element-by-element. Here is the brief sketch of the $$K$$-by-$$K$$ covariance matrix. 
+
+$$\Sigma = \begin{pmatrix} (X_1 - \mathbf{E}(X_1))(X_1 - \mathbf{E}(X_1)) & \dots & (X_1 - \mathbf{E}(X_1))(X_K - \mathbf{E}(X_K)) \\ \vdots && \ddots && \vdots \\ (X_K - \mathbf{E}(X_K))(X_1 - \mathbf{E}(X_1)) && \dots && (X_K - \mathbf{E}(X_K))(X_K - \mathbf{E}(X_K)) \end{pmatrix}$$
+
+This might seem complicated, but using the definition of covariance in (8), we can simplify the expression as:
+
+$$\Sigma = \begin{pmatrix} \text{Cov}(X_1, X_1) && \dots && \text{Cov}(X_1, X_K) \\ \vdots && \ddots && \vdots \\ \text{Cov}(X_K, X_1) && \dots && \text{Cov}(X_K, X_K) \end{pmatrix} \tag{10}$$
+
+Note that the covariance matrix is a symmetric matrix since $$\Sigma = \Sigma^{T}$$. More specifically, the covariance matrix is a [positive semi-definite matrix]. This flows from the definition of positive semi-definiteness. Let $$u$$ be some arbitrary non-zero vector. Then,
+
+$$u^T \Sigma u = u^T \mathbf{E}((X - \mu)(X - \mu)^{T}) u = \mathbf{E}(u^T (X - \mu)(X - \mu)^{T} u) = \mathbf{E}(\lvert (X - \mu)^{T} u \rvert^2) \geq 0$$
+
+You might be wondering how (9) ends up as (10). Although this relationship may not be apparent immediately, that the two expressions are identical can be seen by setting the random vector as 
+
+$$X = \begin{pmatrix} X_1 \\ X_2 \\ \vdots \\ X_K \end{pmatrix}$$
+
+and performing basic matrix vector multiplication operations. For the sake of brevity, this is left as an exercise for the reader. 
+
+### Putting Everything Together
+
+We now have all the pieces we need to complete the puzzle. Recall that we were trying to derive the probability density function of the multivariate Gaussian by building on top of the formula for the univariate Gaussian distribution. We finished at
+
+$$f = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{1}{2 \sigma^2} (x - \mu)^{T}(x - \mu)}$$
+
+then moved onto a discussion of variance and covariance. Now that we understand that the covariance matrix is the analogue of variance, we can substitute $$\sigma^2$$ with $$\Sigma$$, the covariate matrix. 
+
+$$f = \frac{1}{\Sigma^\frac12 \sqrt{2 \pi}} e^{- \frac{1}{2 \Sigma} (x - \mu)^{T}(x - \mu)}$$
 
 
 
@@ -201,5 +270,9 @@ $$Cov(X, Y) = $$
 
 
 [this post]: https://jaketae.github.io/study/likelihood/
-
-
+[previous post]: https://jaketae.github.io/study/svd/
+[variance]: https://en.wikipedia.org/wiki/Variance
+[covariance]: https://en.wikipedia.org/wiki/Covariance
+[covariance matrix]: https://en.wikipedia.org/wiki/Covariance_matrix
+[correlation]: https://en.wikipedia.org/wiki/Correlation_and_dependence
+[positive semi-definite matrix]: https://en.wikipedia.org/wiki/Definiteness_of_a_matrix
