@@ -197,7 +197,7 @@ To jump right into the answer, the multivariable analogue of variance is [covari
 
 $$\text{Cov}(X, Y) = \mathbf{E}(X - \mu_X)\mathbf{E}(Y - \mu_Y) = \mathbf{E}(XY) - \mu_X \mu_Y \tag{8}$$
 
-Notice that $$Cov(X, X)$$ equals variance, which is why we stated earlier that covariance is the multivariate equivalent of variance for univariate quantities. 
+Notice that $$\text{Cov}(X, X)$$ equals variance, which is why we stated earlier that covariance is the multivariate equivalent of variance for univariate quantities. 
 
 The intuition we can develop from looking at the equation is that covariance measures how far our random variables are from the mean in the $$X$$ and $$Y$$ directions. More concretely, covariance is expresses the degree of association between two variables. Simply put, if there is a positive relationship between two variables, *i.e.* an increase in one variable results in a corresponding increase in the other, the variance will be positive; conversely, if an increase in one variable results in a decrease in the other, covariance will be negative. A covariance of zero signifies that there is no linear relationship between the two variables. At a glance, the concept of covariance bears strong resemblance to the notion of [correlation], which also explains the relationship between two variables. Indeed, covariance and correlation are related: in fact, correlation is a function of covariance. 
 
@@ -213,7 +213,7 @@ Simply put, the covariance matrix is a matrix whose elements are the pairwise co
 
 $$\Sigma = \mathbf{E}((X - \mathbf{E}(X))(X - \mathbf{E}(X))^{T}) \tag{9}$$
 
-where $$\Sigma \in \mathbb{R}^{n \times n}$$ and $$\mu \in \mathbb{R}^{n \times 1}$$. This is the matrix analogue of the expression
+where $$\Sigma \in \mathbb{R}^{n \times n}$$ and $$\mathbf{E}(X) = \mu \in \mathbb{R}^{n \times 1}$$. This is the matrix analogue of the expression
 
 $$\sigma^2 = \mathbf{E}((X - \mu)^2)$$
 
@@ -233,11 +233,9 @@ which almost exactly parallels the definition of variance, which we might recall
 
 $$\sigma^2 = \mathbf{E}(X^2) - \mathbf{E}(X)\mathbf{E}(X)$$
 
-where $$\mu = \mathbf{E}(X)$$
+where $$\mu = \mathbf{E}(X)$$. The key takeaway is that the covariance matrix constructed from the random vector $$X$$ is the multivariable analogue of variance, which is a function of the random variable $$x$$. To gain a better idea of what the covariance matrix actually looks like, however, it is necessary to review its structure element-by-element. Here is the brief sketch of the $$n$$-by-$$n$$ covariance matrix. 
 
-We have now established, systematically with equations, that the covariance matrix constructed from the random vector $$X$$ is the multivariable analogue of variance, which is a function of the random variable $$x$$. To gain a better idea of what the covariance matrix actually looks like, however, it is necessary to review its structure element-by-element. Here is the brief sketch of the $$K$$-by-$$K$$ covariance matrix. 
-
-$$\Sigma = \begin{pmatrix} (X_1 - \mathbf{E}(X_1))(X_1 - \mathbf{E}(X_1)) & \dots & (X_1 - \mathbf{E}(X_1))(X_K - \mathbf{E}(X_K)) \\ \vdots && \ddots && \vdots \\ (X_K - \mathbf{E}(X_K))(X_1 - \mathbf{E}(X_1)) && \dots && (X_K - \mathbf{E}(X_K))(X_K - \mathbf{E}(X_K)) \end{pmatrix}$$
+$$\Sigma = \begin{pmatrix} (X_1 - \mathbf{E}(X_1))(X_1 - \mathbf{E}(X_1)) && \dots && (X_1 - \mathbf{E}(X_1))(X_n - \mathbf{E}(X_n)) \\ \vdots && \ddots && \vdots \\ (X_n - \mathbf{E}(X_n))(X_1 - \mathbf{E}(X_1)) && \dots && (X_n - \mathbf{E}(X_n))(X_n - \mathbf{E}(X_n)) \end{pmatrix}$$
 
 This might seem complicated, but using the definition of covariance in (8), we can simplify the expression as:
 
@@ -261,9 +259,37 @@ $$f = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{1}{2 \sigma^2} (x - \mu)^{T}(x - 
 
 then moved onto a discussion of variance and covariance. Now that we understand that the covariance matrix is the analogue of variance, we can substitute $$\sigma^2$$ with $$\Sigma$$, the covariate matrix. 
 
-$$f = \frac{1}{\Sigma^\frac12 \sqrt{2 \pi}} e^{- \frac{1}{2 \Sigma} (x - \mu)^{T}(x - \mu)}$$
+$$f = \frac{1}{\sqrt{2 \pi} \Sigma} e^{- \frac{1}{2 \Sigma} (x - \mu)^{T}(x - \mu)}$$
 
+Instead of leaving $$\Sigma$$ at the denominator, let's use the fact that 
 
+$$\frac{1}{\Sigma} = \Sigma^{-1}$$
+
+to rearrange the expression. This gives us
+
+$$f = \frac{1}{\sqrt{2 \pi} \Sigma} e^{- \frac12 (x - \mu)^{T}\Sigma^{-1}(x - \mu)}$$
+
+We are almost done, but not quite. Recall the the constant coefficient of the probability distribution originates from the fact that 
+
+$$\int_{- \infty}^{\infty} f = 1$$
+
+We have to make some adjustments to the constant coefficient since, in the context of the multivariate Gaussian, the integral translates into
+
+$$\int_{x \in \mathbb{R}^n} f(x; \mu, \Sigma) \, dx = \int_{- \infty}^{\infty} \cdots \int_{- \infty}^{\infty} f(x; \mu, \Sigma) \, dx_1 \dots \, dx_n$$
+
+While it may not be apparent immediately, it is not hard to accept that the correcting coefficient in this case has to be 
+
+$$\frac{1}{\sqrt{(2 \pi)^n}}$$ 
+
+as there are $$n$$ layers of iterated integrals to evaluate for each $$x_1$$ through $$x_n$$. 
+
+If we put all the puzzle pieces back together, we finally have the probability distribution of the multivariate Gaussian distribution:
+
+$$f = \frac{1}{\sqrt{(2 \pi)^n} \Sigma} e^{- \frac12 (x - \mu)^{T}\Sigma^{-1}(x - \mu)}$$
+
+## Marginal of Joint Gaussians
+
+Let's conclude this post by looking at an interesting property of a Gaussian random vector. 
 
 
 
