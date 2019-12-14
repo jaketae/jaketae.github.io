@@ -150,6 +150,46 @@ The inflection point can be obtained by setting the second order derivative of t
 
 $$\frac{d^2f}{dx^2} \propto \frac{d}{dx}(x - \mu) e^{- \frac12 (\frac{x - \mu}{\sigma})^2} = e^{- \frac12 (\frac{x - \mu}{\sigma})^2} - \frac{x - \mu}{\sigma^2}e^{- \frac12 (\frac{x - \mu}{\sigma})^2}(x - \mu) = 0$$
 
+Because the first exponential term cannot equal zero, we can simplify the equation to
+
+$$(1 - \frac{(x - \mu)^2}{\sigma^2}) = 0$$
+
+Therefore, 
+
+$$\frac{x - \mu}{\sigma} = \pm 1$$
+
+$$x = \mu \pm \sigma$$
+
+From this, we can see that the inflection point of the univariate Gaussian is exactly one standard deviation away from the mean. This is one of the many interesting properties of the normal distribution that we can see from the formula for the probability distribution. 
+
+# Multivariate Gaussian
+
+So far, we’ve looked at the univariate Gaussian, which involved only one random variable $$X = x$$. However, what if the random variable in question is a vector that contains multiple random variables? It is not difficult to see that answering this question requires us to think in terms of matrices, which is the go-to method of packaging multiple numbers into neat boxes, known as matrices. 
+
+Instead of deriving the probability distribution for the multivariate Gaussian from scratch as we did for the univariate case, we’ll build on top of the equation for the univariate Gaussian to provide an intuitive explanation for the multivariate case. 
+
+## The Scalar-Matrix Parallel
+
+In a previous post on linear regression, we took a look at matrix calculus to cover basic concepts such as the gradient. We established some rough intuition by associating various matrix calculus operations and their single-variable calculus analogues. Let’s try to use this intuition as a pivot point to extend the univariate Gaussian model to the multivariate Gaussian. 
+
+For readability sake, here is the univariate model we have derived earlier.
+
+$$f = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac12 (\frac{x - \mu}{\sigma})^2} \tag{7}$$
+
+Examining (7), the first observation we might make is that $$(x - \mu)^2$$ is no longer a coherent expression in the multivariable context. The fix to this is extremely simple: recall that 
+
+$$a^2 = a^{T}a$$
+in vector world. Therefore, we can reexpress (7) as
+
+$$f = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{1}{2 \sigma^2} (x - \mu)^{T}(x - \mu)}$$
+
+This is the result of simply changing the squared term. Continuing, the next subject of our interest would be $$\sigma$$, as the variance is only strictly defined for one variable, as expressed by its definition below:
+
+$$\sigma^2 = \mathbf{E}(X^2) - \mathbf{E}(X)\mathbf{E}(X)$$
+
+Here, $$x$$ is a random variable, which takes a scalar value. The multivariable analogue of variance is covariance, which is defined as
+
+$$Cov(X, Y) = $$
 
 
 
