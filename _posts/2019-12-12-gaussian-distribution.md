@@ -265,7 +265,7 @@ Instead of leaving $$\Sigma$$ at the denominator, let's use the fact that
 
 $$\frac{1}{\Sigma} = \Sigma^{-1}$$
 
-to rearrange the expression. This gives us
+to rearrange the expression. This is another example of when the matrix-scalar parallel intuition can come in handy: the scalar multiplicative identity is 1, whereas the equivalent in matrix world is the identity matrix $$I$$. Therefore, the reciprocal of a matrix can be interpreted as its inverse. From this observation, we can conclude that
 
 $$f = \frac{1}{\sqrt{2 \pi \Sigma}} e^{- \frac12 (x - \mu)^{T}\Sigma^{-1}(x - \mu)}$$
 
@@ -279,19 +279,26 @@ $$\int_{x \in \mathbb{R}^n} f(x; \mu, \Sigma) \, dx = \int_{- \infty}^{\infty} \
 
 While it may not be apparent immediately, it is not hard to accept that the correcting coefficient in this case has to be 
 
-$$\frac{1}{\sqrt{(2 \pi)^n}}$$ 
+$$\frac{1}{\sqrt{(2 \pi)^n} \lvert \Sigma \rvert}$$ 
 
-as there are $$n$$ layers of iterated integrals to evaluate for each $$x_1$$ through $$x_n$$. 
+as there are $$n$$ layers of iterated integrals to evaluate for each $$x_1$$ through $$x_n$$. Instead of the matrix $$\Sigma$$, we use its determinant $$\lvert \Sigma \rvert$$ since we need the coefficient to be a constant, not a matrix term. We don't go into much detail about the derivation of the constant term; the bottom line is that we want the integral of the probability distribution function over the relevant domain to converge to 1. 
 
 If we put the pieces of the puzzle back together, we finally have the probability distribution of the multivariate Gaussian distribution:
 
-$$f = \frac{1}{\sqrt{(2 \pi)^n \Sigma}} e^{- \frac12 (x - \mu)^{T}\Sigma^{-1}(x - \mu)}$$
+$$f = \frac{1}{\sqrt{(2 \pi)^n \lvert \Sigma \rvert}} e^{- \frac12 (x - \mu)^{T}\Sigma^{-1}(x - \mu)} \tag{11}$$
 
 ## Example with Diagonal Covariance Matrix
 
 To develop a better intuition for the multivariate Gaussian, let's take a look at a case of a simple 2-dimensional Gaussian random vector with a diagonal covariance matrix. This example was borrowed from [this source].
 
-$$\begin{align*} X = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}, && \mu = \begin{pmatrix} \mu_1 \\ \mu_2 \end{pmatrix}, & \Sigma = \begin{pmatrix} \sigma_1 & 0 \\ 0 & \sigma_2 \end{pmatrix} \end{align*}$$
+$$\begin{align*} x = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}, && \mu = \begin{pmatrix} \mu_1 \\ \mu_2 \end{pmatrix}, & \Sigma = \begin{pmatrix} \sigma_1 & 0 \\ 0 & \sigma_2 \end{pmatrix} \end{align*}$$
+
+Using the formula for the multivariate Gaussian we derived in (11), we can construct the probability distribution function given $$X$$, $$\mu$$, and $$\Sigma$$. 
+
+$$f(x; \mu, \Sigma) = \frac{1}{2 \pi ({\sigma_1}^2 \cdot {\sigma_2}^2)^{\frac12}} \text{exp} \left(- \frac12 \begin{pmatrix} x_1 - \mu_1 \\ x_2 - \mu_2 \end{pmatrix}^T \begin{pmatrix} \frac{1}{{\sigma_1}^2} & 0 \\ 0 & \frac{1}{{\sigma_2}^2} \end{pmatrix} \begin{pmatrix} x_1 - \mu_1 \\ x_2 - \mu_2 \end{pmatrix} \right)$$
+
+
+
 
 
 
