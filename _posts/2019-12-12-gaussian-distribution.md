@@ -245,7 +245,7 @@ Note that the covariance matrix is a symmetric matrix since $$\Sigma = \Sigma^{T
 
 $$u^T \Sigma u = u^T \mathbf{E}((X - \mu)(X - \mu)^{T}) u = \mathbf{E}(u^T (X - \mu)(X - \mu)^{T} u) = \mathbf{E}(\lvert (X - \mu)^{T} u \rvert^2) \geq 0$$
 
-You might be wondering how (9) ends up as (10). Although this relationship may not be apparent immediately, that the two expressions are identical can be seen by setting the random vector as 
+You might be wondering how (9) ends up as (10). Although this relationship may not be immediately apparent, that the two expressions are identical can be seen by setting the random vector as 
 
 $$X = \begin{pmatrix} X_1 \\ X_2 \\ \vdots \\ X_K \end{pmatrix}$$
 
@@ -283,13 +283,15 @@ $$\frac{1}{\sqrt{(2 \pi)^n}}$$
 
 as there are $$n$$ layers of iterated integrals to evaluate for each $$x_1$$ through $$x_n$$. 
 
-If we put all the puzzle pieces back together, we finally have the probability distribution of the multivariate Gaussian distribution:
+If we put the pieces of the puzzle back together, we finally have the probability distribution of the multivariate Gaussian distribution:
 
 $$f = \frac{1}{\sqrt{(2 \pi)^n \Sigma}} e^{- \frac12 (x - \mu)^{T}\Sigma^{-1}(x - \mu)}$$
 
-## Marginal of Joint Gaussians
+## Example with Diagonal Covariance Matrix
 
-Let's conclude this post by looking at an interesting property of a Gaussian random vector. 
+To develop a better intuition for the multivariate Gaussian, let's take a look at a case of a simple 2-dimensional Gaussian random vector with a diagonal covariance matrix. This example was borrowed from [this source].
+
+$$\begin{align*} x = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}, & \mu = \begin{pmatrix} \mu_1 \\ \mu_2 \end{pmatrix}, & \Sigma = \begin{pmatrix} \sigma_1 & 0 \\ 0 & \sigma_2 \end{pmatrix} \end{align*}$$
 
 
 
@@ -302,3 +304,4 @@ Let's conclude this post by looking at an interesting property of a Gaussian ran
 [covariance matrix]: https://en.wikipedia.org/wiki/Covariance_matrix
 [correlation]: https://en.wikipedia.org/wiki/Correlation_and_dependence
 [positive semi-definite matrix]: https://en.wikipedia.org/wiki/Definiteness_of_a_matrix
+[this source]: http://cs229.stanford.edu/section/gaussians.pdf
