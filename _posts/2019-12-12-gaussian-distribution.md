@@ -301,8 +301,13 @@ Note that computing $$\Sigma^{-1}$$, the inverse of the covariance matrix, can b
 
 $$\begin{align} f(x; \mu, \Sigma) = \frac{1}{2 \pi \sigma_1 \sigma_2} \text{exp} \left(- \frac12 \begin{pmatrix} x_1 - \mu_1 \\ x_2 - \mu_2 \end{pmatrix}^T \begin{pmatrix} \frac{1}{\sigma_1^2}(x_1 - \mu_1) \\ \frac{1}{\sigma_2^2}(x_2 - \mu_2) \end{pmatrix} \right) \\ = \frac{1}{2 \pi \sigma_1 \sigma_2} \text{exp} \left(- \frac{1}{2 \sigma_1^2} (x_1 - \mu_1)^2 - \frac{1}{2 \sigma_2^2} (x_2 - \mu_2)^2 \right) \\ = \frac{1}{\sqrt{2 \pi} \sigma_1} \text{exp} \left( - \frac{1}{2 \sigma_1^2} (x_1 - \mu_1)^2 \right) \cdot \frac{1}{\sqrt{2 \pi} \sigma_2} \text{exp} \left( - \frac{1}{2 \sigma_2^2} (x_2 - \mu_2)^2 \right) \end{align}$$
 
-Let's interpret the results of this analysis. In short, 
+In other words, the probability distribution of seeing a random vector $$\begin{pmatrix} x_1 & x_2 \end{pmatrix}^T$$ given $$x_1 \sim \mathcal{N}(\mu_1, \sigma_1^2)$$ and $$x_2 \sim \mathcal{N}(\mu_2, \sigma_2^2)$$ is equal to the product of the two univariate Gaussians. This result is what we would expect given that $$\text{Cov}(x_1, x_2) = 0$$. For instance, if $$x_1$$ and $$x_2$$ are independent, *i.e.* observing a value of $$x_1$$ does not inform us of anything about $$x_2$$ and vice versa, it would make sense that the possibility of observing a random vector $$x$$ with entries $$x_1$$ and $$x_2$$ is merely the product of the independent probabilities of each observing $$x_1$$ and $$x_2$$. This example illustrates the intuitive link between the multivariate and univariate Gaussian distributions. 
 
+# Conclusion
+
+In this post, we took a look at the normal distribution from the perspective of probability distributions. By working from the definition of what constitutes a normal data set, we were able to completely build the probability density function from scratch. The derivation of the multivariate Gaussian was complicated by the fact that we were dealing with matrices and vectors instead of single scalar values, but the matrix-scalar parallel intuition helped us a lot on the way. Note that the derivation of the multivariate Gaussian distribution introduced in this post is not a rigorous mathematical proof, but rather intended as a gentle introduction to the multivariate Gaussian distribution. 
+
+I hope you enjoyed reading this post on normal distributions. Catch you up in the next one.
 
 
 [this post]: https://jaketae.github.io/study/likelihood/
