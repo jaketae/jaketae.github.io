@@ -299,9 +299,9 @@ $$f(x; \mu, \Sigma) = \frac{1}{2 \pi ({\sigma_1}^2 \cdot {\sigma_2}^2)^{\frac12}
 
 Note that computing $$\Sigma^{-1}$$, the inverse of the covariance matrix, can be accomplished simply by taking the reciprocal of its diagonal entries since $$\Sigma$$ was assumed to be a diagonal matrix. Continuing, 
 
-$$\begin{align*} f(x; \mu, \Sigma) = \frac{1}{2 \pi \sigma_1 \sigma_2} \text{exp} \left(- \frac12 \begin{pmatrix} x_1 - \mu_1 \\ x_2 - \mu_2 \end{pmatrix}^T \begin{pmatrix} \frac{1}{\sigma_1^2}(x_1 - \mu_1) \\ \frac{1}{\sigma_2^2}(x_2 - \mu_2) \end{pmatrix} \right) \\ = \frac{1}{2 \pi \sigma_1 \sigma_2} \text{exp} \left(- \frac{1}{2 \sigma_1^2} (x_1 - \mu_1)^2 - \frac{1}{2 \sigma_2^2} (x_2 - \mu_2)^2 \right) \\ = \frac{1}{\sqrt{2 \pi} \sigma_1} \text{exp} \left( - \frac{1}{2 \sigma_1^2} (x_1 - \mu_1)^2 \right) \cdot \frac{1}{\sqrt{2 \pi} \sigma_2} \text{exp} \left( - \frac{1}{2 \sigma_2^2} (x_2 - \mu_2)^2 \right) \end{align*}$$
+$$\begin{align} f(x; \mu, \Sigma) = \frac{1}{2 \pi \sigma_1 \sigma_2} \text{exp} \left(- \frac12 \begin{pmatrix} x_1 - \mu_1 \\ x_2 - \mu_2 \end{pmatrix}^T \begin{pmatrix} \frac{1}{\sigma_1^2}(x_1 - \mu_1) \\ \frac{1}{\sigma_2^2}(x_2 - \mu_2) \end{pmatrix} \right) \\ = \frac{1}{2 \pi \sigma_1 \sigma_2} \text{exp} \left(- \frac{1}{2 \sigma_1^2} (x_1 - \mu_1)^2 - \frac{1}{2 \sigma_2^2} (x_2 - \mu_2)^2 \right) \\ = \frac{1}{\sqrt{2 \pi} \sigma_1} \text{exp} \left( - \frac{1}{2 \sigma_1^2} (x_1 - \mu_1)^2 \right) \cdot \frac{1}{\sqrt{2 \pi} \sigma_2} \text{exp} \left( - \frac{1}{2 \sigma_2^2} (x_2 - \mu_2)^2 \right) \end{align}$$
 
-
+Let's interpret the results of this analysis. In short, 
 
 
 
