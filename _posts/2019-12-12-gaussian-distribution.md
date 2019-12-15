@@ -291,7 +291,7 @@ $$f = \frac{1}{\sqrt{(2 \pi)^n \Sigma}} e^{- \frac12 (x - \mu)^{T}\Sigma^{-1}(x 
 
 To develop a better intuition for the multivariate Gaussian, let's take a look at a case of a simple 2-dimensional Gaussian random vector with a diagonal covariance matrix. This example was borrowed from [this source].
 
-$$\begin{align*} x = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}, & \mu = \begin{pmatrix} \mu_1 \\ \mu_2 \end{pmatrix}, & \Sigma = \begin{pmatrix} \sigma_1 & 0 \\ 0 & \sigma_2 \end{pmatrix} \end{align*}$$
+$$\begin{align*} X = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}, && \mu = \begin{pmatrix} \mu_1 \\ \mu_2 \end{pmatrix}, & \Sigma = \begin{pmatrix} \sigma_1 & 0 \\ 0 & \sigma_2 \end{pmatrix} \end{align*}$$
 
 
 
