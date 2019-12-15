@@ -61,11 +61,11 @@ $$A \sqrt{\frac{2}{k}} \int_{- \infty}^{\infty} e^{-u^2} \, du = 1 \tag{2}$$
 
 Now that looks marginally better. But we have a very dirty constant coefficient at the front. Our natural instinct when we see such a square root expression is to square it. What’s nice about squaring in this case is that the value of the expression is going to stay unchanged at 1. 
 
-$$ \frac{2A^2}{k} (\int_{- \infty}^{\infty} e^{-u^2} \, du) (\int_{- \infty}^{\infty} e^{-u^2} \, du) = 1$$
+$$ \frac{2A^2}{k} \left(\int_{- \infty}^{\infty} e^{-u^2} \, du \right) \left(\int_{- \infty}^{\infty} e^{-u^2} \, du \right) = 1$$
 
 Because the two integrals are independent, *i.e.* calculating one does not impact the other, we can use two different variables for each integral. For notational convenience, let’s use $$x$$ and $$y$$.
 
-$$ \frac{2A^2}{k} (\int_{- \infty}^{\infty} e^{-x^2} \, dx) (\int_{- \infty}^{\infty} e^{-y^2} \, dy) = 1$$
+$$ \frac{2A^2}{k} \left(\int_{- \infty}^{\infty} e^{-x^2} \, dx \right) \left(\int_{- \infty}^{\infty} e^{-y^2} \, dy \right) = 1$$
 
 We can combine the two integrals to form an iterated integral of the following form:
 
@@ -291,14 +291,15 @@ $$f = \frac{1}{\sqrt{(2 \pi)^n \lvert \Sigma \rvert}} e^{- \frac12 (x - \mu)^{T}
 
 To develop a better intuition for the multivariate Gaussian, let's take a look at a case of a simple 2-dimensional Gaussian random vector with a diagonal covariance matrix. This example was borrowed from [this source].
 
-$$\begin{align*} x = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}, && \mu = \begin{pmatrix} \mu_1 \\ \mu_2 \end{pmatrix}, & \Sigma = \begin{pmatrix} \sigma_1 & 0 \\ 0 & \sigma_2 \end{pmatrix} \end{align*}$$
+$$\begin{align*} x = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}, && \mu = \begin{pmatrix} \mu_1 \\ \mu_2 \end{pmatrix}, && \Sigma = \begin{pmatrix} \sigma_1 & 0 \\ 0 & \sigma_2 \end{pmatrix} \end{align*}$$
 
 Using the formula for the multivariate Gaussian we derived in (11), we can construct the probability distribution function given $$X$$, $$\mu$$, and $$\Sigma$$. 
 
 $$f(x; \mu, \Sigma) = \frac{1}{2 \pi ({\sigma_1}^2 \cdot {\sigma_2}^2)^{\frac12}} \text{exp} \left(- \frac12 \begin{pmatrix} x_1 - \mu_1 \\ x_2 - \mu_2 \end{pmatrix}^T \begin{pmatrix} \frac{1}{\sigma_1^2} & 0 \\ 0 & \frac{1}{\sigma_2^2} \end{pmatrix} \begin{pmatrix} x_1 - \mu_1 \\ x_2 - \mu_2 \end{pmatrix} \right)$$
 
+Note that computing $$\Sigma^{-1}$$, the inverse of the covariance matrix, can be accomplished simply by taking the reciprocal of its diagonal entries since $$\Sigma$$ was assumed to be a diagonal matrix. Continuing, 
 
-
+$$\begin{align*} f(x; \mu, \Sigma) = \frac{1}{2 \pi \sigma_1 \sigma_2} \text{exp} \left(- \frac12 \begin{pmatrix} x_1 - \mu_1 \\ x_2 - \mu_2 \end{pmatrix}^T \begin{pmatrix} \frac{1}{\sigma_1^2}(x_1 - \mu_1) \\ \frac{1}{\sigma_2^2}(x_2 - \mu_2) \end{pmatrix} \right) \\ = \frac{1}{2 \pi \sigma_1 \sigma_2} \text{exp} \left(- \frac{1}{2 \sigma_1^2} (x_1 - \mu_1)^2 - \frac{1}{2 \sigma_2^2} (x_2 - \mu_2)^2 \right) \\ = \frac{1}{\sqrt{2 \pi} \sigma_1} \text{exp} \left( - \frac{1}{2 \sigma_1^2} (x_1 - \mu_1)^2 \right) \cdot \frac{1}{\sqrt{2 \pi} \sigma_2} \text{exp} \left( - \frac{1}{2 \sigma_2^2} (x_2 - \mu_2)^2 \right) \end{align*}$$
 
 
 
