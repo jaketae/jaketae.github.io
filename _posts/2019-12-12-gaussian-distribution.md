@@ -295,7 +295,7 @@ $$\begin{align*} x = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}, && \mu = \begin{p
 
 Using the formula for the multivariate Gaussian we derived in (11), we can construct the probability distribution function given $$X$$, $$\mu$$, and $$\Sigma$$. 
 
-$$f(x; \mu, \Sigma) = \frac{1}{2 \pi ({\sigma_1}^2 \cdot {\sigma_2}^2)^{\frac12}} \text{exp} \left(- \frac12 \begin{pmatrix} x_1 - \mu_1 \\ x_2 - \mu_2 \end{pmatrix}^T \begin{pmatrix} \frac{1}{{\sigma_1}^2} & 0 \\ 0 & \frac{1}{{\sigma_2}^2} \end{pmatrix} \begin{pmatrix} x_1 - \mu_1 \\ x_2 - \mu_2 \end{pmatrix} \right)$$
+$$f(x; \mu, \Sigma) = \frac{1}{2 \pi ({\sigma_1}^2 \cdot {\sigma_2}^2)^{\frac12}} \text{exp} \left(- \frac12 \begin{pmatrix} x_1 - \mu_1 \\ x_2 - \mu_2 \end{pmatrix}^T \begin{pmatrix} \frac{1}{\sigma_1^2} & 0 \\ 0 & \frac{1}{\sigma_2^2} \end{pmatrix} \begin{pmatrix} x_1 - \mu_1 \\ x_2 - \mu_2 \end{pmatrix} \right)$$
 
 
 
