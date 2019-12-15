@@ -259,7 +259,7 @@ $$f = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{1}{2 \sigma^2} (x - \mu)^{T}(x - 
 
 then moved onto a discussion of variance and covariance. Now that we understand that the covariance matrix is the analogue of variance, we can substitute $$\sigma^2$$ with $$\Sigma$$, the covariate matrix. 
 
-$$f = \frac{1}{\sqrt{2 \pi} \Sigma} e^{- \frac{1}{2 \Sigma} (x - \mu)^{T}(x - \mu)}$$
+$$f = \frac{1}{\sqrt{2 \pi \Sigma}} e^{- \frac{1}{2 \Sigma} (x - \mu)^{T}(x - \mu)}$$
 
 Instead of leaving $$\Sigma$$ at the denominator, let's use the fact that 
 
@@ -267,7 +267,7 @@ $$\frac{1}{\Sigma} = \Sigma^{-1}$$
 
 to rearrange the expression. This gives us
 
-$$f = \frac{1}{\sqrt{2 \pi} \Sigma} e^{- \frac12 (x - \mu)^{T}\Sigma^{-1}(x - \mu)}$$
+$$f = \frac{1}{\sqrt{2 \pi \Sigma}} e^{- \frac12 (x - \mu)^{T}\Sigma^{-1}(x - \mu)}$$
 
 We are almost done, but not quite. Recall the the constant coefficient of the probability distribution originates from the fact that 
 
@@ -285,7 +285,7 @@ as there are $$n$$ layers of iterated integrals to evaluate for each $$x_1$$ thr
 
 If we put all the puzzle pieces back together, we finally have the probability distribution of the multivariate Gaussian distribution:
 
-$$f = \frac{1}{\sqrt{(2 \pi)^n} \Sigma} e^{- \frac12 (x - \mu)^{T}\Sigma^{-1}(x - \mu)}$$
+$$f = \frac{1}{\sqrt{(2 \pi)^n \Sigma}} e^{- \frac12 (x - \mu)^{T}\Sigma^{-1}(x - \mu)}$$
 
 ## Marginal of Joint Gaussians
 
