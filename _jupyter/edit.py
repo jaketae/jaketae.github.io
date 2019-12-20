@@ -7,8 +7,8 @@ def edit():
 	yaml = "---\ntitle: TITLE\nmathjax: true\ntoc: true\ncategories:\n  - category\ntags:\n  - tag\n---\n\n"
 	with open(path, 'r') as file:
 		filedata = file.read()
-	filedata = re.sub(r"!\[png\]\(", "<img src=\"/assets/images/", filedata)
-	filedata = re.sub(".png\)", ".png\">", filedata)
+	filedata = re.sub(r"!\[svg\]\(", "<img src=\"/assets/images/", filedata)
+	filedata = re.sub(".svg\)", ".svg\">", filedata)
 	filedata = yaml + filedata
 	with open(path, 'w') as file:
 		file.write(filedata)

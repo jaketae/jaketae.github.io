@@ -1,5 +1,5 @@
 ---
-title: Entropy in Information Theory and Machine Learning
+title: Demystifying Entropy (And More)
 mathjax: true
 toc: true
 categories:
@@ -111,7 +111,7 @@ plt.show()
 ```
 
 
-![svg](2019-12-21-information-entropy_files/2019-12-21-information-entropy_13_0.svg)
+<img src="/assets/images/2019-12-21-information-entropy_files/2019-12-21-information-entropy_13_0.svg">
 
 
 So that's how we calculate randomness in a random event---the amount of information that is needed to represent randomness as probability. If you think about it for a second, this is a very intuitive definition of randomness: the more random and infrequent an event is, the more information would be required to represent it. With this in mind, now we move onto the bigger picture: entropy in the context of random variables. 
@@ -151,7 +151,7 @@ plt.show()
 ```
 
 
-![svg](2019-12-21-information-entropy_files/2019-12-21-information-entropy_20_0.svg)
+<img src="/assets/images/2019-12-21-information-entropy_files/2019-12-21-information-entropy_20_0.svg">
 
 
 The first observation to make is that the graph is symmetrical. This is no surprise, since we would expect the entropy of a random variable involving a coin that lands tails with probability $p$ to be equal to that which lands on heads with equal probability $p$, *i.e.* whether the bias concerns heads or tails should not affect the calculation of entropy. Moreover, we see that the graph peaks when $p = 0.5$, meaning that a fair coin toss involves the most randomness. In other words, this translates to saying that a skewked distribution is less random and thus more predictable than a symmetric one. This makes sense, since the result of a biased coin is more predictable and less surprising than that of a fair one, with the extreme case being the coin that always lands on one side. 
@@ -255,7 +255,7 @@ plt.show()
 ```
 
 
-![svg](2019-12-21-information-entropy_files/2019-12-21-information-entropy_37_0.svg)
+<img src="/assets/images/2019-12-21-information-entropy_files/2019-12-21-information-entropy_37_0.svg">
 
 
 The two distributions are quite similar, meaning that our neural network did a good job of classifying given data. However, we can get a bit more scientific by calculating the cross entropy to see exactly how well our model performed with the given data. To achieve this, let's quickly write some functions to calculate KL divergence and cross entropy. We will be reusing the `entropy` function we defined above. On a trivial note, we prevent Python from running into math domain errors, we add `epsilon` to the provided distribution if the list contains 0. 
