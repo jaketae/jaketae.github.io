@@ -128,7 +128,7 @@ $$H(X) = \int - p(x) \log_2(p(x)) \tag{4}$$
 
 Say $X$ denotes the random variable of interest in a fair coin toss. Then, we are most interested in how much bits, on average, we would need to encode information generated from the distribution of this random variable. Using (3), we can easily answer this question by calculating the follows:
 
-$$H(X) = \sum - p(x) \log_2(p(x)) = 0.5 \cdot h(H) + 0.5 \cdot h(T) = 0.5 \cdot 1 + 0.5 \cdot 1 = 1$$
+$$\begin{align*} H(X) &= \sum - p(x) \log_2(p(x)) \\ &= 0.5 \cdot h(H) + 0.5 \cdot h(T) \\ &= 0.5 \cdot 1 + 0.5 \cdot 1 \\ &= 1 \end{align*}$$
 
 This tells us that the entropy involved in a fair coin toss is 1 bit, *i.e,* on average, we only need a single digit of binary number to encode information given by a fair coin toss. But how might this number change for a biased coin? We would not expect the entropy of the random variable given by the result of a biased coin to be 1. For example, consider a coin that always lands on heads. The entropy of the random variable in this case would be exactly 0 bits, since we don't need any information to express an event that is certain. Let's try to figure out this dynamic between success probability of $p$ in a coin toss and entropy by creating a plot.
 
@@ -160,7 +160,7 @@ Seen in this light, entropy is just the total amount of information content expr
 
 # Cross Entropy and KL Divergence
 
-But entropy is a lot more than just an interesting concept on randomness. Entropy has wide ranging applications, especially in the field of machine learning and neural networks. Among these, we will be looking at cross entropy and Kullback-Leibler (KL) divergence, two derivative concepts of entropy that are arguably most commonly used. Let's start with the big picture first---when these concepts are used, what is the relationship between the two, why they are important---and move onto the details later.
+But entropy is a lot more than just an interesting concept on randomness. Entropy has wide ranging applications, especially in the field of machine learning and neural networks. Among these, we will be looking at [cross entropy] and [Kullback-Leibler divergence], two derivative concepts of entropy that are arguably most commonly used. Let's start with the big picture first---when these concepts are used, what is the relationship between the two, why they are important---and move onto the details later.
 
 First, we have to know that cross entropy, unlike just entropy, deals with two probability distributions instead of one. Specifically, cross entropy is a way of measuring the pseudo-distance between two probability distributions. In a typical scenario, we might have a true probability distribution $P$ that we are trying to model, and our deep learning algorithm might produce some approximate probability distribution $Q$. We might evaluate the effectiveness of our model by calculating the distance between $P$ and $Q$. Seen in this light, cross entropy can be interpreted as a target [cost function] to be minimized.
 
@@ -212,7 +212,7 @@ $$D_{KL}(P \parallel Q) = \sum_{i = 0}^n p(x_i) \log(p(x_i)) - \sum_{i = 0}^n p(
 
 The mathematical definition of cross entropy can simply be derived by plugging in (10) into (5). This yields 
 
-$$H(P, Q) = H(P) + D_{KL}(P \parallel Q) = H(P) + \sum_{i = 0}^n p(x_i) \log(p(x_i)) - \sum_{i = 0}^n p(x_i) \log(q(x_i)) \tag{11}$$
+$$\begin{align*} H(P, Q) &= H(P) + D_{KL}(P \parallel Q) \\ &= H(P) + \sum_{i = 0}^n p(x_i) \log(p(x_i)) - \sum_{i = 0}^n p(x_i) \log(q(x_i)) \end{align*} \tag{11}$$
 
 Recall that the definition of entropy goes as
 
@@ -323,3 +323,5 @@ I hope you enjoyed reading. Merry Christmas and Happy holidays!
 [Machine Learning: A Probabalistic Perspective]: https://www.cs.ubc.ca/~murphyk/MLbook/
 [this source]: https://adventuresinmachinelearning.com/cross-entropy-kl-divergence/
 [likelihood maximization]: https://jaketae.github.io/study/likelihood/
+[cross entropy]: https://en.wikipedia.org/wiki/Cross_entropy
+[Kullback-Leibler divergence]: https://en.wikipedia.org/wiki/Kullback–Leibler_divergence
