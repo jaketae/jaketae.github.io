@@ -9,7 +9,7 @@ tags:
   - python
 ---
 
-The other day, my friend and I were talking about our mutual friend Jeremy. "He's an oddball," my friend Sean remarked, to which I agreed. Out of nowhere, Jeremy had just told us that he would not be coming back to Korea for the next three years. "He is just about the most random person I know." And both of us, being aspiring statistics majors, began wondering: is there a systematic way of measuirng randomness? It is from here that we went down the rabbit hole of Google and Wikipedia search. I ended up landing on entropy land, which is going to be the topic for today's post. It's a random post on the topic of randomness.
+The other day, my friend and I were talking about our mutual friend Jeremy. "He's an oddball," my friend Sean remarked, to which I agreed. Out of nowhere, Jeremy had just told us that he would not be coming back to Korea for the next three years. "He is just about the most random person I know." And both of us, being aspiring statistics majors, began wondering: is there a systematic way of measuring randomness? It is from here that we went down the rabbit hole of Google and Wikipedia search. I ended up landing on entropy land, which is going to be the topic for today's post. It's a random post on the topic of randomness.
 
 # Entropy in Science
 
@@ -33,7 +33,7 @@ Of course, there is a corresponding mathematical definition for entropy. But bef
 
 ## Understanding Information
 
-What is information? Warren Weaver, who popularized Shannon's works and together developed the field of information theory, pointed out that information is not related to what is said, but what could be said. This element of uncertainty involved in one's degree of freedom is what makes the notion of information inseparable from probabiilty and randomness. As Ian Goodfellow put it in [Deep Learning], 
+What is information? Warren Weaver, who popularized Shannon's works and together developed the field of information theory, pointed out that information is not related to what is said, but what could be said. This element of uncertainty involved in one's degree of freedom is what makes the notion of information inseparable from probability and randomness. As Ian Goodfellow put it in [Deep Learning], 
 
 > *The basic intuition behind information theory is that learning that an unlikely event has occurred is more informative than learning that a likely event has occurred.*
 
@@ -75,7 +75,7 @@ If bits sounds similar to bytes or gigabytes we use for storage, you're exactly 
 
 $$8 b = 1 B$$
 
-where $b$ denotes bits and $B$ denots bytes. This is why we use bytes to represent the amount of disk storage in computers, for instance. It is also worth mentioning that the alternative name for bits is Shannons, named eponymously after the mathematician who pioneered the field of information theory, as mentioned above. 
+where $b$ denotes bits and $B$ denotes bytes. This is why we use bytes to represent the amount of disk storage in computers, for instance. It is also worth mentioning that the alternative name for bits is Shannons, named eponymously after the mathematician who pioneered the field of information theory, as mentioned above. 
 
 Now that we have some idea of what information is and how we can quantify it using binary numbers in bits, it's time to get into the math. Information can be calculated through the formula 
 
@@ -118,13 +118,13 @@ So that's how we calculate randomness in a random event---the amount of informat
 
 ## Understanding Entropy
 
-In the previous section, we looked at how random events can be represented as information in bits. What's important here was that we were dealing with isolated random events instead of random variables. For example, in the fair coin toss example, we dealt with information involved with $P(H)$ and $P(T)$, not the binomial random variable $X$ itself. This is an important distinction to make, because entropy is essentially a probabalistically weighted average of all the random events that a random variable can take. In other words, entropy is defined as the weighted average of information given by each random event:
+In the previous section, we looked at how random events can be represented as information in bits. What's important here was that we were dealing with isolated random events instead of random variables. For example, in the fair coin toss example, we dealt with information involved with $P(H)$ and $P(T)$, not the binomial random variable $X$ itself. This is an important distinction to make, because entropy is essentially a probabilistically weighted average of all the random events that a random variable can take. In other words, entropy is defined as the weighted average of information given by each random event:
 
 $$H(X) = \sum p(x) h(x) = \sum - p(x) \log_2(p(x)) \tag{3}$$
 
 For the continuous case, we would use an integral instead.
 
-$$H(X) = \int - p(x) \log_2(p(x)) \tag{4}$$
+$$H(X) = \int - p(x) \log_2(p(x)) \, dx \tag{4}$$
 
 Say $X$ denotes the random variable of interest in a fair coin toss. Then, we are most interested in how much bits, on average, we would need to encode information generated from the distribution of this random variable. Using (3), we can easily answer this question by calculating the follows:
 
@@ -135,8 +135,7 @@ This tells us that the entropy involved in a fair coin toss is 1 bit, *i.e,* on 
 
 ```python
 def entropy(p):
-    if 0 in p:
-        p = np.array(p) + epsilon
+    p = np.array(p) + epsilon
     return - sum(p * log2(p) for p in p)
 ```
 
@@ -154,9 +153,9 @@ plt.show()
 <img src="/assets/images/2019-12-21-information-entropy_files/2019-12-21-information-entropy_20_0.svg">
 
 
-The first observation to make is that the graph is symmetrical. This is no surprise, since we would expect the entropy of a random variable involving a coin that lands tails with probability $p$ to be equal to that which lands on heads with equal probability $p$, *i.e.* whether the bias concerns heads or tails should not affect the calculation of entropy. Moreover, we see that the graph peaks when $p = 0.5$, meaning that a fair coin toss involves the most randomness. In other words, this translates to saying that a skewked distribution is less random and thus more predictable than a symmetric one. This makes sense, since the result of a biased coin is more predictable and less surprising than that of a fair one, with the extreme case being the coin that always lands on one side. 
+The first observation to make is that the graph is symmetrical. This is no surprise, since we would expect the entropy of a random variable involving a coin that lands tails with probability $p$ to be equal to that which lands on heads with equal probability $p$, *i.e.* whether the bias concerns heads or tails should not affect the calculation of entropy. Moreover, we see that the graph peaks when $p = 0.5$, meaning that a fair coin toss involves the most randomness. In other words, this translates to saying that a skewed distribution is less random and thus more predictable than a symmetric one. This makes sense, since the result of a biased coin is more predictable and less surprising than that of a fair one, with the extreme case being the coin that always lands on one side. 
 
-Seen in this light, entropy is just the total amount of information content expressed by the distribution of a random varialbe. Because we were dealing with a very simple example of biased coins, entropy values we calculated did not go past 1 bits, but we can easily imagine situations were it might, such as a dice roll or more complicated real-life examples. In this light, entropy is one metric with which we can quantify randomness, which is the mission we set out to accomplish in this post.
+Seen in this light, entropy is just the total amount of information content expressed by the distribution of a random variable. Because we were dealing with a very simple example of biased coins, entropy values we calculated did not go past 1 bits, but we can easily imagine situations were it might, such as a dice roll or more complicated real-life examples. In this light, entropy is one metric with which we can quantify randomness, which is the mission we set out to accomplish in this post.
 
 # Cross Entropy and KL Divergence
 
@@ -172,19 +171,19 @@ where $H(P, Q)$ denotes cross entropy; $H(P)$,entropy, and the last term, KL div
 
 ## KL Divergence
 
-KL divergence has many interpretations. One possible definition of KL divergence is that it measures the average number of extra information content required to represent a message with distribution $Q$ instead of $P$. In [Machine Learning: A Probabalistic Perspective], Kevin P. Murphy describes KL divergence as follows:
+KL divergence has many interpretations. One possible definition of KL divergence is that it measures the average number of extra information content required to represent a message with distribution $Q$ instead of $P$. In [Machine Learning: A Probabilistic Perspective], Kevin P. Murphy describes KL divergence as follows:
 
 > *... the KL divergence is the average number of extra bits needed to encode the data, due to the fact that we used distribution $q$ to encode the data instead of the true distribution $p$.*
 
 Put differently, KL divergence is the amount of information that is lost when $Q$ is used to approximate $P$. Therefore, if $P$ and $Q$ are close, KL divergence would be low, whereas the converse would be true when the two distributions are different. We can also extend this notion a bit farther to apply it in the context of [Bayesian inference]. Recall that Bayesian inference is the process by which we start from some prior distribution and update our beliefs about the distribution with more data input to derive a posterior. In this context, KL divergence can be viewed as the amount of information gained as we move from the prior $Q$ to the posterior $P$. 
 
-Let's derive the mathematical definition of KL divergence using likelihoods. The derivation process to be introduced is based on [this source]. We begin with the likelilhood ratio:
+Let's derive the mathematical definition of KL divergence using likelihoods. The derivation process to be introduced is based on [this source]. We begin with the likelihood ratio:
 
 $$L = \frac{p(x)}{q(x)} \tag{6}$$
 
 We can consider $L$ as representing how probable the sample $X = x$ came from distribution $P$ than $Q$, given that $x$ was sampled from some unknown distribution. If $L > 1$, the more likely it is that the data came from $P$; if $L < 1$, the more probable it is that the sample came from $Q$. 
 
-Say we have multiple indepedent observations of data. Then, we can use (6) to compute the likelihood ratio for each sample. Calculating the product of these ratios will tell us which distribution is more likely given all available data points. In other words, 
+Say we have multiple independent observations of data. Then, we can use (6) to compute the likelihood ratio for each sample. Calculating the product of these ratios will tell us which distribution is more likely given all available data points. In other words, 
 
 $$L = \prod_{i = 0}^n \frac{p(x_i)}{q(x_i)}$$
 
@@ -226,7 +225,7 @@ If KL divergence represents the average amount of additional information needed 
 
 ## Application of Cross Entropy
 
-Instead of dwelling in the theoretical realm regurgitating different definitions and interpretations of cross entropy and KL divergence, let's take a look at a realistic example to gain a better grasp of these concepts. Say we have constructed a neural network to solve a task, such as MNIST hand-written digit classification. Let's say we have feeded our neural network an image corresponding to the number 2. In that case, the true distribution that we are trying to model, represented in vector form, will be `P` as shown below. The `assert` statement is there to make sure that the probabilities sum up to 1.
+Instead of dwelling in the theoretical realm regurgitating different definitions and interpretations of cross entropy and KL divergence, let's take a look at a realistic example to gain a better grasp of these concepts. Say we have constructed a neural network to solve a task, such as MNIST hand-written digit classification. Let's say we have fed our neural network an image corresponding to the number 2. In that case, the true distribution that we are trying to model, represented in vector form, will be `P` as shown below. The `assert` statement is there to make sure that the probabilities sum up to 1.
 
 
 ```python
@@ -285,11 +284,11 @@ print("Entropy: {}\nKL: {}\nCross Entropy: {}".format(entropy(P), kl_divergence(
 
 The result is unsurprising. If we recall that the definition of entropy is the amount of information content needed to encode information, we will quickly realize that `P` is a distribution with probability 1, which is why it makes sense that entropy converges to 0. Therefore, in this case, KL divergence equals cross entropy, which computes to approximately 0.415.
 
-What actually happened beneath the hood? If we recall the definition of cross entropy, we can easily see that, among the 10 terms, 9 of them were eliminated since $p(x_i) = 0$ given the setup of the distributionn `P`. In the end, the only term that mattered was the third term, which was given by 
+What actually happened beneath the hood? If we recall the definition of cross entropy, we can easily see that, among the 10 terms, 9 of them were eliminated since $p(x_i) = 0$ given the setup of the distribution `P`. In the end, the only term that mattered was the third term, which was given by 
 
 $$- p(x_3) \log(q(x_3)) = 1 \cdot \log(0.75) \approx 0.415$$
 
-Why does this quantity make sense as an error term defining a loss function? In other words, why is cross entropy used as a loss function in clasification tasks? To see this, let's assume that our neural network was perfect in its prediction, or more realistically, trained to excessively overfit given data, *i.e,* `P` equals `Q`. Then, cross entropy would have been calculated as 
+Why does this quantity make sense as an error term defining a loss function? In other words, why is cross entropy used as a loss function in classification tasks? To see this, let's assume that our neural network was perfect in its prediction, or more realistically, trained to excessively overfit given data, *i.e,* `P` equals `Q`. Then, cross entropy would have been calculated as 
 
 $$- p(x_3) \log(q(x_3)) = 1 \cdot \log(1) = 0$$
 
@@ -309,9 +308,9 @@ In other words, when our predicted distribution equals the true distribution we 
 
 # Conclusion
 
-Entropy is an interesting concept with which we can quantify randomness in data. This process is no rocket science, but simply a process that involves calculations with probabilities. Although the link may not be immediately apparent, randomness is just another way of expressing probabilites and uncertainty, and it is from this premise that information and entropy take off. 
+Entropy is an interesting concept with which we can quantify randomness in data. This process is no rocket science, but simply a process that involves calculations with probabilities. Although the link may not be immediately apparent, randomness is just another way of expressing probabilities and uncertainty, and it is from this premise that information and entropy take off. 
 
-Beyond that, however, entropy is now used extensively in the field of machine learning, specifically as a loss function. Although it was not noted explicitly above, cross entropy calculates the same quantity as the logarithmic loss function. Essentially, cross entropy is useful in that it provides us with some intuive information of how far two distributions are apart. This distance is a metric with which we can evaluate the effectiveness of our model, which also means that the effectiveness of a model will be increased as cross entropy is increasingly minimized. Machine learning is often referred to as a black box that we can simply use without much knowledge on how it works, but I personally find studying these underlying clockwork behind the hood to be much more interesting than blindly applying to to churn out numbers and predictions. 
+Beyond that, however, entropy is now used extensively in the field of machine learning, specifically as a loss function. Although it was not noted explicitly above, cross entropy calculates the same quantity as the logarithmic loss function. Essentially, cross entropy is useful in that it provides us with some intuitive information of how far two distributions are apart. This distance is a metric with which we can evaluate the effectiveness of our model, which also means that the effectiveness of a model will be increased as cross entropy is increasingly minimized. Machine learning is often referred to as a black box that we can simply use without much knowledge on how it works, but I personally find studying these underlying clockwork behind the hood to be much more interesting than blindly applying to to churn out numbers and predictions. 
 
 I hope you enjoyed reading. Merry Christmas and Happy holidays!
 
@@ -320,7 +319,7 @@ I hope you enjoyed reading. Merry Christmas and Happy holidays!
 [nats]: https://en.wikipedia.org/wiki/Nat_(unit)
 [cost function]: https://en.wikipedia.org/wiki/Loss_function
 [Bayesian inference]: https://jaketae.github.io/study/bayes/
-[Machine Learning: A Probabalistic Perspective]: https://www.cs.ubc.ca/~murphyk/MLbook/
+[Machine Learning: A Probabilistic Perspective]: https://www.cs.ubc.ca/~murphyk/MLbook/
 [this source]: https://adventuresinmachinelearning.com/cross-entropy-kl-divergence/
 [likelihood maximization]: https://jaketae.github.io/study/likelihood/
 [cross entropy]: https://en.wikipedia.org/wiki/Cross_entropy
