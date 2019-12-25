@@ -168,7 +168,7 @@ The `cross_entropy` function returns the average cross entropy over all input da
 
 ## Gradient Descent
 
-Now what's next? Since we have a loss function, we need to build an algorithm that will allow us to minimize this cost function. One of the most common methods used to achieve cost minimization is [gradient descent]. As you might be able to tell, this algorithm has a lot to do with gradients, which can loosely be understood as a fancy way of saying derivatives. Below is an illustration of the gradient descent algorithm in action.
+Now what's next? Since we have a loss function, we need to build an algorithm that will allow us to minimize this cost function. One of the most common methods used to achieve cost minimization is [gradient descent]. As you might be able to tell, this algorithm has a lot to do with gradients, which can loosely be understood as a fancy way of saying derivatives. Below is an illustration of the gradient descent algorithm in action, sourced from [this blog].
 
 <img src="/assets/images/gradient-descent.svg">
 
@@ -526,7 +526,7 @@ The logistic regression model is simple yet incredibly powerful in the context o
 Thanks for reading. See you in the next post, and happy new year!
 
 
-
+[this blog]: https://scipython.com/blog/visualizing-the-gradient-descent-method/
 [the blog post]: https://jaketae.github.io/study/KNN/
 [logistic function]: https://en.wikipedia.org/wiki/Logistic_function
 [linear regression]: https://jaketae.github.io/study/linear-regression/
