@@ -4,7 +4,7 @@ layout: archive
 title: "Hello"
 author_profile: true
 header:
-  image: /assets/images/header.heic
+  image: /assets/images/header.jpeg
   caption: "A photo of the Great Wall I took during my stay in Beijing, summer of 2019"
 ---
 
