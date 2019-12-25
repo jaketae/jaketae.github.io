@@ -5,8 +5,8 @@ toc: true
 categories:
   - study
 tags:
-  - machinelearning
   - python
+  - machinelearning
 ---
 
 This tutorial is a continuation of the "from scratch" series we started last time with [the blog post] demonstrating the implementation of a simple k-nearest neighbors algorithm. The machine learning model we will be looking at today is logistic regression. If the "regression" part sounds familiar, yes, that is because logistic regression is a close cousin of [linear regression]---both models are employed in the context of regression problems. Linear regression is used when the estimation parameter is a continuous variable; logistic regression is best suited to tackle [binary classification] problems. Implementing the logistic regression model is slightly more challenging due to the mathematics involved in gradient descent, but we will make every step explicit throughout the way. Without further ado, let's get into it.
@@ -14,7 +14,7 @@ This tutorial is a continuation of the "from scratch" series we started last tim
 
 # The Logistic Function
 
-To understand the clockwork behind logistic regresssion, it is necessary to understand the [logistic function]. Simply put, the logistic function is a s-shaped curve the squishes real values between positive and negative infinity into the range $[0, 1]$. This property is convenient from a machine leanring perspective because it allows us to perform binary classification. Binary classification is a type of classification problem where we are assigned the task of categorizing data into two groups. For instance, given the dimensions of a patient's tumor, determine whether the tumor is malignant or benign. Another problem might involve classifying emails as either spam or not spam. We can label spam emails as 1 and non-spam emails as 0, feed the data into a predefined machine learning algorithm, and generate predictions using that model. If the output of an algorithm given some data point is larger than 0.5, it is likely that the given input is a spam; if it is smaller than the 0.5 threshold, chances are the email is not spam. 
+To understand the clockwork behind logistic regression, it is necessary to understand the [logistic function]. Simply put, the logistic function is a s-shaped curve the squishes real values between positive and negative infinity into the range $[0, 1]$. This property is convenient from a machine learning perspective because it allows us to perform binary classification. Binary classification is a type of classification problem where we are assigned the task of categorizing data into two groups. For instance, given the dimensions of a patient's tumor, determine whether the tumor is malignant or benign. Another problem might involve classifying emails as either spam or not spam. We can label spam emails as 1 and non-spam emails as 0, feed the data into a predefined machine learning algorithm, and generate predictions using that model. If the output of an algorithm given some data point is larger than 0.5, it is likely that the given input is a spam; if it is smaller than the 0.5 threshold, chances are the email is not spam. 
 
 Let's take a look at the shape of the sigmoid function, which is a special case of the logistic function that we will use throughout this post. To plot the sigmoid function, we need to import some libraries.
 
@@ -52,7 +52,7 @@ plt.show()
 ```
 
 
-<img src="/assets/images/2019_12_31_logistic_regression_files/2019_12_31_logistic_regression_6_0.svg">
+<img src="/assets/images/2019-12-31-logistic-regression_files/2019-12-31-logistic-regression_6_0.svg">
 
 
 As we can see, the sigmoid is a smooth, differentiable function that is bounded between 0 and 1. It is also symmetrical around the point $(0, 0.5)$, which is why we can use 0.5 as a threshold for determining the class of a given data point. 
@@ -65,7 +65,7 @@ Logistic regression is not so different from linear regression. In fact, we can 
 
 $$S(h(x)) = \frac{1}{1 + e^{-(\theta_0 + \theta_1 x_1 + \theta_1 x_2 + \cdots + \theta_n x_n})} = \frac{1}{1 + e^{-\theta^T x}} \tag{2}$$
 
-In other words, logistic regression can be understood as a process in which our goal is to find the weight coefficients in the equation above the best describe the given data set. Unlike in linear regression, where the predicted value is computed simply by passing the data as arguments into a linear function, logistic regression outputs numbers between 0 and 1, making binary classification possible. However, there is certainly an element of linearity involved, which is part of the reason why both linear and logistic regression models fall under a larger familiy of models called [generalized linear models].
+In other words, logistic regression can be understood as a process in which our goal is to find the weight coefficients in the equation above the best describe the given data set. Unlike in linear regression, where the predicted value is computed simply by passing the data as arguments into a linear function, logistic regression outputs numbers between 0 and 1, making binary classification possible. However, there is certainly an element of linearity involved, which is part of the reason why both linear and logistic regression models fall under a larger family of models called [generalized linear models].
 
 Now that we know the basic maths behind logistic regression using the sigmoid function, it's time to implement it via code.
 
@@ -144,7 +144,7 @@ If you recall the [previous post] on entropy, you will remember that we discusse
 
 $$H(p, q) = - \sum_{i = 1}^n p(x_i) \log(q(x_i)) \tag{3}$$
 
-We can consider class labels as a Bernoulli distribution where data that belongs to class 1 has probability 1 of belonging to that class 1 and probabiliy 0 of belonging to class 0, and vice versa for observations in class 0. The logistic regression model will output a Bernoulli distribution, such as $[0.6, 0.4]$, which means that the given input has a 60 percent chance of belonging to class 1; 40 percent to class 0. Applying this to (3), we get:
+We can consider class labels as a Bernoulli distribution where data that belongs to class 1 has probability 1 of belonging to that class 1 and probability 0 of belonging to class 0, and vice versa for observations in class 0. The logistic regression model will output a Bernoulli distribution, such as $[0.6, 0.4]$, which means that the given input has a 60 percent chance of belonging to class 1; 40 percent to class 0. Applying this to (3), we get:
 
 $$H(y, \hat{y}) = - \sum_{i = 1}^n y_i \log(\hat{y_i}) + (1 - y_i) \log(1 - \hat{y_i}) \tag{4}$$
 
@@ -164,7 +164,7 @@ def cross_entropy(y_true, y_pred):
     return total / data_num
 ```
 
-The `cross_entropy` function returns the average cross entropy over all input data. We use average cross entropy instead of total cross entropy, because it doesn't make sense to penalize the model for high cross entroy when the input data set was large to begin with.
+The `cross_entropy` function returns the average cross entropy over all input data. We use average cross entropy instead of total cross entropy, because it doesn't make sense to penalize the model for high cross entropy when the input data set was large to begin with.
 
 ## Gradient Descent
 
@@ -184,7 +184,7 @@ where $\theta$ represents a vector containing the weight coefficients of the log
 
 $$\theta = \begin{pmatrix} \theta_1 \\ \theta_2 \\ \vdots \\ \theta_n \end{pmatrix}$$
 
-The $\nabla$ notation is used to denote gradients, an important operation in matrix calculus which we explored in when deriving the normal equation solution to [linear regression] on this blog. The $\alpha$ denotes a hyperparamter known as the learning rate, which essentially determines how big of a step the gradient descent model takes with each iteration. The main takeaway here is the the gradient descent method allows us to find the local minimum of any convex function, no matter how multidimensional or complex. This is an incredibly powerful statement, and it is one that lies at the core of many machine learning algorithms. 
+The $\nabla$ notation is used to denote gradients, an important operation in matrix calculus which we explored in when deriving the normal equation solution to [linear regression] on this blog. The $\alpha$ denotes a hyperparameter known as the learning rate, which essentially determines how big of a step the gradient descent model takes with each iteration. The main takeaway here is the the gradient descent method allows us to find the local minimum of any convex function, no matter how multidimensional or complex. This is an incredibly powerful statement, and it is one that lies at the core of many machine learning algorithms. 
 
 To implement gradient descent with code, we have to figure out what the gradient descent equation is in the case of logistic regression. To do this, we need a bit of calculus work using the chain rule. Recall that our goal is to compute
 
@@ -222,7 +222,7 @@ Voila! We have derived an expression for the gradient of the cross entropy loss 
 
 $$\frac{\partial H}{\partial \theta}_{avg} = \frac{1}{n} \sum_{i = 1}^n (\hat{y} - y)x \tag{14}$$
 
-Granted, this derivation is not meant to be a rigorous demonstration of mathematical proof, because we glossed over some details concerning matrix tranposes, dot products, and dimensionality. Still, it provides a solid basis for the construction of the gradient descent algorithm in code, as shown below.
+Granted, this derivation is not meant to be a rigorous demonstration of mathematical proof, because we glossed over some details concerning matrix transpose, dot products, and dimensionality. Still, it provides a solid basis for the construction of the gradient descent algorithm in code, as shown below.
 
 
 ```python
@@ -289,11 +289,11 @@ Our model is ready. Time for testing with some real-world data.
 
 # Testing the Model
 
-Let's import some data from the web. The data we will be looking at is the banknote authentification data set, publicly available on the [UCI Machine Learning Repository]. This data set contains 1372 observations of bank notes, classsified as either authentic or counterfeit. The five features columns of this data set are:
+Let's import some data from the web. The data we will be looking at is the banknote authentification data set, publicly available on the [UCI Machine Learning Repository]. This data set contains 1372 observations of bank notes, classified as either authentic or counterfeit. The five features columns of this data set are:
 
 * Variance of Wavelet Wavelet Transformed image (Continuous) 
 * Skewness of Wavelet Transformed image (Continuous) 
-* Curtosis of Wavelet Transformed image (Continuous) 
+* Kurtosis of Wavelet Transformed image (Continuous) 
 * Entropy of image (Continuous) 
 * Class (Binary integer) 
 
@@ -470,10 +470,10 @@ plot_accuracy(0.1, 200)
 ```
 
 
-<img src="/assets/images/2019_12_31_logistic_regression_files/2019_12_31_logistic_regression_45_0.svg">
+<img src="/assets/images/2019-12-31-logistic-regression_files/2019-12-31-logistic-regression_45_0.svg">
 
 
-We see that accuracy spikes up on the first 20- epochs or so and quite quickly converges to about 90 percent. Past a certain threshold, the model seems to hover consistently at aroud the high 90s range, but accuracy still continues to increase ever so slightly with each epoch, though not as quickly as before. 
+We see that accuracy spikes up on the first 20- epochs or so and quite quickly converges to about 90 percent. Past a certain threshold, the model seems to hover consistently at around the high 90s range, but accuracy still continues to increase ever so slightly with each epoch, though not as quickly as before. 
 
 If we set the learning rate `alpha` to a smaller number, we would expect the model to take a lot longer to tune, and indeed this seems to be true:
 
@@ -483,10 +483,10 @@ plot_accuracy(0.01, 200)
 ```
 
 
-<img src="/assets/images/2019_12_31_logistic_regression_files/2019_12_31_logistic_regression_47_0.svg">
+<img src="/assets/images/2019-12-31-logistic-regression_files/2019-12-31-logistic-regression_47_0.svg">
 
 
-With a much smaller learning rate, the model seems to struggle to achieve high accuracy. However, although there are a lot of uneven spikes, the model still manages to reach a pretty high accuracy score by 200 epochs. This tells us that the success of model training depends a lot on how we set the learning rate; setting an excessively high value for the learning rate might result in overshooting, while a low learning rate might prevent the model from quickly leanring from the data and making meaningful progress.
+With a much smaller learning rate, the model seems to struggle to achieve high accuracy. However, although there are a lot of uneven spikes, the model still manages to reach a pretty high accuracy score by 200 epochs. This tells us that the success of model training depends a lot on how we set the learning rate; setting an excessively high value for the learning rate might result in overshooting, while a low learning rate might prevent the model from quickly learning from the data and making meaningful progress.
 
 Accuracy helps us intuitively understand how well our model is doing, but recall that the main objective of gradient descent is not to maximize accuracy, but to minimize the cross entropy loss function. Therefore, perhaps it makes more sense to evaluate the performance of our logistic regression model by plotting cross entropy. Presented below is a simple function that plots epoch versus cross entropy given a list of learning rates, `alpha`.
 
@@ -512,7 +512,7 @@ plot_loss(alpha_lst, epoch)
 ```
 
 
-<img src="/assets/images/2019_12_31_logistic_regression_files/2019_12_31_logistic_regression_52_0.svg">
+<img src="/assets/images/2019-12-31-logistic-regression_files/2019-12-31-logistic-regression_52_0.svg">
 
 
 The graph shows that the larger the learning rate, the quicker the decrease in cross entropy loss. This result is coherent with what the previous visualizations on accuracy suggested: the higher the learning rate, the quicker the model learns from the training data. 
@@ -521,9 +521,9 @@ The graph shows that the larger the learning rate, the quicker the decrease in c
 
 In this post, we built the logistic regression model from scratch by deriving an equation for gradient descent on cross entropy given a sigmoid function. In the process, we brought together many useful concepts we explored on this blog previously, such as matrix calculus, cross entropy, and more. It's always exciting to see when seemingly unrelated concepts come together to form beautiful pictures in unexpected ways, and that is what motivates me to continue my journey down this road.
 
-The logistic regression model is simple yet incredibly powerful in the context of binary classification. As we saw earlier with the application of the model to the task of bank notes authentification, the logistic regression model can, when tweaked with the appropriate parameters, make surprisingly accurate predictions given sufficient amount of training data. Of course, the processing of training and tweaking is not always easy because we have to determine some hyperparameters, most notably the learning rate of the gradient descent algorithm, but the fact that logistic regression is a robust model is unchanged nonetheless. Hopefully this post gave you some idea of what happens behind the scene in a regression-based machine learning model.
+The logistic regression model is simple yet incredibly powerful in the context of binary classification. As we saw earlier with the application of the model to the task of bank notes authentication, the logistic regression model can, when tweaked with the appropriate parameters, make surprisingly accurate predictions given sufficient amount of training data. Of course, the processing of training and tweaking is not always easy because we have to determine some hyperparameters, most notably the learning rate of the gradient descent algorithm, but the fact that logistic regression is a robust model is unchanged nonetheless. Hopefully this post gave you some idea of what happens behind the scene in a regression-based machine learning model.
 
-Thanks for reading. See you again in the next post. Happy new year!
+Thanks for reading. See you in the next post, and happy new year!
 
 
 
