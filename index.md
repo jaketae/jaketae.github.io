@@ -5,7 +5,7 @@ title: "Hello"
 author_profile: true
 header:
   image: /assets/images/header.jpeg
-  caption: "A photo of the Great Wall I took during my stay in Beijing, summer of 2019"
+  caption: "The Great Wall, Summer 2019"
 ---
 
 Welcome to my personal website! My name is Jake (Jaesung) Tae, and I am a sophomore at Yale University working towards a Bachelors of Science in Statistics and Data Science (currently on an authorized leave of absence for mandatory military service in South Korea).
