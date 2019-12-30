@@ -4,7 +4,6 @@ date: 2019-11-17
 categories:
   - study
 tags:
-  - math
   - euler
 ---
 
