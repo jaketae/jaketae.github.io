@@ -5,8 +5,8 @@ date: 2019-12-03
 categories:
   - study
 tags:
-  - math
-  - python
+  - monte_carlo
+  - simulation
 ---
 
 I have been putting off with blog postsings lately, largely because I was preoccupied with learning new languages I decided to pick up out of whim. Although I'm still learning the basics of these languages, namely HTML, CSS, and Javascript, I'm enjoying the process. I still have no idea where this spontaneous journey will take me, but hopefully I can make use of it in one way or another. 

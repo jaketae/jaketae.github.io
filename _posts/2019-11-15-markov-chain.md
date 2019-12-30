@@ -4,11 +4,12 @@ date: 2019-11-16
 categories:
   - study
 tags:
-  - math
-  - python
+  - linear_algebra
+  - markov_chain
+  - simulation
 ---
 
-In a [previous post], we briefly explored the notion of Markov chains and their application to Google's PageRank algorithm. Today, we will attempt to understand the Markov process from a more mathematical standpoint by meshing it together the concept of eigenvectors.
+In a [previous post], we briefly explored the notion of Markov chains and their application to Google's PageRank algorithm. Today, we will attempt to understand the Markov process from a more mathematical standpoint by meshing it together the concept of eigenvectors. This post was inspired and in part adapted from [this source]. 
 
 # Revisiting Eigenvectors
 
@@ -365,7 +366,7 @@ This function tries to find the point in the cumulative distribution where the v
 The Markov chain represents an in interesting way to analyze systems that are memoryless, such as the one in today's post, the Chutes and Ladders game. Although it is a simple game, it is fascinating to see just how much information and data can be derived from a simple image of the game board. In a future post, we present another way to approach similar systems, known as Monte Carlo simulations. But that's for another time. Peace!
 
 
-
+[this source]: https://jakevdp.github.io/blog/2017/12/18/simulating-chutes-and-ladders/
 
 [previous post]: https://jaketae.github.io/blog/math/pagerank-and-markov/
 

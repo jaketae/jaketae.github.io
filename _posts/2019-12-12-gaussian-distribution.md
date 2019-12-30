@@ -6,7 +6,8 @@ toc: true
 categories:
   - study
 tags:
-  - math
+  - probability_distribution
+  - statistics
 ---
 
 If there is one thing that the field of statistics wouldn’t be complete without, it’s probably normal distributions, otherwise referred to as “the bell curve.” The normal distribution was discovered and studied extensively by Carl Friedrich Gauss, which is why it is sometimes referred to as the Gaussian distribution. 

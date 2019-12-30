@@ -5,8 +5,9 @@ toc: true
 categories:
   - study
 tags:
-  - python
-  - machinelearning
+  - regression
+  - machine_learning
+  - from_scratch
 ---
 
 This tutorial is a continuation of the "from scratch" series we started last time with [the blog post] demonstrating the implementation of a simple k-nearest neighbors algorithm. The machine learning model we will be looking at today is logistic regression. If the "regression" part sounds familiar, yes, that is because logistic regression is a close cousin of [linear regression]---both models are employed in the context of regression problems. Linear regression is used when the estimation parameter is a continuous variable; logistic regression is best suited to tackle [binary classification] problems. Implementing the logistic regression model is slightly more challenging due to the mathematics involved in gradient descent, but we will make every step explicit throughout the way. Without further ado, let's get into it.

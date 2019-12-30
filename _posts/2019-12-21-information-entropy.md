@@ -5,8 +5,7 @@ toc: true
 categories:
   - study
 tags:
-  - math
-  - python
+  - statistics
 ---
 
 The other day, my friend and I were talking about our mutual friend Jeremy. "He's an oddball," my friend Sean remarked, to which I agreed. Out of nowhere, Jeremy had just told us that he would not be coming back to Korea for the next three years. "He is just about the most random person I know." And both of us, being aspiring statistics majors, began wondering: is there a systematic way of measuring randomness? It is from here that we went down the rabbit hole of Google and Wikipedia search. I ended up landing on entropy land, which is going to be the topic for today's post. It's a random post on the topic of randomness.

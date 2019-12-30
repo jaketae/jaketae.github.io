@@ -4,7 +4,7 @@ date: 2019-12-01
 categories:
   - study
 tags:
-  - math
+  - statistics
 ---
 
 "I think that's very unlikely." "No, you're probably right."

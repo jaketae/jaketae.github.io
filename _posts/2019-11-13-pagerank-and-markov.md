@@ -4,8 +4,8 @@ date: 2019-11-13
 categories:
   - study
 tags:
-  - math
-  - python
+  - markov_chain
+  - linear_algebra
 ---
 
 Google is the most popular search engine in the world. It is so popular that the word "Google" has been [added to the Oxford English Dictionary] as a proper verb, denoting the act of searching on Google. 

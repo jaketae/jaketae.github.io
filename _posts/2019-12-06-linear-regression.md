@@ -6,7 +6,8 @@ date: 2019-12-06
 categories:
   - study
 tags:
-  - math
+  - linear_algebra
+  - regression
 ---
 
 If there is one thing I recall most succinctly from my high school chemistry class, it is how to use Excel to draw basic plots. In the eyes of a naive freshman, visualizations seemed to add an air of professionalism. So I would always include a graph of some sort in my lab report, even when I knew they were superfluous. The final icing on the cake? A fancy regression with some r-squared. 
