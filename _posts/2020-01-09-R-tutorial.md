@@ -42,10 +42,13 @@ dice
 ```
 
 
-<ol class=list-inline>
+
+<ol>
  <li>1</li>
  <li>6</li>
 </ol>
+
+
 
 
 
@@ -102,7 +105,7 @@ x
 ```
 
 
-<ol class=list-inline>
+<ol>
 	<li>-1</li>
 	<li>-0.8</li>
 	<li>-0.6</li>
@@ -125,7 +128,7 @@ y
 ```
 
 
-<ol class=list-inline>
+<ol>
 	<li>-1</li>
 	<li>-0.512</li>
 	<li>-0.216</li>
@@ -163,7 +166,7 @@ replicate(10, roll())
 ```
 
 
-<ol class=list-inline>
+<ol>
 	<li>4</li>
 	<li>10</li>
 	<li>9</li>
@@ -272,7 +275,7 @@ attributes(die)
 ```
 
 
-<strong>$names</strong> = <ol class=list-inline>
+<strong>$names</strong> = <ol>
 	<li>'one'</li>
 	<li>'two'</li>
 	<li>'three'</li>
@@ -289,7 +292,7 @@ die
 ```
 
 
-<dl class=dl-horizontal>
+<dl>
 	<dt>one</dt>
 		<dd>1</dd>
 	<dt>two</dt>
@@ -312,7 +315,7 @@ die + 1
 ```
 
 
-<dl class=dl-horizontal>
+<dl>
 	<dt>one</dt>
 		<dd>2</dd>
 	<dt>two</dt>
@@ -408,7 +411,7 @@ gender
 ```
 
 
-<ol class=list-inline>
+<ol>
 	<li>male</li>
 	<li>female</li>
 	<li>female</li>
@@ -419,7 +422,7 @@ gender
 	<summary style=display:list-item;cursor:pointer>
 		<strong>Levels</strong>:
 	</summary>
-	<ol class=list-inline>
+	<ol>
 		<li>'female'</li>
 		<li>'male'</li>
 	</ol>
@@ -693,7 +696,7 @@ deck$value
 ```
 
 
-<ol class=list-inline>
+<ol>
 	<li>13</li>
 	<li>12</li>
 	<li>11</li>
@@ -772,7 +775,7 @@ vec
 ```
 
 
-<ol class=list-inline>
+<ol>
 	<li>1000</li>
 	<li>0</li>
 	<li>0</li>
@@ -790,7 +793,7 @@ vec
 ```
 
 
-<ol class=list-inline>
+<ol>
 	<li>1</li>
 	<li>0</li>
 	<li>1</li>
@@ -808,7 +811,7 @@ vec
 ```
 
 
-<ol class=list-inline>
+<ol>
 	<li>1</li>
 	<li>0</li>
 	<li>1</li>
@@ -869,7 +872,7 @@ deck2$value[c(13, 26, 39, 52)]
 ```
 
 
-<ol class=list-inline>
+<ol>
 	<li>1</li>
 	<li>1</li>
 	<li>1</li>
@@ -912,7 +915,7 @@ head(deck2, 13)
 ```
 
 
-<ol class=list-inline>
+<ol>
 	<li>TRUE</li>
 	<li>FALSE</li>
 	<li>FALSE</li>
@@ -935,7 +938,7 @@ c(1, 2, 3) == c(3, 2, 1)
 ```
 
 
-<ol class=list-inline>
+<ol>
 	<li>FALSE</li>
 	<li>TRUE</li>
 	<li>FALSE</li>
@@ -949,7 +952,7 @@ c(1, 2, 3) %in% c(3, 4, 5)
 ```
 
 
-<ol class=list-inline>
+<ol>
 	<li>FALSE</li>
 	<li>FALSE</li>
 	<li>TRUE</li>
@@ -1075,7 +1078,7 @@ is.na(vec)
 ```
 
 
-<ol class=list-inline>
+<ol>
 	<li>FALSE</li>
 	<li>FALSE</li>
 	<li>FALSE</li>
@@ -1329,7 +1332,7 @@ get_symbols()
 ```
 
 
-<ol class=list-inline>
+<ol>
 	<li>'BBB'</li>
 	<li>'B'</li>
 	<li>'BBB'</li>
@@ -1343,7 +1346,7 @@ get_symbols()
 ```
 
 
-<ol class=list-inline>
+<ol>
 	<li>'0'</li>
 	<li>'0'</li>
 	<li>'0'</li>
@@ -1485,14 +1488,14 @@ attributes(deck)
 
 <dl>
 	<dt>$names</dt>
-		<dd><ol class=list-inline>
+		<dd><ol>
 	<li>'face'</li>
 	<li>'suit'</li>
 	<li>'value'</li>
 </ol>
 </dd>
 	<dt>$row.names</dt>
-		<dd><ol class=list-inline>
+		<dd><ol>
 	<li>47</li>
 	<li>42</li>
 	<li>9</li>
@@ -1560,14 +1563,14 @@ attributes(deck)
 
 <dl>
 	<dt>$names</dt>
-		<dd><ol class=list-inline>
+		<dd><ol>
 	<li>'face'</li>
 	<li>'suit'</li>
 	<li>'value'</li>
 </ol>
 </dd>
 	<dt>$row.names</dt>
-		<dd><ol class=list-inline>
+		<dd><ol>
 	<li>47</li>
 	<li>42</li>
 	<li>9</li>
@@ -1623,7 +1626,7 @@ attributes(deck)
 	<dt>$class</dt>
 		<dd>'data.frame'</dd>
 	<dt>$levels</dt>
-		<dd><ol class=list-inline>
+		<dd><ol>
 	<li>'level 1'</li>
 	<li>'level 2'</li>
 	<li>'level 3'</li>
@@ -1886,7 +1889,7 @@ chars
 ```
 
 
-<ol class=list-inline>
+<ol>
 	<li>'My'</li>
 	<li>'fourth'</li>
 	<li>'for'</li>
