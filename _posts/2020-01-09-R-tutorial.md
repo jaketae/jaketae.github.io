@@ -42,7 +42,7 @@ dice
 ```
 
 
-<ol class=list-inline>
+<ol class=list-inline markdown="1">
 	<li>1</li>
 	<li>6</li>
 </ol>
