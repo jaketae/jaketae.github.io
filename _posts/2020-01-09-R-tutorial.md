@@ -642,12 +642,12 @@ head(shuffle(deck))
 <table>
 <thead><tr><th></th><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
-	<tr><th scope=row>6</th><td>eight   </td><td>spades  </td><td> 8      </td></tr>
-	<tr><th scope=row>5</th><td>nine    </td><td>spades  </td><td> 9      </td></tr>
-	<tr><th scope=row>39</th><td>ace     </td><td>diamonds</td><td> 1      </td></tr>
-	<tr><th scope=row>3</th><td>jack    </td><td>spades  </td><td>11      </td></tr>
-	<tr><th scope=row>34</th><td>six     </td><td>diamonds</td><td> 6      </td></tr>
-	<tr><th scope=row>38</th><td>two     </td><td>diamonds</td><td> 2      </td></tr>
+	<tr><th>6</th><td>eight   </td><td>spades  </td><td> 8      </td></tr>
+	<tr><th>5</th><td>nine    </td><td>spades  </td><td> 9      </td></tr>
+	<tr><th>39</th><td>ace     </td><td>diamonds</td><td> 1      </td></tr>
+	<tr><th>3</th><td>jack    </td><td>spades  </td><td>11      </td></tr>
+	<tr><th>34</th><td>six     </td><td>diamonds</td><td> 6      </td></tr>
+	<tr><th>38</th><td>two     </td><td>diamonds</td><td> 2      </td></tr>
 </tbody>
 </table>
 
@@ -670,7 +670,7 @@ better_deal(deck)
 <table>
 <thead><tr><th></th><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
-	<tr><th scope=row>38</th><td>two     </td><td>diamonds</td><td>2       </td></tr>
+	<tr><th>38</th><td>two     </td><td>diamonds</td><td>2       </td></tr>
 </tbody>
 </table>
 
@@ -685,7 +685,7 @@ better_deal(deck)
 <table>
 <thead><tr><th></th><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
-	<tr><th scope=row>9</th><td>five  </td><td>spades</td><td>5     </td></tr>
+	<tr><th>9</th><td>five  </td><td>spades</td><td>5     </td></tr>
 </tbody>
 </table>
 
@@ -983,12 +983,12 @@ head(deck3)
 <table>
 <thead><tr><th></th><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
-	<tr><th scope=row>33</th><td>seven   </td><td>diamonds</td><td> 7      </td></tr>
-	<tr><th scope=row>32</th><td>eight   </td><td>diamonds</td><td> 8      </td></tr>
-	<tr><th scope=row>42</th><td>jack    </td><td>hearts  </td><td>11      </td></tr>
-	<tr><th scope=row>26</th><td>ace     </td><td>clubs   </td><td>14      </td></tr>
-	<tr><th scope=row>48</th><td>five    </td><td>hearts  </td><td> 5      </td></tr>
-	<tr><th scope=row>36</th><td>four    </td><td>diamonds</td><td> 4      </td></tr>
+	<tr><th>33</th><td>seven   </td><td>diamonds</td><td> 7      </td></tr>
+	<tr><th>32</th><td>eight   </td><td>diamonds</td><td> 8      </td></tr>
+	<tr><th>42</th><td>jack    </td><td>hearts  </td><td>11      </td></tr>
+	<tr><th>26</th><td>ace     </td><td>clubs   </td><td>14      </td></tr>
+	<tr><th>48</th><td>five    </td><td>hearts  </td><td> 5      </td></tr>
+	<tr><th>36</th><td>four    </td><td>diamonds</td><td> 4      </td></tr>
 </tbody>
 </table>
 
@@ -1009,7 +1009,7 @@ deck4[queenOfSpades, ]
 <table>
 <thead><tr><th></th><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
-	<tr><th scope=row>2</th><td>queen </td><td>spades</td><td>13    </td></tr>
+	<tr><th>2</th><td>queen </td><td>spades</td><td>13    </td></tr>
 </tbody>
 </table>
 
@@ -1243,7 +1243,7 @@ deal()
 <table>
 <thead><tr><th></th><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
-	<tr><th scope=row>23</th><td>four </td><td>clubs</td><td>4    </td></tr>
+	<tr><th>23</th><td>four </td><td>clubs</td><td>4    </td></tr>
 </tbody>
 </table>
 
@@ -1258,7 +1258,7 @@ deal()
 <table>
 <thead><tr><th></th><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
-	<tr><th scope=row>17</th><td>ten  </td><td>clubs</td><td>10   </td></tr>
+	<tr><th>17</th><td>ten  </td><td>clubs</td><td>10   </td></tr>
 </tbody>
 </table>
 
@@ -1303,7 +1303,7 @@ deal()
 <table>
 <thead><tr><th></th><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
-	<tr><th scope=row>15</th><td>queen</td><td>clubs</td><td>12   </td></tr>
+	<tr><th>15</th><td>queen</td><td>clubs</td><td>12   </td></tr>
 </tbody>
 </table>
 
@@ -1318,7 +1318,7 @@ deal()
 <table>
 <thead><tr><th></th><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
-	<tr><th scope=row>37</th><td>three   </td><td>diamonds</td><td>3       </td></tr>
+	<tr><th>37</th><td>three   </td><td>diamonds</td><td>3       </td></tr>
 </tbody>
 </table>
 
