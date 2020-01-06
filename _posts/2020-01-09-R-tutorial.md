@@ -473,7 +473,7 @@ df
 
 <table>
 <thead>
-	<tr><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr>
+	<tr><th>face</th><th>suit</th><th>value</th></tr>
 </thead>
 <tbody>
 	<tr><td>ace  </td><td>clubs</td><td>1    </td></tr>
@@ -514,7 +514,7 @@ head(deck, 7)
 
 
 <table>
-<thead><tr><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead><tr><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
 	<tr><td>king  </td><td>spades</td><td>13    </td></tr>
 	<tr><td>queen </td><td>spades</td><td>12    </td></tr>
@@ -535,7 +535,7 @@ deck[1, c(1, 2, 3)]
 
 
 <table>
-<thead><tr><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead><tr><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
 	<tr><td>king  </td><td>spades</td><td>13    </td></tr>
 </tbody>
@@ -550,7 +550,7 @@ deck[-(2:52), 1:3]
 
 
 <table>
-<thead><tr><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead><tr><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
 	<tr><td>king  </td><td>spades</td><td>13    </td></tr>
 </tbody>
@@ -565,7 +565,7 @@ deck[1, ]
 
 
 <table>
-<thead><tr><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead><tr><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
 	<tr><td>king  </td><td>spades</td><td>13    </td></tr>
 </tbody>
@@ -580,7 +580,7 @@ deck[1, c(T, T, F)]
 
 
 <table>
-<thead><tr><th scope=col>face</th><th scope=col>suit</th></tr></thead>
+<thead><tr><th>face</th><th>suit</th></tr></thead>
 <tbody>
 	<tr><td>king  </td><td>spades</td></tr>
 </tbody>
@@ -595,7 +595,7 @@ deck[1, c("face", "suit")]
 
 
 <table>
-<thead><tr><th scope=col>face</th><th scope=col>suit</th></tr></thead>
+<thead><tr><th>face</th><th>suit</th></tr></thead>
 <tbody>
 	<tr><td>king  </td><td>spades</td></tr>
 </tbody>
@@ -617,7 +617,7 @@ deal(deck)
 
 
 <table>
-<thead><tr><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead><tr><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
 	<tr><td>king  </td><td>spades</td><td>13    </td></tr>
 </tbody>
@@ -640,7 +640,7 @@ head(shuffle(deck))
 
 
 <table>
-<thead><tr><th></th><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead><tr><th></th><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
 	<tr><th scope=row>6</th><td>eight   </td><td>spades  </td><td> 8      </td></tr>
 	<tr><th scope=row>5</th><td>nine    </td><td>spades  </td><td> 9      </td></tr>
@@ -668,7 +668,7 @@ better_deal(deck)
 
 
 <table>
-<thead><tr><th></th><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead><tr><th></th><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
 	<tr><th scope=row>38</th><td>two     </td><td>diamonds</td><td>2       </td></tr>
 </tbody>
@@ -683,7 +683,7 @@ better_deal(deck)
 
 
 <table>
-<thead><tr><th></th><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead><tr><th></th><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
 	<tr><th scope=row>9</th><td>five  </td><td>spades</td><td>5     </td></tr>
 </tbody>
@@ -835,7 +835,7 @@ head(deck2)
 
 
 <table>
-<thead><tr><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th><th scope=col>new</th></tr></thead>
+<thead><tr><th>face</th><th>suit</th><th>value</th><th>new</th></tr></thead>
 <tbody>
 	<tr><td>king  </td><td>spades</td><td>13    </td><td>1     </td></tr>
 	<tr><td>queen </td><td>spades</td><td>12    </td><td>2     </td></tr>
@@ -856,7 +856,7 @@ head(deck2)
 
 
 <table>
-<thead><tr><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead><tr><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
 	<tr><td>king  </td><td>spades</td><td>13    </td></tr>
 	<tr><td>queen </td><td>spades</td><td>12    </td></tr>
@@ -892,7 +892,7 @@ head(deck2, 13)
 
 
 <table>
-<thead><tr><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead><tr><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
 	<tr><td>king  </td><td>spades</td><td>13    </td></tr>
 	<tr><td>queen </td><td>spades</td><td>12    </td></tr>
@@ -981,7 +981,7 @@ head(deck3)
 
 
 <table>
-<thead><tr><th></th><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead><tr><th></th><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
 	<tr><th scope=row>33</th><td>seven   </td><td>diamonds</td><td> 7      </td></tr>
 	<tr><th scope=row>32</th><td>eight   </td><td>diamonds</td><td> 8      </td></tr>
@@ -1007,7 +1007,7 @@ deck4[queenOfSpades, ]
 
 
 <table>
-<thead><tr><th></th><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead><tr><th></th><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
 	<tr><th scope=row>2</th><td>queen </td><td>spades</td><td>13    </td></tr>
 </tbody>
@@ -1025,7 +1025,7 @@ head(deck5, 13)
 
 
 <table>
-<thead><tr><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead><tr><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
 	<tr><td>king  </td><td>spades</td><td>10    </td></tr>
 	<tr><td>queen </td><td>spades</td><td>10    </td></tr>
@@ -1098,7 +1098,7 @@ head(deck5, 13)
 
 
 <table>
-<thead><tr><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead><tr><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
 	<tr><td>king  </td><td>spades</td><td>10    </td></tr>
 	<tr><td>queen </td><td>spades</td><td>10    </td></tr>
@@ -1182,7 +1182,7 @@ head(globalenv()$deck, 3)
 
 
 <table>
-<thead><tr><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead><tr><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
 	<tr><td>king  </td><td>spades</td><td>13    </td></tr>
 	<tr><td>queen </td><td>spades</td><td>12    </td></tr>
@@ -1241,7 +1241,7 @@ deal()
 
 
 <table>
-<thead><tr><th></th><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead><tr><th></th><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
 	<tr><th scope=row>23</th><td>four </td><td>clubs</td><td>4    </td></tr>
 </tbody>
@@ -1256,7 +1256,7 @@ deal()
 
 
 <table>
-<thead><tr><th></th><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead><tr><th></th><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
 	<tr><th scope=row>17</th><td>ten  </td><td>clubs</td><td>10   </td></tr>
 </tbody>
@@ -1301,7 +1301,7 @@ deal()
 
 
 <table>
-<thead><tr><th></th><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead><tr><th></th><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
 	<tr><th scope=row>15</th><td>queen</td><td>clubs</td><td>12   </td></tr>
 </tbody>
@@ -1316,7 +1316,7 @@ deal()
 
 
 <table>
-<thead><tr><th></th><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead><tr><th></th><th>face</th><th>suit</th><th>value</th></tr></thead>
 <tbody>
 	<tr><th scope=row>37</th><td>three   </td><td>diamonds</td><td>3       </td></tr>
 </tbody>
@@ -1736,7 +1736,7 @@ head(rolls)
 
 
 <table>
-<thead><tr><th scope=col>Var1</th><th scope=col>Var2</th></tr></thead>
+<thead><tr><th>Var1</th><th>Var2</th></tr></thead>
 <tbody>
 	<tr><td>1</td><td>1</td></tr>
 	<tr><td>2</td><td>1</td></tr>
@@ -1757,7 +1757,7 @@ head(rolls)
 
 
 <table>
-<thead><tr><th scope=col>Var1</th><th scope=col>Var2</th><th scope=col>value</th></tr></thead>
+<thead><tr><th>Var1</th><th>Var2</th><th>value</th></tr></thead>
 <tbody>
 	<tr><td>1</td><td>1</td><td>2</td></tr>
 	<tr><td>2</td><td>1</td><td>3</td></tr>
@@ -1779,7 +1779,7 @@ head(rolls)
 
 
 <table>
-<thead><tr><th scope=col>Var1</th><th scope=col>Var2</th><th scope=col>value</th><th scope=col>prob</th></tr></thead>
+<thead><tr><th>Var1</th><th>Var2</th><th>value</th><th>prob</th></tr></thead>
 <tbody>
 	<tr><td>1       </td><td>1       </td><td>2       </td><td>0.015625</td></tr>
 	<tr><td>2       </td><td>1       </td><td>3       </td><td>0.015625</td></tr>
@@ -1811,7 +1811,7 @@ head(combos)
 
 
 <table>
-<thead><tr><th scope=col>Var1</th><th scope=col>Var2</th><th scope=col>Var3</th></tr></thead>
+<thead><tr><th>Var1</th><th>Var2</th><th>Var3</th></tr></thead>
 <tbody>
 	<tr><td>DD </td><td>DD </td><td>DD </td></tr>
 	<tr><td>7  </td><td>DD </td><td>DD </td></tr>
@@ -1833,7 +1833,7 @@ head(combos)
 
 
 <table>
-<thead><tr><th scope=col>Var1</th><th scope=col>Var2</th><th scope=col>Var3</th><th scope=col>prob</th></tr></thead>
+<thead><tr><th>Var1</th><th>Var2</th><th>Var3</th><th>prob</th></tr></thead>
 <tbody>
 	<tr><td>DD      </td><td>DD      </td><td>DD      </td><td>0.000027</td></tr>
 	<tr><td>7       </td><td>DD      </td><td>DD      </td><td>0.000027</td></tr>
@@ -1924,7 +1924,7 @@ head(combos)
 
 
 <table>
-<thead><tr><th scope=col>Var1</th><th scope=col>Var2</th><th scope=col>Var3</th><th scope=col>prob</th><th scope=col>prize</th></tr></thead>
+<thead><tr><th>Var1</th><th>Var2</th><th>Var3</th><th>prob</th><th>prize</th></tr></thead>
 <tbody>
 	<tr><td>DD      </td><td>DD      </td><td>DD      </td><td>0.000027</td><td>0.021600</td></tr>
 	<tr><td>7       </td><td>DD      </td><td>DD      </td><td>0.000027</td><td>0.000000</td></tr>
@@ -2224,7 +2224,7 @@ play_many(3)
 
 
 <table>
-<thead><tr><th scope=col>w1</th><th scope=col>w2</th><th scope=col>w3</th><th scope=col>prize</th></tr></thead>
+<thead><tr><th>w1</th><th>w2</th><th>w3</th><th>prize</th></tr></thead>
 <tbody>
 	<tr><td>7  </td><td>B  </td><td>0  </td><td> 0 </td></tr>
 	<tr><td>B  </td><td>B  </td><td>BBB</td><td> 5 </td></tr>
