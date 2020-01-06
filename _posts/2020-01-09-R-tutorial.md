@@ -41,11 +41,11 @@ dice <- sample(die, 2)
 dice
 ```
 
-
-  <ol class=list-inline>
-    <li>1</li>
-    <li>6</li>
-  </ol>
+{::options parse_block_html="true" /}
+<ol class=list-inline>
+  <li>1</li>
+  <li>6</li>
+</ol>
 
 
 
