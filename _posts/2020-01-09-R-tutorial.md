@@ -275,7 +275,8 @@ attributes(die)
 ```
 
 
-<strong>$names</strong> = <ol>
+<strong>$names</strong>
+<ol>
 	<li>'one'</li>
 	<li>'two'</li>
 	<li>'three'</li>
@@ -471,7 +472,9 @@ df
 
 
 <table>
-<thead><tr><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr></thead>
+<thead>
+	<tr><th scope=col>face</th><th scope=col>suit</th><th scope=col>value</th></tr>
+</thead>
 <tbody>
 	<tr><td>ace  </td><td>clubs</td><td>1    </td></tr>
 	<tr><td>two  </td><td>clubs</td><td>2    </td></tr>
