@@ -1,11 +1,11 @@
 ---
-title: TITLE
-mathjax: true
+title: A Short R Tutorial
 toc: true
 categories:
-  - category
+  - development
 tags:
-  - tag
+  - jupyter
+  - R
 ---
 
 This is an experimental jupyter notebook written using `IRkernel`. The purpose of this notebook is threefolds: first, to document my progress with self-learning the R language; second, to test the functionality of the R kernel on jupyter; and third, to see if the`convert.sh` shell script is capable of converting notebooks written in R to `.md` markdown format. The example codes in this notebook were borrowed from [Hands on Programming with R](https://rstudio-education.github.io/hopr/) by Garrett Grolemund.
@@ -2236,9 +2236,3 @@ system.time(play_many(1000))
 
        user  system elapsed 
       0.005   0.000   0.005 
-
-
-
-```R
-
-```
