@@ -35,7 +35,7 @@ github_username: jaketae
 markdown: kramdown
 highlighter: rouge
 kramdown: 
-  parse_block_html: true
+  html_to_native: true
 
 
 # Outputting
