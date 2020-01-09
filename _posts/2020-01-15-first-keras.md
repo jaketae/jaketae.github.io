@@ -8,9 +8,9 @@ tags:
   - keras
 ---
 
-Lately, I have been on a DataCamp spree after unlocking a two-month free unlimited trial through Microsoft's Visual Studio Dev Essentials program. If you haven't already, make sure to check it out, as it offers a plethora of tools, journal subscriptions, and software packages for developers. Anyhow, one of the courses I decided to check out on DataCamp was titled "Introduction to Deep Learning with Python," which covered basic concepts in deep learning such as forward and backward propagation. The latter half of the tutorial was devoted to the introduction of the Keras framework and the implementation of neural networks with the functional API. I created this notebook immediately after finishing the tutorial for memory retention and self-review purposes.
+Lately, I have been on a [DataCamp] spree after unlocking a two-month free unlimited trial through Microsoft's [Visual Studio Dev Essentials program]. If you haven't already, make sure to check it out, as it offers a plethora of tools, journal subscriptions, and software packages for developers. Anyhow, one of the courses I decided to check out on DataCamp was titled "Introduction to Deep Learning with Python," which covered basic concepts in deep learning such as forward and backward propagation. The latter half of the tutorial was devoted to the introduction of the [Keras API] and the implementation of neural networks. I created this notebook immediately after finishing the tutorial for memory retention and self-review purposes.
 
-First, we begin by importing the `keras` library as well as other affiliated functions in the module. Note that Keras uses TensorFlow as backend by default. The warning in the code block below appears because this notebook was written on Google Colab, which informs users that the platform will be switching over to TensorFlow 2 in the future. 
+First, we begin by importing the `keras` library as well as other affiliated functions in the module. Note that Keras uses TensorFlow as backend by default. The warning in the code block below appears because this notebook was written on [Google Colab], which informs users that the platform will be switching over to TensorFlow 2 in the future. 
 
 
 ```python
@@ -126,7 +126,7 @@ Everything looks good, which means we are now ready to compile and train our mod
 early_stopping_monitor = EarlyStopping(patience=2)
 ```
 
-We are now ready to go! Let's compile the model by making some configurations, namely the `optimizer`, `loss`, and `metrics`. Simply put, an `optimizer` specifies which flavor of the gradient descent algorithm we want to choose. The simplest version is known as `sgd`, or the stochastic gradient descent. `adam` can be considered an improved version of the stochastic gradient descent in that its learning rate changes depending on the slope of the loss function, defined here as cross entropy. If you recall, cross entropy basically measures the pseudo-distance between two distributions, *i.e.* how different two distributions are. But because cross entropy is often not easy to intuitively wrap our minds around, let's pass the `accuracy` metric to the `compile` function, as shown below.
+We are now ready to go! Let's compile the model by making some configurations, namely the `optimizer`, `loss`, and `metrics`. Simply put, an `optimizer` specifies which flavor of the [gradient descent algorithm] we want to choose. The simplest version is known as `sgd`, or the stochastic gradient descent. `adam` can be considered an improved version of the stochastic gradient descent in that its learning rate changes depending on the slope of the loss function, defined here as cross entropy. If you recall, [cross entropy] is basically a measurement of the pseudo-distance between two distributions, *i.e.* how different two distributions are. But because cross entropy is often not easy to intuitively wrap our minds around, let's pass the `accuracy` metric to the `compile` function, as shown below.
 
 
 ```python
@@ -209,3 +209,10 @@ new_model = keras.models.load_model('path_to_saved_model')
 That's it for today! Obviously there are a lot more we can do with `keras`, such as building deeper neural networks or non-sequential models such as CNN or GAN, but these are topics we might look at a later date when I grow more proficient with the Keras API and deep learning in general. For now, consider this to be a gentle introduction to neural networks with Keras. 
 
 Thanks for reading! Catch you up in the next one.
+
+[DataCamp]: http://datacamp.com
+[Visual Studio Dev Essentials program]: https://visualstudio.microsoft.com/dev-essentials/
+[gradient descent algorithm]: https://en.wikipedia.org/wiki/Gradient_descent
+[cross entropy]: https://jaketae.github.io/study/information-entropy/
+[Keras API]: https://keras.io
+[Google Colab]: http://colab.research.google.com
