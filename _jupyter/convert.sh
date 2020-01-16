@@ -8,6 +8,9 @@ function convert(){
 	mv ${nb%.ipynb}.md ../_posts/
 	mv ${nb%.ipynb}_files ../assets/images/
 	echo "==========Conversion complete!=========="
+	cd
+	cd /Applications
+	open 'Sublime Text.app'
 }
 
 convert

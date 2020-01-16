@@ -203,7 +203,7 @@ We can load pre-saved models as well.
 
 
 ```python
-new_model = keras.models.load_model('path_to_saved_model')
+new_model = keras.models.load_model('path_to_my_model.h5')
 ```
 
 That's it for today! Obviously there are a lot more we can do with `keras`, such as building deeper neural networks or non-sequential models such as CNN or GAN, but these are topics we might look at a later date when I grow more proficient with the Keras API and deep learning in general. For now, consider this to be a gentle introduction to neural networks with Keras. 
