@@ -100,7 +100,7 @@ $$w_{MLE} = (A^TA)^{-1}A^Ty \tag{11}$$
 
 This is no coincidence: in a previous post on [MAP and MLE], we observed that the MAP and MLE become identical when we have a uniform prior. In other words, the only cause behind the divergence between MAP and MLE is the existence of a prior distribution. We can thus consider the additional term in (10) absent in (11) as a vestige of the prior we defined for $w$. MAP versus MLE is a recurring theme that appears throughout the paradigmatic shift from frequentist to Bayesian, so it merits discussion.
 
-# Predictive Distribution
+## Predictive Distribution
 
 Now that we have a posterior distribution for $w$ which we can work with, it's time to derive the predictive distribution. We go about this by marginalizing $w$ using the property of conditional probability, as illustrated below.
 
