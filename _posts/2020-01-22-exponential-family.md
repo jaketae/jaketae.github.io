@@ -1,5 +1,5 @@
 ---
-title: Medici of Distributions: The Exponential Family
+title: The Exponential Family
 mathjax: true
 toc: true
 categories:
@@ -199,6 +199,7 @@ Because we know that the resulting quantity is the expected value of the suffici
 $$
 \mathbb{E}_\theta \left[s(X)\right] = \mathbb{E}_\theta [-X] = - \frac{1}{\theta} \implies \mathbb{E}_\theta [X] = \frac{1}{\theta} \tag{27}
 $$
+
 And indeed, this is true: the expected value of the random variable characterized by an exponential distribution is simply the inverse of the parameter defining that distribution. Note that the parameter for the exponential distribution is most often denoted as $\lambda$, in which case the expected value of the distribution would simply be written as $\mathbb{E}[X] = \frac{1}{\lambda}$. 
 
 This is all great, but there is still an unanswered question lingering in the air: what is the MLE estimate of the parameter $\theta$ ? This moment is precisely when equation (25) comes in handy. Recall that
