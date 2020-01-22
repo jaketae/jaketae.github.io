@@ -125,9 +125,11 @@ And we have derived the MAP estimate for the mean of the univariate Gaussian!
 Maximum a posteriori analysis is great and all, but what does the final result exactly tell us? While there might be many ways to interpret understand the result as derived in (9), one particular useful intuition to have relates to the concept of [convex combinations](https://en.wikipedia.org/wiki/Convex_combination). 
 
 Simply put, a convex combination is a linear combination of different points or quantities in which the coefficients of the linear combinations add up to one. More concretely,
+
 $$
 \alpha_1 x_1 + \alpha_2 x_2 + \cdots + \alpha_n x_n, \ \sum_{i = 1}^n \alpha_i = 1 \tag{10}
 $$
+
 We can also imagine that $\alpha$ and $x$ are each $n$-dimensional vectors, and that a convex combination is simply a dot product of these two vectors given that the elements of $\alpha$ sum up to one.
 
 Why did I suddenly bring up convex combinations out of no where? Well, it turns out that the result in (9) in fact an instance of a convex combination of two points satisfying the form 
