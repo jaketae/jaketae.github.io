@@ -8,9 +8,7 @@ header:
   caption: "The Great Wall, Summer 2019"
 ---
 
-:wave:
-
-Welcome to my personal website! My name is Jake (Jaesung) Tae, and I am a sophomore at Yale University working towards a Bachelors of Science in Statistics and Data Science (currently on an authorized leave of absence for mandatory military service in South Korea).
+:wave: Welcome to my personal website! My name is Jake (Jaesung) Tae, and I am a sophomore at Yale University working towards a Bachelors of Science in Statistics and Data Science (currently on an authorized leave of absence for mandatory military service in South Korea).
 
 Thee days, I am working as a Radio Telecommunications Operator and an assistant to the Provost Marshall at the 142nd Military Policy Company of the 8th U.S. Army. My primary responsibilities include responding to emergency calls, maintaining real-time communication with patrols and the Korean National Police, and overseeing law enforcement at U.S. Army Garrison-Yongsan, Seoul. While there are a lot on my shoulders, I'm learning something new each day, and I am proud to play my part as a member of the [Korean Augmentation to the U.S. Army](https://en.wikipedia.org/wiki/Korean_Augmentation_To_the_United_States_Army).
 
