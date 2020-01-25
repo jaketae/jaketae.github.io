@@ -1,7 +1,7 @@
 ---
 permalink: /
 layout: archive
-title: Hello :wave:
+title: "Hello"
 author_profile: true
 header:
   image: /assets/images/header.jpeg

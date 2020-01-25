@@ -122,9 +122,17 @@ one_hot_encode(y_train[:5])
 
 That's all the data and the preprocessing we will need for now.
 
+
+
+# Neural Network Model
+
+
+
 # Activation Functions
 
-Activation functions are important aspects of neural networks. In fact, it is what allows neural networks to model non-linearities in data. 
+Activation functions are important aspects of neural networks. In fact, it is what allows neural networks to model nonlinearities in data. As we saw in the preceding section, a neural network is essentially composed of layers and weights that can be expressed as matrix multiplications. No matter how complex a matrix may be, matrix multiplication is a linear operation, which means that is impossible to model nonlinearities with matrix multiplication. This is why we need activation functions in neural networks. 
+
+
 
 
 
