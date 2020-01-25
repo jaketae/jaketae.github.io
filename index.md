@@ -1,12 +1,14 @@
 ---
 permalink: /
 layout: archive
-title: "Hello"
+title: 
 author_profile: true
 header:
   image: /assets/images/header.jpeg
   caption: "The Great Wall, Summer 2019"
 ---
+
+## Hello :wave:
 
 Welcome to my personal website! My name is Jake (Jaesung) Tae, and I am a sophomore at Yale University working towards a Bachelors of Science in Statistics and Data Science (currently on an authorized leave of absence for mandatory military service in South Korea).
 
