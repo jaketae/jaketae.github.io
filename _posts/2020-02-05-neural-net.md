@@ -642,7 +642,7 @@ test_class(3, 40, 3)
 
 <img src="/assets/images/2020-02-05-neural-net_files/2020-02-05-neural-net_23_0.svg">
 
-The result shows that the performance of the neural network generally increases as the number of neurons increase. We don't see signs of overfitting, perhaps because a `max_neuron` of 40 isn't big enough to cause ovefitting in the first place. However, I decided to stop the experiment here because running the `test_class` function took a lot more time than I had expected, even on Google Colab. For now, the simple observation that the performance seems to increase with more neurons will suffice to satisfy our curiosity.
+The result shows that the performance of the neural network generally increases as the number of neurons increase. We don't see signs of overfitting, but we know it happens: recall that our neural network model with 99 and 64 hidden neurons hit an accuracy of about 95 percent, whereas the model with only 30 to 40 neurons seem to be outperforming this metric by an accuracy hovering around 98 percent. After having realized this, I considered re-running the `test_class` function with a different range, but eventuially decided to stop the experiment  because running the `test_class` function took a lot more time than I had expected, even on Google Colab. Creating and training the model takes a long time, especially if we are repeating this process `(max_neuron - min_neuron) * n_trial` times. For now, the simple observation that the performance seems to increase with more neurons, then fall at one point once overfitting starts to happen, will suffice to satisfy our curiosity.
 
 # Conclusion
 
