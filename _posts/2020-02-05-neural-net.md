@@ -399,6 +399,8 @@ Z_1 = \text{max}(0, A_1) \\
 A_2 = Z_1 W_2 + b_2 \\
 Z_2 = \sigma(A_2) \tag{6}
 $$
+
+
 The last layer is a softmax unit that receives input $A_2$ to produce output $Z_2$. Our goal, then, is to compute the gradient
 
 
