@@ -122,21 +122,56 @@ one_hot_encode(y_train[:5])
 
 That's all the data and the preprocessing we will need for now.
 
-
-
-# Neural Network Model
-
-
-
 # Activation Functions
 
-Activation functions are important aspects of neural networks. In fact, it is what allows neural networks to model nonlinearities in data. As we saw in the preceding section, a neural network is essentially composed of layers and weights that can be expressed as matrix multiplications. No matter how complex a matrix may be, matrix multiplication is a linear operation, which means that is impossible to model nonlinearities with matrix multiplication. This is why we need activation functions in neural networks. 
+[Activation functions](https://en.wikipedia.org/wiki/Activation_function) are important aspects of neural networks. In fact, it is what allows neural networks to model nonlinearities in data. As we will see in the next section, a neural network is essentially composed of layers and weights that can be expressed as matrix multiplications. No matter how complex a matrix may be, matrix multiplication is a linear operation, which means that is impossible to model nonlinearities. This is where activation functions kick in: by applying nonlinear transformation to layer outputs, we can make neural networks capable of modeling nonlinearities. This is why deep learning is such a powerful tool: it can be trained to detect nonlinear, complex patterns in data that a human might otherwise be unable to identify. 
+
+Our vanilla neural network will make use of two activation functions: softmax and ReLU. If you have read my [previous post](https://jaketae.github.io/study/first-keras/) on the Keras functional API, you might recall that we used softmax and ReLU for certain dense layers. Back then, we considered them to be a blackbox without necessarily taking a look at what they do. Let's explore the details and get our hands dirty today.
+
+## Softmax
+
+Mathematically speaking, the [softmax function](https://en.wikipedia.org/wiki/Softmax_function) is a function that takes a vector as input and outputs a vector of equal length. Concretely,
 
 
+$$
+y_k = \frac{e^{z_k}}{\sum_{i = 1}^n e^{z_i}} \ \tag{1}
+$$
 
 
+where
 
-## Batch Softmax
+
+$$
+z = \begin{pmatrix} z_1, z_2, \dots , z_n \end{pmatrix}^T
+$$
+
+
+Although the formula may appear complex, the softmax function is a lot simpler than it seems. First, note that all $n$ entries of the returned vector $y$ add up to 1. From here, it is possible to see that the softmax function is useful for ascribing the probability that a sample belongs to one of $n$ classes: the $i$-th element of $y$ would indicate the probability of the sample belonging to the $i$-th class. Put another way, the index of the largest entry in $y$ is the class label number that is most probable. 
+
+Implementing the softmax function is extremely easy thanks to the vectorized computation made possible through `numpy`. Presented below is one possible implementation of the softmax function in Python.
+
+```python
+def simple_softmax(x):
+  exp = np.exp(x)
+  return exp / exp.sum()
+```
+
+This particular implementation, however, poses two problems. First, it is susceptible to arithematic overflow. Because computing the softmax function require exponentiation, it is likely for the computer to end up with very large numerical quantities, making calculations unstable. One way to solve this problem is by subtracting values from the exponent.
+
+
+$$
+\begin{align}
+y_k &= \frac{e^{z_k}}{\sum_{i = 1}^n e^{z_i}} \\
+&= \frac{C e^{z_k}}{\sum_{i = 1}^n Ce^{z_i}} \\
+&= \frac{e^{z_k + \log C}}{\sum_{i = 1}^n e^{z_i + \log C}} \\ 
+&= \frac{e^{z_k + C'}}{\sum_{i = 1}^n e^{z_i + C'}}
+\end{align} \tag{2}
+$$
+
+
+As the calculation shows, adding or subtracting the same value from the exponent of both the numerator and the denominator creates no difference for the output of the softmax function. Therefore, we can prevent numbers from getting too large by subtracting some value from the exponent, thus yielding accurate results from stable computation.
+
+We can further improve the softmax function for the purposes of this tutorial by supporting batch computation. By batch, I simply mean multiple inputs in the form of arrays. The function shown above is only able to account for a single vector, presumably given as a list or a one-dimensional numpy array. The implementation below uses a loop to calculate the softmax output of each instance in a matrix input, then returns the result. Note that it also prevents arithematic overflow by subtracting the `np.max` value of the input array.
 
 
 ```python
@@ -148,20 +183,46 @@ def softmax(x):
     return np.array(result)
 ```
 
+Let's test the improved softmax function with a two-dimensional array containing two instances.
+
 
 ```python
 softmax([[10, 10], [1, 4]])
 ```
 
 
-
-
     array([[0.5       , 0.5       ],
            [0.04742587, 0.95257413]])
 
+As expected, the softmax function returns the softmax output applied to each individual instance in the list. Note that the elements of each output instance add up to one, as expected.
+
+## ReLU
+
+Another crucial activation function is [ReLU](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)), or the rectified linear unit. ReLU is a piece-wise function, and hence introduces nonlinearity, which is one of the purposes of having an activation function in a neural network.
+
+The formula for ReLU is extremely simple. 
 
 
-# ReLU
+$$
+\text{ReLU}(x) = 
+\begin{cases}
+x & (x \geq 0)\\
+0 & (x < 0)
+\end{cases} \tag{3}
+$$
+
+
+If the input value $x$ i s greater or equal to zero, the ReLU function outputs the value without modification. However, if $x$ is smaller than zero, the returned value is also zero. 
+
+There are other ways of expressing the ReLU function. One version that is commonly used and thus deserves our attention is written below. Although this appears different from (3), both formulas express the same operation at their core.
+
+
+$$
+\text{ReLU}(x) = \text{max}(0, x) \tag{4}
+$$
+
+
+We can get a better sense of what the function with the help of Python. Assuming that the input is a `numpy` vector, we can use vectorization to change only the elements in the input vector that are negative to zero, as shown below.
 
 
 ```python
@@ -169,6 +230,8 @@ def relu(x):
     x[x < 0] = 0
     return x
 ```
+
+Let's see what the ReLU function looks like by plotting it on the plane. 
 
 
 ```python
@@ -180,12 +243,44 @@ ax.plot(x, y, color='skyblue')
 plt.show()
 ```
 
-
 <img src="/assets/images/2020-02-05-neural-net_files/2020-02-05-neural-net_12_0.svg">
 
-
+The visualization makes clear the point that ReLU is a piece-wise function that flattens out negative values while leaving positive values unchanged. 
 
 # Building the Model
+
+Now that we have all the ingredients ready, it's time to build the neural network. Earlier, I said that a neural network can be reduced to matrix multiplication. This is obviously an oversimplification, but there is a degree of truth to that statement.
+
+Recall that a single neuron of a neural network can be expressed as a dot product of two vectors, as shown below. Following conventional notation, $w$ represents weights; $x$, input data; $b$, bias.
+
+
+$$
+\begin{align}
+a &= w_1 x_1 + w_2 x_2 + \cdots + w_n x_n + b \\
+&= \sum_{i = 1}^n w_i x_i + b \\ 
+&= x^T w + b 
+\end{align} \tag{5}
+$$
+
+
+Visually, we can imagine the neuron being lit up when the value $a$ is large.  This is similar to how the human brain works, except that biological neurons are binary in that they either fires on or off; artifical neurons in a network typically take a range of values. 
+
+If we expand the vector operation in (5), it becomes quickly obvious that we can represent an entire layer of neurons as a product of two matrices. Our simple neural network model can thus be expressed as follows:
+
+
+$$
+A_1 = XW_1 + b_1 \\
+Z_1 = \text{max}(0, A_1) \\
+A_2 = Z_1 W_2 + b_2 \\
+Z_2 = \sigma(A_2) \tag{6}
+$$
+
+
+The equations above represent our simple neural network model composed of two affine layers. The output of the first affine layer, $A_1$, is modified by a ReLU unit. Then, the output is passed onto the second affine layer, $A_2$, the output of which is passed onto a softmax unit. The output of the softmax function is the final output of our model. Note that ReLU and softmax are denoted as max and sigma, respectively. 
+
+## Model Initialization
+
+The code below is a function that intializes our network. Because our `make_moons` data only has two classes, with each data point containing two entries corresponding to the $x$ and $y$ coordinates of that point, we set both `n_features` and `n_class` arguments to 2 by default. The number of neurons in the affine layers, denoted as `n_hidden`, is arbitrarily set to 64. The `init_network` returns a dictionary that contains all the weights of the model.
 
 ```python
 def init_network(n_features=2, n_class=2, n_hidden=64):
@@ -198,11 +293,17 @@ def init_network(n_features=2, n_class=2, n_hidden=64):
     return model
 ```
 
+Note that we need to pay close attention to the dimensionality of our data to ensure that matrix multiplication is possible. We don't have to worry about the dimensionality of the bias since `numpy` supports broadcasting by default.
 
+Presented below is a visualization of our neural network, created using [NN-SVG](http://alexlenail.me/NN-SVG/index.html). Instead of cluttering the diagram by attempting to visualize all 64 neurons, I decided to simplify the picture by assuming that we have 16 neurons in each of the affine layers. But with the power of imagination, I'm sure it's not so much difficult to see how the picture would change with 64 neurons.
+
+<img src="/assets/images/2020-02-05-neural-net_files/nn.svg">
+
+Hopefully the visualization gave you a better understanding of what our model looks like. Now that we have a function that creates our model, we are ready to run the model!
 
 ## Forward Propagation
 
-
+At this point, our neural network model is only a dictionary that contains matrices of specified sizes, each containing randomly genereated numbers. You might be wondering how a dictionary can be considered a model---after all, a dictionary is merely a data structure, and so is incapable of performing any operations. To make our model to work, therefore, we need a function that performs matrix multiplications and applies activation functions based on the dictionary. The `forward` function is precisely such a function that uses the weights stored in our model to return both the intermediary and final outputs, denoted as `z1` and `z2` respectively.  Note that we apply activation functions, such as `relu` and `softmax` when appropriate. This process of deriving an output from an input using a neural network is known as forward propagation.
 
 
 ```python
@@ -218,11 +319,23 @@ def forward(model, input_data):
     return z1, z2
 ```
 
+## Minibatch Gradient Descent
+
+Forward propagation is great and all, but without appropriately trained weights, our model is obviously going to spit out meaningless predictions. The way to go about this is to use the gradient descent algorithm with back propagation. We will discuss more about back propagation in the next subsection, as it is a meaty topic that deserves space of its own. We deal primarily with the former in this section.
+
+This is not the first time that we have come across gradient descent on this blog. In fact, we used gradient descent to optimizse our logistic regression model in this [post](https://jaketae.github.io/study/logistic-regression/#gradient-descent). Recall that the gradient descent algorithm can be summarized as 
 
 
-## Minibatch Processing
+$$
+\theta := \theta - \alpha \nabla_\theta L \tag{7}
+$$
 
 
+where $\theta$ represents the parameters, or weights, $\alpha$ represents the learning rate, and $L$ represents the loss function. This is the vanilla gradient descent algorithm, which is also referred to as batch gradient descent.
+
+Minibatch gradient descent is similar to gradient descent. The only point of difference is that it calculates the gradient for each minibatch instead of doing so for the entire dataset as does batch gradient descent. The advantage of using a minibatch is that it is computationally lighter and less expensive. Minibatch gradient descent can be considered a happy point of compromise between stochastic and batch gradient descent, which lie on the polar opposite ends of the spectrum. 
+
+ Let's first take a look at the `fit` function, which divides the `input_data` and `label` into `batch_data` and `batch_label` given a `batch_size`. Internally, the `fit` function calls the `sgd` gradient descent algorithm to update the weights and finally returns the `model` which contains updated parameters based on the training data.
 
 
 ```python
@@ -236,6 +349,8 @@ def fit(model, input_data, label, batch_size, iter_num):
     return model
 ```
 
+As mentioned above, each `batch_data` and `batch_label` are minibatches that will be feeded into our `sgd` gradient descent function. Note that the `sgd` function is simply an implementation of equation (7).
+
 
 ```python
 def sgd(model, data, label, alpha=1e-4):
@@ -245,7 +360,123 @@ def sgd(model, data, label, alpha=1e-4):
     return model
 ```
 
+At the core of the `sgd ` function is the `backward` function, which is our implementation of back propagation. This provides a nice point of transition to the next section.
+
 ## Back Propagation
+
+Back propagation is a smart way of calculating gradients. There are obviously many ways one might go about gradient calculation. We can simply imagine there being a loss function that is a function of all the thousands of weights and biases making up our neural network, and calculate partial derivatives for each parameter. However, this naive aproach is problematic because it is so computationally expensive. Moreover, if you think about it for a second, you might realize that doing so would result in duplicate computations due to the chain rule. Take the simple example below.
+
+
+$$
+\frac{\partial L}{\partial w_1} = \frac{\partial L}{\partial w_2} \frac{\partial w_2}{\partial w_1} \tag{8}
+$$
+
+
+If we were to calculate the gradient of the loss function with respect to $w_1$ and $w_2$, all we need to compute is the gradient of $w_1$, since that of $w_2$ will naturally be obtained along the way. In other words, computing the gradient simply requires that we start from the very end of the neural network and propagate the gradient values backwards to compute the partial derivatives according to the chain rule. This is what is at the heart of back propagation: in one huge swoop, we can obtain the gradient for all weights and parameters at once instead of having to calculate them individually. For a more detailed explanation of  this mechanism, I strongly recommend that you take a look at this [excellent blog post](https://colah.github.io/posts/2015-08-Backprop/) written by Christopher Olah.
+
+How do we go about back propagation in the case of our model? First, it is necessary to define a loss function. The most commonly used loss function in the context of classification problems is [cross entropy](https://en.wikipedia.org/wiki/Cross_entropy), which we explored in this [post](https://jaketae.github.io/study/information-entropy/) previously on this blog. For a brief recap, presented below is the formula for calculating cross entropy given a true distribution $y$ and a predicted distribution $z$:
+
+
+$$
+L = - \sum_{i = 1}^n y_i \log(z_i) \tag{9}
+$$
+
+
+Our goal is to train our neural network so that is output distribution $z$ is as close to $y$ as possible. In the case of binary classification, we might alter equation (9) to the following form:
+
+
+$$
+L = - \sum_{i = 1}^n y_i \log(z_i) + (1 - y_i) \log(1 - z_i) \tag{10}
+$$
+
+
+The reformulation as shown in equation (10) is the formula for what is known as binary cross entropy. This is the equation that we will be using in the context of our problem, since the dataset we have only contains two class labels of 0 and 1.
+
+Now that we have an idea of what the loss function looks like, it's time to calculate the gradient. Since we are going to be back propagating the gradient, it makes sense to start from the very back of the neural network. Recall that our neural network is structured as follows:
+$$
+A_1 = XW_1 + b_1 \\
+Z_1 = \text{max}(0, A_1) \\
+A_2 = Z_1 W_2 + b_2 \\
+Z_2 = \sigma(A_2) \tag{6}
+$$
+The last layer is a softmax unit that receives input $A_2$ to produce output $Z_2$. Our goal, then, is to compute the gradient
+
+
+$$
+\frac{\partial z_i}{\partial a_j}
+$$
+
+
+where $z_i$ and $a_j$ each represent the values taken by the $i$th and $j$th neuron in layers $Z_2$ and $A_2$, respectively. One point of caution is that it is important to consider whether $i$ and $j$ are equal, as this produces differences in the calculation of the gradient. First consider the case when $i=j$:
+
+
+$$
+\begin{align}\frac{\partial z_i}{\partial a_{j=i}} &= \frac{\partial}{\partial a_i} \bigg[\frac{e^{a_i}}{\sum_{k = 1}^n e^{a_k}}\bigg] \\&= \frac{e^{a_i}}{\sum_{k = 1}^n e^{a_k}} - e^{a_i} e^{a_i} \left(\sum_{k = 1}^n e^{a_k}\right)^{-2} \\&= z_i - z_i^2 \\&= z_i(1 - z_i)\end{align} \tag{11}
+$$
+
+
+When $i \neq j$:
+
+
+$$
+\begin{align}\frac{\partial z_i}{\partial a_{j \neq i}} &= \frac{\partial}{\partial a_j} \bigg[\frac{e^{a_i}}{\sum_{k = 1}^n e^{a_k}}\bigg] \\&= - e^{a_i} e^{a_j} \left(\sum_{k = 1}^n e^{a_k}\right)^{-2} \\&= - z_i z_j\end{align} \tag{12}
+$$
+
+
+We see that the gradient is different in the two cases! This is certainly going to important for us when calculating the gradient of $L$, the cross entropy loss function, with respect to $a$. Specifically, we have to consider the two cases separately by dividing up the summation expression into two parts, as shown below:
+
+
+$$
+\begin{align}\frac{\partial L}{\partial a_i} &= \frac{\partial}{\partial a_i} \bigg[ - \sum_{k = 1}^n y_k \log(z_k) \bigg] \\ &= - \sum_{k = 1}^n y_k \frac{\partial \log(z_k)}{\partial a_i} \\&= - \sum_{k = 1}^n y_k \frac{\partial \log(z_k)}{\partial z_k} \frac{\partial z_k}{\partial a_i} \\&= - \sum_{k = 1}^n \frac{y_k}{z_k} \frac{\partial z_k}{\partial a_i} \\&= - \bigg(\frac{y_i}{z_i}\frac{\partial z_i}{\partial a_i} + \sum_{k = 1, k \neq i}^n \frac{y_k}{z_k} \frac{\partial z_k}{\partial a_i} \bigg) \\&= - \frac{y_i}{z_i} \cdot z_i(1 - z_i) + \sum_{k = 1, k \neq i}^n \frac{y_k}{z_k} \cdot z_k z_i \\&= - y_i + y_i z_i + \sum_{k = 1, k \neq i}^n y_k z_i \\&= z_i \left(y_i + \sum_{k = 1, k \neq i}^n y_k \right) - y_i \\&= z_i \left(\sum_{k = 1}^n y_k \right) - y_i \\&= z_i - y_i\end{align} \tag{13}
+$$
+
+
+That was a long ride, but in the end, we end up with a very nice expression! This tells us that the gradient of the cross entropy loss function with respect to the second affine layer is simply the size of the error term. In other words, if we expand the result in (13) to apply to the entire matrix of layers, we get
+
+
+$$
+\frac{\partial L}{\partial A_2} = Z_2 - y \tag{14}
+$$
+
+
+This provides a great place for us to start. We can commence from here to find the gradient of the loss function with respect to other layers more further down the neural network. For example, we can calculate the gradient with respect to the weights of the second affine layer as follows:
+
+
+$$
+\frac{\partial L}{\partial W_2} = Z_1^T \frac{\partial L}{\partial A_2} = Z_1^T (Z_2 - y) \tag{15}
+$$
+
+
+We won't get into much mathematical details here, but a useful intuition we can use to derive equation (15) is to pay close attention to the dimensionality of data. Note that the dimension of the gradient as a matrix should equal to that of the layer itself. In other words, $\text{Dim}(W_2) = \text{Dim}(\nabla_{W_2}L)$, so on and so forth. This is because the purpose of gradient computation is to update the matrix of parameters: to perform an element-by-element update with the gradient, it must necessarily be true that the dimensionality of the gradient equals that of the original matrix. Using this observation, it is possible to navigate through the confusion of transposes and left, right matrix multiplication that one might otherwise encounter if they were to approach it without any intuition or heuristics.
+
+To expedite this post, I'll present the result of the gradient calculations for all parameters below.
+
+
+$$
+\frac{\partial L}{\partial b_2} = Z_2 - y \\
+\frac{\partial L}{\partial W_1} = X^T I[(Z_2 - y)W_2^T] \tag{16}
+$$
+
+
+Note that the indicator function, denoted as $I[X]$, is a simple gate function that calculates the gradient of the ReLU unit:
+
+
+$$
+I[X] = 
+\begin{cases}
+1 & (x \geq 1)\\
+0 & (x < 0)
+\end{cases} \tag{17}
+$$
+
+
+ It isn't difficult to see that the indicator function is simply a derivative of the ReLU function as shown in equation (3).
+
+Now, it is time to translate our findings into Python. Because our neural network model is represented as a dictionary, I decided to adopt the same data structure for the gradient. Indeed, that is how we designed the `sgd` function above. The `backward` function below is an implementation of back propagation that encapsulates equations (14) through (17). 
+
+There is a subtlety that I did not discuss previously, which has to do with the bias terms. It may appear as if the gradient of the bias term does not match that of the bias term itself. Indeed, that is a valid observation according to equation (16). The way we go about this is that we add up the elements of the matrix according to columns. This is exactly what we do with the `np.sum(arg, axis=0)` command invoked when computing `db1` and `db2`, which represent the gradient of the bias terms. 
+
+With all the complex math behind, here is the code implementation of back propagation.
 
 
 ```python
@@ -264,9 +495,11 @@ def backward(model, data, label):
 
 
 
+Finally, our model is ready to be trained!
+
 # Testing the Model
 
-
+Here is a simple function which we can use to train and test our model. Because each iteration can yield a different accuracy, we repeat the experiment multiple times---or specifically, `n_experiment` times---to obtain the mean accuracy of our model. We also get a standard deviation of the mean accuracy estimate to see whether or not the performance of the model is reliable and consistent.
 
 
 ```python
@@ -282,6 +515,8 @@ def test(train_data, train_label, test_data, test_label, batch_size, iter_num, n
     print('Mean Accuracy: {0:.5g}, Standard Deviation: {1:.5g}'.format(acc_lst.mean(), acc_lst.std()))
 ```
 
+Let's test our model with the `X_train` and `y_train` data, with batch size set to 10. 
+
 
 ```python
 test(X_train, y_train, X_test, y_test, 10, 10, 100)
@@ -291,9 +526,13 @@ test(X_train, y_train, X_test, y_test, 10, 10, 100)
 
 
 
+The mean accuracy of our model is around 95 percent, which isn't bad for a simple neural network with just two layers. The standard deviation is also reasonably low, indicating that the performance of our model is consistent with little variations. 
+
+I was almost about to stop here, but then decided that I wanted to express the neural network model as a Python class. After all, that is how actual machine learning and deep learning libraries are implemented. I also decided that it can't hurt for me to practice object-oriented thinking. So presented in the next section is a nicer, cleaner implementation of a neural network model based off of the functions we designed above.
+
 ## Class-based Implementation
 
-
+A simple neural network model in just 56 lines of code, ready to be initialized, trained, deployed, and tested!
 
 ```python
 class NeuralNet:
@@ -354,6 +593,8 @@ class NeuralNet:
         return acc
 ```
 
+You will see that much of the code is literally just copy and pasted from the original functions we designed above. But just to make sure that everything works fine, let's try creating a neural network object and use the `test` function to see how well our model performs. I chose 99 as the number of neurons in the affine layers for no reason.
+
 
 ```python
 net = NeuralNet(99)
@@ -361,11 +602,17 @@ net.test(X_train, y_train, X_test, y_test, 20, 10)
 ```
 
 
-
-
     0.9496
 
+In this instance, the accuracy of this model is 95 percent, similar to what we had above. 
 
+
+
+## Hyperparameter Tuning
+
+At this point, one question that popped up in my mind was the relationship between the number of neurons and the performance of the neural network model. Intuitively, the more neurons there are, the higher the memory capacity of that model, and thus better the performance. Of course, the larger the number of neurons, the larger the risk of overfitting our model, which can also negatively impact the performance of the neural network. This is conventional wisdom in the land of deep learning.
+
+Let's create a function to plot the performance of a neural network and the number of its neurons. Below is a `test_class` function that achieves this task. The function receives `min_neuron`, `max_neuron`, and `n_trial` as arguments. The first two arguments specify the range for the number of neurons that we are interested in. For example, if we set them to 3 and 40, respectively, that means we want to see the accuracy of models with number of neurons ranging from 3 to 40 in a single layer. The `n_trial` argument specifies the number of experiments we want to conduct. This way, we can calculate the mean accuracy, just as we did previously.
 
 
 ```python
@@ -386,6 +633,8 @@ def test_class(min_neuron, max_neuron, n_trial):
     plt.show()
 ```
 
+Let's call the function to create a plot.
+
 
 ```python
 test_class(3, 40, 3)
@@ -393,55 +642,16 @@ test_class(3, 40, 3)
 
 <img src="/assets/images/2020-02-05-neural-net_files/2020-02-05-neural-net_23_0.svg">
 
+The result shows that the performance of the neural network generally increases as the number of neurons increase. We don't see signs of overfitting, perhaps because a `max_neuron` of 40 isn't big enough to cause ovefitting in the first place. However, I decided to stop the experiment here because running the `test_class` function took a lot more time than I had expected, even on Google Colab. For now, the simple observation that the performance seems to increase with more neurons will suffice to satisfy our curiosity.
 
-$$
+# Conclusion
 
-$$
+In this post, we built a neural network only using `numpy` and math. This was a lot more difficult than building other machine learning models from scratch particularly because of the heavy mathematics involved. However, it was definitely worth the challenge becasue completing and writing up this tutorial made me think a lot more about the clockwork of a neural network model. 
+
+It is easy to think of neural networks as a black box, especially given the sheer ease of creating it. With just `tf.keras`, one can build a simple neural network like this one in no time. Indeed, the main reason why I love the Keras functional API so much is that it is so easy to code and deploy a neural network model. However, when we write such models by depending on preexisting libraries, we sometimes grow oblivious to the intricacies the take place under the hood. It is my hope that reading and following along this post gave you a renewed sense of respect for the writers of such libraries, as well as the beauty of neural network models themselves. 
+
+I hope you enjoyed reading this post. Catch you up in the next one!
 
 
-$$A_1 = XW_1 + b_1$$
-$$Z_1 = \text{max}(0, A_1)$$
-$$A_2 = Z_1 W_2 + b_2$$
-$$Z_2 = \sigma(A_2)$$
-$$L = - \sum_{i = 1}^n y_i \log(z_i), \ z_i \in Z_2, y_i \in y$$
-$$z_i = \sigma(a_i) = \frac{e^{a_i}}{\sum_{k = 1}^n e^{a_k}}, \ a_i \in A_2$$
 
-$$\begin{align}
-\frac{\partial z_i}{\partial a_i} &= \frac{\partial}{\partial a_i} \bigg[\frac{e^{a_i}}{\sum_{k = 1}^n e^{a_k}}\bigg] \\
-&= \frac{e^{a_i}}{\sum_{k = 1}^n e^{a_k}} - e^{a_i} e^{a_i} \left(\sum_{k = 1}^n e^{a_k}\right)^{-2} \\
-&= z_i - z_i^2 \\
-&= z_i(1 - z_i)
-\end{align}$$
 
-$$\begin{align}
-\frac{\partial z_i}{\partial a_{j \neq i}} &= \frac{\partial}{\partial a_j} \bigg[\frac{e^{a_i}}{\sum_{k = 1}^n e^{a_k}}\bigg] \\
-&= - e^{a_i} e^{a_j} \left(\sum_{k = 1}^n e^{a_k}\right)^{-2} \\
-&= - z_i z_j
-\end{align}$$
-
-$$\begin{align}
-\frac{\partial L}{\partial a_i} &= \frac{\partial}{\partial a_i} \bigg[ - \sum_{k = 1}^m y_k \log(z_k) \bigg] \\ 
-&= - \sum_{k = 1}^m y_k \frac{\partial \log(z_k)}{\partial a_i} \\
-&= - \sum_{k = 1}^m y_k \frac{\partial \log(z_k)}{\partial z_k} \frac{\partial z_k}{\partial a_i} \\
-&= - \sum_{k = 1}^m \frac{y_k}{z_k} \frac{\partial z_k}{\partial a_i} \\
-&= - \bigg(\frac{y_i}{z_i}\frac{\partial z_i}{\partial a_i} + \sum_{k = 1, k \neq i}^m \frac{y_k}{z_k} \frac{\partial z_k}{\partial a_i} \bigg) \\
-&= - \frac{y_i}{z_i} \cdot z_i(1 - z_i) + \sum_{k = 1, k \neq i}^m \frac{y_k}{z_k} \cdot z_k z_i \\
-&= - y_i + y_i z_i + \sum_{k = 1, k \neq i}^m y_k z_i \\
-&= z_i \left(y_i + \sum_{k = 1, k \neq i}^m y_k \right) - y_i \\
-&= z_i \left(\sum_{k = 1}^m y_k \right) - y_i \\
-&= z_i - y_i
-\end{align}$$
-
-$$ \frac{\partial L}{\partial A_2} = Z_2 - y$$
-
-$$\frac{\partial L}{\partial W_2} = Z_1^T \frac{\partial L}{\partial A_2} = Z_1^T (Z_2 - y)$$
-
-$$\frac{\partial L}{\partial b_2} = Z_2 - y$$
-
-$$\frac{\partial L}{\partial W_1} = X^T I[(Z_2 - y)W_2^T]$$
-
-$$I(\forall x \in X) = 
-\begin{cases}
-1 & x > 0 \\
-0 & x \leq 0
-\end{cases}$$
