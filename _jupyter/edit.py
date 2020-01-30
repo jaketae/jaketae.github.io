@@ -9,6 +9,8 @@ def edit():
 		filedata = file.read()
 	filedata = re.sub(r"!\[svg\]\(", "<img src=\"/assets/images/", filedata)
 	filedata = re.sub(".svg\)", ".svg\">", filedata)
+	filedata = re.sub(r"!\[png\]\(", "<img src=\"/assets/images/", filedata)
+	filedata = re.sub(".png\)", ".png\">", filedata)
 	filedata = yaml + filedata
 	with open(path, 'w') as file:
 		file.write(filedata)

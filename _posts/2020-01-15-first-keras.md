@@ -5,7 +5,7 @@ categories:
 tags:
   - machine_learning
   - deep_learning
-  - keras
+  - tensorflow
 ---
 
 Lately, I have been on a [DataCamp] spree after unlocking a two-month free unlimited trial through Microsoft's [Visual Studio Dev Essentials program]. If you haven't already, make sure to check it out, as it offers a plethora of tools, journal subscriptions, and software packages for developers. Anyhow, one of the courses I decided to check out on DataCamp was titled "Introduction to Deep Learning with Python," which covered basic concepts in deep learning such as forward and backward propagation. The latter half of the tutorial was devoted to the introduction of the [Keras API] and the implementation of neural networks. I created this notebook immediately after finishing the tutorial for memory retention and self-review purposes.
