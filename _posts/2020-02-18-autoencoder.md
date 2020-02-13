@@ -8,6 +8,12 @@ tags:
   - tensorflow
 ---
 
+In today's post, we will take yet another look at an interesting application of a neural network: [autoencoders](https://en.wikipedia.org/wiki/Autoencoder). There are many types of autoencoders, but the one we will be looking at today is the simplest one, which might be considered the vanilla autoencoder.
+
+
+
+Let's first 
+
 ```python
 import os
 import datetime
@@ -23,8 +29,6 @@ from tensorflow.keras import callbacks
 import matplotlib.pyplot as plt
 plt.style.use('seaborn')
 ```
-
-
 
 
 
