@@ -8,11 +8,11 @@ tags:
   - tensorflow
 ---
 
-In today's post, we will take yet another look at an interesting application of a neural network: [autoencoders](https://en.wikipedia.org/wiki/Autoencoder). There are many types of autoencoders, but the one we will be looking at today is the simplest one, which might be considered the vanilla autoencoder.
+In today's post, we will take yet another look at an interesting application of a neural network: [autoencoders](https://en.wikipedia.org/wiki/Autoencoder). There are many types of autoencoders, but the one we will be looking at today is the simplest variant, the vanilla autoencoder. Despite its simplicity, however, there is a lot of insight to glean from this example---in fact, it is precisely the simplicity that allows us to better understand how autoencoders work, and potentially extend that understanding to to analyze other flavors of autoencoders, such as variational autoencoder networks which we might see in a future post. Without further ado, let's get started.
 
+# Building the Model
 
-
-Let's first 
+We begin by importing all modules and configurations necessary for this tutorial.
 
 ```python
 import os
@@ -30,12 +30,24 @@ import matplotlib.pyplot as plt
 plt.style.use('seaborn')
 ```
 
+## Latent Dimension
 
+How do autoencoders work? There are entire books dedicated to this topic, and this post in no way claims to introduce and explore all the fascinating complexities of this model. However, one intuitive way to understand autoencoders is to consider them as, lo and behold, encoders that map complex data points into vectors living in some latent dimension. 
+
+For example, a 28-by-28 pixel RGB channel image might be compressed into a five-dimensional latent vector. The five numbers composing this vector somehow encodes the core information needed to then decode this vector back into the original 28-by-28 pixel RGB channel image. Of course, some information is inevitably going to be lost---after all, how can five numbers describe the entirety of an image? However, what's important and fascinating about autoencoders is that, with appropriate training and configuration, they manage to find ways to best compress input data into latent vectors that can be decoded to regenerate a close approximation of the input data. 
+
+For the purposes of this demonstration, let's configure the latent dimension of the encoder to be 128 dimensions---in other words, each 28-by-28, single-channel image will be encoded into vectors living in 128 dimensional space. 
 
 ```python
 compressed_dim = 128
 image_shape = (28, 28, 1)
 ```
+
+## Encoder-Decoder Model
+
+It's time to build the autoencoder model. In summary, an autoencoder is composed of two components: an encoder and a decoder. The encoder transfers input data into the latent dimension, and the decoder performs the exact reverse: it takes vectors in the latent space and rearranges it to bring it back into its original dimension, which is, in this case, a 28-by-28, single-channel image. 
+
+The followign code snippet implements this logic using the `tf.keras` functional API.
 
 
 ```python
@@ -67,16 +79,14 @@ def build_model(image_shape, compressed_dim):
   return encoder, autoencoder
 ```
 
+Let's declare the encoder and autoencoder model by invoking the `build_model` function with the specified image shape and the dimensionality of the latent space.
+
 ```python
 encoder, autoencoder = build_model(image_shape, compressed_dim)
 ```
 
-    WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/tensorflow_core/python/ops/resource_variable_ops.py:1630: calling BaseResourceVariable.__init__ (from tensorflow.python.ops.resource_variable_ops) with constraint is deprecated and will be removed in a future version.
-    Instructions for updating:
-    If using Keras pass *_constraint arguments to layers.
-    WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/tensorflow_core/python/ops/nn_impl.py:183: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
-    Instructions for updating:
-    Use tf.where in 2.0, which has the same broadcast rule as np.where
+Just to get a sense of what operations are taking place dimensionality-wise, here is a look at the output shapes of the autoencoder model. Notice that the input is of shape `(None, 28, 28, 1)`, and that the final output is also of the same shape `(None, 28, 28, 1)`, as expected.
+
     Model: "model"
     _________________________________________________________________
     Layer (type)                 Output Shape              Param #   
@@ -126,16 +136,23 @@ encoder, autoencoder = build_model(image_shape, compressed_dim)
     Non-trainable params: 224
     _________________________________________________________________
 
+Here's the image of the model for the fancy bells and whistles. 
+
 ```python
 plot_model(autoencoder, show_shapes=True, show_layer_names=True)
 ```
 
-
-
-
 <img src="/assets/images/2020-02-18-autoencoder_files/2020-02-18-autoencoder_3_0.png">
 
+Now that the autoencoder model is fully ready, it's time to see what it can do!
 
+# Testing the Autoencoder
+
+Although autoencoders present countless exciting possibilities for application, we will look at a relatively simple use of an autoencoder in this post: denoising. There might be times when the photos we take or image data we use are tarnished by noise---undesired dots or lines that undermine image quality. An autoencoder can be trained to remove these noises fairly easily as we will see in thi post. 
+
+## Data Preparation
+
+First, let's import the MNIST data set for this tutorial. Nothing much exciting is happening below, except for the fact that we are rearranging and preprocessing the dataset so as to maximize training efficiency.
 
 
 ```python
@@ -152,6 +169,8 @@ def load_data():
 X_train, X_test = load_data()
 ```
 
+Next, we will add  noise to the data. Note that the MNIST dataset does not contain noise by default: we will have to artificially and intentionally tarnish the dataset to produce a noisy training set for the autoencoder model. The `add_noise` function precisely performs this function. 
+
 
 ```python
 def add_noise(data, noise_factor):
@@ -160,10 +179,20 @@ def add_noise(data, noise_factor):
   return data_noise
 ```
 
+Using the `add_noise` function, we can create a noisy sample. Note that `noise_factor` was set to 0.5, although I'd imagine other values within reasonable range would work equally well as well.
+
 
 ```python
 X_train_noise = add_noise(X_train, 0.5)
 ```
+
+
+
+## Model Training
+
+Training the model is very simple: the training data is `X_train_noise`, the noisy dataset, and the predicted label is `X_train`. Through this configuration, we essentially expect the autoencoder to be able to see noisy images, after which encoding and decoding is performed via a transformation to a latent dimension to ultimately reproduce a pristine image devoid of any noise. 
+
+For experimental puposes, I tried using the `TensorBoard` callback on Google Colab. `TensorBoard` is a platform that gives developers full view of what happens during and after the training process. It makes observing metrics like loss and accuracy a breeze. I highly recommend that you check out [this tutorial](https://www.tensorflow.org/tensorboard/tensorboard_in_notebooks) on how to use and configure this functionality on your notebook. 
 
 
 ```python
@@ -250,67 +279,9 @@ history = autoencoder.fit(X_train_noise, X_train,
     Epoch 35/35
     54000/54000 [==============================] - 6s 116us/sample - loss: 0.0867 - val_loss: 0.0981
 
+## The Result
 
-
-```python
-%tensorboard --logdir logs
-```
-
-
-
-
-<div id="root"></div>
-<script>
-  (function() {
-    window.TENSORBOARD_ENV = window.TENSORBOARD_ENV || {};
-    window.TENSORBOARD_ENV["IN_COLAB"] = true;
-    document.querySelector("base").href = "https://localhost:6006";
-    function fixUpTensorboard(root) {
-      const tftb = root.querySelector("tf-tensorboard");
-      // Disable the fragment manipulation behavior in Colab. Not
-      // only is the behavior not useful (as the iframe's location
-      // is not visible to the user), it causes TensorBoard's usage
-      // of `window.replace` to navigate away from the page and to
-      // the `localhost:<port>` URL specified by the base URI, which
-      // in turn causes the frame to (likely) crash.
-      tftb.removeAttribute("use-hash");
-    }
-    function executeAllScripts(root) {
-      // When `script` elements are inserted into the DOM by
-      // assigning to an element's `innerHTML`, the scripts are not
-      // executed. Thus, we manually re-insert these scripts so that
-      // TensorBoard can initialize itself.
-      for (const script of root.querySelectorAll("script")) {
-        const newScript = document.createElement("script");
-        newScript.type = script.type;
-        newScript.textContent = script.textContent;
-        root.appendChild(newScript);
-        script.remove();
-      }
-    }
-    function setHeight(root, height) {
-      // We set the height dynamically after the TensorBoard UI has
-      // been initialized. This avoids an intermediate state in
-      // which the container plus the UI become taller than the
-      // final width and cause the Colab output frame to be
-      // permanently resized, eventually leading to an empty
-      // vertical gap below the TensorBoard UI. It's not clear
-      // exactly what causes this problematic intermediate state,
-      // but setting the height late seems to fix it.
-      root.style.height = `${height}px`;
-    }
-    const root = document.getElementById("root");
-    fetch(".")
-      .then((x) => x.text())
-      .then((html) => void (root.innerHTML = html))
-      .then(() => fixUpTensorboard(root))
-      .then(() => executeAllScripts(root))
-      .then(() => setHeight(root, 800));
-  })();
-</script>
-
-
-
+Now that the training is over, what can we do with this autoencoder? Well, let's see if the autoencoder is now capable of removing noise from tainted image files. But before we jump right into that, let's first build a simple function that displays images for our convenience. 
 
 ```python
 def show_image(data, num_row):
@@ -325,6 +296,8 @@ def show_image(data, num_row):
   plt.show()
 ```
 
+Using the `show_image` function, we can now display 25 test images that we will feed into the autoencoder.
+
 
 ```python
 show_image(X_test, 5)
@@ -333,7 +306,7 @@ show_image(X_test, 5)
 
 <img src="/assets/images/2020-02-18-autoencoder_files/2020-02-18-autoencoder_11_0.svg">
 
-
+Let's add noise to the data. 
 
 ```python
 X_test_noise = add_noise(X_test, 0.5)
@@ -343,13 +316,22 @@ show_image(X_test_noise, 5)
 
 <img src="/assets/images/2020-02-18-autoencoder_files/2020-02-18-autoencoder_12_0.svg">
 
-
+Finally, the time has come! The autoencoder will try to "denoise" the contaminated images. Let's see if it does a good job.
 
 ```python
-decoded_images = autoencoder.predict(X_test_noise)
-show_image(decoded_images, 5)
+denoised_images = autoencoder.predict(X_test_noise)
+show_image(denoised_images, 5)
 ```
 
 
 <img src="/assets/images/2020-02-18-autoencoder_files/2020-02-18-autoencoder_13_0.svg">
 
+Lo and behold, the autoencoder produces pristine images, almost reverting them back to their original state!
+
+# Conclusion
+
+I find autoencoders interesting for two reasons. First, they can be used to compress images into lower dimensions. Our original image was of size 28-by-28, summing up to a total of 784 pixels. Somehow, the autoencoder finds ways to decompress this image into vectors living in the predefined 128 dimensions. This is interesting in and of itself, since it presents ways that we might be able to compress large files with minimal loss of information. But more importantly, as we have seen in this tutorial, autoencoders can be used to perform certain tasks, such as removing noise from data, and many more.
+
+In the next post, we will take a look at a variant of this vanilla autoencoder model, known as variational autoencoders. Variataional autoencoders are a lot more powerful and fascinating because they can actually be used to generate data instead of merely processing them. 
+
+I hope you enjoyed reading this post. Stay tuned for more! 
