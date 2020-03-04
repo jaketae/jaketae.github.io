@@ -7,8 +7,6 @@ categories:
   - development
 tags:
   - update
-
-
 ---
 
 Programming is difficult but fun. Or maybe it's the other way around. Either way, any  developer would know that external libraries are something that makes programming so much easier. As a Pythonista with an interest in deep learning, I cannot image a world without essential libraries like `numpy`, `matplotlib`, `pandas`, or `tensorflow`. It simply be  impossible, at least for me, to achieve everything from scratch without using these libraries. 
@@ -19,11 +17,32 @@ It is only a few days ago that it dawned to me that all of the modules I frequen
 
 It soon became immediately obvious that I had to learn how to use Git. I had a faint idea of what Git and GitHub were, since I had to use GitHub to maintain this very blog. However, I never used the command line for any commits; instead, I used a handy little application called [GitHub Desktop](https://desktop.github.com/) that enabled novice users like me to interact with Git and use its features without going through the complexities of the command line interface. The obvious benefit of relying on this applicaiton is that things are so simple: just work on the project, save your files, fire up the application, and it would automatically pull up all the documents that were modified, ready to be pushed. The downside of this approach, however, was that I had virtually zero working knowledge of Git and version control. Unsurprisingly in retrospect, this turned out to be a huge deficiency when I decided to attempt contributing to open source. For the next two days, I went on a Googling spree, learning about basic Git commands and jargons such as origin, remote, master, branch, fork, and clone, to name a few. And also because I believe that learning is best done by doing, I forked and cloned actual open source repositories to try out Git commands myself.
 
-The main problem was that I was rushing myself. At one point, I tried a bunch of commands without knowing what I was really doing, and ultimately ended up creating a pull request to the upstream repository containing over a few hundred file modifications. In retrospect, this happened becasue I had pushed a commit after pulling from the upstream instead of merging or rebasing my fork. When the pull request was made, I found myself panicking, struggling to understand what I had done but more embarassed to see a stupid pull request made public on GitHub. Of course, I promptly closed the request, but I was both surprised and abashed at the same time. 
+The main problem was that I was rushing myself. At one point, I tried a bunch of commands without knowing what I was really doing, and ultimately ended up creating a pull request to the upstream repository containing over a few hundred file modifications. Of course, it wasn't me who had made these modification: they were made by other developers working simulataneously on their own branches, which had been merged to upstream master. In retrospect, this happened becasue I had pushed a commit after pulling from the upstream instead of merging or rebasing my fork. When the pull request was made, I found myself panicking, struggling to understand what I had done but more embarassed to see a stupid pull request made public on GitHub. Of course, I promptly closed the request, but I was both surprised and abashed at the same time. 
 
-This embarassing episode taught me a number of things. First, to really start contributing to open source, I would have to learn Git. Learn it properly. Second, open source contribution was definitely doable: had my PR been a good PR, I would not have closed it, and it would have been reviewed by members and authors of the repository, and hopefully even merged to master. With these in mind, I continued studying Git and finally made my first pull request that week.
+# Types of Contributions
 
-# Starting Slow with Docstrings
+There are many ways one can contribute to open source. In this section, I detail few of these ways by categorizing my own contributions I have made thusfar into three discrete groups.
+
+## Starting Slow with Docstrings
+
+Call me audacious, but my target open source projects were big, popular modules such as `tensorflow`, `keras`, and `pandas`. Intuitively, one would think that these repositories are most difficult to contribute to since they would presumably be the most well-maintained given the sheer number of users. This proposition is true to an extent, but it fails to consider the flip side of the coin: because these projects are massive, there is always constant room for improvement. Small repositories with just a few folders and files might be easier to maintain, and hence contain lesser lines that require fixing or refractoring. Big, popular projects are also highly well-maintained, but because of the sheer amount of features being rolThis embarassing episode taught me a number of things. First, to really start contributing to open source, I would have to learn Git. Learn it properly. Second, open source contribution was definitely doable: had my PR been a good PR, I would not have closed it, and it would have been reviewed by members and authors of the repository, and hopefully even merged to master. With these in mind, I continued studying Git and finally made my first pull request that week.
+led out and the number of pull requests being made, chances are there is always going to be room for contribution. 
+
+At first, looking at the long lines of complicated code was rather intimidating because I had little understanding of the internal clockwork of the module. Therefore, I found it easier to work on editing the docstrings, which are multi-line comments that typically explain what a particular function does, its arguments, and return type. These comment appear on the official documentation that explains the API, which is why it is important to provide a clear, well-written description of the function. I decided to start slow by taking a look at the docstrings for each function and developing a gradual intuition of how one module interacts with another, how the interplay of various hidden functions can achieve a particular functionality, etc. Correcting mistakes or adding elaborations to docstrings still requires one to understand each function, but it also requires one to be a good presentor of information and a keen reviewer capable of detecting deficiencies in explanation.
+
+A lot of my pull requests fall under this category because, as a novice open source contributor, I still don't have a solid grasp of how TensorFlow works, for example. At best, I'm only familar with the `tensorflow.keras` API, because this is the module that I use the most frequently. Therefore, my strategy was to focus on docstrings for other `tensorflow` sub-modules while reviewing the code for `tensorflow.keras`. 
+
+## Community Translations
+
+Another huge portion of my work revolves around translating [tutorials](https://www.tensorflow.org/tutorials/) and [guides](https://www.tensorflow.org/guides/). I found this work to be incredibly rewarding for two reasons: first, I found myself learning tremdously a lot from trying to understand the underlying concepts and code. The first tutorial I translated was on the topic of conditional variational autoenoders, and I ran into references to familiar concepts such as multivariate Gaussians, KL divergence, and more. To translate, I had to make sure that I had a solid grasp of the material, so I spent some time brushing up on rusty concepts and learning gaps in knowledge that had to be filled. Secondly, I love translating because I feel like translating is a way of disseminating knowledge. It feels incredibly rewarding to think that some other budding developer will read my translation of how to implement [DeepDream](https://www.tensorflow.org/tutorials/generative/deepdream) or perform a [Fast Gradient Sign Method-based attack](https://www.tensorflow.org/tutorials/generative/adversarial_fgsm) on a neural network to do more amazing things with the knowledge in hand.  
+
+In retrospect, this is another perk of trying to contribute to a huge open source project like TensorFlow. Small projects typically do not have multi-language support, and it is only when projects grow big enough and attract a substational number of users that the authors and members decide to scale it to cater to a wider global audience. I'm happy to be given the opportunity to take part in this communal endeavor, and I only wish to do more.
+
+## Optimization and Refractoring
+
+The last category, of coure, has to do with editing the actual source code. This is the most technical part as it requires knowledge of not only general coding, but also the ins and outs of the library. I have made only a few contributions that fall under this category, but it is when these types of pull requests are approved and merged that I feel the most excitement. 
+
+
 
 
 
