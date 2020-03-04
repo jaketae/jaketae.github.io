@@ -1,7 +1,6 @@
 ---
 title: Contributing Open Source
 toc: true
-date: 2020-03-04
 categories:
   - study
   - development
