@@ -19,7 +19,7 @@ It soon became immediately obvious that I had to learn how to use Git. I had a f
 
 The main problem was that I was rushing myself. At one point, I tried a bunch of commands without knowing what I was really doing, and ultimately ended up creating a pull request to the upstream repository containing over a few hundred file modifications. Of course, it wasn't me who had made these modification: they were made by other developers working simulataneously on their own branches, which had been merged to upstream master. In retrospect, this happened becasue I had pushed a commit after pulling from the upstream instead of merging or rebasing my fork. When the pull request was made, I found myself panicking, struggling to understand what I had done but more embarassed to see a stupid pull request made public on GitHub. Of course, I promptly closed the request, but I was both surprised and abashed at the same time. 
 
-# Types of Contributions
+# Ways to Contribute
 
 There are many ways one can contribute to open source. In this section, I detail few of these ways by categorizing my own contributions I have made thusfar into three discrete groups.
 
@@ -42,15 +42,79 @@ In retrospect, this is another perk of trying to contribute to a huge open sourc
 
 The last category, of coure, has to do with editing the actual source code. This is the most technical part as it requires knowledge of not only general coding, but also the ins and outs of the library. I have made only a few contributions that fall under this category, but it is when these types of pull requests are approved and merged that I feel the most excitement. 
 
+One of my first contributions involved the `pandas` library. It was a very minor edit to the code that made use of `defaultdict` instead of the default Python dictionary. However, making that pull request---and eventually pushing it through until merge---taught me a lot about optimization pull requests. When my PR was made public, one of the reviewers requested me to run a test to prove just how optimal my code would be. I was glad that my PR was reviewed, but at the same time daunted by this task. After a bit of research, I came up with my first primitive approach:
 
+```python
+test_dict = {}
+test_defaultdict = defaultdict(dict)
+dict_time = []
+defaultdict_time = []
 
+for _ in range(10000):
+    start_time = time.time()
+    test_lst = [test_dict.get(x, {}) for x in range(1000)]
+    dict_time.append(time.time() - start_time)
 
+for _ in range(10000):
+    start_time = time.time()
+    test_lst = [test_defaultdict[x] for x in range(1000)]
+    defaultdict_time.append(time.time() - start_time)
 
+print(sum(dict_time)/len(dict_time))
+print(sum(defaultdict_time)/len(defaultdict_time))
+```
 
+This returned the following result:
 
+```python
+0.000193774962425 
+9.86933469772e-05 
+```
 
+This proved that the performance boost was indeed there. To this point, the reviewers agreed, yet the guided me to use the `timeit` feature instead to prove my point with a plausible input. This was my second attempt at the tasks given their feedback:
 
+```python
+FACTOR, DIM = 0.1, 10000
 
+data = {f'col {i}': 
+        {f'index {j}': 'val' for j in random.sample(range(DIM), int(FACTOR * DIM))} 
+        for i in range(DIM)} # randomly populate nested dictionary
 
- 
+defaultdict_data = defaultdict(dict, data) # equivalent data in defaultdict
 
+def _from_nested_dict(data): # original method
+    new_data = {}
+    for index, s in data.items():
+        for col, v in s.items():
+            new_data[col] = new_data.get(col, {})
+            new_data[col][index] = v
+    return new_data
+
+def _from_nested_dict_PR(data): # PR
+    new_data = defaultdict(dict)
+    for index, s in data.items():
+        for col, v in s.items():
+            new_data[col][index] = v
+    return new_data
+```
+
+Running a `timeit` returned the following result:
+
+```
+>>> %timeit _from_nested_dict(data)
+6.99 s ± 33.9 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+>>> %timeit _from_nested_dict_PR(defaultdict_data)
+4.88 s ± 32 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+```
+
+This was better, as it directly proved that my PR optimized performance in the context of the function in question, instead of dealing with the more general question of `dict` versus `defaultdict`. 
+
+After this PR was merged into master, I got a better sense of what optimizing code entailed and what the expectations were from the point of view of the project maintainers. It was also great to learn how to tangibly measure code performance via `timeit`, which is something that I did not know about previousely.
+
+Optimization is not the only way to contribute to source code: my attempts have included adding robust `dtype` check for arguments, adding a TensorFlow model such as `resnext` to the official list of models, and a few more. Making contributions to source code definitely feels more difficult than editing docstrings, for instance, but I'm hoping that with more practice and experience, spotting errors and rooms for improvement will come more naturally.
+
+# Conclusion
+
+Making open source contributions is not easy, but it is also not impossible. In fact, I would say that anyone who is determined to parse through code and comments can make a good pull request, however small the edit may be. I'm definitely in the process of learning about open source contributions, especially when it comes to reviewing code and adding features, but I hope to contribute what I can as a student and individual developer. After all, it feels good to know that there is at least a drop of my sweat involved in the statement `import tensorflow as tf`.
+
+If anything, it is my hope that this post will also inspire you to contribute to open source; after all, collective intelligence is what makes open source projects so cool.
