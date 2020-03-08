@@ -18,6 +18,33 @@ It soon became immediately obvious that I had to learn how to use Git. I had a f
 
 The main problem was that I was rushing myself. At one point, I tried a bunch of commands without knowing what I was really doing, and ultimately ended up creating a pull request to the upstream repository containing over a few hundred file modifications. Of course, it wasn't me who had made these modification: they were made by other developers working simulataneously on their own branches, which had been merged to upstream master. In retrospect, this happened becasue I had pushed a commit after pulling from the upstream instead of merging or rebasing my fork. When the pull request was made, I found myself panicking, struggling to understand what I had done but more embarassed to see a stupid pull request made public on GitHub. Of course, I promptly closed the request, but I was both surprised and abashed at the same time. 
 
+After a few more days, I finally felt more comfortable with my knowledge of Github. This became my default workflow:
+
+```bash
+git checkout master
+git fetch upstream
+git rebase upstream/masterr
+git checkout -b new-branch
+cd some-directory
+sublime .
+git status
+git add .
+git commit -m "A great commit message"
+git push --set-upstream origin new-branch
+```
+
+Now, if I wanted to delete a branch for some reason, I could simply do the following:
+
+```bash
+git checkout master
+git branch -d new-branch
+git push origin --delete new-branch
+```
+
+These commands would effectively delete the branch both from the remote and local repository. 
+
+These commands are obviously very simple and in no way provides a good introduction or crash course on Git commands--they are left here mostly for my own personal reference. Nonetheless, they are very simple commands that might as well help just about any student trying to get started with Git and open source contributions.  
+
 # Ways to Contribute
 
 There are many ways one can contribute to open source. In this section, I detail few of these ways by categorizing my own contributions I have made thusfar into three discrete groups.
