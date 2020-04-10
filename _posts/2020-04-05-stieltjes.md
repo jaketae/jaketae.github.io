@@ -1,7 +1,7 @@
 ---
 title: On Expectations and Integrals
 mathjax: true
-toc: true
+toc: false
 categories:
   - study
 tags:
