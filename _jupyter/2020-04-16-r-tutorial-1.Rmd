@@ -1,0 +1,344 @@
+---
+title: "Revisiting R"
+author: Jake Tae
+output: md_document
+---
+
+It's been a while since we last took a look at the R programming language. While I don't see R becoming my main programming language (I'll always be a Pythonista by heart), I decided it would still be nice to have R in my arsenal for statistical computing. Also, it's always a fun challenge to learn and try to slowly master a new language.This post will serve as my personal source of reference.
+
+It's also worth mentioning that this document was written in R Markdown, which seems to be a mix of  markdown and Jupyter Notebook. It is very similar to Jupyter in that it allows users to interweave text with bits of code---perfect for blogging purposes. I'm still getting used to RStudio and R Markdown, but we will see how it goes. Let's jump right in!
+
+# Setup
+
+There are several basic commands that are useful when setting up and working on a R project. For example, to obtain the location of the current working directory, simply type
+
+```{r}
+getwd()
+```
+
+We can also set the working directory. I don't want to change the working directory here, so instead I will execute a dummy command.
+
+```{r}
+# setwd("some_location")
+setwd(getwd())
+```
+
+To see the list of variables stored in the environment, use `ls()`, which is just R's version of the linux command.
+
+```{r}
+ls()
+```
+
+To remove all stored variables, 
+
+```{r}
+rm(list=ls())
+```
+
+# Basics
+
+This section is titled "Basics", but we are going to skip over basic arithematic operations, just because they are boring. Here, I document certain perks of the R language that may be useful to know about.
+
+R is slightly different from other programming languages in that slicing works differently, *i.e.* both the lower and upper bound are inclusive.
+
+```{r}
+x <- c(1:10)
+x
+```
+
+We can identify the type of an object with the `class` function; length, the `length` function.
+
+```{r}
+class(x)
+length(x)
+```
+
+If some data is one-hot encoded, and we want R to interpret data as binary instead of numeric, we can cast it using `as.factor`.
+
+```{r}
+a <- c(0, 1, 0, 1, 1)
+class(a)
+as.factor(a)
+```
+
+R is powerful because it supports vectorized operations by default, much like NumPy in Python. For example, 
+
+```{r}
+x + 10
+```
+
+Notice that all elements were modified despite the absence of an explicit `for` loop. By the same token, R supports boolean-based indexing, which is also related to its vectorized nature.
+
+```{r}
+x > 5
+```
+
+One important point to note about vectors is that they cannot hold objects of different classes. For example, you will see that R casts all objects to become characters when different data types are passed as arguments.
+
+```{r}
+v <- c(T, 1, 2, 3, 'character')
+v
+```
+
+# Lists and Matrices
+
+
+
+
+# Data Frames
+
+Let's look at some sample data. `Boston` is a data frame that contains housing prices in Boston suburbs. For instructive purposes, we'll be fiddling with this toy dataset. We will save it in memory to prevent R from loading it each time.
+
+```{r}
+library(MASS)
+table <- Boston
+```
+
+Let's take a look at the summary of the dataset.
+
+```{r}
+summary(table)
+```
+
+Sometimes, however, the information retrieved by `str` may be more useful.
+
+```{r}
+str(table)
+```
+
+The `head` command is a handy little tool that gives us a peek view of the data.
+
+```{r}
+head(table, 5)
+```
+
+Equivalently, we could have sliced the table.
+
+```{r}
+table[1:5, ]
+```
+
+The dollar sign is a key syntax in R that makes data extraction from tables extremely easy.
+
+```{r}
+head(table$crim)
+```
+
+We can calculate the mean of a specified column as well.
+
+```{r}
+mean(table$crim)
+```
+
+# Plot
+
+The easiest way to create a plot is to use the `plot` function. Let's begin by considering a plot of the sine function. 
+
+```{r}
+x <- seq(-pi, pi, 0.1)
+y <- sin(x)
+plot(x, y)
+```
+
+Let's improve this plot with some visual additions.
+
+```{r}
+plot(x, y, main="Sine", xlab = "x", ylab="sin(x)", type="l", col="skyblue")
+```
+
+That looks slightly better. 
+
+Plotting can also be performed with data frames. `cars` is a built-in dataset in R that we will use here for demonstrative purposes.
+
+```{r}
+plot(cars)
+```
+
+We can also create a pairplot, which shows the distributional relationship between each columns in the table. Intuitively, I understand it as something like a visual analogue of a symmetric matrix, with each cell showing the distribution according to the row and column variables.
+
+```{r}
+pairs(table)
+```
+
+Note that the `plot` function is versatile. We can specify which columns to plot, as well as set the labels of the plot to be created. For example,
+
+```{r}
+with(
+  table,
+  plot(medv, 
+       crim, 
+       main="Crime Rate versus Median House Value", 
+       xlab="median value of owner-occupied", 
+       ylab="crime rate")
+)
+```
+
+Equivalently, we could have used this command:
+
+```{r}
+plot(crim~medv, data=table, main="Crime Rate versus Median House Value", xlab="median value of owner-occupied", ylab="crime rate")
+```
+
+# Apply Functions
+
+## lapply
+
+Let's start with what I think is the easiet one: `lapply`. In Python terms, this would be something like `np.vectorize`. Here is a very quick demo with a dummy example.
+
+```{r}
+movies <- c("SPYDERMAN","BATMAN","VERTIGO","CHINATOWN")
+movies_lower <- unlist(lapply(movies, tolower))
+movies_lower
+```
+
+The `unlist` function was used to change the list into a vector. The gist of `lapply` is that it receives as input some dataframe, list or vector, and applies the given function to each element of that iterable. A similar effect could be achieved with a loop, but the vectorized nature of `lapply` makes it a more attractive option.
+
+## sapply
+
+`sapply` does the same thing as `unlist(lapply(X, FUN))`. In other words, 
+
+```{r}
+movies <- c("SPYDERMAN","BATMAN","VERTIGO","CHINATOWN")
+movies_lower <- sapply(movies, tolower)
+movies_lower
+```
+
+Note that we can use `sapply` to dataframes as well. For instance, 
+
+```{r}
+sapply(table, mean)
+```
+
+In this case, `mean` is applied to each column in `table`. 
+
+
+## apply
+
+The `apply` function is a vectorized way of processing tabular data. If you are familiar with Pandas, you will quickly notice that Pandas shamelessly borrowed this function from R. Let's take a look at what `apply` can do.
+
+```{r}
+apply(X=cars, MARGIN=2, FUN=mean, na.rm=TRUE)
+```
+
+Notice that `apply` basically ran down the data and computed the mean of each available numerical column. The `na.ra=True` is an optional argument that is passed onto `FUN`, which is `mean`. Without this specification, R will complain that there are missing data in the table given, if any. 
+
+Of course, we can try other functions instead of `mean`. This time, let's try using the `quantile` function.
+
+```{r}
+apply(table, MARGIN=2, quantile, probs=c(0.25, 0.5, 0.75), na.rm=TRUE)
+```
+
+And with that, we can receive an instant IQR summary of the data for each numerical column in the data. 
+
+If you're thinking that `apply` is similar to `sapply` and `lapply` we've looked so far, you're not wrong. `apply`, at least to me, seems to be a more complex command capable of both row and column-based vectorization. It is also different in that it can only be applied to tabular data, not list or vectors (if that were the case, then the `MARGIN` argument would be unncessary).
+
+## tapply
+
+`tapply` is slightly tricker than the ones we have seen above, as it is not just a vectorized operation applied to a single set of data. Instead, `tapply` is capable of splitting data up into categories according to a second axis. Let's see what this means with an example:
+
+```{r}
+tapply(iris$Sepal.Width, iris$Species, mean)
+```
+
+As you can see, `tapply` segments the `Sepal.Width` column according to `Species`, then returns the mean for each segmentation. This is going to be incredibly useful in identifying hidden patterns in data.
+
+# Charts
+
+In this section, we will take a look at how to create charts and visualizations, using only the default loaded library in R. 
+
+## Bar Plot
+
+Bar plots can be created using--yes, you guessed it--the `barplot` command. Let's remind ourselves that a bar plot is a visualization of the frequencey for each category or a categorical variable. 
+
+```{r}
+barplot(table(iris$Species))
+```
+
+One peculiarity that you might have noticed is that we wrapped the dataset with `table`. This is because `barplot` receives a frequency table as input. To get an idea of what this frequencey table looks like, let's create a relative frequencey table.
+
+```{r}
+freq <- table(iris$Species) / length(iris$Species)
+freq
+```
+
+Now let's try prettifying the bar plot with some small customizations. Note that the `las` argument rotates the values on the y-axis.
+
+```{r}
+barplot(freq, main="Percentage of Iris Species", xlab="Species", ylab="%", las=1)
+```
+
+## Pie Chart
+
+It's really easy to move from a bar plot to a pie chart, since they are just different ways of visualizing the same information. In particular, we can use the `pie` command. 
+
+```{r}
+pie(freq, main="Percentage of Iris Species")
+box()
+```
+
+## Box Plot
+
+A box plot is a way of visualizing the five number summary, which to recap consists of the minimum, first, quartile, median, third quartile, and the maximum of a given dataset. Let's quickly draw a vanilla box plot using the `boxplot` command, with some minimal labeling.
+
+```{r}
+boxplot(cars$speed, main="Box Plot Demo", ylim=c(0, 30), ylab="Speed", las=1)
+```
+
+We can get a bit more sophisticated by segmenting the data by some other axis, much like we did for `tapply`. This can be achieved in R by the `~` operator. Concretely,
+
+```{r}
+boxplot(iris$Sepal.Length~iris$Species, xlab="Species", ylab="Sepal Length", main="Sepal Length by Iris Species", las=1)
+```
+
+Just as a reminder, this is what we get with a `tapply` function. Notice that the results shown by the box plot is more inclusive in that it also provides information on the IQR aside from just the mean. 
+
+```{r}
+tapply(iris$Sepal.Length, iris$Species, mean)
+```
+
+
+## Histogram
+
+Creating histograms is not so much different form the other types of visualizations we have seen so far. To create a histogram, we can use the `hist` command.
+
+```{r}
+hist(table$medv, freq=FALSE, ylim=c(0, 0.07), main='Median Value of Housing Prices', xlab='Median Value', las=1)
+```
+
+The `freq` argument clarifies whether we want proportions as fractions or the raw count. 
+
+We can also add a density curve over the histogram to get an approximation of the distribution of the data.
+
+```{r}
+hist(table$medv, freq=FALSE, ylim=c(0, 0.07), main='Median Value of Housing Prices', xlab='Median Value', las=1)
+lines(density(table$medv), col=2, lwd=2)
+```
+
+## Scatter Plot
+
+Scatter plots can be created in R via the `plot` command. 
+
+Let's check if there exists a linear relationship between the variables of interest in the `car` dataframe. 
+
+```{r}
+cor(cars$speed, cars$dist)
+```
+
+Pearson's correlation suggests that there does appear to be a linear relationship. Let's verify that this is indeed the case by creating a scatter plot.
+
+```{r}
+plot(cars$speed, cars$dist, xlab='Speed', ylab='Dist', main='Speed vs Dist', las=1)
+lines(smooth.spline(cars$speed, cars$dist))
+```
+
+Note that we have already seen this graph previously, when we were discussing the basics of graphing in an earlier section. Several modifications have been made to that graph, namely specifying the variables that go into the x and y axis, as well as some labeling and titling. We've also added a spline, which can be considered a form of regression line that explains the pattern in the data.
+
+# Conclusion
+
+This tutorial got very long, but hopefully it gave you a review (or a preview) of what the R programming language is like and what you can do with it. As it is mainly a statistical computing language, it is geared towards many aspects of data science, and it is no coincidence that R is one of the most widely used language in this field, coming second after Python. 
+
+In the upcoming R tutorials, we will take a look at some other commands that might be useful for data analysis. Stay tuned for more!
+
+
+
+
