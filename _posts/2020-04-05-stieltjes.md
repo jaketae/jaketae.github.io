@@ -45,11 +45,11 @@ But still, this definition of the expected value threw me off quite a bit. What 
 
 The integral that we all know of is called the Riemann integral. The confusing integral is in fact a generalization of the Riemann integral, known as the Riemann-Stieltjes integral (don't ask me how to pronounce the name of the Dutch mathematician). There is an even more general interpretation of integrals called the Lebesgue integral, but we won't get into that here. 
 
-First, let's get into the definition. The definition of the integral is actually a lot simpler than what one might imagine. Here, $c_i$ is a value that falls within the interval $[x_i, x_{i+1}]$. 
+First, let's take a look at the definition. The definition of the integral is actually a lot simpler than what one might imagine. Here, $c_i$ is a value that falls within the interval $[x_i, x_{i+1}]$. 
 
 
 $$
-\int_a^b f(x) \, dg(x) = \sum_{i=1}^n f(c_i)[g(x_{i+1}) - g(x_i)] \tag{5}
+\int_a^b f(x) \, dg(x) = \lim_{n \to \infty}\sum_{i=1}^n f(c_i)[g(x_{i+1}) - g(x_i)] \tag{5}
 $$
 
 
