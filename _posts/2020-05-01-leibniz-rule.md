@@ -1,5 +1,5 @@
 ---
-title: Leibniz or Feynman?
+title:  Leibniz Rule of Skillful Swapping
 mathjax: true
 toc: true
 categories:
@@ -94,12 +94,3 @@ And we're done!
 There are other ways of seeing the Leibniz rule, such as by interpreting it as a corollary of the Fundamental Theorem of Calculus and the Chain rule, as outlined in [here](http://www.econ.yale.edu/~pah29/409web/leibniz.pdf) (by a Professor at Yale!), but I find the geometrically motivated interpretation presented in this article to be the most intuitive. 
 
 I hope you enjoyed reading this post. Catch you up in the next one! 
-
-
-
-
-
-
-
-
-
