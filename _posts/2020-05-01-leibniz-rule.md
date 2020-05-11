@@ -1,5 +1,5 @@
 ---
-title:  Leibniz Rule of Skillful Swapping
+title:  Understanding the  Leibniz Rule
 mathjax: true
 toc: true
 categories:
