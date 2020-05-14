@@ -1,7 +1,7 @@
 ---
 title:  Understanding the  Leibniz Rule
 mathjax: true
-toc: true
+toc: false
 categories:
   - study
 tags:
