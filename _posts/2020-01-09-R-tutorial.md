@@ -2,10 +2,10 @@
 title: A Short R Tutorial
 toc: true
 categories:
-  - development
+  - study
 tags:
   - jupyter
-  - R
+  - r
 ---
 
 This is an experimental jupyter notebook written using `IRkernel`. The purpose of this notebook is threefolds: first, to document my progress with self-learning the R language; second, to test the functionality of the R kernel on jupyter; and third, to see if the`convert.sh` shell script is capable of converting notebooks written in R to `.md` markdown format. The example codes in this notebook were borrowed from [Hands on Programming with R](https://rstudio-education.github.io/hopr/) by Garrett Grolemund.
@@ -1129,7 +1129,7 @@ parenvs(all = TRUE)
     Registered S3 method overwritten by 'pryr':
       method      from
       print.bytes Rcpp
-    
+
 
 
 
