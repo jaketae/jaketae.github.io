@@ -6,11 +6,12 @@ function convert(){
 	jupyter nbconvert --to markdown $nb
 	python edit.py ${nb%.ipynb}.md
 	mv ${nb%.ipynb}.md ../_posts/
-	mv ${nb%.ipynb}_files ../assets/images/
+    if [[ -f ${nb%.ipynb}_files ]]
+    then
+        mv ${nb%.ipynb}_files ../assets/images/
+    fi
 	echo "==========Conversion complete!=========="
-	cd
-	cd /Applications
-	open 'Sublime Text.app'
+	sublime .
 }
 
 convert
