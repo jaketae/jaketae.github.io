@@ -26,6 +26,8 @@ The first on the list is `ipython-sql`, which allows us to use magic commands in
 conda install ipython-sql
 ```
 
+We can now use the `load_ext sql` magic command in Jupyter to connect to a local database. In my case I had a MySQL database initialized at localhost, and was able to connect to it as a root user. Note that you should replace `some_password` in the example command below according to your own configuration.
+
 
 ```python
 %load_ext sql
@@ -33,11 +35,9 @@ conda install ipython-sql
 ```
 
 
-
-
     'Connected: root@test'
 
-
+Now that we have successfully connected to the data, we can use SQL commands in Jupyter!
 
 
 ```python
@@ -46,10 +46,6 @@ conda install ipython-sql
 
      * mysql+pymysql://root:***@localhost:3306/test
     5 rows affected.
-
-
-
-
 
 <table>
     <tr>
