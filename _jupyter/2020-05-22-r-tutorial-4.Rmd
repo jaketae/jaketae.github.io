@@ -1,6 +1,5 @@
 ---
 title: R Tutorial (4)
-mathjax: false
 categories:
   - study
 tags:

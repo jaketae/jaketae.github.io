@@ -1,13 +1,11 @@
 #!/bin/sh
 
-
-opt=$1 # -r for .Rmd or -p for .ipynb
-nb=$2
+nb=$1
 
 
 function ipynb(){
 	jupyter nbconvert --to markdown $nb
-	python format.py $opt ${nb%.ipynb}.md
+	python format.py "-p" ${nb%.ipynb}.md
 	mv ${nb%.ipynb}.md ../_posts/
     if [[ -d ${nb%.ipynb}_files ]]
     then
@@ -18,8 +16,11 @@ function ipynb(){
 
 
 function rmd(){
-    python format.py $opt $nb
-    mv $nb ../_posts/
+    eval "$(conda shell.bash hook)"
+    conda activate R
+    R -e "rmarkdown::render('$nb')"
+    python format.py "-r" ${nb%.Rmd}.md
+    mv ${nb%.Rmd}.md ../_posts/
     if [[ -d ${nb%.Rmd}_files ]]
     then
         echo "==========Moving image files=========="
@@ -38,6 +39,8 @@ function format(){
         rmd
     fi
     echo "==========Formatting complete!=========="
+    cd ../_posts
+    open ${nb%.*}.md
 }
 
 

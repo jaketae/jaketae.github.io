@@ -32,7 +32,5 @@ if __name__ == "__main__":
     nb = sys.argv[2]
     if opt == "-r":
         rmd(nb)
-    elif opt == "-p":
-        ipynb(nb)
     else:
-        print("Please enter a valid option, one of -r or -p.")
+        ipynb(nb)
