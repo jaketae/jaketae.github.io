@@ -1,3 +1,4 @@
 .DS_Store
 assets/images/.DS_Store
 _jupyter/.DS_Store
+.ipynb_checkpoints
