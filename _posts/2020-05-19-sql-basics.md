@@ -4,7 +4,6 @@ mathjax: false
 toc: true
 categories:
   - study
-  - development
 tags:
   - jupyter
   - sql
