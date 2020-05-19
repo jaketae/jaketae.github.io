@@ -131,6 +131,8 @@ $$
 This can be a bit obfuscating notation-wise because of the use of $\theta'$ as our variable, assuming $\theta$ as a fixed constant, and evaluating the gradient and the Hessian at the point where $\theta' = \theta$  since we want to approximate the value of KL divergence at the point where where $\theta' = \theta + \delta$. But really, all that is happening here is that in order to approximate KL divergence, we're starting at the point where $\theta' = \theta$, and using the slope and curvature obtained at that point to approximate the value of KL divergence at distance $\delta$ away. Picturing the simpler univariate situation in the Cartesian plane might help.
 
 The bottom line is that the KL divergence is effectively defined by the Fisher matrix. The implication of this is that now, the gradient descent algorithm is subject to the constraint
+
+
 $$
 \delta^* = \mathop{\rm arg\,min}\limits_{\delta \text{ s. t. } D_{KL}[p_\theta \parallel p_{\theta + \delta}] = c} \mathcal{L}(\theta + \delta)
 \tag{9}
@@ -138,6 +140,8 @@ $$
 
 
 where $c$ is some constant. Now, the update rule would be
+
+
 $$
 \theta^{(k + 1)} = \theta^{(k)} + \delta^*
 \tag{10}
