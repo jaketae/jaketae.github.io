@@ -1,7 +1,7 @@
 ---
 permalink: /
 layout: archive
-title: "Hello"
+title: "Hello there!"
 author_profile: true
 ---
 
