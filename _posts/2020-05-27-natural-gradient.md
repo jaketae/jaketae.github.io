@@ -6,6 +6,7 @@ categories:
   - study
 tags:
   - statistics
+  - machine_learning
 
 ---
 
@@ -23,17 +24,17 @@ $$
 
 This is the familiar gradient descent algorithm that we know of. While this approach works and certainly makes sense, there are definite limitations; hence the introduction of other more efficient algorithms such as SGD, Adam, and et cetera. 
 
-However, these algorithms all have one thing in common: they adjust the parameter in the parameter space according to Euclidean distance. In other words, gradient descent essentially looks at regions that are $\epsilon$ Euclidean distance away from the current parameter and chooses the direction of steepest descent. 
+However, these algorithms all have one thing in common: they adjust the parameter in the parameter space according to Euclidean distance. In other words, gradient descent essentially looks at regions that are some Euclidean distance away from the current parameter and chooses the direction of steepest descent. 
 
-This is where the notion of natural gradients come into play: if our goal is to minimize the cost function, which is effectively equivalent to maximizing the likelihood, why not search within the distribution space of the likelihood function instead? After all, this makes more sense since the terrain of the likelihood function transforms ever so sightly each iteration of gradient descent, as the parameter undergoes optimization. So the alternative to this approach would be to search the distribution space and find the distribution that which makes value of the cost function the smallest. This is the motivation behind the notion of a natural gradient. 
+This is where the notion of natural gradients come into play: if our goal is to minimize the cost function, which is effectively equivalent to maximizing the likelihood, why not search within the distribution space of the likelihood function instead? After all, this makes more sense since gradient descent in parameter space is likely to be easily perturbed by the mode of parametrization, such as using precision instead of variance in a normal distribution, whereas searching in the distribution space would not be subject to this limitation. So the alternative to this approach would be to search the distribution space and find the distribution that which makes value of the cost function the smallest. This is the motivation behind the notion of a natural gradient. 
 
 # Divergence and Fisher
 
-Now you might be wondering how all this has anything to do with the Fisher matrix, which we looked at in the previous post. Well, it turns out there are some deep, interesting questions to be posed. 
+Now you might be wondering how all this has anything to do with the Fisher matrix, which we looked at in the previous post. Well, it turns out there are some deep, interesting questions to be posed and connections to be uncovered.
 
 ## Kullback-Leibler Divergence
 
-If we're going to search around the distribution space, one natural question to come up with is what distance metric we will use for our search. In case of batch gradient descent, we used Euclidean distance. This made sense since we were simply measuring the distance between two parameters, which are effectively scalars or vector quantities. If we want to search the distribution space, on the other hand, we would have to measure the distance between two probability distributions, one that is defined by the previous parameter and the other defined by the newly found parameter after natural gradient descent.
+If we're going to search around the distribution space, one natural question to consider is what distance metric we will use for our search. In case of batch gradient descent, we used Euclidean distance. This made sense since we were simply measuring the distance between two parameters, which are effectively scalars or vector quantities. If we want to search the distribution space, on the other hand, we would have to measure the distance between two probability distributions, one that is defined by the previous parameter and the other defined by the newly found parameter after natural gradient descent.
 
 Well, we know one great candidate for this task right off the bat, and that is KL divergence. Recall that KL divergence is a way of quantifying the pseudo-distance between two probability distributions. The formula for KL divergence is shown below. And while we're at it, let's throw cross entropy and entropy into the picture as well, both for review and clarity's sake:
 

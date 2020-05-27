@@ -11,4 +11,95 @@ output:
     fig_retina: 2
 ---
 
-In this notebook, we will dive into the topic of exploratory data analysis. 
+```{r}
+library(tidyverse)
+```
+
+In this notebook, we will dive into the topic of exploratory data analysis. As Hadley Wickham put it, EDA is a fundamentally creative process in which we explore all possibilities in the hopes of uncovering any hidden patterns within the given data. By asking good questions to lead our experiments, a good data scientist is often able to connect the dots and add informative value for their client or research. These explanations might sound very abstract and amorphous to an extent, but I think such a broad definition is at the heart of EDA as a creative, free process.
+
+However, R4DS still contains a fairly dense, long chapter describing some estabilshed practices in EDA, such as looking for missing values, analyzing covariance, and et cetera. In this notebook, we will take a look at some of the classical approaches that people take when performing rudimentary EDA. 
+
+# Visualizing Distributions
+
+In previous tutorials, we've already seen how to create visualizations. Of particular importance among them is the histogram, which is often used to visualize distributions of data. For example, we might try something basic like this:
+
+```{r}
+diamonds %>%
+  ggplot() +
+    geom_histogram(mapping = aes(x = carat), binwidth = 0.5)
+```
+
+Although this is a useful visualization, there is still a more we can do. For example, we can try to scope our analysis appropriateyl by zomming into a subset of the data. 
+
+```{r}
+smaller <- diamonds %>%
+  filter(carat < 3)
+
+smaller %>%
+  ggplot() + 
+    geom_histogram(mapping = aes(x = carat), binwidth = 0.1)
+```
+
+This gives us a much more granuar view of the data. If we want to add another dimension to our data, we can try to add colors. 
+
+```{r}
+smaller %>%
+  ggplot() + 
+    geom_histogram(mapping = aes(x = carat, fill = cut), binwidth = 0.1)
+```
+
+But whether or not this is the best way to present data is certainly debatable. In particular, Wickham himself recommends the use of the `geom_freqpoly()` function to dispay overlapping lines instead of bars.
+
+```{r}
+smaller %>%
+  ggplot(mapping = aes(x = carat, color = cut)) + 
+    geom_freqpoly(binwidth = 0.1)
+```
+
+# Typical Values
+
+After having looked at the visualizations above, we might start wondering why certain carats are more common than others. More importantly, it seems like this pattern extens throughout all cuts, whether those ideal or fair. To get a better look, let's use a smaller `binwidth` to see if we can identify any hints.
+
+```{r}
+smaller %>%
+  ggplot() +
+    geom_histogram(mapping = aes(x = carat), binwidth = 0.01)
+```
+
+It seems like there exists subgroups within each carat. Namely, there is a spike, which is then quickly followed by what looks like an exponential drop in frequency. As we can see, it's always a good idea to tweak argument parameters to check for hidden patterns in data.
+
+Another parameter we can tweak has to do with the x and y axes. Just like `plt.xlim()` and `plt.ylim()` in `matplotlib.pyplot`, we can adjust the axis view by expliciting telling R to zoom into a specific region on the plane. 
+
+```{r}
+ggplot(data = diamonds) +
+  geom_histogram(mapping = aes(x = y), binwidth = 0.5) +
+  coord_cartesian(ylim = c(0, 50))
+```
+
+Notice that we now have a microscopic view where we can literally see rarely occuring values with frequency less than five. In some cases, knowing the existence of such values might be important for our task.
+
+# Outliers
+
+Outliers are important in data analysis in that they can easily skew our interpretation of data. Using non-robust measures such as mean or standard deviation instead of mode or IQR, for instance, can affect data analysis in unexpected ways. 
+
+One quick fix is to simply replace outliers with null entries. For example, we might do something like
+
+```{r}
+modified_diamonds <- diamonds %>%
+  mutate(y = ifelse(y < 3 | y > 20, NA, y))
+```
+
+
+There might also be cases when we want to compare some metric between rows whose values are missing and those who aren't. For example, consider the `flights` dataset, wherein a missing `dep_time` value indicates that the flight was cancelled The book presents an examplel where the depareture times for cancelled and non-cancelled flilghts. 
+
+ compare the scheduled departure times for cancelled and noncancelled times. You can do this by making a new variable with is.na():
+
+
+
+
+
+
+
+
+
+
