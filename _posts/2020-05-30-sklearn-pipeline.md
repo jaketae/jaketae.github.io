@@ -22,7 +22,7 @@ First, let's import the modules and datasets needed for this tutorial.
 Scikit-learn is the go-to library for machine learning in Python. It contains not only data loading utilities, but also imputers, encoders, pipelines, transformers, and search tools we will need to find the optimum model for the task.
 
 
-```
+```python
 import numpy as np
 
 from sklearn.compose import ColumnTransformer
@@ -40,7 +40,7 @@ from sklearn.model_selection import train_test_split, cross_val_score, Randomize
 Let's load the dataset using `fetch_openml`.
 
 
-```
+```python
 np.random.seed(42)
 
 X, y = fetch_openml("titanic", version=1, as_frame=True, return_X_y=True)
@@ -51,7 +51,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, test_size=
 Let's observe the data by calling `.head()`. By default, this shows us the first five rows and as many columns as it can fit within the notebook. 
 
 
-```
+```python
 X_train.head()
 ```
 
@@ -177,7 +177,7 @@ Let's proceed in order.
 Before proceeding with any data analysis, it's always a good idea to pay attention to missing values---how many of them there are, where they occur, et cetera. Let's take a look.
 
 
-```
+```python
 X_train.isnull().any()
 ```
 
@@ -201,7 +201,7 @@ X_train.isnull().any()
 The `any()` is useful, but is doesn't really show us how many values are missing for each column. To probe into this issue in more detail, we need to use `sum()` instead.
 
 
-```
+```python
 X_train.isnull().sum()
 ```
 
@@ -225,7 +225,7 @@ X_train.isnull().sum()
 I recently realized that there is also a very cool data visualization library called `missingno` for observing missing data. 
 
 
-```
+```python
 import missingno as msno
 import matplotlib.pyplot as plt
 %matplotlib inline
@@ -251,7 +251,7 @@ Now that we have a rough sense of where missing values occur, we need to decide 
 Indeed, in this case, we will go ahead and drop the `cabin` attribute. This choice becomes more obvious when we compute the percentage of null values.
 
 
-```
+```python
 X_train.isnull().sum() / len(X_train) * 100
 ```
 
@@ -275,7 +275,7 @@ X_train.isnull().sum() / len(X_train) * 100
 This shows us that 77 percent of the rows have missing `cabin` attribute values. Given this information, it's probably a bad idea to try and impute these values. We opt to drop it instead. 
 
 
-```
+```python
 X_train.drop(['cabin'], axis=1, inplace=True)
 X_test.drop(['cabin'], axis=1, inplace=True)
 ```
@@ -288,7 +288,7 @@ X_test.drop(['cabin'], axis=1, inplace=True)
 Correlation (or somewhat equivalently, covariance) is a metric that we always care about, since ultimately the goal of ML engineering is to use a set of input features to generate a prediction. Given this context, we don't want to feed our model useless information that lacks value; instead, we only want to feed into the model highly correlated, relevant, and informative features. If certain features in the raw data are deemed useless, we need to either drop it or engage in some sort of feature engineering to produce a new set of more correlated features. 
 
 
-```
+```python
 import pandas as pd
 import seaborn as sns
 %config InlineBackend.figure_format = 'svg'
@@ -320,7 +320,7 @@ Sometimes, weakly correlated features can be combined together to form a new fea
 Note that feature engineering is also applied to both the training and test set simultaneously.
 
 
-```
+```python
 for dataset in [X_train, X_test]:
     dataset['family_size'] = dataset['parch'] + dataset['sibsp']
     dataset.drop(['parch', 'sibsp'], axis=1, inplace=True)
@@ -431,7 +431,7 @@ X_train.head()
 We have created two new features, namely `family_size` and `is_alone`. Let's go ahead and perform feature engineering on the `name` column as well to squeeze out more information. 
 
 
-```
+```python
 for dataset in [X_train, X_test]:
   dataset['title'] =  dataset['name'].str.split(", ", expand=True)[1].str.split(".", expand=True)[0]
   dataset.drop(["name"], axis=1, inplace=True)
@@ -540,7 +540,7 @@ X_train.head()
 Now we have some data that seems a lot more workable. However, we still have a problem with the `title` column: It seems like there are many titles, so we should probably perform some binning or grouping. 
 
 
-```
+```python
 pd.crosstab(X_train['title'], X_train['sex'])
 ```
 
@@ -654,19 +654,21 @@ pd.crosstab(X_train['title'], X_train['sex'])
 For men, the most common title is `Mr`; for women, `Mrs` and `Miss`. Let's see if there is a difference in the survival rate between the two most common title for females
 
 
-```
+```python
 print(f"Miss: {np.sum(y_train.astype(int)[X_train.title == 'Miss']) / len(X_train.title == 'Miss')}")
 print(f"Mrs: {np.sum(y_train.astype(int)[X_train.title == 'Mrs']) / len(X_train.title == 'Mrs')}")
 ```
 
-    Miss: 0.13371537726838587
-    Mrs: 0.1174785100286533
+```python
+Miss: 0.13371537726838587
+Mrs: 0.1174785100286533
+```
 
 
 It seems like the the difference is insignificant, so we will simply group them together in one. 
 
 
-```
+```python
 X_comb = pd.concat([X_train, X_test])
 rare_titles = (X_comb['title'].value_counts() < 10)
 rare_titles
@@ -698,7 +700,7 @@ rare_titles
 
 
 
-```
+```python
 for dataset in [X_train, X_test]:
   dataset.title.loc[dataset.title == 'Miss'] = 'Mrs'
   dataset['title'] = dataset.title.apply(lambda x: 'rare' if rare_titles[x] else x)
@@ -706,7 +708,7 @@ for dataset in [X_train, X_test]:
 
 
 
-```
+```python
 for dataset in [X_train, X_test]:
   dataset.drop('ticket', axis=1, inplace=True)
 
@@ -818,7 +820,7 @@ Imputation refers to a technique used to replace missing values. There are many 
 Let's first take a look at the data types for each column.
 
 
-```
+```python
 X_train.dtypes
 ```
 
@@ -842,7 +844,7 @@ Checking data types is necessary both for imputation and general data preprocess
 The best way to determine whether a variable is categorical or not is simply to use domain knowledge and actually observe the data. Of course, one might use hacky methods like the one below:
 
 
-```
+```python
 def get_cat_cols(df):
   obj_cols = df.columns[df.dtypes == 'object']
   cat_cols = df.columns[df.dtypes == 'category']
@@ -866,7 +868,7 @@ Although you might think that this is a working hack, this approach is in fact h
 Let's try to use a simple pipeline to deal with missing vallues in some categorical variables. This is going to be our first sneak peak at how pipelines are declared and used.
 
 
-```
+```python
 cat_cols = ['embarked', 'sex', 'pclass', 'title', 'is_alone']
 cat_transformer = Pipeline(steps=[
     ('imputer', SimpleImputer(strategy='most_frequent')),
@@ -888,7 +890,7 @@ Back to the implementation, note that we can look inside the individual componen
 
 
 
-```
+```python
 cat_transformer[0]
 ```
 
@@ -903,7 +905,7 @@ cat_transformer[0]
 Next, we need to do something similar for numerical variables. Only this time, we wouldn't be one-hot encoding the data; instead, what we want to do is to apply some scaling, such as normalization or standardization. Recently in one of Andreas Mueller's lectures on YouTube, I learned about the `RobustScaler()`, which uses median and IQR instead of mean and standard deviation as does the `StandardScaler()`. This makes the `RobustScaler()` a superior choice in the presence of outliers. Let's try using it here.
 
 
-```
+```python
 num_cols = ['age', 'fare', 'family_size']
 num_transformer = Pipeline(steps=[
     ('imputer', KNNImputer(n_neighbors=5)),
@@ -914,7 +916,7 @@ num_transformer = Pipeline(steps=[
 Now that we have the two pipelines for numeric and categorical columns, now it's time to put them together into one nice package, then apply the process over the entire dataframe. This packaging can nicely be abstracted via the `ColumnTransformer`, which is the magic glue to put all the pieces together. We simply have to tell which transformer applies to which column, along with the name for each process.
 
 
-```
+```python
 preprocessor = ColumnTransformer(
     transformers=[
         ('num', num_transformer, num_cols),
@@ -927,7 +929,7 @@ preprocessor = ColumnTransformer(
 Now all that is left is to build a final pipeline that includes the classifier model. Let's see how well our model performs on a stratified 5-fold cross validation. Note that this is without any hyperparameter tuning. 
 
 
-```
+```python
 clf = Pipeline(steps=[('preprocessor', preprocessor),
                       ('classifier', RandomForestClassifier())])
 
@@ -958,7 +960,7 @@ Scikit-learn's models are great, but in a sense they are too great. This is beca
 Let's see how we might be able to perform hyperparameter search given a pipeline like the one we have built above. 
 
 
-```
+```python
 num_transformer_dist = {'preprocessor__num__imputer__n_neighbors': list(range(2, 15)),
                         'preprocessor__num__imputer__add_indicator': [True, False]}
 
@@ -981,7 +983,7 @@ random_search = RandomizedSearchCV(clf,
 The parameter space we are searching for here is by no means exhaustive, but it covers a fair amount of ground. Of course, we can go crazy with randomized search, basically shoving Scikit-learn with every possible configuration and even running a grid search instead. However, that would take an inexorbitant amount of time and computing resources. Therefore, it is important to consider which features are potentially the most important and zoom into these deciding parameters for hypterparameter optimization. 
 
 
-```
+```python
 random_search.fit(X_train, y_train)
 ```
 
@@ -1042,7 +1044,7 @@ random_search.fit(X_train, y_train)
 The search took a good five to ten minutes, which is a fair amount of time. Let's take a look at its results. 
 
 
-```
+```python
 random_search.best_score_
 ```
 
@@ -1056,7 +1058,7 @@ random_search.best_score_
 We can also take a look at the best parameters that were found. It's worth noting that the algorithm decided that the `KNNImputer()` is supeior to `SimpleImputer()`, which in my opinion is no surprise. However, it is interesting to see our intuition being vindicated in this fashion nonetheless.
 
 
-```
+```python
 random_search.best_params_
 ```
 
@@ -1079,7 +1081,7 @@ random_search.best_params_
 Now it's time for us to evaluate the model. While there are many different metrics we can use, in binary classification, we can look at things like accuracy, precision, recall, and the F1 score. Let's take a look.
 
 
-```
+```python
 y_pred = random_search.predict(X_test)
 y_pred[:5]
 ```
@@ -1096,7 +1098,7 @@ The pipeline seems to be working correctly as expected, preprocessing and imputi
 Let's see how well our model is doing. One useful function in `sklearn` is the `classification_report()` function, which, as the name implies, gives us a comprehensive report of many widely-used metrics, such as precision, recall, and the F1 score. 
 
 
-```
+```python
 from sklearn.metrics import classification_report
 
 print(classification_report(y_test, y_pred))
@@ -1116,7 +1118,7 @@ print(classification_report(y_test, y_pred))
 The report suggests that the accuracy of our model on the test dataset is about 84 percent. We can manually verify this claim by calculating the accuracy ourselves using boolean indexing.
 
 
-```
+```python
 sum(y_pred == y_test) / len(y_pred)
 ```
 
@@ -1130,7 +1132,7 @@ sum(y_pred == y_test) / len(y_pred)
 Let's top this discussion off with a look at the confusion matrix, which is another way of compactly encoding various pieces of information for model evaluation, namely true positives, true negatives, false positives, and false negatives. Note that precision and recall are all metrics that are computed using TP, TN, FP and FN as parameters. The confusion matrix shows that our model performs well at determining the death and survival of those passengers who actually died, but performs rather poorly on those who lived. Analyses like these cannot be obtained simply by looking at accuracy, which is why plotting the confusion matrix is always a good idea to get a sense of the model's performance. 
 
 
-```
+```python
 from sklearn.metrics import plot_confusion_matrix
 
 plot_confusion_matrix(random_search, X_test, y_test, cmap=plt.cm.Blues, normalize='true')
