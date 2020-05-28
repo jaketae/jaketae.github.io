@@ -1,5 +1,6 @@
 ---
 title: "Resume"
+permalink: /resume/
 ---
 
 My latest resumé is available for download. 
