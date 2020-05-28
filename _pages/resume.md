@@ -4,7 +4,7 @@ permalink: /resume/
 layout: single
 ---
 
-My latest resumé is available for download. 
+Below is a link to my resumé, updated on May 29th, 2020. 
 
 
-<iframe src="https://drive.google.com/file/d/1RrYTaCpMVZzspq8kbC1dJdhwk6vXqnkP/preview" width="640" height="480"></iframe>
+<iframe src="https://drive.google.com/file/d/1RrYTaCpMVZzspq8kbC1dJdhwk6vXqnkP/preview" width="640" height="800"></iframe>
