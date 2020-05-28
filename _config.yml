@@ -117,16 +117,16 @@ defaults:
       share: true
       related: true
     # _cv
-  - scope:
-      path: "_cv"
-      type: cv
-    values:
-      layout: single
-      author_profile: true
-      read_time: false
-      comments: false
-      share: true
-      related: false
+  # - scope:
+  #     path: "_cv"
+  #     # type: cv
+  #   values:
+  #     layout: single
+  #     author_profile: true
+  #     read_time: false
+  #     comments: false
+  #     share: true
+  #     related: false
   # _pages
   # - scope:
   #     path: "_pages"

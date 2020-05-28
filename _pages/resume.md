@@ -1,6 +1,7 @@
 ---
 title: "Resume"
 permalink: /resume/
+layout: single
 ---
 
 My latest resumé is available for download. 
