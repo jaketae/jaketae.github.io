@@ -704,7 +704,7 @@ print(country, list(airports))
 
 Join, which comes from relational algebra, is a very common operation that comes from relational algebra. It is commonly used in SQL to bring two or more tables into the same picture. For a quick visual representation of what joins are, here is an image that might be of help.
 
-<img src='https://commons.wikimedia.org/wiki/File:SQL_Joins.svg' />
+<img src='https://upload.wikimedia.org/wikipedia/commons/9/9d/SQL_Joins.svg' />
 
 We can perfor joins on pair RDDs as well. We can consider pair RDDs to be somewhat like SQL tables with just a primary key and a single column to go with it. Let's quickly create a toy dataset to illustrate the join operators in PySpark. Here, we have a list of names, ages, and their countries of origin. To best demonstrate the join operation, we intentionally create a mismatch of keys in the `ages_rdd` and `countries_rdd`. 
 
