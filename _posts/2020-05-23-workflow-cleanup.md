@@ -4,6 +4,7 @@ mathjax: false
 toc: true
 categories:
   - blog
+  - development
 tags:
   - jupyter
   - r

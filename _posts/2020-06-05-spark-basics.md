@@ -1,11 +1,11 @@
 ---
-title: TITLE
-mathjax: true
+title: Introduction to PySpark
+mathjax: false
 toc: true
 categories:
-  - category
+  - study
 tags:
-  - tag
+  - spark
 ---
 
 I've stumbled across the word "Apache Spark" on the internet so many times, yet I never had the chance to really get to know what it was. For one thing, it seemed rather intimidating, full of buzzwords like "cloud computing", "data streaming," or "scalability," just to name a few among many others. However, a few days ago, I decided to give it a shot and try to at least get a glimpse of what it was all about. So here I report my findings after binge watching online tutorials on Apache Spark. 
