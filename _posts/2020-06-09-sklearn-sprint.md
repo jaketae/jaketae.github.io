@@ -3,7 +3,7 @@ title: Scikit-learn Sprint
 mathjax: false
 toc: false
 header:
-  image: https://commons.wikimedia.org/wiki/File:Scikit_learn_logo_small.svg#/media/File:Scikit_learn_logo_small.svg
+  image: /assets/images/scikit_learn_logo_small.svg
 categories:
   - development
   - study
