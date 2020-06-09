@@ -6,7 +6,6 @@ header:
   image: /assets/images/scikit_learn_logo_small.svg
 categories:
   - development
-  - study
 tags:
   - update
 ---
