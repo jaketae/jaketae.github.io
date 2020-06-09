@@ -4,10 +4,9 @@ mathjax: false
 toc: false
 categories:
   - development
- - study
+  - study
 tags:
   - update
-
 ---
 
 Last week, I had the pleasure of joining the first ever virtual Scikit-learn sprint, kindly organized by [Data Umbrella](https://www.dataumbrella.org) and [NYC PyLadies](https://nyc.pyladies.com). Although it was just a four-hour sprint held entirely online, it was a fantastic learning experience that helped me better understand collaborative workflow and the joy of contributing to open source. 
