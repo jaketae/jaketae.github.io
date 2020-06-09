@@ -46,7 +46,7 @@ timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 include:
   - _pages
-  - _portfolio
+  # - _portfolio
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
@@ -117,11 +117,11 @@ defaults:
       share: true
       related: true
   - scope:
-      path: "_portfolio"
+      path: ""
       type: portfolio
     values:
       layout: single
-      author_profile: false
+      author_profile: true
       share: true
       related: true
 
