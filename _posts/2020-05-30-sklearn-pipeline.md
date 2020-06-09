@@ -1,5 +1,5 @@
 ---
-title: Scikit-Learn Pipelines with Titanic
+title: Scikit-learn Pipelines with Titanic
 mathjax: false
 toc: true
 categories:
