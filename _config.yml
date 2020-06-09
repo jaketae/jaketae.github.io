@@ -117,7 +117,7 @@ defaults:
       share: true
       related: true
   - scope:
-      path: "_portfolio"
+      path: ""
       type: portfolio
     values:
       layout: single
