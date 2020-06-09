@@ -6,11 +6,6 @@ header:
   teaser: assets/images/find-shape-th.png
 ---
 
-For more information, visit [this link].
+For more information, visit [this link](https://github.com/jaketae/find-shape-game).
 
 (This is an unfinished page.)
-
-<!-- {% include gallery caption="This is a sample gallery to go along with this case study." %}
- -->
-
- [this link]: https://github.com/jaketae/find-shape-game

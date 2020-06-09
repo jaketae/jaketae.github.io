@@ -1,0 +1,28 @@
+---
+title: Gibbs Sampling
+categories:
+  - study
+tags:
+  - r
+output: 
+  md_document:
+    preserve_yaml: true
+    toc: false
+    fig_retina: 2
+---
+
+A few months ago, we explored the topic of Markov Chain Monte Carlo and its variant, Metropolis-Hastings. Recently, I came across a similar MCMC-based sampling algorithm, Gibbs sampling, that I thought was both intuitive and interesting. In this post, we will take a look at how Gibbs sampling works, then use R and Python to implement this algorithm given a dummy example. 
+
+# Motivation
+
+The motivation for MCMC-based sampling algorithms is simple: in a Bayesian context, we might be dealing with some intractable posterior distribution that is difficult to estimate. In Metrapolis-Hastings, we 
+
+```{r}
+Sys.setenv(RETICULATE_PYTHON = "/Users/jaketae/opt/anaconda3/envs/basic/bin/python")
+library('reticulate')
+```
+
+
+```{python}
+import matplotlib.pyplot as plt
+```
