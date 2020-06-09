@@ -9,7 +9,7 @@ tags:
   - update
 ---
 
-Last week, I had the pleasure of joining the first ever virtual Scikit-learn sprint, kindly organized by [Data Umbrella](https://www.dataumbrella.org) and [NYC PyLadies](https://nyc.pyladies.com). Although it was just a four-hour sprint held entirely online, it was a fantastic learning experience that helped me better understand collaborative workflow and the joy of contributing to open source. 
+Last week, I had the pleasure of joining the first ever virtual [Scikit-learn sprint](https://sites.google.com/view/nyc-2020-scikit-sprint/home), kindly organized by [Data Umbrella](https://www.dataumbrella.org) and [NYC PyLadies](https://nyc.pyladies.com). Although it was just a four-hour sprint held entirely online, it was a fantastic learning experience that helped me better understand collaborative workflow and the joy of contributing to open source. 
 
 A salient feature of the Scikit-learn sprint is pair programming, where participants are grouped into teams consisting of two people. Each pair works as a team to address open issues, report new issues, or submit pull requests. When I first learned about pair programming through the sprint, I thought it was a great idea since these pairs could be arranged in such a way that participants with relatively little experience (like myself) could be paired up with more experienced developers to tackle complicated issues that they otherwise would not have been able to.
 
