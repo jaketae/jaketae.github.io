@@ -5,12 +5,13 @@ toc: false
 header:
   overlay_image: https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg
   overlay_filter: 0.5
-  caption: A reflection on my first OS contribution sprint
 categories:
   - development
 tags:
   - update
 ---
+
+# A reflection on my first OS contribution sprint
 
 Last week, I had the pleasure of joining the first ever virtual [Scikit-learn sprint](https://sites.google.com/view/nyc-2020-scikit-sprint/home), kindly organized by [Reshama Shaikh](https://twitter.com/reshamas) of [Data Umbrella](https://www.dataumbrella.org) and [NYC PyLadies](https://nyc.pyladies.com). Although it was just a four-hour sprint held entirely online, it was a fantastic learning experience that helped me better understand collaborative workflow and the joy of contributing to open source. 
 
