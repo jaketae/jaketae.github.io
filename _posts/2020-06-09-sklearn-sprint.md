@@ -5,6 +5,7 @@ toc: false
 header:
   overlay_image: https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg
   overlay_filter: 0.5
+  caption: A reflection on my first OS contribution sprint
 categories:
   - development
 tags:
