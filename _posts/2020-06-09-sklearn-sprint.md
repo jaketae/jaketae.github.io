@@ -3,7 +3,8 @@ title: Scikit-learn Sprint
 mathjax: false
 toc: false
 header:
-  image: /assets/images/2020-06-09-sklearn-sprint_files/scikit_learn_logo_small.png
+  overlay_image: https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg
+  overlay_filter: 0.5
 categories:
   - development
 tags:
