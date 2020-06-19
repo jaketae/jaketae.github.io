@@ -223,21 +223,6 @@ plt.tight_layout()
 plt.show()
 ```
 
-    /Users/jaketae/opt/anaconda3/envs/BayesPython/lib/python3.7/site-packages/arviz/plots/backends/matplotlib/distplot.py:38: UserWarning: Argument backend_kwargs has not effect in matplotlib.plot_distSupplied value won't be used
-      "Argument backend_kwargs has not effect in matplotlib.plot_dist"
-    /Users/jaketae/opt/anaconda3/envs/BayesPython/lib/python3.7/site-packages/arviz/plots/backends/matplotlib/distplot.py:38: UserWarning: Argument backend_kwargs has not effect in matplotlib.plot_distSupplied value won't be used
-      "Argument backend_kwargs has not effect in matplotlib.plot_dist"
-    /Users/jaketae/opt/anaconda3/envs/BayesPython/lib/python3.7/site-packages/arviz/plots/backends/matplotlib/distplot.py:38: UserWarning: Argument backend_kwargs has not effect in matplotlib.plot_distSupplied value won't be used
-      "Argument backend_kwargs has not effect in matplotlib.plot_dist"
-    /Users/jaketae/opt/anaconda3/envs/BayesPython/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: This figure was using constrained_layout==True, but that is incompatible with subplots_adjust and or tight_layout: setting constrained_layout==False. 
-      This is separate from the ipykernel package so we can avoid doing imports until
-
-
-
-    <Figure size 504x504 with 0 Axes>
-
-
-
 <img src="/assets/images/2020-01-20-bayesian-regression_files/2020-01-20-bayesian-regression_22_2.svg">
 
 
