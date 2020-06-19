@@ -441,7 +441,7 @@ Now that we have seen the robustness of the Newton-Raphson method, let's take a 
 
 ## Secant Method
 
-In this section, we will look at the secant method, which is another method for identifying the roots of non-linear equations. Before we get into a description of how this method works, here's a quick graphic, again from [Wikipedia](https://upload.wikimedia.org/wikipedia/commons/9/92/Secant_method.svg">, on how the secant method works. 
+In this section, we will look at the secant method, which is another method for identifying the roots of non-linear equations. Before we get into a description of how this method works, here's a quick graphic, again from [Wikipedia](https://upload.wikimedia.org/wikipedia/commons/9/92/Secant_method.svg), on how the secant method works. 
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Secant_method.svg">
 

@@ -30,27 +30,30 @@ $$\frac{\sin(x)}{x} = 1 - \frac{x^2}{3!} + \frac{x^4}{5!} \dots = \sum_{n = 0}^\
 
 Now it’s time to follow Euler’s amazing intuition. If we take a close look at the equation $$\frac{\sin(x)}{x} = 0$$, we can convince ourselves that its solutions will adhere to the form $$n\pi$$, where $$n$$ is a non-zero integer between $$[- \infty, \infty]$$. This is expected given the periodic behavior of the sine function and its intercepts with the $$x$$-axis. Given these zeros, we can then reconstruct the original function $$\frac{\sin(x)}{x}$$ as an infinite product using the [fundamental theorem of algebra], or more specifically, [Weierstrass factorization]. 
 
-$$\frac{\sin(x)}{x} = (1 - \frac{\pi}{x})(1 + \frac{\pi}{x})(1 - \frac{2\pi}{x})(1 + \frac{2\pi}{x}) \dots$$
+$$\frac{\sin(x)}{x} = (1 - \frac{x}{\pi})(1 + \frac{x}{\pi})(1 - \frac{x}{2 \pi})(1 + \frac{x}{2 \pi}) \dots$$
 
 Let’s try to factor out the coefficient of the $$x^2$$ term through some elementary induction. First, we observe that calculating the product of the first two terms produces the following expression:
 
-$$\frac{\sin(x)}{x} = (1 - \frac{\pi^2}{x^2})(1 - \frac{2\pi}{x})(1 + \frac{2\pi}{x}) \dots \tag{1}$$
+$$
+\frac{\sin(x)}{x} = (1 - \frac{x^2}{\pi^2})(1 - \frac{x}{2 \pi})(1 + \frac{x}{2 \pi}) \dots
+$$
+
 
 Then, we can express the target coefficient, denoted by $$C$$, as follows:
 
-$$C = C’ - \pi^2$$
+$$C = C’ - \frac{1}{\pi^2}$$
 
-Where $$C’$$ denotes the coefficient of $$x^2$$ obtained by expanding the rest of the terms following $$(1 - \frac{\pi^2}{x^2})$$ in the infinite product above. If we repeat this process once more, a clear pattern emerges:
+Where $$C’$$ denotes the coefficient of $$x^2$$ obtained by expanding the rest of the terms following $$(1 - \frac{x^2}{\pi^2})$$ in the infinite product above. If we repeat this process once more, a clear pattern emerges:
 
-$$C = C’ - \pi^2 = C’’ - \pi^2 - \frac{\pi^2}{4}$$
+$$C = C’ - \frac{1}{\pi^2} = C’’ - \frac{1}{\pi^2} - \frac{1}{4 \pi^2}$$
 
 Iterating over this process will eventually allow us to express our target coefficient as a sum of inverse squares multiplied by some constant, in this case $$\pi^2$$:
 
-$$C = - (\pi^2 + \frac{\pi^2}{4} + \frac{\pi^2}{9} \dots) = - \pi^2 \sum_{n = 1}^\infty \frac{1}{n^2}$$
+$$C = - (\frac{1}{\pi^2} + \frac{1}{4 \pi^2} + \frac{1}{9 \pi^2} \dots) = - \frac{1}{\pi^2} \sum_{n = 1}^\infty \frac{1}{n^2}$$
 
-But then we already know the value of $$C$$ from the modification of the Taylor polynomial for sine we saw earlier, which is $$\frac{1}{6}$$! Therefore, the Basel problem reduces to the following:
+But then we already know the value of $$C$$ from the modification of the Taylor polynomial for sine we saw earlier, which is $$- \frac{1}{6}$$! Therefore, the Basel problem reduces to the following:
 
-$$\frac{1}{6} = - \pi^2 \sum_{n = 1}^\infty \frac{1}{n^2}$$
+$$- \frac{1}{6} = - \frac{1}{\pi^2} \sum_{n = 1}^\infty \frac{1}{n^2}$$
 
 Therefore,
 
