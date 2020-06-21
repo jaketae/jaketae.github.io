@@ -5,6 +5,7 @@ categories:
   - study
 tags:
   - euler
+  - analysis
 ---
 
 The more I continue my journey down the rabbit hole of mathematics, the more often I stumble across one name: Leonhard Euler. Nearly every concept that I learn, in one way or another, seems to be built on top of some strand of his work, not to mention the unending list of constants, formulas, and series that bears his name. It is simply mind-blowing to imagine that a single person could be so creative, inventive, and productive to the extent that the field of mathematics would not be where it is today had it not been for his birth on April 15, 1707.  
