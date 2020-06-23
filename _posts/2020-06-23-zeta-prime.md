@@ -129,11 +129,6 @@ is_coprime(3, 10, do_print=True)
 ```
 
     [6 7 1]
-
-
-
-
-
     True
 
 
@@ -172,15 +167,8 @@ plt.scatter(x, y, color="skyblue")
 plt.hlines(y=1/zeta(2), xmin=2, xmax=200, 
            colors="gold", label = r'$\frac{1}{\zeta(2)}$')
 plt.legend()
-plt.plot()
+plt.show()
 ```
-
-
-
-
-    []
-
-
 
 
 <img src="/assets/images/2020-06-23-zeta-prime_files/2020-06-23-zeta-prime_20_1.svg">
@@ -220,7 +208,7 @@ $$
 \eta(s) 
 &= 1 - \frac{1}{2^s} + \frac{1}{3^s} - \frac{1}{4^s} + \cdots \\
 &= \sum_{n = 1}^\infty (-1)^{n - 1} \frac{1}{n^s}
-\end{align}
+\end{align} \tag{7}
 $$
 
 As you can see, this is essentially the alternating version of the Riemann Zeta function. 
@@ -230,13 +218,13 @@ Given this design, we can derive what may appear to be apparent to some yet none
 For a bit of intuition, observe that the Eta function can be split up into what may be referred to as even and odd terms. In other words, 
 
 $$
-\eta(s) = \left(1 + \frac{1}{3^s} + \frac{1}{5^s} + \cdots  \right) - \left( \frac{1}{2^s} + \frac{1}{4^s} + \cdots \right)
+\eta(s) = \left(1 + \frac{1}{3^s} + \frac{1}{5^s} + \cdots  \right) - \left( \frac{1}{2^s} + \frac{1}{4^s} + \cdots \right) \tag{8}
 $$
 
 The idea is that the even terms are just a multiple of the Zeta function, namely
 
 $$
-\left( \frac{1}{2^s} + \frac{1}{4^s} + \cdots \right) = \frac{1}{2^s} \zeta(s)
+\left( \frac{1}{2^s} + \frac{1}{4^s} + \cdots \right) = \frac{1}{2^s} \zeta(s) \tag{9}
 $$
 
 Then, the odd terms can also be seen as the Zeta function minus this multiple:
@@ -246,7 +234,7 @@ $$
 \left(1 + \frac{1}{3^s} + \frac{1}{5^s} + \cdots  \right) 
 &= \zeta(s) - \frac{1}{2^s} \zeta(s) \\
 &= \zeta(s) \left( 1 - \frac{1}{2^s} \right)
-\end{align}
+\end{align} \tag{10}
 $$
 
 We now have successfully expressed both the even and odd terms of the Eta function in terms of the Zeta function. If we put the two together, we will then be able to express the entirety of the Eta function fully in terms of the Zeta function. To cut to the chase, we get
@@ -256,7 +244,7 @@ $$
 \eta(s) 
 &= \zeta(s) \left( 1 - \frac{1}{2^s} \right) - \frac{1}{2^s} \zeta(s) \\
 &= \zeta(s) \left( 1 - 2^{1 - s} \right)
-\end{align}
+\end{align} \tag{11}
 $$
 
 And there we have it, the relationship between the Dirichlet Eta function and the Riemann Zeta function! There are many more interesting things about the Eta function, such as its convergence property, but that is a topic for another post. 
