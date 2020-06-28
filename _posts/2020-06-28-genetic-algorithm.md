@@ -10,7 +10,7 @@ tags:
   - algorithms
 ---
 
-The traveling salesman problem (TSP) is a famous NP hard problem in computer science. The problem might be summarized as follows: imagine you are a salesperson who needs to visit some number of cities. Because you want to minimize costs spent on traveling (or maybe you're just lazy like I am), you want to find out the most efficient route, one that will require the least amount of traveling. You are given a coordinate of the cities to visit on a map. How can you find the optimal route?
+The traveling salesman problem (TSP) is a famous problem in computer science. The problem might be summarized as follows: imagine you are a salesperson who needs to visit some number of cities. Because you want to minimize costs spent on traveling (or maybe you're just lazy like I am), you want to find out the most efficient route, one that will require the least amount of traveling. You are given a coordinate of the cities to visit on a map. How can you find the optimal route?
 
 The most obvious solution would be the brute force method, where you consider all the different possibilities, calculate the estimated distance for each, and choose the one that is the shortest path. While this is a definite way to solve TSP, the issue with this approach is that it requires a lot of compute---the runtime of this brute force algorithm would be $O(n!)$, which is just utterly terrible. 
 
@@ -19,6 +19,10 @@ In this post, we will consider a more interesting way to approach TSP: genetic a
 # Problem and Setup
 
 Before we dive into the solution, we need to first consider how we might represent this problem in code. Let's take a look at the modules we will be using and the mode of representation we will adopt in approaching TSP.
+
+## Disclaimer
+
+The original, popular TSP requires that the salesperson return to the original starting point destination as well. In other words, if the salesman starts at city A, he has to visit all the rest of the cities until returning back to city A. For the sake of simplicity, however, we don't enforce this returning requirement in our modified version of TSP. 
 
 ## Setup
 
