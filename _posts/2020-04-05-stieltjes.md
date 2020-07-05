@@ -33,7 +33,7 @@ $$
 $$
 
 
-I mean, my calculus is rusty, but it kind of makes sense: the probably density function is, after all, a derivative of the cumulative density function, and so notationally there is some degree of coherency. here.
+I mean, my calculus is rusty, but it kind of makes sense: the probably density function is, after all, a derivative of the cumulative density function, and so notationally there is some degree of coherency here.
 
 
 $$
@@ -41,7 +41,7 @@ f(x) = \frac{d}{dx}F(x) \implies f(x) \, dx = dF(x) \tag{4}
 $$
 
 
-But still, this definition of the expected value threw me off quite a bit. What does it mean to integrate over a distribution function instead of a variable? After some research, however, the math gurus at [Stack Overflow](https://math.stackexchange.com/questions/380785/what-does-it-mean-to-integrate-with-respect-to-the-distribution-function) provided me with an answer. (Some people have an aversion to community-driven websites like SO or Wikipedia, but often times they provide the most easy-to-understand, intuitive explanations and elaborations on certain concepts.) So here is a brief summary of my findings. 
+But still, this definition of the expected value threw me off quite a bit. What does it mean to integrate over a distribution function instead of a variable? After some research, however, the math gurus at [Stack Exchange](https://math.stackexchange.com/questions/380785/what-does-it-mean-to-integrate-with-respect-to-the-distribution-function) provided me with an answer. So here is a brief summary of my findings. 
 
 The integral that we all know of is called the Riemann integral. The confusing integral is in fact a generalization of the Riemann integral, known as the Riemann-Stieltjes integral (don't ask me how to pronounce the name of the Dutch mathematician). There is an even more general interpretation of integrals called the Lebesgue integral, but we won't get into that here. 
 

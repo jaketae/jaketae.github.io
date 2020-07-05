@@ -302,7 +302,7 @@ $$
 We're now almost done. Heuristically, we know that the addition in $Q(\mathbf{x_1}, \mathbf{x_2})$ will become a multiplication when plugged back into the original formula for the multivariate Gaussian as shown in (3), using (4). Therefore, if we divide the entire expression by $p(\mathbf{x_1})$, we will only end up with the term produced by $Q_2(\mathbf{x_1}, \mathbf{x_2})$. Using this heuristic, we conclude that 
 
 $$
-\mathbf{x_2 \vert x_1} \sim \mathcal{N} \left(\mu_2 - \Sigma_{12}^\top \Sigma_{11}^{-1} (\mathbf{x_1} - \mu_1), \Sigma_{22} - \Sigma_{12}^\top \Sigma_{11}^{-1} \Sigma_{12} \right)
+\mathbf{x_2 \vert x_1} \sim \mathcal{N} \left(\mu_2 + \Sigma_{12}^\top \Sigma_{11}^{-1} (\mathbf{x_1} - \mu_1), \Sigma_{22} - \Sigma_{12}^\top \Sigma_{11}^{-1} \Sigma_{12} \right)
 $$
 
 Notice that this result is exactly what we have in the funtion which we used to sample from the conditional distribution. 
