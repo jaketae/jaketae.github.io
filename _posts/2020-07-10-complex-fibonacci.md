@@ -231,7 +231,7 @@ binet(1.1)
 
 
 
-Lo and behold, we get a complex fibonacci number! I thought this was crazy, almost like seeing some sort of magic. Although I had known about the fibonacci sequence for as long as I can remember, I had never thought about it in continuous terms: in my mind, the fibonacci sequence was, after all, a sequence---a discrete set of numbers adhering to the simple rule that the next number in line is the sum of the previous two.
+Lo and behold, we get a complex fibonacci number! I thought this was so fascinating, almost like seeing a magic of some sort. Although I had known about the fibonacci sequence for as long as I can remember, I had never thought about it in continuous terms: in my mind, the fibonacci sequence was, after all, a sequence---a discrete set of numbers adhering to the simple rule that the next number in line is the sum of the previous two.
 
 The intriguing part is that, even in this complex fibonacci madness, the simple rule still holds. For instance,
 
@@ -241,6 +241,30 @@ diff = binet(3.1) - (binet(2.1) + binet(1.1))
 assert diff.real < 1e-10 and abs(diff.imag) < 1e-10
 ```
 
+You might be wondering why we don't compare things exactly by means of
+
+```python
+assert binet(3.1) == binet(2.1) + binet(1.1)
+```
+
+This is because this equality doesn't hold due to floating point arithematic. Therefore, we simply verify equivalence by comparing their magnitude with an arbitrarily small number, `1e-10`. The takeaway from the code snippet is that 
+
+$$
+F_n = F_{n - 1} + F_{n - 2}
+$$
+
+holds, regardless of whether or not $n$ is a non-negative integer. Indeed, Binet's formula gives us what we might refer to as the interpolation of the fibonacci sequence, in this case extended along the real number line. 
+
+# Plotting the Fibonacci Sequence
+
+A corollary of the real number interpolation of the fibonacci sequence via Binet's formula is that now we can effectively plot the complex fibonacci numbers on the Cartesian plane. Because $n$ can be continuous, we would expect some graph to appear, where the $x$-axis represents real numbers, and $y$, the imaginary. 
+
+This requires a bit of a hack though; note that the result of Binet's formula is a complex number, or a two-dimensional data point. The input to the function is just a one-dimensional real number. Therefore, we need a way of representing a map from a one-dimensional real number line to a two-dimensional complex plane. This is sort of tricky if you think about it: the normal two-dimensional plane as we know it can only represent a mapping from the $x$-axis to the $y$-axis---in other words, a transformation from one-dimensional space to another one-dimensional space. A three-dimensional $xyz$-coordinate system, on the other hand, represents a transformation from a two-dimensional space, represented by $x$ and $y$, to another one-dimensional space, namely $z$. We aren't used to going to other way around, where a one-dimensional space is mapped to a two-dimensional space, as is the case here.
+
+A simple hack that nonetheless makes a lot of sense in this case is to use the real-number line for two purposes: representing the input dimension, namely the real number line, and one component of the output dimension---the real number portion of the output to Binet's formula. This admittedly results in a loss of information, since finding the point where $n = k$ won't give us the $k$th fibonacci number; instead, it will only tell us what the fibonacci number is whose real number component equals $k$. Nonetheless, this is an approach that makes sense since the real number line is a common dimension in both the input and output data. With this in mind, let's go ahead and try to plot the interpolation of the fibonacci sequence on the complex plane.
+
+First, we import the modules we will need.
+
 
 ```python
 import numpy as np
@@ -248,7 +272,12 @@ import matplotlib.pyplot as plt
 %matplotlib inline
 %config InlineBackend.figure_format = 'svg'
 plt.style.use("seaborn")
+```
 
+Then, we simply specify the domain on the real number line and generate the fibonacci numbers, separating out the real and imaginary components. Note that `x` is not going to be used for plotting; instead, we use `y_real` as the $x$-axis, and this is where the loss of temporal information comes in, as mentioned earlier. 
+
+
+```python
 x = np.linspace(-10, 10, 200).astype(complex)
 y_real = []
 y_imag = []
@@ -258,6 +287,8 @@ for num in x:
     y_imag.append(res.imag)
 ```
 
+Now, let's go ahead and plot it out!
+
 
 ```python
 plt.plot(y_real, y_imag, color="skyblue")
@@ -265,8 +296,12 @@ plt.show()
 ```
 
 
-<img src="/assets/images/2020-07-10-complex-fibonacci_files/2020-07-10-complex-fibonacci_28_0.svg">
+<img src="/assets/images/2020-07-10-complex-fibonacci_files/2020-07-10-complex-fibonacci_33_0.svg">
 
+
+And there it is, the full fibonacci sequence, interpolated across the real numbers. When I first saw this pattern in Matt Parker's video, I was simply in awe, a loss of words. There's something inexplicably beautiful and wonderful at this pattern, almost as if it was some part of God's plan. Okay, maybe I'm being too melodramatic about a graph, but there is no denying that this pattern is geometrically interesting and pleasing to the eye. Everything looks so intentional and deliberate.
+
+The comments on the aesthetics of the snail shell aside, one point that deserves our attention is what appears to be a straight line. Well, turns out that this is, in fact, not a straight line. The only reasn why it appears straight is that the snail pattern overshadows the little vibrations on this portion of the graph. Indeed, zooming in, we see that there is an interesting damping motion going on. This is what the fibonacci sequence would have looked like had we plotted only the positive domain of the real number line.
 
 
 ```python
@@ -275,10 +310,13 @@ plt.show()
 ```
 
 
-<img src="/assets/images/2020-07-10-complex-fibonacci_files/2020-07-10-complex-fibonacci_29_0.svg">
+<img src="/assets/images/2020-07-10-complex-fibonacci_files/2020-07-10-complex-fibonacci_35_0.svg">
 
 
+# Conclusion
 
-```python
+In this post, we took a look at the fibonacci sequence and its interpolation across the real number line. We could go even crazier, as did Matt Parker in his own video, by attempting to interpolate the sequence on the complex number plane, at which point we would now have a mapping from two dimensions to two dimensions, effectively forcing us to think in terms of four dimensions. There is no fast, handy way of drawing or visualizing four dimensions, as we are creatures that are naturally accustomed to three dimensions. There are interesting observations to be made with the full-fledged complex interpolation of the sequence, but I thought this is already interesting as it is nonetheless. 
 
-```
+Nowadays, I'm reminded of just how many things that I thought I knew well---like the fibonacci sequence---are rife with things to study and rejoice in wonder. More so than the value of understanding something brand new, perhaps the value of intellectual exploration lies in realizing just how ignorant one is, as ironic as it sounds. 
+
+I didn't want to end on such a philosophical note, but things have already precipitated contrary to my intentions. Anyhow, I hope you've enjoyred reading this post. Catch you up in the next one.
