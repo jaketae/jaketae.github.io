@@ -295,8 +295,7 @@ plt.plot(y_real, y_imag, color="skyblue")
 plt.show()
 ```
 
-
-<img src="/assets/images/2020-07-10-complex-fibonacci_files/2020-07-10-complex-fibonacci_33_0.svg">
+<img src="/assets/images/2020-07-10-complex-fibonacci_files/2020-07-10-complex-fibonacci_28_0.svg">
 
 
 And there it is, the full fibonacci sequence, interpolated across the real numbers. When I first saw this pattern in Matt Parker's video, I was simply in awe, a loss of words. There's something inexplicably beautiful and wonderful at this pattern, almost as if it was some part of God's plan. Okay, maybe I'm being too melodramatic about a graph, but there is no denying that this pattern is geometrically interesting and pleasing to the eye. Everything looks so intentional and deliberate.
@@ -309,8 +308,7 @@ plt.plot(y_real[110:], y_imag[110:], color="skyblue")
 plt.show()
 ```
 
-
-<img src="/assets/images/2020-07-10-complex-fibonacci_files/2020-07-10-complex-fibonacci_35_0.svg">
+<img src="/assets/images/2020-07-10-complex-fibonacci_files/2020-07-10-complex-fibonacci_29_0.svg">
 
 
 # Conclusion
