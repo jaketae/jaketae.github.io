@@ -8,7 +8,7 @@ tags:
   - analysis
 ---
 
-A few days ago, [a video](https://www.youtube.com/watch?v=ghxQA3vvhsk) popped up in my YouTube suggestions. We all know how disturbingly powerful the YouTube recommendation algorithm is: more than 90 percent of the times, I thorougly enjoy all suggestions put forth by the mastermind algorithm. This time was no exception: in fact, I enjoyed it so much that I decided to write a short blog post about it. Also a quick plug: if you haven't checked out Matt Parker's channel, I highly recommend that you do.
+A few days ago, [a video](https://www.youtube.com/watch?v=ghxQA3vvhsk) popped up in my YouTube suggestions. We all know how disturbingly powerful the YouTube recommendation algorithm is: more than 90 percent of the times, I thoroughly enjoy all suggestions put forth by the mastermind algorithm. This time was no exception: in fact, I enjoyed it so much that I decided to write a short blog post about it. Also a quick plug: if you haven't checked out Matt Parker's channel, I highly recommend that you do.
 
 Let's dive right into today's topic: extending the fibonacci sequence to complex numbers.
 
@@ -247,7 +247,7 @@ You might be wondering why we don't compare things exactly by means of
 assert binet(3.1) == binet(2.1) + binet(1.1)
 ```
 
-This is because this equality doesn't hold due to floating point arithematic. Therefore, we simply verify equivalence by comparing their magnitude with an arbitrarily small number, `1e-10`. The takeaway from the code snippet is that 
+This is because this equality doesn't hold due to floating point arithmetic. Therefore, we simply verify equivalence by comparing their magnitude with an arbitrarily small number, `1e-10`. The takeaway from the code snippet is that 
 
 $$
 F_n = F_{n - 1} + F_{n - 2}
@@ -300,7 +300,7 @@ plt.show()
 
 And there it is, the full fibonacci sequence, interpolated across the real numbers. When I first saw this pattern in Matt Parker's video, I was simply in awe, a loss of words. There's something inexplicably beautiful and wonderful at this pattern, almost as if it was some part of God's plan. Okay, maybe I'm being too melodramatic about a graph, but there is no denying that this pattern is geometrically interesting and pleasing to the eye. Everything looks so intentional and deliberate.
 
-The comments on the aesthetics of the snail shell aside, one point that deserves our attention is what appears to be a straight line. Well, turns out that this is, in fact, not a straight line. The only reasn why it appears straight is that the snail pattern overshadows the little vibrations on this portion of the graph. Indeed, zooming in, we see that there is an interesting damping motion going on. This is what the fibonacci sequence would have looked like had we plotted only the positive domain of the real number line.
+The comments on the aesthetics of the snail shell aside, one point that deserves our attention is what appears to be a straight line. Well, turns out that this is, in fact, not a straight line. The only reason why it appears straight is that the snail pattern overshadows the little vibrations on this portion of the graph. Indeed, zooming in, we see that there is an interesting damping motion going on. This is what the fibonacci sequence would have looked like had we plotted only the positive domain of the real number line.
 
 
 ```python
@@ -317,4 +317,4 @@ In this post, we took a look at the fibonacci sequence and its interpolation acr
 
 Nowadays, I'm reminded of just how many things that I thought I knew well---like the fibonacci sequence---are rife with things to study and rejoice in wonder. More so than the value of understanding something brand new, perhaps the value of intellectual exploration lies in realizing just how ignorant one is, as ironic as it sounds. 
 
-I didn't want to end on such a philosophical note, but things have already precipitated contrary to my intentions. Anyhow, I hope you've enjoyred reading this post. Catch you up in the next one.
+I didn't want to end on such a philosophical note, but things have already precipitated contrary to my intentions. Anyhow, I hope you've enjoyed reading this post. Catch you up in the next one.

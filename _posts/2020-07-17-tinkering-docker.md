@@ -8,7 +8,7 @@ tags:
   - docker
 ---
 
-Docker was one of these things that I always wanted to learn, but never got into. Part of the reason was that it seemd distant and even somewhat unnecessary to me. As someone who has only worked on relatively simple projects, I never felt the need to go beyond the notion of virtual environments. Indeed, when I first read about Docker in an attempt to learn more about what all the DevOps hype was about, I found myself wondering: is Docker really that much different from a Python virtual environment? 
+Docker was one of these things that I always wanted to learn, but never got into. Part of the reason was that it seemed distant and even somewhat unnecessary to me. As someone who has only worked on relatively simple projects, I never felt the need to go beyond the notion of virtual environments. Indeed, when I first read about Docker in an attempt to learn more about what all the DevOps hype was about, I found myself wondering: is Docker really that much different from a Python virtual environment? 
 
 Well, some time has passed since then, and I got lucky enough to have landed an internship at a small startup. Given that the team will be using some DevOps tools---Docker definitely being one of them---I thought I'd get my hands dirty to get a sense of what Docker is like and what it's primarily used for. Instead of the YouTube route, this time I decided to check out a book titled [Docker Deep Dive](https://www.amazon.com/Docker-Deep-Dive-Nigel-Poulton-ebook/dp/B01LXWQUFF) by Nigel Poulton. Throughout this post, I will be referring to examples from his book. For those who want to get a beginner-friendly introduction to Docker, I highly recommend this book. 
 
@@ -18,7 +18,7 @@ At the point of writing, I've read up to Chapter 8 of the book, "Containerizing 
 
 Before getting into any details about Docker, it's perhaps necessary for me to clarify the setup in which this post was written. In testing out Docker commands, I went back and forth between this Jupyter notebook and the terminal. I mainly tried to use Jupyter in order to record the commands I typed and their outputs in this post, but certain commands that require secondary input in interactive mode, such as `docker container run -it [...]` was tested in the terminal.
 
-The `!` sign in front of every Docker command is necessary to run unix commands in Jupyter. An exception is `%cd`, which is a magic command in Jupyter that allows the use of `cd`; `! cd` does not work, because the way Jupyter interacts with the system is by attaching a shell subprocess. These details aside, the key takeaway is that the exclaimation or percent symbols can be disregarded.
+The `!` sign in front of every Docker command is necessary to run unix commands in Jupyter. An exception is `%cd`, which is a magic command in Jupyter that allows the use of `cd`; `! cd` does not work, because the way Jupyter interacts with the system is by attaching a shell subprocess. These details aside, the key takeaway is that the exclamation or percent symbols can be disregarded.
 
 # Docker Basics
 
@@ -100,7 +100,7 @@ We can also use some filtering along with the `ls` command to target or specify 
 
 ## Pulling an Image
 
-To pull an image, we can use `docker pull [...]`, where the elipses are the name of the repository and the tag. For example, let's try pulling the latest Ubuntu image from Docker hub. 
+To pull an image, we can use `docker pull [...]`, where the ellipses are the name of the repository and the tag. For example, let's try pulling the latest Ubuntu image from Docker hub. 
 
 
 ```python
@@ -133,7 +133,7 @@ If we now check what images we have, we see the Ubuntu image that was just pulle
 
 We can also pull from other sources as well. In Docker hub, there is this notion of namespaces. What this simply means is that some Docker accounts, most likely huge companies or other established developers, have a first class namespace status. This means that the name of their repository is absolute. A good example is `ubuntu`---`ubuntu:latest` is a valid name of an image. 
 
-For third party or individual developers like us, however, the namespace becomes slightly different. For example, to pull from Poulton's repository on Docker hub, we need to reference his image as :`nigelpoulton/tu-demo:v2`. For me, it woulld be `jaketae/repo_title: tag`. Note that the name of the Docker repository is effectively the name of the image.
+For third party or individual developers like us, however, the namespace becomes slightly different. For example, to pull from Poulton's repository on Docker hub, we need to reference his image as :`nigelpoulton/tu-demo:v2`. For me, it would be `jaketae/repo_title: tag`. Note that the name of the Docker repository is effectively the name of the image.
 
 ```
 ! docker image pull ubuntu:latest
@@ -177,7 +177,7 @@ Another useful thing to know about pulling is that Docker intelligently knows wh
     docker.io/nigelpoulton/tu-demo
 
 
-Notice that layers that already exist are skipped. For example, consider a situation where the Docker image uses `alphine:latest` as a basis. Then, since we already have `alpine:latest` in our system, Docker simply assignes a pointer to reference that image instead of downloading duplicate contents again.
+Notice that layers that already exist are skipped. For example, consider a situation where the Docker image uses `alphine:latest` as a basis. Then, since we already have `alpine:latest` in our system, Docker simply assigns a pointer to reference that image instead of downloading duplicate contents again.
 
 # Image and Containers
 
@@ -305,7 +305,7 @@ layer 2: RUN apk add --update nodejs nodejs-npm
 layer 1: FROM alpine
 ```
 
-While this file is certainly not written in vernacular prose, we can sort of see what it's doing. First, we start `FROM` some base image, which is `alpine` in this case. Then, we install some modules that will be necesssary. We then copy the contents of the file to `/src`, a virtual directory in the Docker container. Then, we run some commands and expose the endpoint of the application. Exposing the endpoint simply means that there is a port or url through which we can access the web application ilving in Docker. 
+While this file is certainly not written in vernacular prose, we can sort of see what it's doing. First, we start `FROM` some base image, which is `alpine` in this case. Then, we install some modules that will be necessary. We then copy the contents of the file to `/src`, a virtual directory in the Docker container. Then, we run some commands and expose the endpoint of the application. Exposing the endpoint simply means that there is a port or url through which we can access the web application living in Docker. 
 
 As stated earlier, a Dockerfile is a method of building custom images. How do we actually build an image off of it? All we need is a simple `docker image build` command.
 
@@ -423,7 +423,7 @@ To remove dangling layers, we can prune Docker.
 
 In some cases, however, pruning does not delete `<none>:<none>` images. This means that these images are not dangling; most commonly, I've realized that these seemingly dangling images are simply the intermediate layers of some custom created image. 
 
-A final note on a conveneint command with which we can remove all current containers. Although this is a one-liner, it is really just a nested command in which we first look for containers that are open, get their identifications, and forcibly remove them from the system with the `-f` flag. Note that enforcing `-f` does not constitute graceful shutdown and deletion, but it is a convenient command nonetheless.
+A final note on a convenient command with which we can remove all current containers. Although this is a one-liner, it is really just a nested command in which we first look for containers that are open, get their identifications, and forcibly remove them from the system with the `-f` flag. Note that enforcing `-f` does not constitute graceful shutdown and deletion, but it is a convenient command nonetheless.
 
 
 ```python
@@ -435,7 +435,7 @@ A final note on a conveneint command with which we can remove all current contai
 
 # Searching Docker Hub
 
-As mentioned earlier, Docker hub is sort of the GitHub for Docker images. Here, people can push and pull images that they themsevles have created, or those that have been created by others. One convenient thing about Docker hub is that we can use the command line interface to perform some quick searches. In this example, we search for Poulton's images on Docker hub, then pipe that result onto `head` so that we don't end up getting too much search results. 
+As mentioned earlier, Docker hub is sort of the GitHub for Docker images. Here, people can push and pull images that they themselves have created, or those that have been created by others. One convenient thing about Docker hub is that we can use the command line interface to perform some quick searches. In this example, we search for Poulton's images on Docker hub, then pipe that result onto `head` so that we don't end up getting too much search results. 
 
 
 ```python
@@ -571,7 +571,7 @@ When we deal with custom created images, it's probably a good idea to run a quic
 
 Okay, this is perhaps too much data, but there there are parts that are interesting that require our attention. For example, notice that under `"RootFS"`, the image shows us how many layers there are. Granted, the layers are SHA256 encrypted, so we can't really see what these individual layers are right away. Nonetheless, we can still get an idea of who heavy the image is and how many layers it is composed of.
 
-Potentially even more important that getting the number of layers from an insepction command is knowing what command the Docker is instructed to run. For a better example, let's insepct another image. 
+Potentially even more important that getting the number of layers from an inspection command is knowing what command the Docker is instructed to run. For a better example, let's  another image. 
 
 
 ```python
@@ -695,7 +695,7 @@ Potentially even more important that getting the number of layers from an insepc
     ]
 
 
-If you look closey at the output, at one point you will see the `"Cmd"` section, which looks like this:
+If you look closely at the output, at one point you will see the `"Cmd"` section, which looks like this:
 
 ```
 "Cmd": [
@@ -705,17 +705,17 @@ If you look closey at the output, at one point you will see the `"Cmd"` section,
                 "CMD [\"/bin/sh\" \"-c\" \"cd /src && node ./app.js\"]"
 ```
 
-This section tells us exactly what command the Docker container is suposed to run. In this particular instance, we know that the command translates to 
+This section tells us exactly what command the Docker container is supposed to run. In this particular instance, we know that the command translates to 
 
 ```
 /bin/sh -c "cd /src && node ./app.js"
 ```
 
-The part that is in quotation marks is the actual command. From the looks of it, when the container is spun up, it will `cd` into the `/src` directlly and run a node application. Nice!
+The part that is in quotation marks is the actual command. From the looks of it, when the container is spun up, it will `cd` into the `/src` directly and run a node application. Nice!
 
 # More on Running Containers
 
-So far, the only thing we know about running a container is that `-it` is an interactive mode and that running can simply be achieved with `docker container run`. There are some other details that might be helpeful to know, in particular relating to automatic restarts. For example, we can pass in some flags such as `always`, `unless-stopped`, and `on-failure` to specify what action the Docker container should take when something breaks down, causing a halt.
+So far, the only thing we know about running a container is that `-it` is an interactive mode and that running can simply be achieved with `docker container run`. There are some other details that might be helpful to know, in particular relating to automatic restarts. For example, we can pass in some flags such as `always`, `unless-stopped`, and `on-failure` to specify what action the Docker container should take when something breaks down, causing a halt.
 
 ```
 ! docker container run --name neversaydie -it --restart always alpine sh
@@ -771,7 +771,7 @@ If we look at the images that are on our system, we see the newly tagged image a
     golang                               1.11-alpine         e116d2efa2ab        10 months ago       312MB
 
 
-Now pushing is extremely easy: all we need to do is to use the command `docker image push [...]`, where the elipses contain the repository and tag of the image that we want to push. Note that retagging was necessary for us to be able to use our own namespace---equivalently, the Docker id---on Docker hub.
+Now pushing is extremely easy: all we need to do is to use the command `docker image push [...]`, where the ellipses contain the repository and tag of the image that we want to push. Note that retagging was necessary for us to be able to use our own namespace---equivalently, the Docker id---on Docker hub.
 
 
 ```python
