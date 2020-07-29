@@ -12,9 +12,9 @@ In this post, we will revisit the topic of recurrent neural networks, or RNNs. A
 
 Note that this post was inspired by [this article](https://wiseodd.github.io/techblog/2016/08/12/lstm-backprop/) by Kristiadi. I also heavily referenced [this post](http://colah.github.io/posts/2015-08-Understanding-LSTMs/) by Christopher Olah. If you find any part of this article intriguing and intellectually captivating, you will surely enjoy reading their blogs as well. With this in mind, let's jump right into it.
 
-## Disecting LSTMs
+## Dissecting LSTMs
 
-Long Short-Term Memory networks, or LSTMs for short, are one of the most widely used building blocks of Recurrent Neural Networks, or RNNs. This is because LSTMs overcame many of the limitations of basic vanilla RNNs: while simple RNN gates are bad at retaining long-term information and only remember input information that were fed into it relatively recenty, LSTMs do a great job of retaining important information, even if they were fed into the cell long time ago. In other words, they are able to somewhat mimic the function of the brain, which involves both long and short-term memory. 
+Long Short-Term Memory networks, or LSTMs for short, are one of the most widely used building blocks of Recurrent Neural Networks, or RNNs. This is because LSTMs overcame many of the limitations of basic vanilla RNNs: while simple RNN gates are bad at retaining long-term information and only remember input information that were fed into it relatively recently, LSTMs do a great job of retaining important information, even if they were fed into the cell long time ago. In other words, they are able to somewhat mimic the function of the brain, which involves both long and short-term memory. 
 
 The structure of an LSTM cell might be summarized as follows:
 
@@ -47,7 +47,7 @@ $$
 
 (1) is nothing more than just the good old forward pass. We concatenate $h_{t - 1}$ and $x_t$, then multiply it with some weights, add a bias, and apply a sigmoid activation. At this point, you might be wondering why we use a sigmoid activation instead of something like ReLU. The reason behind this choice of activation function becomes apparent once we look at (4), which is how LSTM imitates forgetting. For now, we will only focus on the first term in (4).
 
-Recall that the output of a sigmoid activatiion is between 0 and 1. Say the output of applying a sigmoid activation results in some value that is very close to 0. In that case, calculating the Hadamard product will also result in a value of an entry very close to 0. Given the interpretation that $C_t$, also known as the cell state, is an artifical way of simulating long-term memory, we can see how having zeros is similar to forgetfulness: a zero entry effectively means that the network deemed a particular piece of information as obsolete and decided to forget it in favor of accepting new information. In short, the sigmoid activation and the Hadamard product form the basis of LSTM's forget gate. By now, it should be apparent why we use sigmoid activations: instead of causing divergence with something like ReLU, we want to deliberately saturate and cause the network to produce some "vanishing" values.
+Recall that the output of a sigmoid activation is between 0 and 1. Say the output of applying a sigmoid activation results in some value that is very close to 0. In that case, calculating the Hadamard product will also result in a value of an entry very close to 0. Given the interpretation that $C_t$, also known as the cell state, is an artificial way of simulating long-term memory, we can see how having zeros is similar to forgetfulness: a zero entry effectively means that the network deemed a particular piece of information as obsolete and decided to forget it in favor of accepting new information. In short, the sigmoid activation and the Hadamard product form the basis of LSTM's forget gate. By now, it should be apparent why we use sigmoid activations: instead of causing divergence with something like ReLU, we want to deliberately saturate and cause the network to produce some "vanishing" values.
 
 ## Updating Cell State
 
@@ -68,7 +68,7 @@ i_t = \sigma(W_i [h_{t - 1}, x_t] + b_i) \tag{2} \\
 \end{align}
 $$
 
-(2) is another forward pass involving concatenation, much like we saw in (1) with $f_t$. The only difference is that, instead of forgetting, $i_t$ is meant to simulate an update of the cell state. In some LSTM variants, $i_t$ is simply replaced with $1 - f_t$, in which cas the cell state update would be rewritten as
+(2) is another forward pass involving concatenation, much like we saw in (1) with $f_t$. The only difference is that, instead of forgetting, $i_t$ is meant to simulate an update of the cell state. In some LSTM variants, $i_t$ is simply replaced with $1 - f_t$, in which case the cell state update would be rewritten as
 
 $$
 C_t = f_t \odot C_{t - 1} + (1 - f_t) \odot \tilde{C}_t \tag{4-2}
@@ -163,7 +163,7 @@ $$
 \end{align}
 $$
 
-Now comes the more complicated part. Thankfully, we've already done something very similar in the past when we were building a vanilla neural network from scratch. For instance, we know from [this post](https://jaketae.github.io/study/neural-net/#data-generation) that, given a cross entropy loss function, the gradient of the softmax layer can simply be calculated by subtracting the predicted probabiity from the true distribution. In other words, given an intermediate variabe
+Now comes the more complicated part. Thankfully, we've already done something very similar in the past when we were building a vanilla neural network from scratch. For instance, we know from [this post](https://jaketae.github.io/study/neural-net/#data-generation) that, given a cross entropy loss function, the gradient of the softmax layer can simply be calculated by subtracting the predicted probability from the true distribution. In other words, given an intermediate variable
 
 $$
 \begin{align}
@@ -214,9 +214,9 @@ $$
 \end{align}
 $$
 
-You might be wondering what the $d h_t$ term is doing in that equation. After all, isn't that quantity precisely what we are tryihg to calculate? This is the one tricky yet also interesting part about RNN backpropagation. Recall that the whole point of a recurrent neural network is its use of variables from the previous forward pass. For example, we know that in the next forward pass, $h_t$ will be concatenated with the input $x_{t + 1}$. In the backpropagation step corresponding to that forward pass, we would have computed $d h_t$; thus, this gradient flows into the current backpropagation as well. 
+You might be wondering what the $d h_t$ term is doing in that equation. After all, isn't that quantity precisely what we are trying to calculate? This is the one tricky yet also interesting part about RNN backpropagation. Recall that the whole point of a recurrent neural network is its use of variables from the previous forward pass. For example, we know that in the next forward pass, $h_t$ will be concatenated with the input $x_{t + 1}$. In the backpropagation step corresponding to that forward pass, we would have computed $d h_t$; thus, this gradient flows into the current backpropagation as well. 
 
-Although this diagram applies to a standard RNN instead of an LSTM, the recurrent nature of backprop still stands. I present it here becasue I find this diagram to be very intuitive.
+Although this diagram applies to a standard RNN instead of an LSTM, the recurrent nature of backprop still stands. I present it here because I find this diagram to be very intuitive.
 
 <img src="/assets/images/https://i.imgur.com/hEtvXnN.png">
 
@@ -302,7 +302,7 @@ $$
 
 Now we are done! The gradient for the rest of the parameters, such as $d W_f$ or $d b_f$ look almost exactly the same as $d W_o$ and $d b_o$ respectively, and not without reason: as we have noted above, what I conveniently called the filter-and-raw-material structure of LSTM gates remain consistent across the forget, input, and output gates. Therefore, we can apply the same chain rule to arrive at the same expressions. 
 
-However, there is one more caveat that requires our last bit of attention, and that is the gradient for $h_{t - 1}$. Note that $h_{t - 1}$ had been concatenated to the input in the form of $[x_t, h_{t - 1}]$ throughout the forward pass. Because this was a variable that was used during computation, we need to calculate its gradient as well. This might appear rather confusing since we are currently looking at time $t$, and it seems as if the gradient for $t - 1$ variables should be happeneing in the next iteration of backpropagation. While this is certainly true for the most part, due to the recurrent nature of LSTMs, we need to compute these gradients for $h_{t - 1}$ in this step as well. This is precisely what we were talking about earlier when discussing the recurrent nature of backprop; the $d h_{t - 1}$ we compute here will be used in the next iteration of backpropagation, just like we added $d h_t$ in the current backprop to calculate $d h_t$. 
+However, there is one more caveat that requires our last bit of attention, and that is the gradient for $h_{t - 1}$. Note that $h_{t - 1}$ had been concatenated to the input in the form of $[x_t, h_{t - 1}]$ throughout the forward pass. Because this was a variable that was used during computation, we need to calculate its gradient as well. This might appear rather confusing since we are currently looking at time $t$, and it seems as if the gradient for $t - 1$ variables should be happening in the next iteration of backpropagation. While this is certainly true for the most part, due to the recurrent nature of LSTMs, we need to compute these gradients for $h_{t - 1}$ in this step as well. This is precisely what we were talking about earlier when discussing the recurrent nature of backprop; the $d h_{t - 1}$ we compute here will be used in the next iteration of backpropagation, just like we added $d h_t$ in the current backprop to calculate $d h_t$. 
 
 Becaue $h_{t - 1}$ was used in many different places during the forward pass, we need to collect the gradients. Given an intermediate variable
 
@@ -343,6 +343,6 @@ These gradients, of course, will be passed onto the next iteration of backpropag
 
 # Conclusion
 
-Because DL libraries make it extremely easy to declare and train LSTM networks, it's often easy to gloss over what actually happens under the hood. However, there is certainly merit to dissecting and trying to understand the innerworking of DL models like LSTM cells, which offer a fascinating way of understanding the notion of memory. This is also important since RNNs are the basis of other more complicated models such as attention-based models or transformers, which is arguably the hottest topic these days in the field of NLP with the introduction of GPT-3 by OpenAI. 
+Because DL libraries make it extremely easy to declare and train LSTM networks, it's often easy to gloss over what actually happens under the hood. However, there is certainly merit to dissecting and trying to understand the inner-working of DL models like LSTM cells, which offer a fascinating way of understanding the notion of memory. This is also important since RNNs are the basis of other more complicated models such as attention-based models or transformers, which is arguably the hottest topic these days in the field of NLP with the introduction of GPT-3 by OpenAI. 
 
 I hope you have enjoyed reading this post. Catch you up in the next one!

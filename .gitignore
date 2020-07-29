@@ -2,3 +2,4 @@
 assets/images/.DS_Store
 _jupyter/.DS_Store
 .ipynb_checkpoints
+__pycache__/

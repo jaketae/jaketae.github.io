@@ -11,7 +11,7 @@ tags:
   - markov_chain
 ---
 
-In this post, we will explore Gibbs sampling, a [Markov chain Monte Caro](https://jaketae.github.io/study/MCMC/) algorithm used for sampling from probability distributions, somewhat similar to the [Metropolis-Hastings algorithm](https://jaketae.github.io/study/MCMC/#metropolis-hastings) we discussed some time ago. MCMC has somewhat of a special meaning to me because Markov chains was one of the first topics that I wrote about here on my blog.  
+In this post, we will explore Gibbs sampling, a [Markov chain Monte Carlo](https://jaketae.github.io/study/MCMC/) algorithm used for sampling from probability distributions, somewhat similar to the [Metropolis-Hastings algorithm](https://jaketae.github.io/study/MCMC/#metropolis-hastings) we discussed some time ago. MCMC has somewhat of a special meaning to me because Markov chains was one of the first topics that I wrote about here on my blog.  
 
 It's been a while since I have posted anything about math or statistics-related, and I'll admit that I've been taking a brief break from these domains, instead working on some personal projects and uping my Python coding skills. This post is going to be a fun, exciting mesh of some Python and math. Without further ado, let's get started.
 
@@ -29,7 +29,7 @@ $$
 p(x_1, x_2, x_3, \cdots, x_n)
 $$
 
-Turns out that the Gibbs sampler is a more specific version of the Metropolis-Hastings algorithm. We can ony use the Gibbs sampler in a restricted context: namely, that we have access to conditional probability distributions. 
+Turns out that the Gibbs sampler is a more specific version of the Metropolis-Hastings algorithm. We can only use the Gibbs sampler in a restricted context: namely, that we have access to conditional probability distributions. 
 
 $$
 p(x_1 \vert x_2, x_3, \cdots, x_n) \\
@@ -51,7 +51,7 @@ $$
 (x_1^0, x_2^0, x_3^0, \cdots x_n^0)
 $$
 
-The superscripts are all 0 since this is the first "sample" we will start off with. Theoretically, it doesn't matter what these random numbers are---asymptotically speaking, we should still be abe to approximate the final distribution, especially if given the fact that we take burn-in into account.
+The superscripts are all 0 since this is the first "sample" we will start off with. Theoretically, it doesn't matter what these random numbers are---asymptotically speaking, we should still be able to approximate the final distribution, especially if given the fact that we take burn-in into account.
 
 On the first iteration, we will begin by sampling from the first probability distribution. 
 
@@ -59,9 +59,9 @@ $$
 x_1^1 \sim p(x_1 \vert x_2^0, x_3^0, \cdots, x_n^0)
 $$
 
-Note that we simply used the initial random vaules for $x_2^0$ through $x_n^0$ to sample the first value from a conditional probability distribution. 
+Note that we simply used the initial random values for $x_2^0$ through $x_n^0$ to sample the first value from a conditional probability distribution. 
 
-Now, we do the same to sample $x_2^1$. Only this time, we can use the result from earlier, namely $x_1^1$. We can see how this might help us yield a silghtly more convincing result than simply using the random data. 
+Now, we do the same to sample $x_2^1$. Only this time, we can use the result from earlier, namely $x_1^1$. We can see how this might help us yield a slightly more convincing result than simply using the random data. 
 
 $$
 x_2^1 \sim p(x_2 \vert x_1^1, x_3^0, \cdots, x_n^0)
@@ -75,7 +75,7 @@ $$
 
 $m$ can be any number between 1 and $n$, since it is used to represent the $m$th random variable. 
 
-As we repeat more iterations of sampling, we will eventually end up with a plausibel representation of $n$-dimensional vectors, which is what we sought to sample from the intractabe distribution!
+As we repeat more iterations of sampling, we will eventually end up with a plausible representation of $n$-dimensional vectors, which is what we sought to sample from the intractable distribution!
 
 ## Python Implementation
 
@@ -83,7 +83,7 @@ In this section, we will take a look at a very simple example, namely sampling f
 
 ### Setup
 
-For this post, I'll be usisng `seaborn`, which is a data visualization library built on top of `matplotlib`. I'll simply be using `seaborn` to display a bivariate Gaussian. For reproducability's sake, we will also set a random seed.
+For this post, I'll be using `seaborn`, which is a data visualization library built on top of `matplotlib`. I'll simply be using `seaborn` to display a bivariate Gaussian. For reproducibility's sake, we will also set a random seed.
 
 
 ```python
@@ -97,7 +97,7 @@ np.random.seed(42)
 
 ### Algorithm
 
-The code for the Gibbs sampler is simple, partially because the distribution we are dealing with is a bivariate Gaussian, not some high-dimensional intractable distribution. This point notwithstanding, the `gibbs_sampler` function shows the gist of how Gibbs sampling works. Here, we pass in parameters for the conditional distribution, and start sampling given an initial `y` value corresponding to $\mu_y$. As stated earlier, this random value can be chosen arbitrarily. Of course, if we start from a value that is way off, it will take much longer for the algorithm to converge, *i.e.* we will have to discard a large portion of initially sampled valuess. This is known as burn-in. In this case, however, we will apply a quick hack and start from a plausible value to begin with, reducing the need for burn-in. We then take turns samplilng from the conditional probability distributions using the sampled values, and apend to a list to accumulate the result.
+The code for the Gibbs sampler is simple, partially because the distribution we are dealing with is a bivariate Gaussian, not some high-dimensional intractable distribution. This point notwithstanding, the `gibbs_sampler` function shows the gist of how Gibbs sampling works. Here, we pass in parameters for the conditional distribution, and start sampling given an initial `y` value corresponding to $\mu_y$. As stated earlier, this random value can be chosen arbitrarily. Of course, if we start from a value that is way off, it will take much longer for the algorithm to converge, *i.e.* we will have to discard a large portion of initially sampled values. This is known as burn-in. In this case, however, we will apply a quick hack and start from a plausible value to begin with, reducing the need for burn-in. We then take turns sampling from the conditional probability distributions using the sampled values, and append to a list to accumulate the result.
 
 
 ```python
@@ -165,7 +165,7 @@ plt.show()
 <img src="/assets/images/2020-06-12-gibbs-sampling_files/2020-06-12-gibbs-sampling_14_0.svg">
 
 
-And this is what we end up with if we sample directly from the bivariate Gaussian instead of using the Gibbs sampler. Note that we can do this only because we chose a deliberatey simple example; in many other contexts, this would certainly not be the case (if we could sample from a distribution directly, why use the Gibbs sampler in the first place?). Notice the similarity between the result achieved by sampling from the Gibbs sampler and the result produced from direct sampling as shown below.
+And this is what we end up with if we sample directly from the bivariate Gaussian instead of using the Gibbs sampler. Note that we can do this only because we chose a deliberately simple example; in many other contexts, this would certainly not be the case (if we could sample from a distribution directly, why use the Gibbs sampler in the first place?). Notice the similarity between the result achieved by sampling from the Gibbs sampler and the result produced from direct sampling as shown below.
 
 
 ```python
@@ -201,7 +201,7 @@ $$
 p(\mathbf{x} \vert \mathbf{y}) = \frac{p(\mathbf{x}, \mathbf{y})}{p(\mathbf{y})}
 $$
 
-Of course, if $\mathbf{x}$ and $\mathbf{y}$ are scalars, we go back to the familar bivariate context of our example.
+Of course, if $\mathbf{x}$ and $\mathbf{y}$ are scalars, we go back to the familiar bivariate context of our example.
 
 In short, deriving the expression for the conditional distribution simply amounts to simplifying the fraction whose denominator is the marginal distribution and the numerator is the joint distribution. 
 
@@ -305,7 +305,7 @@ $$
 \mathbf{x_2 \vert x_1} \sim \mathcal{N} \left(\mu_2 + \Sigma_{12}^\top \Sigma_{11}^{-1} (\mathbf{x_1} - \mu_1), \Sigma_{22} - \Sigma_{12}^\top \Sigma_{11}^{-1} \Sigma_{12} \right)
 $$
 
-Notice that this result is exactly what we have in the funtion which we used to sample from the conditional distribution. 
+Notice that this result is exactly what we have in the function which we used to sample from the conditional distribution. 
 
 
 ```python

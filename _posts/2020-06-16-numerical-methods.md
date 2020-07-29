@@ -57,7 +57,7 @@ $3^3 - 20 = 7$, so the function passes our quick sanity test.
 
 ## Parser
 
-One useful helper function that I also implemented for the sake of convenience is a array-to-equation parser that translates a list representation into a mathematical expression in Python. This is best demonstrated than explained, so I'll defer myself to an exampe.
+One useful helper function that I also implemented for the sake of convenience is a array-to-equation parser that translates a list representation into a mathematical expression in Python. This is best demonstrated than explained, so I'll defer myself to an example.
 
 
 ```python
@@ -184,7 +184,7 @@ print(f"F(x) = {parse(integrate(f_array))}")
     F(x) = 0.25 * x ** 4 - 20.0 * x ** 1
 
 
-While it's great that we can calcuate derivatives and integrals, one very obvious drawback of this direct approach is that we cannot deal with non-polynomial functions, such as exponentials or logarithms. Moreover, the list index representation is unable to represent polynomials that include terms whose powers are not positive integers. For these reasons, we will need some other methods of calculating derivatives as well. Hence the motivation for approximation methods, outlined in the section below.
+While it's great that we can calculate derivatives and integrals, one very obvious drawback of this direct approach is that we cannot deal with non-polynomial functions, such as exponentials or logarithms. Moreover, the list index representation is unable to represent polynomials that include terms whose powers are not positive integers. For these reasons, we will need some other methods of calculating derivatives as well. Hence the motivation for approximation methods, outlined in the section below.
 
 ## Approximation
 
@@ -194,7 +194,7 @@ $$
 f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h} \tag{1}
 $$
 
-This equation, commonly known as the definition of a derivative, is also known as the forward divided difference formula of calcuating derivatives. There is another variant, known as the backward divided difference formula:
+This equation, commonly known as the definition of a derivative, is also known as the forward divided difference formula of calculating derivatives. There is another variant, known as the backward divided difference formula:
 
 $$
 f'(x) = \lim_{h \to 0} \frac{f(x) - f(x - h)}{h} \tag{2}
@@ -210,7 +210,7 @@ def backward_divided_difference(f, x_current, x_prev):
     return (f(x_current) - f(x_prev)) / (x_current - x_prev)
 ```
 
-Another variant of the forward and backward divided difference formula is the center divided difference. By now, you might have some intuition as to what this formula is---as the name implies, we somehow use the center point, instead of going forward or backwards from the point of approximation. Here is the formua:
+Another variant of the forward and backward divided difference formula is the center divided difference. By now, you might have some intuition as to what this formula is---as the name implies, we somehow use the center point, instead of going forward or backwards from the point of approximation. Here is the formula:
 
 $$
 f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x - h)}{2h} \tag{3}
@@ -298,7 +298,7 @@ Now that we have these tools for differential calculus, now comes the exciting p
 
 # Numerical Methods
 
-It's time to put the methods we developed in the preceding sections to use for solving non-linear equations. Sepcifically, we'll begin by taking look at a classic algorithm, the Newton-Raphson method.
+It's time to put the methods we developed in the preceding sections to use for solving non-linear equations. Specifically, we'll begin by taking look at a classic algorithm, the Newton-Raphson method.
 
 ## Newton-Raphson
 
@@ -335,7 +335,7 @@ Since we will be using $x^*$ as the value for the next iteration, $x^* = x_{i + 
 
 ### Python Implementation
 
-Below is an implementation of the Newton-Raphson method in Python. I've added some parameters to the function for functionality and customization. `epsilon` is simply some small value we use to decide when to stop the update; if the change in the value of the root is so small that it is not worth the extra compute, we should stop. `max_iter` determines how many iterations we want to continue. If the algorithm is unable to find the root within `max_iter` iterations, it likely means that the function provided does not have a root, or at the very least, the root is not discoverable via the algorithm. Lastly, `return_history` is a flag that determines whether we return the full update history or simply the last value in the iteration as a single valule. 
+Below is an implementation of the Newton-Raphson method in Python. I've added some parameters to the function for functionality and customization. `epsilon` is simply some small value we use to decide when to stop the update; if the change in the value of the root is so small that it is not worth the extra compute, we should stop. `max_iter` determines how many iterations we want to continue. If the algorithm is unable to find the root within `max_iter` iterations, it likely means that the function provided does not have a root, or at the very least, the root is not discoverable via the algorithm. Lastly, `return_history` is a flag that determines whether we return the full update history or simply the last value in the iteration as a single value. 
 
 One peculiarity that deserves attention is the `TypeError` exception, which occurs in this case if the number of arguments passed into the function does not match. I added this `try` `except` block to take into account the fact that the `derive()` method and other approximate derivative calculation methods such as `center_divided_difference()` have differing numbers of parameters. 
 
@@ -403,7 +403,7 @@ root_nr_cdd
 
 This result aligns with the earlier observation that center divided difference provides very accurate approximations of the first derivative. 
 
-Note that the advatage of using `center_divided_difference` is that we can now apply Newton-Raphson to non-polynomial equations that cannot be formulated in list index representation format. For instance, let's try something like `f(x) = e^x - 3`. 
+Note that the advantage of using `center_divided_difference` is that we can now apply Newton-Raphson to non-polynomial equations that cannot be formulated in list index representation format. For instance, let's try something like `f(x) = e^x - 3`. 
 
 
 ```python
@@ -511,7 +511,7 @@ root_secant
 
 
 
-2.7 is a familar value, and indeed it is what was returned by the Newton-Raphson method as well. We confirm that this is indeed the root of the equation.
+2.7 is a familiar value, and indeed it is what was returned by the Newton-Raphson method as well. We confirm that this is indeed the root of the equation.
 
 
 ```python
@@ -531,7 +531,7 @@ Now that we have looked at both methods, it's time to make a quick comparison. W
 
 * Newton-Raphson method with direct polynomial derivatives
 * Newton-Raphson method with center divided difference
-* Secand method with backward divided difference
+* Secant method with backward divided difference
 
 By setting `return_history` to be `True`, we can obtain a full list of root updates as the three methods begin their quest for the root of the function. We can then see which method converges the quickest. Let's see how this little experiment turns out.
 
@@ -565,12 +565,12 @@ plt.show()
 <img src="/assets/images/2020-06-16-numerical-methods_files/2020-06-16-numerical-methods_67_0.svg">
 
 
-You might have to squint your eye to see that `N-R` (Netwon-Raphson with direct derivatives) and `N-R CDD` (Newton-Raphson with center divided difference) almost coincide exactly at the same points. I was honestly somewhat surprised by the result: althought we had verified the advantage of using center divided difference over forward or backward divided difference via some simple big-O analysis with trailing error terms, I did not expect the two to coincide with such exactitude. 
+You might have to squint your eye to see that `N-R` (Netwon-Raphson with direct derivatives) and `N-R CDD` (Newton-Raphson with center divided difference) almost coincide exactly at the same points. I was honestly somewhat surprised by the result: although we had verified the advantage of using center divided difference over forward or backward divided difference via some simple big-O analysis with trailing error terms, I did not expect the two to coincide with such exactitude. 
 
 Another interesting observation is that the secant method seems to take slightly longer than the Newton-Raphson method. This is probably due to the fact that the secant method uses backward divided difference, and also the fact that it requires two previous at each iteration instead of one. The reason why the first update seems rather ineffective is that the two initial guesses that we fed into the model was probably not such a good starting point. 
 
 # Conclusion
 
-The topic of today's post was somewhat different from what we had previously dealt with in this blog, but it was an interestig topic for me nonetheless. I had encountered the Newton-Raphson method previously when going down my typical Wikipedia rabbit holes, but it is only today that I feel like I've finally got a grasp of the concept. I condiser this post to be a start of many more posts on numerical methods to come. 
+The topic of today's post was somewhat different from what we had previously dealt with in this blog, but it was an interesting topic for me nonetheless. I had encountered the Newton-Raphson method previously when going down my typical Wikipedia rabbit holes, but it is only today that I feel like I've finally got a grasp of the concept. I consider this post to be a start of many more posts on numerical methods to come. 
 
 I hope you've enjoyed reading this post. See you in the next one.

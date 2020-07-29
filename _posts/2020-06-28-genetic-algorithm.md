@@ -26,7 +26,7 @@ The original, popular TSP requires that the salesperson return to the original s
 
 ## Setup
 
-Below are the modules we will be using for this post. We will be using `numpy`, more specifically a lot of functions from `numpy.random` for things like sampling, choosing, or permuting. `numpy` arrays are also generally faster than using normal Python lists since they support vectorization, which will certainly be beneficial when building our model. For reproducability, let's set the random seed to 42.
+Below are the modules we will be using for this post. We will be using `numpy`, more specifically a lot of functions from `numpy.random` for things like sampling, choosing, or permuting. `numpy` arrays are also generally faster than using normal Python lists since they support vectorization, which will certainly be beneficial when building our model. For reproducibility, let's set the random seed to 42.
 
 
 ```python
@@ -71,7 +71,7 @@ The idea is that, we can use some sort of randomized approach to generate an ini
 
 Evolution is a process that finds an optimal solution for survival through competition and mutation. Basically, the genes that have superior traits will survive, leaving offspring into the next generation. Those that are inferior will be unable to find a mate and perish, as sad as it sounds. Then how do these superior or inferior traits occur in the first place? The answer lies in random mutations. The children of one parent will not all have identical genes: due to mutation, which occurs by chance, some will acquire even more superior features that puts them far ahead of their peers. Needless to say, such beneficiaries of positive mutation will survive and leave offspring, carrying onto the next generation. Those who experience adversarial mutation, on the other hand, will not be able to survive. 
 
-In genetic algorithm engieering, we want to be able to simulate this process over an extended period of time without hard-coding our solution, such that the end result after hundred or thousands of generations will contain the optimal solution. Of course, we can't let the computer do everything: we still have to implement mutational procedures that define an evolutionary process. But more on that later. First, let's begin with the simple task of building a way of modeling a population. 
+In genetic algorithm engineering, we want to be able to simulate this process over an extended period of time without hard-coding our solution, such that the end result after hundred or thousands of generations will contain the optimal solution. Of course, we can't let the computer do everything: we still have to implement mutational procedures that define an evolutionary process. But more on that later. First, let's begin with the simple task of building a way of modeling a population. 
 
 ## Implementation
 
@@ -274,7 +274,7 @@ def crossover(self, p_cross=0.1):
 Population.crossover = crossover
 ```
 
-Now, we wrap the swap and crossover mutation into one nice function to call so that we perform each mutation according to some specified threshoold. 
+Now, we wrap the swap and crossover mutation into one nice function to call so that we perform each mutation according to some specified threshold. 
 
 
 ```python
@@ -418,7 +418,7 @@ After something like 30 iterations, it seems like algorithm has converged to the
 
 # Example Applications
 
-But this was more of a contrieved example. We want to see if this algorithm can scale. So let's write some functions to generate city coordinates and corresponding adjacency matrices.
+But this was more of a contrived example. We want to see if this algorithm can scale. So let's write some functions to generate city coordinates and corresponding adjacency matrices.
 
 
 ```python
@@ -426,7 +426,7 @@ def generate_cities(n_cities, factor=10):
     return np.random.rand(n_cities, 2) * n_cities * factor
 ```
 
-`generate_cities()` generates `n_cities` number of random city coordinates in the form of a numpy array. Now, we need some functions that will create an adjancency matrix based on the city coordinates.
+`generate_cities()` generates `n_cities` number of random city coordinates in the form of a numpy array. Now, we need some functions that will create an adjacency matrix based on the city coordinates.
 
 
 ```python
@@ -510,7 +510,7 @@ print(best)
     [91, 82, 25, 69, 52, 78, 2, 57, 75, 29, 27, 81, 35, 92, 18, 68, 34, 79, 58, 55, 0, 54, 74, 13, 37, 23, 67, 19, 61, 97, 64, 86, 93, 65, 17, 1, 3, 8, 59, 7, 98, 66, 49, 22, 5, 62, 41, 96, 12, 95, 36, 44, 77, 48, 31, 16, 39, 99, 53, 6, 43, 42, 83, 73, 60, 71, 76, 14, 33, 89, 38, 47, 28, 9, 85, 11, 72, 21, 88, 51, 63, 4, 15, 70, 56, 24, 94, 87, 90, 80, 50, 26, 30, 10, 40, 84, 46, 32, 20, 45]
 
 
-We can see that the genetic algorithm does seems to be optimizing the path as we expect, since the distance metric seems to be decreasing throughout the iteration. Now, let's actually try plotting the path along with the corresponding city coordinates. Here's a helper function to print the optimate path.
+We can see that the genetic algorithm does seems to be optimizing the path as we expect, since the distance metric seems to be decreasing throughout the iteration. Now, let's actually try plotting the path along with the corresponding city coordinates. Here's a helper function to print the optimal path.
 
 
 ```python
@@ -533,7 +533,7 @@ print_path(best, city_coordinates)
 
 At a glance, it's really difficult to see if this is indeed the optimal path, especially because the city coordinates were generated at random. 
 
-I therefore decided to create a much more contrieved example, but with many coordinates, so that we can easily verify whether the path decided on by the algorithm is indeed the optimal path. Namely, we will be arranging city coordinates to lie on a semi-circle, using the very familiar equation 
+I therefore decided to create a much more contrived example, but with many coordinates, so that we can easily verify whether the path decided on by the algorithm is indeed the optimal path. Namely, we will be arranging city coordinates to lie on a semi-circle, using the very familiar equation 
 
 $$
 y^2 = \sqrt{r^2 - x^2}
@@ -606,12 +606,12 @@ print_path(sorted(best), city_coordinates)
 <img src="/assets/images/2020-06-28-genetic-algorithm_files/2020-06-28-genetic-algorithm_59_0.svg">
 
 
-Comparing the two, we see that the optimal path returned by the genetic algorithm does contain some wasted traveling routes, namely the the chords between certain non-adjacent cities. Nonetheless, a lot of the adjacent cities are connected (hence the use of the aforementioned term, optimal segments). Considering the fact that there are a total of $100!$ possibilites, the fact that the algorithm was able to narrow it down to a plausible route that beats the baseline is still very interesting.
+Comparing the two, we see that the optimal path returned by the genetic algorithm does contain some wasted traveling routes, namely the the chords between certain non-adjacent cities. Nonetheless, a lot of the adjacent cities are connected (hence the use of the aforementioned term, optimal segments). Considering the fact that there are a total of $100!$ possibilities, the fact that the algorithm was able to narrow it down to a plausible route that beats the baseline is still very interesting.
 
 # Conclusion
 
-Genetic algorithms belong to a larger group of algorithms known as randomized algorithms. Prior to learning about genetic algorithms, the word "randomized algorithms" seemed more like a mysterious black box. After all, how can an algorithm find an answer to a problem using pseudo-random number generators, for instance? This post was a great opportunity to think more about this naive question through a concrete exampe. Moreover, it was also interesting to think about the traveilng salesman problem, which is a problem that appears so simple and easy, belying the true level of difficulty under the surface. 
+Genetic algorithms belong to a larger group of algorithms known as randomized algorithms. Prior to learning about genetic algorithms, the word "randomized algorithms" seemed more like a mysterious black box. After all, how can an algorithm find an answer to a problem using pseudo-random number generators, for instance? This post was a great opportunity to think more about this naive question through a concrete example. Moreover, it was also interesting to think about the traveling salesman problem, which is a problem that appears so simple and easy, belying the true level of difficulty under the surface. 
 
-There are many other ways to approach TSP, and genetic algorithms are just one of the many approaches we can take. It is also not the most effective way, as iterating over generations and generations can often take a lot of time. The contrieved semi-circle example, for instance, took somewhere around five to ten minutes to fully run on my 13-inch MacBook Pro. Nonetheless, I think it is an interesting way well worth the time and effort spent on implementation. 
+There are many other ways to approach TSP, and genetic algorithms are just one of the many approaches we can take. It is also not the most effective way, as iterating over generations and generations can often take a lot of time. The contrived semi-circle example, for instance, took somewhere around five to ten minutes to fully run on my 13-inch MacBook Pro. Nonetheless, I think it is an interesting way well worth the time and effort spent on implementation. 
 
 I hope you've enjoyed reading this post. Catch you up in the next one!

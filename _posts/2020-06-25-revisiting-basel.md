@@ -24,11 +24,11 @@ $$
 
 This seems like an innocuous, straightforward problem. One can easily prove, for instance, the fact that this series converges using integral approximation. However, to obtain the value of this series is a lot more difficult than it appears---it is no coincidence that this problem remained unsolved for years until Euler came along. 
 
-While there are many ways to solve this problem---Euler's method, in particular, is one of the countless examples through which one can witness his amazing intuition and heuristic---but we will be using Fourier expansion to solve this problem, as it also provides a nice segway into the Dirichelt Eta function.
+While there are many ways to solve this problem---Euler's method, in particular, is one of the countless examples through which one can witness his amazing intuition and heuristic---but we will be using Fourier expansion to solve this problem, as it also provides a nice segue into the Dirichlet Eta function.
 
 # Fourier Series
 
-We explored the topic of Fourier expansion in [this previous post](http://jaketae.github.io/study/fourier/). To recap, from a very high level, Fourier expansion is a way of expressing some function in terms of trigonoometric functions. If Taylor expansion used polynomials as the building block, Fourier expansion uses sines and cosines. 
+We explored the topic of Fourier expansion in [this previous post](http://jaketae.github.io/study/fourier/). To recap, from a very high level, Fourier expansion is a way of expressing some function in terms of trigonometric functions. If Taylor expansion used polynomials as the building block, Fourier expansion uses sines and cosines. 
 
 A generic formula for the Fourier transform can be expressed as follows:
 
@@ -135,7 +135,7 @@ $$
 x^2 = \frac13 \pi^2 + \sum_{n = 1}^\infty (-1)^n \frac{4}{n^2} \cos(n x) \tag{8}
 $$
 
-One noteworthy observation is that we already have $(-1)^n$ in the summation, which looks awfully siliar to the Dirichlet Eta function. Since we want to get rid of the cosine term, we can simply set $x = 0$---this will make all cosine terms evaluate to 1, effectively eliminating them from the expression. Then, we get
+One noteworthy observation is that we already have $(-1)^n$ in the summation, which looks awfully similar to the Dirichlet Eta function. Since we want to get rid of the cosine term, we can simply set $x = 0$---this will make all cosine terms evaluate to 1, effectively eliminating them from the expression. Then, we get
 
 $$
 0 = \frac13 \pi^2 + \sum_{n = 1}^\infty (-1)^n \frac{4}{n^2} \tag{8}
@@ -152,7 +152,7 @@ And there we have it, the value of $\eta(2)$! It's interesting to see how all th
 # Integral Representations
 
 
-In this section, we will be taking a look at some interesting representations of the Basel problem, mysteriously packaged in integrals. At a glance, it's somewhat unintuitive to think that an infinite summation problem can be stated as an integral in exact terms; however, the translation from sumation to integrals are not out of the blue. Using things like Taylor series, it is in fact possible to show that the Basel problem can be stated as an integral. 
+In this section, we will be taking a look at some interesting representations of the Basel problem, mysteriously packaged in integrals. At a glance, it's somewhat unintuitive to think that an infinite summation problem can be stated as an integral in exact terms; however, the translation from summation to integrals are not out of the blue. Using things like Taylor series, it is in fact possible to show that the Basel problem can be stated as an integral. 
 
 ## Natural Logarithm
 

@@ -80,7 +80,7 @@ That is literally all we need! We can of course still use Apache Spark on the te
 
 # RDD Basics
 
-The RDD API is the most basic way of dealing with data in Spark. RDD stands for "Resilident Distributed Dataset." Although more abstracted, higher-level APIs such as Spark SQL or Spark dataframes are becoming increasingly popular, thus challenging RDD's standing as a means of accessing and transforming data, it is a useful structure to learn nonetheless. One salient feature of RDDs is that computation in an RDD is parallelized across the cluster.
+The RDD API is the most basic way of dealing with data in Spark. RDD stands for "Resilient Distributed Dataset." Although more abstracted, higher-level APIs such as Spark SQL or Spark dataframes are becoming increasingly popular, thus challenging RDD's standing as a means of accessing and transforming data, it is a useful structure to learn nonetheless. One salient feature of RDDs is that computation in an RDD is parallelized across the cluster.
 
 ## Spark Context
 
@@ -121,7 +121,7 @@ for num in squared.collect():
 
 ## Count
 
-Another useful function is `.count()` and `.countByValue()`. As you might have easily guessed, these functions are literally used to count the number of elements itself or their number of occurences. This is perhaps best demonstrated by an example.
+Another useful function is `.count()` and `.countByValue()`. As you might have easily guessed, these functions are literally used to count the number of elements itself or their number of occurrences. This is perhaps best demonstrated by an example.
 
 
 ```python
@@ -446,7 +446,7 @@ def tuple_airport_city(line):
     return (words[1], words[3])
 ```
 
-For demonstration and sanity check purporses, let's apply the function to an example:
+For demonstration and sanity check purposes, let's apply the function to an example:
 
 
 ```python
@@ -605,7 +605,7 @@ pair_words.take(5)
 
 ## Sort
 
-One natural extension we might want to go from the word counting example is sorting. One can easily imagine situations where we might want to sort a pair RDD in some ascending or descending order according to value. This can bve achieved via the `sortBy()` function. Here, we set `ascending=False` so that the most frequent words would come at the top.
+One natural extension we might want to go from the word counting example is sorting. One can easily imagine situations where we might want to sort a pair RDD in some ascending or descending order according to value. This can be achieved via the `sortBy()` function. Here, we set `ascending=False` so that the most frequent words would come at the top.
 
 
 ```python
@@ -706,7 +706,7 @@ Join, which comes from relational algebra, is a very common operation that comes
 
 <img src='https://upload.wikimedia.org/wikipedia/commons/9/9d/SQL_Joins.svg' />
 
-We can perfor joins on pair RDDs as well. We can consider pair RDDs to be somewhat like SQL tables with just a primary key and a single column to go with it. Let's quickly create a toy dataset to illustrate the join operators in PySpark. Here, we have a list of names, ages, and their countries of origin. To best demonstrate the join operation, we intentionally create a mismatch of keys in the `ages_rdd` and `countries_rdd`. 
+We can perform joins on pair RDDs as well. We can consider pair RDDs to be somewhat like SQL tables with just a primary key and a single column to go with it. Let's quickly create a toy dataset to illustrate the join operators in PySpark. Here, we have a list of names, ages, and their countries of origin. To best demonstrate the join operation, we intentionally create a mismatch of keys in the `ages_rdd` and `countries_rdd`. 
 
 
 ```python
@@ -823,6 +823,6 @@ show_rdd(ages_rdd.fullOuterJoin(countries_rdd))
 
 In this post, we explored the various aspects of Apache Spark: what it is, how to set it up, and what we can do with it via the RDD API. There is a lot more to Spark that we haven't discussed, such as Spark SQL or MLLib. I will most definitely be writing a post on these as I become more familiar with the various APIs and functionalities that Spark has to offer. 
 
-I doubt I'll be using Spark for any personal project, since Spark is used for processing large datasets across different clusters, not on a single computer as we have done here. However, it was an interesting journey and one that was definitely worth the time and effot, since I feel like I've at least gained some glimpse of what all the hype behind the Spark keyword is. 
+I doubt I'll be using Spark for any personal project, since Spark is used for processing large datasets across different clusters, not on a single computer as we have done here. However, it was an interesting journey and one that was definitely worth the time and effort, since I feel like I've at least gained some glimpse of what all the hype behind the Spark keyword is. 
 
 I hope you've enjoyed reading this post. See you in the next one!

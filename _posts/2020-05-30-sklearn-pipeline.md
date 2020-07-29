@@ -240,7 +240,7 @@ plt.show()
 <img src="/assets/images/2020-05-30-sklearn-pipeline_files/2020-05-30-sklearn-pipeline_13_1.png">
 
 
-This visualiztion gives us a more intuitive sense of where the values are missing. In this case, the missing values seem to be distributed somewhat evenly or randomly. However, we can also imagine cases were missing values might have something to do with an inherent attribute in the dataset (e.g. only male participants of a survey might reply "N/A" to some health questionaire involving inquiries on pregnancy). In such cases, using this library to visualize where missing values occur is a good idea, as this is an additional dimension of informaiton that calling `df.isnull().sum()` wouldn't be able to reveal.
+This visualization gives us a more intuitive sense of where the values are missing. In this case, the missing values seem to be distributed somewhat evenly or randomly. However, we can also imagine cases were missing values might have something to do with an inherent attribute in the dataset (e.g. only male participants of a survey might reply "N/A" to some health questionaire involving inquiries on pregnancy). In such cases, using this library to visualize where missing values occur is a good idea, as this is an additional dimension of information that calling `df.isnull().sum()` wouldn't be able to reveal.
 
 Now that we have a rough sense of where missing values occur, we need to decide from one of few choices:
 
@@ -303,7 +303,7 @@ g = sns.heatmap(X_comb[['pclass', 'sex', 'age', 'sibsp', 'parch', 'fare', 'survi
 <img src="/assets/images/2020-05-30-sklearn-pipeline_files/2020-05-30-sklearn-pipeline_19_0.svg">
 
 
-From this preliminary analysis, it seems like there are some very weekly correlated features, namley `'parch'` and `'sibsp'`. The week correlation suggests that perhaps we need to engage in some feature engineering to extract more meaningful information out of the dataset.
+From this preliminary analysis, it seems like there are some very weekly correlated features, namely `'parch'` and `'sibsp'`. The week correlation suggests that perhaps we need to engage in some feature engineering to extract more meaningful information out of the dataset.
 
 # Feature Engineering
 
@@ -865,7 +865,7 @@ Although you might think that this is a working hack, this approach is in fact h
 
 ## Pipelines
 
-Let's try to use a simple pipeline to deal with missing vallues in some categorical variables. This is going to be our first sneak peak at how pipelines are declared and used.
+Let's try to use a simple pipeline to deal with missing values in some categorical variables. This is going to be our first sneak peak at how pipelines are declared and used.
 
 
 ```python
@@ -883,7 +883,7 @@ The last PCA step might seem extraneous. However, as discussed in [this Stack Ov
 
 > the judicious combination of one-hot plus PCA can seldom be beat by other encoding schemes. PCA finds the linear overlap, so will naturally tend to group similar features into the same feature.
 
-I don't have enough experience to attest to the veracity of this claim, but mathematically or statistically speaking, this proposition seems valid. The idea is that one-hot encoding all categorical variables may very well lead to an unmanagable number of columns, thus causing one to flaunder in the curse of dimensionality. A quick fix, then, is to apply PCA or some other dimensionality reduction technique onto the results of one-hot encoding. 
+I don't have enough experience to attest to the veracity of this claim, but mathematically or statistically speaking, this proposition seems valid. The idea is that one-hot encoding all categorical variables may very well lead to an unmanageable number of columns, thus causing one to flounder in the curse of dimensionality. A quick fix, then, is to apply PCA or some other dimensionality reduction technique onto the results of one-hot encoding. 
 
 Back to the implementation, note that we can look inside the individual components of `cat_transformer` by simply treating it as an iterable, much like a list or tuple. For example,
 
@@ -947,10 +947,10 @@ And just like that, we can evaluate the performance of our model.
 
 When it comes to general fitting and testing, a useful tip I found on Kaggle is the following rule of thumb:
 
-* If a pipeilne ends with a transformer, call `fit_transform()` then `transform()`. 
+* If a pipeline ends with a transformer, call `fit_transform()` then `transform()`. 
 * If a pipeline ends with a model, call `fit()` then `predict()`. Calling `fit()` will cause all steps prior to the model to undergo `fit_transform()`, and the final step---the model---will run `fit()`. 
 
-If you think about it for a second, this configurations makes a lot of sense: if the pipeline contains a model, it means that it is the full package. All the steps prior to the model would involve wrangling the data; the last step would have the model use the data to make a prediction. Therefore, calling `fit()` should apply only to the last model after `fit_transform()` is called on all the preprocessing steps. If the pipeline itself is just a bunddle of preprocessors, on the other hand, we should only be able to call `fit_transform()`. 
+If you think about it for a second, this configurations makes a lot of sense: if the pipeline contains a model, it means that it is the full package. All the steps prior to the model would involve wrangling the data; the last step would have the model use the data to make a prediction. Therefore, calling `fit()` should apply only to the last model after `fit_transform()` is called on all the preprocessing steps. If the pipeline itself is just a bundle of preprocessors, on the other hand, we should only be able to call `fit_transform()`. 
 
 
 # Hyperparameter Search
@@ -980,7 +980,7 @@ random_search = RandomizedSearchCV(clf,
 
 ```
 
-The parameter space we are searching for here is by no means exhaustive, but it covers a fair amount of ground. Of course, we can go crazy with randomized search, basically shoving Scikit-learn with every possible configuration and even running a grid search instead. However, that would take an inexorbitant amount of time and computing resources. Therefore, it is important to consider which features are potentially the most important and zoom into these deciding parameters for hypterparameter optimization. 
+The parameter space we are searching for here is by no means exhaustive, but it covers a fair amount of ground. Of course, we can go crazy with randomized search, basically shoving Scikit-learn with every possible configuration and even running a grid search instead. However, that would take an extreme amount of time and computing resources. Therefore, it is important to consider which features are potentially the most important and zoom into these deciding parameters for hypterparameter optimization. 
 
 
 ```python
@@ -1055,7 +1055,7 @@ random_search.best_score_
 
 
 
-We can also take a look at the best parameters that were found. It's worth noting that the algorithm decided that the `KNNImputer()` is supeior to `SimpleImputer()`, which in my opinion is no surprise. However, it is interesting to see our intuition being vindicated in this fashion nonetheless.
+We can also take a look at the best parameters that were found. It's worth noting that the algorithm decided that the `KNNImputer()` is superior to `SimpleImputer()`, which in my opinion is no surprise. However, it is interesting to see our intuition being vindicated in this fashion nonetheless.
 
 
 ```python
@@ -1145,7 +1145,7 @@ plt.show()
 
 # Conclusion
 
-Although the titanic dataset is considered trite, much like MNIST is in the context of DL, I still think there is a lot to be learned. Even simpe ML projects like these have inifinite spaces and options for exploration and experimentation. I hope to go through these classic datasets and competitions to glean insight from excellent public kernels, just like [this Kaggle kernel](https://www.kaggle.com/python10pm/sklearn-35-best-tips-and-tricks) which I referenced extensively to write this tutorial. 
+Although the titanic dataset is considered trite, much like MNIST is in the context of DL, I still think there is a lot to be learned. Even simple ML projects like these have infinite spaces and options for exploration and experimentation. I hope to go through these classic datasets and competitions to glean insight from excellent public kernels, just like [this Kaggle kernel](https://www.kaggle.com/python10pm/sklearn-35-best-tips-and-tricks) which I referenced extensively to write this tutorial. 
 
 In its inception, this post was conceived of as a simple introduction to `sklearn`'s pipelines, but it eventually ballooned up into a somewhat comprehensive rundown of a little Kaggle project. I hope to do a lot more of these in the coming days, just because I think there is immense value in mastering ML, although DL sounds a lot cooler. 
 

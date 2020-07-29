@@ -98,7 +98,7 @@ $$
 K_{i, j} = \text{cov}(x_i, x_j) \tag{8}
 $$
 
-Roughly speaking, covariance tells us how correlated two entries of the random vector are. This is where I think GPs get really interesting: the key point of GP is to realize that we want to model some smooth function that best fits our data. What does this "smootheness" mean in terms of covariance? The answer is that $x$ values that are close to each other must be highly correlated, whereas those that are far apart would have low covariance. In other words, knowing the value of $f(1)$ tells us a lot about the valule of $f(1.1)$, whereas it tells us very little about the valule of $f(10)$. In short, the closer the values, the higher the covariance. So at the end of the day, all there is to GP regression is to construct this covariance matrix using some distrance function. 
+Roughly speaking, covariance tells us how correlated two entries of the random vector are. This is where I think GPs get really interesting: the key point of GP is to realize that we want to model some smooth function that best fits our data. What does this "smoothness" mean in terms of covariance? The answer is that $x$ values that are close to each other must be highly correlated, whereas those that are far apart would have low covariance. In other words, knowing the value of $f(1)$ tells us a lot about the value of $f(1.1)$, whereas it tells us very little about the value of $f(10)$. In short, the closer the values, the higher the covariance. So at the end of the day, all there is to GP regression is to construct this covariance matrix using some distance function. 
 
 In GPs, these covariance matrices are referred to as kernels. Kernels can be understood as some sort of prior that we impose upon the regression problem. The idea of smoothness noted earlier is one such example of a prior. But it is a general prior that makes a lot of sense, since we normally don't want stepwise or non-differential functions as the result of regression. But there are hundreds and thousands of kernels out there that each suit different purposes. For the sake of simplicity, however, we will only take a look at one such kernel that relates to smoothness: the squared exponential kernel, often referred to as the RBF kernel.
 
@@ -110,7 +110,7 @@ $$
 
 We can apply distortions to the RBF function by adding things like coefficients, but for simplicity sake we omit them here.
 
-The key takeaway is that the RBF kernel function functions as a distance metric between two points. As an extreme exmaple, let's consider the case when $x_i = x_j$, the diagonal entries of the covariance matrix, which is effectively the variance along those components. Then, 
+The key takeaway is that the RBF kernel function functions as a distance metric between two points. As an extreme example, let's consider the case when $x_i = x_j$, the diagonal entries of the covariance matrix, which is effectively the variance along those components. Then, 
 
 $$
 \begin{align}
@@ -194,7 +194,7 @@ $$
 D = \sqrt{D} \sqrt{D}^\top
 $$
 
-where $\sqrt{D}$ is a matrix whose diagonal entries are each square root of the corresponding originals in $D$. The tranpose is not necessrary since $\sqrt{D}$ is a diagonal matrix, but we do so for convenience purposes later on in the derivation. Note the trivial case of the identity matrix, whose square root is equal to itself since all diagonal elements take the value of 1 (and $\sqrt{1} = 1$). 
+where $\sqrt{D}$ is a matrix whose diagonal entries are each square root of the corresponding originals in $D$. The tranpose is not necessary since $\sqrt{D}$ is a diagonal matrix, but we do so for convenience purposes later on in the derivation. Note the trivial case of the identity matrix, whose square root is equal to itself since all diagonal elements take the value of 1 (and $\sqrt{1} = 1$). 
 
 Given this piece of information, what we can now do is to rewrite the factorization of $A$ as
 
@@ -253,7 +253,7 @@ $$
 
 Here, the setup was that we have some multivariate Gaussian vector $\mathbf{x}$. Given some values for a portion of this random vector, namely $\mathbf{x_1}$, we can then derive another multivariate Gaussian for $\mathbf{x_2}$ using conditioning. 
 
-This is exactly what we are trying to do with GP regressison. Assuming that the data is normally distributed, given a number of training points and their corresponding $y$ values, how can we make predictions at test points? In other words, $\mathbf{x_2}$ are the test points; $\mathbf{x_1}$, the training points. Then, we can now establish the following:
+This is exactly what we are trying to do with GP regression. Assuming that the data is normally distributed, given a number of training points and their corresponding $y$ values, how can we make predictions at test points? In other words, $\mathbf{x_2}$ are the test points; $\mathbf{x_1}$, the training points. Then, we can now establish the following:
 
 $$
 \hat{y} \vert D = \mathcal{N}(K_*^\top K^{-1} y, K_{**} - K_*^\top K^{-1} K_*) \tag{20}
@@ -275,7 +275,7 @@ Given this broad conceptual understanding, let's move onto more concrete impleme
 
 # Python Implementation
 
-These are the setting we will be using for this post. We set a random seed for reproducability purporses.
+These are the setting we will be using for this post. We set a random seed for reproducibility purposes.
 
 
 ```python
@@ -289,7 +289,7 @@ np.random.seed(42)
 
 Recall that, depsite its beautiful underlying complexity, all there is to GP regression is to identify some conditional Gaussian with a kernel as its covariance. Then, we can simply sample from this conditional distribution to obtain possible models that fit the data. 
 
-As the first step, let's implement the RBF kernel. Here, we modify (9) to have an added parameter, $\gamma$, which is a mutiplicative constant to the exponent.
+As the first step, let's implement the RBF kernel. Here, we modify (9) to have an added parameter, $\gamma$, which is a multiplicative constant to the exponent.
 
 $$
 k(x_i, x_j) = e^{ - \gamma \left\lVert x_i - x_j \right\rVert^2} \tag{9-2}
@@ -318,7 +318,7 @@ n_dim = 50
 x_test = np.linspace(-5, 5, n_dim)
 ```
 
-Next, let's build the kernel with the test points and draw random samples to see what our prior looks like. Recall that sampling can be easily achieved by peforming the Cholesky decomposition on the kernel.
+Next, let's build the kernel with the test points and draw random samples to see what our prior looks like. Recall that sampling can be easily achieved by performing the Cholesky decomposition on the kernel.
 
 
 ```python
@@ -349,7 +349,7 @@ Next, we need a function from which we generate dummy train data. For the purpos
 f = lambda x: np.sin(0.9 * x)
 ```
 
-Let's generate 15 training data points from this function. Note that we are performing a noiseless GP regression, since we did not add any Gaussian noise to `f`. However, we already know how to perform GP with noise, as we discussed eariler how noise only affects the diagonal entries of the kernel. 
+Let's generate 15 training data points from this function. Note that we are performing a noiseless GP regression, since we did not add any Gaussian noise to `f`. However, we already know how to perform GP with noise, as we discussed earlier how noise only affects the diagonal entries of the kernel. 
 
 
 ```python
@@ -364,7 +364,7 @@ $$
 \hat{y} \vert D = \mathcal{N}(K_*^\top K^{-1} y, K_{**} - K_*^\top K^{-1} K_*) \tag{20}
 $$
 
-If we use `np.linalg.inverse()` or `np.linalg.pinverse()` functions to calculate the inverse of the kernel matrix components, out life would admittedly be easy. However, using inversion is not only typically costly, but also prone to inaccuracy. Therefore, we instead opt for a safer method, namely usisng `np.linalg.solve()`. In doing so, we wil also be introducing some intermediate variables for clarity.
+If we use `np.linalg.inverse()` or `np.linalg.pinverse()` functions to calculate the inverse of the kernel matrix components, out life would admittedly be easy. However, using inversion is not only typically costly, but also prone to inaccuracy. Therefore, we instead opt for a safer method, namely using `np.linalg.solve()`. In doing so, we will also be introducing some intermediate variables for clarity.
 
 Let's begin with the expression for the posterior mean $\mu$, which is $K_*^\top K^{-1} y$. The underlying idea is that we can apply Cholesky decomposition on $K$, and use that as a way to circumvent the need for direct inversion. Let $K = L L^\top$, then
 
@@ -475,7 +475,7 @@ plt.show()
 <img src="/assets/images/2020-07-02-gaussian-process_files/2020-07-02-gaussian-process_59_0.svg">
 
 
-The model behaves exactly as we would expect: where there is data, we are confident; where there is no data, we are uncertain. Therefore, we see little variation on test points near the data. In sparse regions where there is no training data, the model reflects our uncertainty, which is why we observe variation within the sampled functions. Comparing the region $[-4, 2]$ where there is a lot of training data, and $[-1, 0]$ where there is little data, this point becomes apparent. Overall, the average of the fifty samples seems to somewhat capture the overall sinusodial trend present in the training data, notwithstanding the extraneous curvature observed in some regions.
+The model behaves exactly as we would expect: where there is data, we are confident; where there is no data, we are uncertain. Therefore, we see little variation on test points near the data. In sparse regions where there is no training data, the model reflects our uncertainty, which is why we observe variation within the sampled functions. Comparing the region $[-4, 2]$ where there is a lot of training data, and $[-1, 0]$ where there is little data, this point becomes apparent. Overall, the average of the fifty samples seems to somewhat capture the overall sinusoidal trend present in the training data, notwithstanding the extraneous curvature observed in some regions.
 
 # Conclusion
 

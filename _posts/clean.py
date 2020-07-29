@@ -36,14 +36,15 @@ def parse(file_path):
     return " ".join(clean(text).split())
 
 
-def write(contents, file_name):
+def write(file_path):
+    contents = parse(file_path)
+    file_name = file_path.split(".")[0] + ".txt"
     with open(file_name, "w+") as file:
         file.write(contents)
 
 
 if __name__ == "__main__":
+    print("Start!")
     file_path = sys.argv[1]
-    contents = parse(file_path)
-    file_name = file_path.split(".")[0]
-    write(contents, f"{file_name}.txt")
+    write(file_path)
     print("Complete!")
