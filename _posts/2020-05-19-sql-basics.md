@@ -1436,7 +1436,7 @@ iris[iris.species.isna()]
 
 
 
-Again, this shows that boolean indexing is a huge component of sifting through `pandas` data frames. A lot of the inspiation behind this API obviously comes from R and `dpylr`'s treatement of its own data frames. 
+Again, this shows that boolean indexing is a huge component of sifting through `pandas` data frames. A lot of the inspiration behind this API obviously comes from R and  treatment of its own data frames. 
 
 The `notna()` function does the exact opposite of `isna()`. Without running the function, we already know that substituting `isna()` with `notna()` will simply give us the rest of all the rows in the `iris` dataset.
 
