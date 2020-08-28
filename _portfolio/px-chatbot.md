@@ -1,6 +1,6 @@
 ---
 title: PX Chatbot
-excerpt: "Facebooke messenger bot for price alerts"
+excerpt: "Facebook messenger bot for price alerts"
 header:
   image: /assets/images/bot.png
   teaser: assets/images/bot-th.png
