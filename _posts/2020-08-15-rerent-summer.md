@@ -3,7 +3,7 @@ title: Django and Summer Internship
 mathjax: false
 toc: true
 categories:
-  - blog
+  - development
 tags:
   - update
 ---
