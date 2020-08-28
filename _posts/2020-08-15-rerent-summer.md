@@ -1,5 +1,5 @@
 ---
-title: Summer Internship with ReRent
+title: Django and Summer Internship
 mathjax: false
 toc: true
 categories:
