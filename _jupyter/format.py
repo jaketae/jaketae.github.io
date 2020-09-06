@@ -5,7 +5,9 @@ import sys
 
 
 def rmd(nb):
-    path = f"/Users/jaketae/Documents/GitHub/jaketae.github.io/_jupyter/{nb}"
+    path = (
+        f"/Users/jaketae/Documents/Dev/GitHub/jaketae.github.io/_jupyter/{nb}"
+    )
     with open(path, "r") as file:
         filedata = file.read()
     filedata = re.sub('src="', 'src="/assets/images/', filedata)
@@ -14,7 +16,9 @@ def rmd(nb):
 
 
 def ipynb(nb):
-    path = f"/Users/jaketae/Documents/GitHub/jaketae.github.io/_jupyter/{nb}"
+    path = (
+        f"/Users/jaketae/Documents/Dev/GitHub/jaketae.github.io/_jupyter/{nb}"
+    )
     with open(path, "r") as file:
         filedata = file.read()
     yaml = "---\ntitle: TITLE\nmathjax: true\ntoc: true\ncategories:\n  - category\ntags:\n  - tag\n---\n\n"
