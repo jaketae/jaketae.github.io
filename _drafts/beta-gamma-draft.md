@@ -1,14 +1,3 @@
----
-title: Revisiting Beta and Gamma
-mathjax: true
-toc: true
-categories:
-  - study
-tags:
-  - 
-
----
-
 
 
 # Gamma Function
