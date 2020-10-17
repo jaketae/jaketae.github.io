@@ -41,7 +41,7 @@ The distinction between figure and axes are important, as these concepts are als
 For the sake of demonstration, let's import some modules and write up some code.
 
 
-```
+```python
 import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
@@ -56,7 +56,7 @@ Normally, I like to configure Matplotlib to have some style settings, such as `p
 Here is a very simple example of graph creation using `axes`. Note that we can obtain both the figure and the axes by calling `plt.subplot()`, with `nrows * ncols` determining the number of subplots or axes that will be made available to us. In this case, we have one subplot in a figure.
 
 
-```
+```python
 x = range(20)
 y1 = np.random.randint(low=0, high=10, size=(20,))
 y2 = np.random.randint(low=0, high=10, size=(20,))
@@ -75,7 +75,7 @@ plt.show()
 An interesting behavior of Matplotlib worth noting with the `plt.subplots()` function call is that the type of the `axes` object depends on the number of subplots to be created. Below is the case in which there is only one subplot:
 
 
-```
+```python
 _, axes = plt.subplots(nrows=1, ncols=1); axes
 ```
 
@@ -93,7 +93,7 @@ _, axes = plt.subplots(nrows=1, ncols=1); axes
 And here is the case of many subplots:
 
 
-```
+```python
 _, axes = plt.subplots(nrows=2, ncols=3); axes
 ```
 
@@ -117,7 +117,7 @@ _, axes = plt.subplots(nrows=2, ncols=3); axes
 As you can see, in the case of many subplots, the returned `axes` object is a NumPy array whose elements are `matplotlib.axes._subplots.AxesSubplot object`s. Hence we can do the following:
 
 
-```
+```python
 def generate_random_data(size, low=0, high=10):
     return np.random.randint(low=low, high=high, size=size)
 
@@ -146,7 +146,7 @@ Now that we have some idea of how to manipulate axes and subplots in Matplotlib,
 
 
 
-```
+```python
 tips = sns.load_dataset("tips")
 iris = sns.load_dataset("iris")
 ```
@@ -156,7 +156,7 @@ iris = sns.load_dataset("iris")
 To create plots with Matplotlib, we need `x` and `y` values. These values should be iterables, such as lists, tuples, or numpy arrays. One point to note is that each series in a pandas dataframe is also an iterable type. We can obtain the series by calling `.values` on a column, as shown below.
 
 
-```
+```python
 plt.scatter(tips["total_bill"].values, tips["tip"].values)
 plt.show()
 ```
@@ -168,12 +168,10 @@ plt.show()
 An alternative method is to simply specify the the column names and then pass in the entire dataframe as a `data` argument.
 
 
-```
+```python
 plt.scatter(x="total_bill", y="tip", data=tips)
 plt.show()
-
 ```
-
 
 <img src="/assets/images/2020-09-28-matplotlib-seaborn-pandas_files/2020-09-28-matplotlib-seaborn-pandas_18_0.svg">
 
@@ -181,7 +179,7 @@ plt.show()
 The syntax for seaborn is not so much different. In fact, it is almost identical, with the `.scatterplot` call being the exception. seaborn applies some stylistic changes by default, which I personally prefer over Matplotlib's defaults.
 
 
-```
+```python
 sns.scatterplot(x="total_bill", y="tip", data=tips)
 plt.show()
 ```
@@ -197,7 +195,7 @@ You might be thinking that the choice between seaborn and Matplotlib is a mutual
 Let's start with a vanilla example in which we use Matplotlib to create a figure containing two subplots. 
 
 
-```
+```python
 fig,axes = plt.subplots(1,2)
 axes[0].scatter(x='total_bill', y='tip', data=tips)
 axes[1].boxplot(tips[['total_bill','tip']].to_numpy())
@@ -211,7 +209,7 @@ plt.show()
 Note that we used `.to_numpy()` call in order to transform the dataframe into a numpy array. While this works, I personally think it's better to use seaborn in this case. So let's leave the subplot on the left as is, and replace the boxplot with a seaborn boxplot.
 
 
-```
+```python
 fig,axes = plt.subplots(1,2)
 axes[0].scatter(x='total_bill', y='tip', data=tips)
 sns.boxplot(data=tips[['total_bill','tip']], ax=axes[1])
@@ -227,12 +225,11 @@ That looks a lot better. For one, the syntax is less convoluted in the sense tha
 One interesting thing to note is that, we can also use the built-in visualization functionality that pandas has in order to create the boxplot. The code for this example is shown below.
 
 
-```
+```python
 fig,axes = plt.subplots(1,2)
 axes[0].scatter(x='total_bill', y='tip', data=tips)
 axes[1] = tips.boxplot(column=['total_bill','tip'])
 plt.show()
-
 ```
 
 
