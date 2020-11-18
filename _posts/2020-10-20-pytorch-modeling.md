@@ -1,5 +1,5 @@
 ---
-title: PyTorch: From Preprocessing to Evaluation
+title: PyTorch, From Data to Modeling
 mathjax: true
 toc: true
 categories:
