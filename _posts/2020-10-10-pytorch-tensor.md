@@ -6,6 +6,7 @@ categories:
   - study
 tags:
   - pytorch
+  - deep_learning
 ---
 
 This is a very quick post in which I familiarize myself with basic tensor operations in PyTorch while also documenting and clarifying details that initially confused me. As you may realize, some of these points of confusion are rather minute details, while others concern important core operations that are commonly used. This document may grow as I start to use PyTorch more extensively for training or model implementation. Let's get started.
