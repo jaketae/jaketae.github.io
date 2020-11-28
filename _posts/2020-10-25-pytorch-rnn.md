@@ -7,6 +7,7 @@ categories:
 tags:
   - pytorch
   - deep_learning
+  - from_scratch
 ---
 
 In this post, we'll take a look at RNNs, or recurrent neural networks, and attempt to implement parts of it in scratch through PyTorch. Yes, it's not entirely from scratch in the sense that we're still relying on PyTorch autograd to compute gradients and implement backprop, but I still think there are valuable insights we can glean from this implementation as well. 
