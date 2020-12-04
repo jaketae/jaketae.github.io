@@ -1,1 +1,0 @@
-bayesian from_scratch monte_carlo markov_chain

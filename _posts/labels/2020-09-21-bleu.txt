@@ -1,1 +1,0 @@
-deep_learning nlp from_scratch

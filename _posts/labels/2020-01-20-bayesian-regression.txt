@@ -1,1 +1,0 @@
-bayesian regression linear_algebra
