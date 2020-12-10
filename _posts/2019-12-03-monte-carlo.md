@@ -7,6 +7,7 @@ categories:
 tags:
   - monte_carlo
   - simulation
+  - statistics
 ---
 
 I have been putting off with blog postsings lately, largely because I was preoccupied with learning new languages I decided to pick up out of whim. Although I'm still learning the basics of these languages, namely HTML, CSS, and Javascript, I'm enjoying the process. I still have no idea where this spontaneous journey will take me, but hopefully I can make use of it in one way or another. 
@@ -372,7 +373,7 @@ This sums up our post on Monte Carlo methods. In a future post, we will take a l
 [Wallis product]: https://jaketae.github.io/study/basel-zeta/
 [Euler product]: https://en.wikipedia.org/wiki/Euler_product
 [importance sampling]: https://en.wikipedia.org/wiki/Importance_sampling
-[here]: https://medium.com/i-math/the-drunkards-walk-explained-48a0205d304 
+[here]: https://medium.com/i-math/the-drunkards-walk-explained-48a0205d304
 [this post]: http://zwmiller.com/projects/monte_carlo_part1.html
 [Markov Chain Monte Carlo]: https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo
 [Metropolis-Hastings]: https://en.wikipedia.org/wiki/Metropolis–Hastings_algorithm

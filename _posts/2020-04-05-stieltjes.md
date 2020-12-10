@@ -6,7 +6,6 @@ categories:
   - study
 tags:
   - statistics
-
 ---
 
 Expectation is a core concept in statistics, and it is no surprise that any student interested in probability and statistics may have seen some expression like this:

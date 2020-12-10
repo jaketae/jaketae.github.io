@@ -6,7 +6,6 @@ categories:
   - study
 tags:
   - machine_learning
-
 ---
 
 In today's post, we will explore ways to build machine learning pipelines with Scikit-learn. A pipeline might sound like a big word, but it's just a way of chaining different operations together in a convenient object, almost like a wrapper. This abstracts out a lot of individual operations that may otherwise appear fragmented across the script. I also personally think that Scikit-learn's ML pipeline is very well-designed. So here is a brief introduction to ML pipelines is Scikit-learn. 

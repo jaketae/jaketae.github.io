@@ -6,7 +6,6 @@ categories:
   - study
 tags:
   - from_scratch
-  - machine_learning
   - deep_learning
   - linear_algebra
 ---

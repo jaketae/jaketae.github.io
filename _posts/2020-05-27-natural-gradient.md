@@ -7,7 +7,6 @@ categories:
 tags:
   - statistics
   - machine_learning
-
 ---
 
 In a previous post, we took a look at Fisher's information matrix. Today, we will be taking a break from the R frenzy and continue our exploration of this topic, meshing together related ideas such as gradient descent, KL divergence, Hessian, and more.

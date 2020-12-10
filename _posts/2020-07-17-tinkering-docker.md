@@ -571,7 +571,7 @@ When we deal with custom created images, it's probably a good idea to run a quic
 
 Okay, this is perhaps too much data, but there there are parts that are interesting that require our attention. For example, notice that under `"RootFS"`, the image shows us how many layers there are. Granted, the layers are SHA256 encrypted, so we can't really see what these individual layers are right away. Nonetheless, we can still get an idea of who heavy the image is and how many layers it is composed of.
 
-Potentially even more important that getting the number of layers from an inspection command is knowing what command the Docker is instructed to run. For a better example, let's  another image. 
+Potentially even more important that getting the number of layers from an inspection command is knowing what command the Docker is instructed to run. For a better example, let's take a look at another image. 
 
 
 ```python

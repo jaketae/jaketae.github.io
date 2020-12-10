@@ -7,7 +7,6 @@ categories:
 tags:
   - deep_learning
   - tensorflow
-  - machine_learning
 ---
 
 You might remember back in the old days when autocomplete was just terrible. The suggestions provided by autocomplete would be useless if not downright stupid---I remember that one day when I intended to type "Gimme a sec," only to see my message get edited into "Gimme a sex" by the divine touches of autocomplete. On the same day, the feature was turned off on my phone for the betterment of the world.

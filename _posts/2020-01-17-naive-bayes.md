@@ -7,6 +7,7 @@ categories:
 tags:
   - machine_learning
   - from_scratch
+  - bayesian
 ---
 
 Welcome to part three of the "from scratch" series where we implement machine learning models from the ground up. The model we will implement today, called the naive Bayes classifier, is an interesting model that nicely builds on top of the Bayesian mindset we developed in the [previous post] on Markov Chain Monte Carlo. Much like the logistic regression model, naive Bayes can be used to solve classification tasks, as opposed to regression in which case the goal is to predict a continuous variable. The main difference between logistic regression and naive Bayes is that naive Bayes is built on a probabilistic model instead of an optimization model such as graident descent. Hence, implementing naive Bayes is somewhat easier from a programming point of view. Enough of the prologue, let's cut to the chase.

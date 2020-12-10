@@ -7,7 +7,6 @@ categories:
 tags:
   - jupyter
   - r
-
 ---
 
 These past few days, I've been writing posts on R while reading Hadley Wickham's [R for Data Science](https://r4ds.had.co.nz). R is no Python, but I'm definitely starting to see what makes R such an attractive language for data analysis. In particular, writing texts and code blocks on RStudio has been a good experience so far, keeping me focused and productive in my quest to R mastery (I'm nowhere near close). 
