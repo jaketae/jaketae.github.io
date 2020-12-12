@@ -392,6 +392,8 @@ $$
 The reformulation as shown in equation (10) is the formula for what is known as binary cross entropy. This is the equation that we will be using in the context of our problem, since the dataset we have only contains two class labels of 0 and 1.
 
 Now that we have an idea of what the loss function looks like, it's time to calculate the gradient. Since we are going to be back propagating the gradient, it makes sense to start from the very back of the neural network. Recall that our neural network is structured as follows:
+
+
 $$
 A_1 = XW_1 + b_1 \\
 Z_1 = \text{max}(0, A_1) \\
@@ -400,8 +402,8 @@ Z_2 = \sigma(A_2) \tag{6}
 $$
 
 
-The last layer is a softmax unit that receives input $A_2$ to produce output $Z_2$. Our goal, then, is to compute the gradient
 
+The last layer is a softmax unit that receives input $A_2$ to produce output $Z_2$. Our goal, then, is to compute the gradient
 
 $$
 \frac{\partial z_i}{\partial a_j}
