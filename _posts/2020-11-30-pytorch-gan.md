@@ -1,7 +1,6 @@
 ---
 title: GAN in PyTorch
 mathjax: true
-toc: true
 categories:
   - study
 tags:
