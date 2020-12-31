@@ -1,3 +1,3 @@
-This repository contains contents concerning my personal website. Feel free to visit at [https://jaketae.github.io]!
+This repository contains contents hosted my personal website. While the actual posts themselves are located in the `_posts` directory, I write my posts as Jupyter notebooks in `_jupyter`, then use a formatter and converter script to save them as markdown files. 
 
-[https://jaketae.github.io]: https://jaketae.github.io
+Feel free to visit my blog [here](https://jaketae.github.io)!
