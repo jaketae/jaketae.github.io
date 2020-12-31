@@ -1,5 +1,5 @@
 ---
-title: AI Picasso: Neural Style Transfer
+title: Neural Style Transfer
 mathjax: true
 toc: true
 categories:
