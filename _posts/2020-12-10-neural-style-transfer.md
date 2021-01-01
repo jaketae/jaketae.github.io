@@ -396,6 +396,6 @@ plt.show()
 
 # Conclusion
 
-Among the 20 photos that have been stylized, I think some definitely look better than others. In particular, I think the third row looks kind of scary, as it made every photo have red hues all over my face. However, there are definitely ones that look good as well. Overall, FMNT using pretrained models definitely yielded better results than our implementation. Of course, this is expected since the original NMT was not the most efficient algorithm; perhaps we will explore FNMT in a future post. But all in all, I think diving into the mechanics behind NMT was an interesting little project. 
+Among the 20 photos that have been stylized, I think some definitely look better than others. In particular, I think the third row looks kind of scary, as it made every photo have red hues all over my face. However, there are definitely ones that look good as well. Overall, FNMT using pretrained models definitely yielded better results than our implementation. Of course, this is expected since the original NMT was not the most efficient algorithm; perhaps we will explore FNMT in a future post. But all in all, I think diving into the mechanics behind NMT was an interesting little project. 
 
 I hope you've enjoyed reading this post. Catch you up in the next one!
