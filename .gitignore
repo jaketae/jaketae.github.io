@@ -5,3 +5,4 @@ _jupyter/.DS_Store
 __pycache__/
 _jupyter/data/
 _jupyter/.data/
+_jupyter/*.pt
