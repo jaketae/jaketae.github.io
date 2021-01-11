@@ -2,8 +2,8 @@
 title: Live Corona Map
 excerpt: "COVID-19 dashboard and graph visualizations"
 header:
-  image: /assets/images/coronamap.png
-  teaser: assets/images/coronamap-th.png
+  image: /assets/images/portfolio/coronamap.png
+  teaser: assets/images/portfolio/coronamap-th.png
 ---
 
 [Live Corona Map](http://livecorona.co.kr) is a COVID-19 data visuaization and dashboard project I joined in the April of 2020 as a Python developer. 
@@ -40,7 +40,7 @@ A new feature I added to the website was the "Major Headlines" widget. Previousl
 
 Adding this functionality required use of not only Python for scraping and saving data, but also Javascript for rendering it on the website. It was a challenging, yet also an incrediby rewarding experience. 
 
-<img src="/assets/images/livecod_news.png">
+<img src="/assets/images/portfolio/livecod_news.png">
 
 ## Daily Graph
 
