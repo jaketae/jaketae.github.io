@@ -1,9 +1,9 @@
 ---
-title: TITLE
+title: Attention Mechanism
 mathjax: true
 toc: true
 categories:
-  - category
+  - study
 tags:
   - deep_learning
   - pytorch
