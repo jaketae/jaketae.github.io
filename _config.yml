@@ -23,7 +23,7 @@ email: jake.tae@yale.edu
 description: >- # this means to ignore newlines until "baseurl:"
   Welcome to my website! My name is Jake Tae, a sophomore at Yale University.
   This is where I doodle for fun, write for recollection, and embark on intellectual
-  explorations. 
+  explorations.
 words_per_minute: 200
 search: true
 search_full_content: true
@@ -34,9 +34,8 @@ github_username: jaketae
 # Build settings
 markdown: kramdown
 highlighter: rouge
-kramdown: 
+kramdown:
   html_to_native: true
-
 
 # Outputting
 permalink: /:categories/:title/
@@ -71,9 +70,9 @@ plugins:
   - jekyll-seo-tag
 
 author:
-  name   : "Jake Tae"
-  avatar : "/assets/images/Photo.jpg"
-  bio    : "An aspiring mathematician and data scientist. Fan of football, guitar, tech, and food."
+  name: "Jake Tae"
+  avatar: "/assets/images/Photo.jpg"
+  bio: "An aspiring mathematician and data scientist. Fan of football, guitar, tech, and food."
   location: "Seoul, KOR"
   links:
     - label: "Email"
@@ -100,7 +99,7 @@ footer:
 
 # Collections
 collections:
-  portfolio: 
+  portfolio:
     output: true
     permalink: /:collection/:path/
 
@@ -116,14 +115,14 @@ defaults:
       comments: true
       share: true
       related: true
-  - scope:
-      path: ""
-      type: portfolio
-    values:
-      layout: single
-      author_profile: true
-      share: true
-      related: true
+  # - scope:
+  #     path: ""
+  #     type: portfolio
+  #   values:
+  #     layout: single
+  #     author_profile: true
+  #     share: true
+  #     related: true
 
 # SEO related
 # analytics:
@@ -132,7 +131,6 @@ defaults:
 #     tracking_id: "UA-154432000-1"
 #     anonymize_ip: false # default
 # google_site_verification: google9c27511a2a69fff6.html
-
 
 category_archive:
   type: liquid
