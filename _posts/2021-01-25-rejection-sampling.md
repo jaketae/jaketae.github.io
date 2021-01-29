@@ -13,7 +13,7 @@ In today's post, we will take a break from deep learning and turn our attention 
 
 # Concept
 
-Rejection sampling, similar to MCMC or Gibbs sampling, is usually employed when we want to sample from some distribution. As you might expect, such distributions are normally intractable or too complicated to directly sample from; therefore, we use rejection sampling as a meas of approximating the sampling process. 
+Rejection sampling, similar to MCMC or Gibbs sampling, is usually employed when we want to sample from some distribution. As you might expect, such distributions are normally intractable or too complicated to directly sample from; therefore, we use rejection sampling as a means of approximating the sampling process. 
 
 ## Context
 
