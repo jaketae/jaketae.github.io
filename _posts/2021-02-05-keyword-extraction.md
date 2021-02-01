@@ -9,13 +9,13 @@ tags:
   - nlp
 ---
 
-I've been interested in blog post auto-tagging and classification for some time. Recently, I was able to fine-tune RoBERTa to develop a decent multi-label, multi-class classification model to assign labels to my draft blog posts. This automated a small yet nonetheless substantial part of my blog post writeup workflow. Now, the markdown file that is spit up by running
+I've been interested in blog post auto-tagging and classification for some time. Recently, I was able to fine-tune RoBERTa to develop a decent multi-label, multi-class classification model to assign labels to my draft blog posts. This automated a small yet nonetheless substantial part of my blog post writeup workflow. Now, running
 
 ```
 format 2021-02-10-some-article.ipynb
 ```
 
-automatically generates a markdown file that not only includes all the contents of the Jupyter notebook, but it also includes automatically geneated tags that the fine-tuned BERT model inferred based on text processing. 
+automatically generates a markdown file that not only includes all the contents of the Jupyter notebook, but it also includes automatically generated tags that the fine-tuned BERT model inferred based on text processing. 
 
 Nonetheless, I knew that more could be done. The BERT fine-tuning approach came with a number of different drawbacks. For instance, the model was only trained on a total of the eight most frequently occuring labels. This was in large part due to my naïve design of the model and the unavoidable limitations of multi-label classification: the more labels there are, the worse the model performs. The fact that the dataset had been manually labeled by me, who tagged articles back then without much thought, certainly did not help.
 
