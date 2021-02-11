@@ -1,5 +1,5 @@
 ---
-title: TITLE
+title: BERT's Common Sense, or Lack Thereof
 mathjax: true
 toc: true
 categories:
