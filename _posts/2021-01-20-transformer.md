@@ -1,5 +1,5 @@
 ---
-title: Deep Dive into Transformers
+title: Attention is All You Need
 mathjax: true
 toc: true
 categories:
@@ -559,14 +559,11 @@ src_mask
 
 
     tensor([[[[ True,  True,  True,  True,  True,  True,  True,  True, False]]],
-
-
-​    
             [[[ True,  True,  True,  True,  True,  True,  True,  True,  True]]]])
 
 
 
-You might be wondering why it is necessary to squeeze the mask twice to create extraneous dimensions. IF you recall where the masks are applied in the self-attention layer, you will see this:
+You might be wondering why it is necessary to squeeze the mask twice to create extraneous dimensions. If you recall where the masks are applied in the self-attention layer, you will see this:
 
 ```python
 # energy.shape = [batch_size, num_heads, query_len, key_len]
@@ -654,9 +651,7 @@ trg_mask
               [1., 1., 1., 1., 1., 0., 0.],
               [1., 1., 1., 1., 1., 0., 0.],
               [1., 1., 1., 1., 1., 0., 0.]]],
-
-
-​    
+              
             [[[1., 0., 0., 0., 0., 0., 0.],
               [1., 1., 0., 0., 0., 0., 0.],
               [1., 1., 1., 0., 0., 0., 0.],
@@ -665,7 +660,7 @@ trg_mask
               [1., 1., 1., 1., 1., 1., 0.],
               [1., 1., 1., 1., 1., 1., 1.]]]])
 
-
+ 
 
 We see that the target mask is a triangular matrix. With some thinking, it is not difficult to convince ourselves that this is indeed the shape we want. Recall the self-attention, which manifests in the form of energy, is a matrix between the queries and keys to the layer. We mask the keys at different time steps so that the model cannot look ahead of the decoding sequence. Also, just like the encoder, we make sure that we mask out the padding tokens. You will see, for instance, that the first matrix in the mask above is not strictly triangular since the last few rows are masked due to padding. 
 
