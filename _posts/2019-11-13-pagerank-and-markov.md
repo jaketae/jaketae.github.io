@@ -167,4 +167,3 @@ So there you have it: the PageRank algorithm demystified. Now the question is, w
 
 [memoryless]: https://en.wikipedia.org/wiki/Markov_property
 
-
