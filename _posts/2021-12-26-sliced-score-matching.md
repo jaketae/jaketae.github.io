@@ -1,7 +1,7 @@
 ---
 title: Score Matching
 mathjax: true
-toc: true
+toc: fa
 categories:
   - study
 tags:
