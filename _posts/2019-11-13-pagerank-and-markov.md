@@ -51,10 +51,8 @@ plt.show()
 
 Running this block results in the following graph:
 
-<figure>
-	<img src="/assets/images/graph.png">
-	<figcaption>Figure 1: Representation of a miniature world wide web</
-</figure>
+<img src="/assets/images/graph.png">
+
 
 How is this a model of the Internet? Well, as simple as it seems, the network graph contains all the pertinent information necessary for our preliminary analysis: namely, hyperlinks going from one page to another. Let's take node D as an example. The pointed edges indicate that page E contains a link to page D, and that page D contains another link that redirects the user to page A. Interpreted in this fashion, the graph indicates which pages have a lot of incoming and outgoing reference links. 
 
@@ -64,10 +62,8 @@ But all this aside, why are hyperlinks important for the PageRank algorithm in t
 
 Suppose we want to know where a user is most likely to end up in after a given search. This process is often referred to as a [random walk] because, as the name suggests, it describes a path after a succession of random steps on some mathematical space. While it is highly unlikely that a user visits a website, randomly selects one of the hyperlinks on the given page, and repeats the two steps above repeatedly, the assumption on randomness is what allows us to simulate a user's navigation of the Internet from the point of view of Markov chains, a stochastic model that describes a sequence of possible events, or states, in which the probability of each event is contingent only upon the previous state attained in the previous event. One good example of a Markov chain is the famous Chutes and Ladders game, in which the player's next position is dependent only upon their present position on the game board. For this reason, Markov chains are said to be memoryless: in the Chutes and Ladders game, whether the player ended up in their current position by taking a ladder or a normal dice roll is irrelevant to the progress of the game. 
 
-<figure>
-	<img src="/assets/images/chutes-and-ladders.png">
-	<figcaption>Figure 2: Chutes and Ladders game</figcaption>
-</figure>
+<img src="/assets/images/chutes-and-ladders.png">
+
 
 A salient characteristic of a Markov chain is that the probabilities of each event can be represented and calculated by simple matrix multiplication. The specifics of this mechanism will be a topic for another post, but intuitively speaking, there would be some stochastic matrix $$P$$ that represents probabilities, and some vector $$x_n$$ that denotes the $$n$$th state in the Markov chain. Then, multiplying this state vector by the stochastic matrix would yield $$Mx_n = x_{n+1}$$, where the new vector $$x_{n+1}$$ denotes the probability distribution in the $$(n+1)$$th state in the Markov chain. The beauty behind the Markov chain is that the result of this multiplication operation, when iterated many times, converges to a stationary distribution vector regardless of where we started from, *i.e.* $$x_0$$. 
 
@@ -75,9 +71,6 @@ To make all of this more concrete, let's return back to our example of the Inter
 
 Here is the matrix representation of the network graph in our example:
 
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
 
 $$P = \begin{pmatrix} 0 & 1/2 & 1/3 & 1 & 0 \\ 1 & 0 & 1/3 & 0 & 1/3 \\ 0 & 1/2 & 0 & 0 & 1/3 \\ 0 & 0 & 0 & 0 & 1/3 \\ 0 & 0 & 1/3 & 0 & 0 \end{pmatrix}$$
 
@@ -93,10 +86,8 @@ $$Mx_0 = \begin{pmatrix} 0 & 1/2 & 1/3 & 1 & 0 \\ 1 & 0 & 1/3 & 0 & 1/3 \\ 0 & 1
 
 Notice that the result is just the first column of the stochastic matrix, with all entries 0 except for the second one! Why is this the case? Besides the algebraic argument that matrix multiplications can be performed on a column-by-entry basis, the network graph contains the most intuitive answer to our question: there is only one link from page A to page B, which is why $$P(B)$$ takes the absolute probability of 1. Simply put, the user clicks on the one and only link on page A to move to page B, as the highlighted path shows. 
 
-<figure>
-	<img src="/assets/images/graph-highlight.png">
-	<figcaption>Figure 3: Network graph with path highlight</figcaption>
-</figure>
+<img src="/assets/images/graph-highlight.png">
+
 
 Once the user reaches page B, however, they now have two choices instead of one: either go back to page A or visit page C. This increase in uncertainty is reflected in the entries of the next vector, $$x_2$$:
 
@@ -131,7 +122,7 @@ The output of this program is $$(0.29270741, 0.39047887, 0.21914571, 0.02430009,
 
 $$x_{50} \simeq x_{100} = \begin{pmatrix} 0.29268293 \\ 0.3902439 \\ 0.2195122 \\ 0.02439024 \\ 0.07317073 \end{pmatrix}$$
 
-Also notice that this result is independent of the initial vector we started out with! Suppose a new initial vector $$x_02 as defined below:
+Also notice that this result is independent of the initial vector we started out with! Suppose a new initial vector `x_02` as defined below:
 
 ```python
 x_02 = np.array([[1/5], [1/5], [1/5], [1/5], [1/5]])
