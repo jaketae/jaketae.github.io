@@ -5,7 +5,7 @@ title: "Hello there!"
 author_profile: true
 ---
 
-:wave: Welcome to my blog! My name is Jake (Jaesung) Tae, and I'm a sophomore at Yale University working towards a Bachelors of Science in Computer Science and Mathematics.
+:wave: Welcome to my blog! My name is Jake (Jaesung) Tae, and I'm a junior at Yale University working towards a Bachelors of Science in Computer Science and Mathematics.
 
 My interests are diverse, but I am particularly fascinated by deep learning, specifically text-to-speech, natural language processing, and generative modeling. While I'm a skeptic who believes that artificial intelligence will not achieve human-level  understanding of emotion or empathy, I strongly believe that the development and application of deep learning models will transform the world for the better. I'll also stick in here the fact that I'm a proud Pythonista and a firm advocate of open sourcing.
 
