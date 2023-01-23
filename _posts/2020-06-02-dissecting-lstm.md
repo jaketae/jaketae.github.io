@@ -218,7 +218,7 @@ You might be wondering what the $d h_t$ term is doing in that equation. After al
 
 Although this diagram applies to a standard RNN instead of an LSTM, the recurrent nature of backprop still stands. I present it here because I find this diagram to be very intuitive.
 
-<img src="/assets/images/https://i.imgur.com/hEtvXnN.png">
+<img src="https://i.imgur.com/hEtvXnN.png">
 
 If you look at the right, the star represents the gradient from the last pass. If you look to the left, you will see that there is going to be a gradient for $h_{t - 2}$ that will eventually be passed over to the next backpropgation scheme. Since the forward pass is recurrent, so is the backward pass. 
 
