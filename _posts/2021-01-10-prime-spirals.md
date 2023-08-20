@@ -5,7 +5,7 @@ toc: true
 categories:
   - study
 tags:
-  - analyssis
+  - analysis
   - data_viz
 ---
 

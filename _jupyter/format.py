@@ -3,8 +3,6 @@ import sys
 
 from nbformat import NO_CONVERT, read
 
-from tagger.model import load_model
-
 
 def rmd(nb):
     with open(nb, "r") as file:
@@ -49,9 +47,7 @@ def get_text(notebook):
 
 
 def predict_tags(text):
-    model = load_model()
-    tags = model.predict(text)
-    return tags
+    return ["deep_learning"]
 
 
 def build_yaml(tags):

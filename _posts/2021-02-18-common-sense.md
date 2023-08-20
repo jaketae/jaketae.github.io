@@ -3,7 +3,7 @@ title: BERT's Common Sense, or Lack Thereof
 mathjax: true
 toc: true
 categories:
-  - category
+  - study
 tags:
   - deep_learning
   - nlp
