@@ -71,8 +71,6 @@ plugins:
 author:
   name: "Jake Tae"
   avatar: "/assets/images/Photo.jpg"
-  bio: "An aspiring mathematician and data scientist. Fan of tech, soccer, guitar, and food."
-  location: "Seoul, KOR"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope"
